@@ -1,0 +1,17 @@
+package springmvc.demo.entity;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Permission {
+
+	private String permissionId;
+	private String title;
+	private String description;
+	private int active;
+	private Date created_at;
+	private Date update_at;
+	
+}

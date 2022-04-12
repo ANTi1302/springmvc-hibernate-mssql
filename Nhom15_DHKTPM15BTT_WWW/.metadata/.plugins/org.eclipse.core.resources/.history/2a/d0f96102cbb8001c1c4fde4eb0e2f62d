@@ -1,0 +1,5 @@
+package springmvc.demo.controller;
+
+public class DemoController {
+
+}

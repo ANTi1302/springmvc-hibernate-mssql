@@ -1,0 +1,10 @@
+package springmvc.demo.entity;
+
+import javax.persistence.Embeddable;
+
+@Embeddable
+public class ProductCategoryPK {
+
+	private String category_id;
+	private String product_id;
+}

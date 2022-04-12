@@ -1,0 +1,12 @@
+package springmvc.demo.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Product_Cart")
+public class ProductCart {
+
+	private int quatity;
+	private double price;
+}

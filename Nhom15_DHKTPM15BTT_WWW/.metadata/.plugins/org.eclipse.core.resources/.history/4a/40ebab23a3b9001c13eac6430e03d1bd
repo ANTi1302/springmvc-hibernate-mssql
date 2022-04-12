@@ -1,0 +1,14 @@
+package springmvc.demo.entity;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Cart {
+
+	private String cartId;
+	private Date created_at;
+	
+	
+}

@@ -1,0 +1,14 @@
+package springmvc.demo.entity;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Branchs {
+	
+	private String branchId;
+	private String title;
+	private String img;
+	private String description;
+	private String icon;
+
+}

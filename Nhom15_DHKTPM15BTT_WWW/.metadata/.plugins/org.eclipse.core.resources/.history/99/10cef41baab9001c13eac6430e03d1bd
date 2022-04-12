@@ -1,0 +1,42 @@
+package springmvc.demo.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@IdClass(RolePermissionPK.class)
+@Table(name ="Role_Permission" )
+public class RolePermission {
+
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "role_id")
+	private Role roleId;
+	
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "permission_id")
+	private Permission permissionId;
+
+	public Role getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Role roleId) {
+		this.roleId = roleId;
+	}
+
+	public Permission getPermissionId() {
+		return permissionId;
+	}
+
+	public void setPermissionId(Permission permissionId) {
+		this.permissionId = permissionId;
+	}
+	
+	
+}

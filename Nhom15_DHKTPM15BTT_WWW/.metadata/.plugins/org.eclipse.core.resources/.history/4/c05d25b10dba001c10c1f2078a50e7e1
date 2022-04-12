@@ -1,0 +1,11 @@
+package springmvc.demo.dao;
+
+import java.awt.Menu;
+import java.util.List;
+
+import springmvc.demo.entity.Menus;
+
+public interface MenuDao{
+
+	public List<Menus> getDsMenus();
+}

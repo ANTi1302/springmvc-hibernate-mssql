@@ -1,0 +1,114 @@
+package springmvc.demo.entity;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+public class Permission {
+	@Id
+	@GenericGenerator(name = "generator", strategy = "guid", parameters = {})
+	@GeneratedValue(generator = "generator")
+	@Column(name = "permission_id", columnDefinition = "uniqueidentifier")
+	private String permissionId;
+	private String title;
+	private String description;
+	private int active;
+	@Column(name = "created_at")
+	private Date createdAt;
+	@Column(name = "update_at")
+	private Date updateAt;
+	
+	@OneToMany(mappedBy = "permissionId")
+	private List<RolePermission> rolePermissions;
+	
+	
+	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Date getUpdateAt() {
+		return updateAt;
+	}
+	public void setUpdateAt(Date updateAt) {
+		this.updateAt = updateAt;
+	}
+	public List<RolePermission> getRolePermissions() {
+		return rolePermissions;
+	}
+	public void setRolePermissions(List<RolePermission> rolePermissions) {
+		this.rolePermissions = rolePermissions;
+	}
+	public String getPermissionId() {
+		return permissionId;
+	}
+	public void setPermissionId(String permissionId) {
+		this.permissionId = permissionId;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public int getActive() {
+		return active;
+	}
+	public void setActive(int active) {
+		this.active = active;
+	}
+	public Date getcreatedAt() {
+		return createdAt;
+	}
+	public void setcreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Date getupdateAt() {
+		return updateAt;
+	}
+	public void setupdateAt(Date updateAt) {
+		this.updateAt = updateAt;
+	}
+	
+	public Permission(String permissionId, String title, String description, int active, Date createdAt, Date updateAt,
+			List<RolePermission> rolePermissions) {
+		super();
+		this.permissionId = permissionId;
+		this.title = title;
+		this.description = description;
+		this.active = active;
+		this.createdAt = createdAt;
+		this.updateAt = updateAt;
+		this.rolePermissions = rolePermissions;
+	}
+	public Permission(String permissionId) {
+		super();
+		this.permissionId = permissionId;
+	}
+	public Permission() {
+		super();
+	}
+	@Override
+	public String toString() {
+		return "Permission [permissionId=" + permissionId + ", title=" + title + ", description=" + description
+				+ ", active=" + active + ", createdAt=" + createdAt + ", updateAt=" + updateAt + "]";
+	}
+	
+	
+}

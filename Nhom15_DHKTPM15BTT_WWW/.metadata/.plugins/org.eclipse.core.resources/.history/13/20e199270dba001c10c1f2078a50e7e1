@@ -1,0 +1,21 @@
+package diamonshop.controller.user;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import diamonshop.Service.user.HomeServer;
+
+@Controller
+public class BaseController {
+	@Autowired
+	HomeServer slidesServer;
+	
+	ModelAndView modelAndView= new ModelAndView();
+	@PostConstruct
+	public ModelAndView init() {
+		return modelAndView.addObject("menus",slidesServer.getDsMenus());
+	}
+}

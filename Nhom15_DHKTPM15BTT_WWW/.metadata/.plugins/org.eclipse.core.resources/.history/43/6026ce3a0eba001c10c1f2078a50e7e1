@@ -1,0 +1,19 @@
+package springmvc.demo.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import springmvc.demo.entity.Menus;
+
+@Repository
+public class MenusDaoImpl extends BaseDao implements MenusDao{
+
+//	select * from Menus
+	@Override
+	public List<Menus> getDsMenus() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

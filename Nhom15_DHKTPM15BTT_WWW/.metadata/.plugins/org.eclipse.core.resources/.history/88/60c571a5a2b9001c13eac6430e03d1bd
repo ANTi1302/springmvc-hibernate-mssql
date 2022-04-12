@@ -1,0 +1,24 @@
+package springmvc.demo.entity;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Product {
+	
+	private String productId;
+	private String name;
+	private double price;
+	private float sale;
+	private String title;
+	private String details;
+	private int highlight;
+	private int newProduct;
+	private String size;
+	private Date created_at;
+	private Date update_at;
+	private int amount;
+	private int quatity;
+
+}

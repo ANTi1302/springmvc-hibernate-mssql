@@ -1,0 +1,67 @@
+package springmvc.demo.entity;
+
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+public class Voucher {
+	@Id
+	@GenericGenerator(name = "generator", strategy = "guid", parameters = {})
+	@GeneratedValue(generator = "generator")
+	@Column(name = "voucher_id", columnDefinition = "uniqueidentifier")
+	private String voucherId;
+	private String code;
+	private Date createdAt;
+	private Date updateAt;
+	public String getVoucherId() {
+		return voucherId;
+	}
+	public void setVoucherId(String voucherId) {
+		this.voucherId = voucherId;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Date getupdateAt() {
+		return updateAt;
+	}
+	public void setupdateAt(Date updateAt) {
+		this.updateAt = updateAt;
+	}
+	public Voucher(String voucherId, String code, Date createdAt, Date updateAt) {
+		super();
+		this.voucherId = voucherId;
+		this.code = code;
+		this.createdAt = createdAt;
+		this.updateAt = updateAt;
+	}
+	public Voucher(String voucherId) {
+		super();
+		this.voucherId = voucherId;
+	}
+	public Voucher() {
+		super();
+	}
+	@Override
+	public String toString() {
+		return "Voucher [voucherId=" + voucherId + ", code=" + code + ", createdAt=" + createdAt + ", updateAt="
+				+ updateAt + "]";
+	}
+	
+}

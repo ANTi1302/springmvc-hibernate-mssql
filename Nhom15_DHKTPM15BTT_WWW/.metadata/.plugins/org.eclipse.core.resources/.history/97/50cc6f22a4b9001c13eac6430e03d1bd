@@ -1,0 +1,10 @@
+package springmvc.demo.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Order_Detail")
+public class OrderDetail {
+
+}

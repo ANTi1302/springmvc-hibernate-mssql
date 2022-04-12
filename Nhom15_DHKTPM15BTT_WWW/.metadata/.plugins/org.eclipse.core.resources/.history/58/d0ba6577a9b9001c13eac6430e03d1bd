@@ -1,0 +1,7 @@
+package springmvc.demo.entity;
+
+public class RolePermissionPK {
+
+	private String roleId;
+	private String permissionId;
+}
