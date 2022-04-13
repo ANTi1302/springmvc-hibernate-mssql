@@ -1,0 +1,22 @@
+package springmvc.demo.dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
+
+import springmvc.demo.entity.Color;
+import springmvc.demo.entity.Menus;
+import springmvc.demo.entity.Product;
+
+@Repository
+public class ColorsDaoImpl extends BaseDao implements ColorsDao {
+
+	@Override
+	public List<Product> dsColorTop9() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

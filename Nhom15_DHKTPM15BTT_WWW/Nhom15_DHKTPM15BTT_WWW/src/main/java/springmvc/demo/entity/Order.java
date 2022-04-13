@@ -44,7 +44,7 @@ public class Order implements Serializable{
 	@JoinColumn(name = "user_id", columnDefinition = "uniqueidentifier")
 	//Tu dong them id ảo cho phần update, delete
 	@Cascade(value= {org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.ALL})
-	private User user;
+	private Users user;
 	
 	@OneToMany(mappedBy = "orderId")
 	private List<OrderDetail> orderDetails;
@@ -105,11 +105,11 @@ public class Order implements Serializable{
 		this.shipPhone = shipPhone;
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 
@@ -122,7 +122,7 @@ public class Order implements Serializable{
 	}
 
 	public Order(String orderId, String status, Date createdAt, Date updateAt, float discount, String shipAddress,
-			String shipPhone, User user, List<OrderDetail> orderDetails) {
+			String shipPhone, Users user, List<OrderDetail> orderDetails) {
 		super();
 		this.orderId = orderId;
 		this.status = status;

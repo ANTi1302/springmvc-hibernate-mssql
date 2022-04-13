@@ -162,13 +162,13 @@
 				<!-- Single Catagory -->
 				<div class="single-products-catagory clearfix">
 					<a
-						href="<c:url value="/details/${c.productName}?idProduct=${c.productID}" />">
-						<img src="<c:url value="${c.imageLink}" />" alt="${c.productName}">
+						href="<c:url value="" />">
+						<img src="<c:url value="" />" alt="${c.name}">
 						<!-- Hover Content -->
 						<div class="hover-content">
 							<div class="line"></div>
 							<p>From $${c.price}</p>
-							<h4>${c.productName}</h4>
+							<h4>${c.name}</h4>
 						</div>
 					</a>
 				</div>

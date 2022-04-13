@@ -1,0 +1,31 @@
+package diamonshop.Dto;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+public class MappingProducts implements RowMapper<Products> {
+
+	@Override
+	public Products mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Products products=new Products();
+		products.setId_product(rs.getLong("id_product"));
+		products.setSizes(rs.getString("sizes"));
+		products.setName(rs.getString("name"));
+		products.setPrice(rs.getFloat("price"));
+		products.setSale(rs.getInt("sale"));
+		products.setTitle(rs.getString("title"));
+		products.setHighlight(rs.getInt("highlight"));
+		products.setNew_product(rs.getInt("new_product"));
+		products.setDetails(rs.getString("details"));
+		products.setCreated_at(rs.getDate("created_at"));
+		products.setUpdate_at(rs.getDate("updated_at"));
+		products.setName_color(rs.getString("name_color"));
+		products.setId_color(rs.getInt("id_color"));
+		products.setCode(rs.getString("code"));
+		products.setImg(rs.getString("img"));
+		return products;
+	}
+
+}

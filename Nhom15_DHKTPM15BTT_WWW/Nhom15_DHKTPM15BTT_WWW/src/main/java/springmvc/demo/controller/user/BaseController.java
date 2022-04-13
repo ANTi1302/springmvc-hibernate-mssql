@@ -1,11 +1,14 @@
 package springmvc.demo.controller.user;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
+import springmvc.demo.entity.Menus;
 import springmvc.demo.service.user.HomeService;
 
 
@@ -14,7 +17,7 @@ import springmvc.demo.service.user.HomeService;
 public class BaseController {
 	
 	@Autowired
-	private HomeService homeServer;
+	 HomeService homeServer;
 	
 	ModelAndView modelAndView= new ModelAndView();
 	@PostConstruct

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import springmvc.demo.dao.MenusDao;
 import springmvc.demo.dao.ProductDao;
+import springmvc.demo.dto.ProductDto;
 import springmvc.demo.entity.Menus;
 import springmvc.demo.entity.Product;
 
@@ -44,7 +45,8 @@ public class HomeServiceImpl implements HomeService{
 
 	@Override
 	@Transactional
-	public List<Product> dsProductTop9() {
+	
+	public List<ProductDto> dsProductTop9() {
 		// TODO Auto-generated method stub
 		return productDao.dsProductTop9();
 	}

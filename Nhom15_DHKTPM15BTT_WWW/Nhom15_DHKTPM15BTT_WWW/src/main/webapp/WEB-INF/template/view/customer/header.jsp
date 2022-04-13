@@ -51,7 +51,7 @@
 <!-- 									<i class="fas fa-search"></i> -->
 <!-- 								</div> -->
 								<button type="submit" class="icon">
-								<img src="<c:url value="/template/img/core-img/search.png" />"
+								<img src="<c:url value="/assets/img/core-img/search.png" />"
 																alt="?txt=">
 								</button>
 								<div class="dropdown-list" id="style-1">
@@ -174,6 +174,7 @@
 			<c:if test="${sessionScope.acc != null}">
 					<li><a href="<c:url value="#" />">${sessionScope.acc.username}</a></li>
 				</c:if>
+				
 			 <c:if test="${index.first }">
                <li class="active">
                </c:if>
@@ -183,6 +184,12 @@
 				<a href="<c:url value="${tempmenus.url }" />">${tempmenus.name }</a></li>
 				
 			</c:forEach>
+			<c:if test="${sessionScope.acc == null}">
+					<li><a href="<c:url value="/template/view/custumer/login.jsp" />">Login</a></li>
+				</c:if>
+				<c:if test="${sessionScope.acc != null}">
+					<li><a href="<c:url value="/logout" />">Logout</a></li>
+				</c:if>
 				
 			</ul>
 		</nav>

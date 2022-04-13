@@ -1,0 +1,29 @@
+package springmvc.demo.dto;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+@Entity
+public class ProductDto {
+
+	private String product_id;
+	private String name;
+	private double price;
+	private int sale;
+	private String title;
+	private String details;
+	private int highlight;
+	private int new_product;
+	private String size;
+	private Date created_at;
+	private Date update_at;
+	private int amount;
+	private String voucher_id ;
+	private String color_id;
+	private String name_color;
+	private String code;
+	private String img;
+	
+	
+	
+}

@@ -31,7 +31,7 @@ public class Cart implements Serializable {
 	@GenericGenerator(name = "generator", strategy = "guid", parameters = {})
 	@GeneratedValue(generator = "generator")
 	@JoinColumn(name = "user_id", columnDefinition = "uniqueidentifier")
-	private User user;
+	private Users user;
 	
 	@OneToMany(mappedBy = "cartId")
 	private List<ProductCart> productCarts;
@@ -52,11 +52,11 @@ public class Cart implements Serializable {
 		this.createdAt = createdAt;
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 
@@ -68,7 +68,7 @@ public class Cart implements Serializable {
 		this.productCarts = productCarts;
 	}
 
-	public Cart(String cartId, Date createdAt, User user, List<ProductCart> productCarts) {
+	public Cart(String cartId, Date createdAt, Users user, List<ProductCart> productCarts) {
 		super();
 		this.cartId = cartId;
 		this.createdAt = createdAt;

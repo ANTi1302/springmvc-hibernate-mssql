@@ -36,14 +36,14 @@ public class Role implements Serializable{
 	private List<RolePermission> rolePermissions;
 
 	@OneToMany(mappedBy = "role")
-	private List<User> users;
+	private List<Users> users;
 	
 	
-	public List<User> getUsers() {
+	public List<Users> getUsers() {
 		return users;
 	}
 
-	public void setUsers(List<User> users) {
+	public void setUsers(List<Users> users) {
 		this.users = users;
 	}
 
@@ -106,7 +106,7 @@ public class Role implements Serializable{
 	
 
 	public Role(String roleId, String title, int active, String description, Date createdAt, Date updateAt,
-			List<RolePermission> rolePermissions, List<User> users) {
+			List<RolePermission> rolePermissions, List<Users> users) {
 		super();
 		this.roleId = roleId;
 		this.title = title;

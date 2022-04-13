@@ -1,0 +1,26 @@
+package springmvc.demo.dto;
+
+import java.util.Date;
+
+public class ProductDto{
+
+	private String productId;
+	private String name;
+	private double price;
+	private float sale;
+	private String title;
+	private String details;
+	private int highlight;
+	private int newProduct;
+	private String size;
+	private Date createdAt;
+	private Date updateAt;
+	private int amount;
+	private String voucherId ;
+	private String colorId;
+	private String nameColor;
+	private String code;
+	private String img;
+	
+	
+}

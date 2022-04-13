@@ -6,6 +6,8 @@
 		<item key="create_package_info_java" value="false"/>
 	</section>
 	<section name="completion_proposal_size">
+		<item key="size.x" value="1208"/>
+		<item key="size.y" value="316"/>
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>
@@ -64,8 +66,8 @@
 		<item key="OmitCallToSuper" value="false"/>
 	</section>
 	<section name="DialogBounds_GenerateConstructorUsingFieldsSelectionDialog">
-		<item key="DIALOG_X_ORIGIN" value="786"/>
-		<item key="DIALOG_Y_ORIGIN" value="97"/>
+		<item key="DIALOG_X_ORIGIN" value="168"/>
+		<item key="DIALOG_Y_ORIGIN" value="70"/>
 		<item key="DIALOG_WIDTH" value="678"/>
 		<item key="DIALOG_HEIGHT" value="869"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
@@ -83,5 +85,10 @@
 		<item key="DIALOG_WIDTH" value="678"/>
 		<item key="DIALOG_HEIGHT" value="763"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="JavaSearchPage">
+		<item key="CASE_SENSITIVE" value="false"/>
+		<item key="INCLUDE_MASK" value="11"/>
+		<item key="HISTORY_SIZE" value="0"/>
 	</section>
 </section>

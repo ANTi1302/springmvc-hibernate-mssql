@@ -63,7 +63,7 @@ public class Product implements Serializable{
 	@GenericGenerator(name = "generator", strategy = "guid", parameters = {})
 	@GeneratedValue(generator = "generator")
 	@JoinColumn(name = "saller_id", columnDefinition = "uniqueidentifier")
-	private User user;
+	private Users user;
 	
 	@OneToMany(mappedBy = "productId")
 	private List<ProductCart> productCarts;
@@ -202,11 +202,11 @@ public class Product implements Serializable{
 		this.colors = colors;
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 
@@ -236,7 +236,7 @@ public class Product implements Serializable{
 
 	public Product(String productId, String name, double price, float sale, String title, String details, int highlight,
 			int newProduct, String size, Date createdAt, Date updateAt, int amount, int quatity, Branchs branchs,
-			Voucher voucher, List<Color> colors, User user, List<ProductCart> productCarts,
+			Voucher voucher, List<Color> colors, Users user, List<ProductCart> productCarts,
 			List<ProductCategory> productCategories, List<OrderDetail> orderDetails) {
 		super();
 		this.productId = productId;
@@ -268,6 +268,40 @@ public class Product implements Serializable{
 
 	public Product() {
 		super();
+	}
+
+	public Product(String productId, String name, double price, float sale, String title, String details, int highlight,
+			int newProduct, String size, int amount, Branchs branchs, Voucher voucher, List<Color> colors) {
+		super();
+		this.productId = productId;
+		this.name = name;
+		this.price = price;
+		this.sale = sale;
+		this.title = title;
+		this.details = details;
+		this.highlight = highlight;
+		this.newProduct = newProduct;
+		this.size = size;
+		this.amount = amount;
+		this.branchs = branchs;
+		this.voucher = voucher;
+		this.colors = colors;
+	}
+
+	public Product(String productId, String name, double price, String title, String details, int highlight,
+			int newProduct, String size, Date createdAt, int amount, List<Color> colors) {
+		super();
+		this.productId = productId;
+		this.name = name;
+		this.price = price;
+		this.title = title;
+		this.details = details;
+		this.highlight = highlight;
+		this.newProduct = newProduct;
+		this.size = size;
+		this.createdAt = createdAt;
+		this.amount = amount;
+		this.colors = colors;
 	}
 
 	@Override
