@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import springmvc.demo.dto.ProductDto;
+import springmvc.demo.entity.Branchs;
+import springmvc.demo.entity.Category;
 import springmvc.demo.entity.Color;
 import springmvc.demo.entity.Menus;
 import springmvc.demo.entity.Product;
@@ -36,4 +38,9 @@ public interface HomeService {
 	public List<Object[]> getDsColorTop9();
 	public List<Object[]> getDsColorTop3();
 	public List<Object[]> getDsColorTop6(int index);
+	
+	//category
+	public List<Category> getDsCategory();
+	//branchs
+	public List<Branchs> getDsBranchs();
 }

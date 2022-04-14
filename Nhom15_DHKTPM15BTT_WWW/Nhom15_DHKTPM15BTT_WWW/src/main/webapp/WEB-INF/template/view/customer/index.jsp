@@ -144,8 +144,8 @@
 						src="<c:url value="${c[0]}" />" alt=""> <!-- Hover Content -->
 						<div class="hover-content">
 							<div class="line"></div>
-							<p>From $$${c[3]}</p>
-							<h4>$${c[2]}</h4>
+							<p>From $${c[3]}</p>
+							<h4>${c[2]}</h4>
 						</div>
 					</a>
 				</div>

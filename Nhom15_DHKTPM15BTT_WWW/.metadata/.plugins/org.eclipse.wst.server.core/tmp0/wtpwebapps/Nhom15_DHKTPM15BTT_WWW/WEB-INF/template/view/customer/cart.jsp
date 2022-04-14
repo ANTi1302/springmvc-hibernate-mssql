@@ -53,10 +53,10 @@
                                 
                                 <tr>
                                         <td class="cart_product_img">
-                                            <a href="#"><img src="<c:url value="${o.imageLink}" />" alt="Product"></a>
+                                            <a href="#"><img src="<c:url value="" />" alt="Product"></a>
                                         </td>
                                         <td class="cart_product_desc">
-                                            <h5>${o.productName}</h5>
+                                            <h5>${o.name}</h5>
                                         </td>
                                         <td class="price">
                                             <span>$${o.price}</span>
@@ -66,10 +66,10 @@
                                                
                                                 <div>
                                                  
-                                                        <a href="sub?id=${o.productID}"><button class="btnSub">-</button></a> <strong>${o.amount}</strong>
-                                                        <a href="cart?id=${o.productID}"><button class="btnAdd">+</button></a>
+                                                        <a href="sub?id=${o.productId}"><button class="btnSub">-</button></a> <strong>${o.amount}</strong>
+                                                        <a href="cart?id=${o.productId}"><button class="btnAdd">+</button></a>
                                                    
-                                                    <td class="align-middle"><a href="remove?id=${o.productID}" class="text-dark">
+                                                    <td class="align-middle"><a href="remove?id=${o.productId}" class="text-dark">
                                                         <button type="button" class="btn btn-danger">Delete</button>
                                                         </a>
                                                     </td>

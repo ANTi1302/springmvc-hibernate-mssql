@@ -62,28 +62,6 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 		products=(List<Object[]>) currentSession.createQuery(sql);
 		return products;
 	}
-//	EntityTransaction tr = em.getTransaction();
-//	try {
-//		tr.begin();
-//		List<Product> list = em.createNativeQuery("select top 9 *from  [dbo].[Product] order by  [ProductID] ", Product.class).getResultList();
-//		tr.commit();
-//		return list;
-//	} catch (Exception e) {
-//		e.printStackTrace();
-//		tr.rollback();
-//	}
-//	return null;
-	
-//	@Override
-//	public List<Product> dsProductTop9() {
-//		Session currentSession = sessionFactory.getCurrentSession();
-//		Query<Product> theQuery = currentSession.createQuery(" from Product ",
-//				Product.class).setMaxResults(9);
-//		// execute query and get result list
-//		List<Product> products = theQuery.getResultList();
-//		// return the results
-//		return products;
-//	}
 	@Override
 	public List<Product> dsProduct() {
 		Session currentSession = sessionFactory.getCurrentSession();
@@ -154,14 +132,12 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 
 //	select * from Product where product_id ='0647194E-C5AD-40D8-B73D-1822E3751B47'
 	@Override
-	public Product getProduct(String txt) {
-		Session currentSession = sessionFactory.getCurrentSession();
-		Query<Product> theQuery = currentSession.createQuery(" from Product where product_id =':txt'", Product.class);
-		// execute query and get result list
-		theQuery.setParameter("txt", txt);
-		Product product = theQuery.getSingleResult();
-		// return the results
-		return product;
+	public Product getProduct(String product_id) {
+		// get the current hibernate session
+        Session currentSession = sessionFactory.getCurrentSession();
+        // now retrieve/read from database using the primary key
+        Product theProduct = currentSession.get(Product.class, product_id);
+        return theProduct;
 	}
 
 	@Override

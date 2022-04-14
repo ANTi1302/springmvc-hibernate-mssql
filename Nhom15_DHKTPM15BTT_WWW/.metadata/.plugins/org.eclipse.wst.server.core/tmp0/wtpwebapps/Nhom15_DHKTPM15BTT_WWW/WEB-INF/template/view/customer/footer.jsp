@@ -80,7 +80,7 @@
 											<li class="nav-item">
 										</c:if>
 										<a class="nav-link"
-											href="<c:url value="/home" />">${tempmenus.name}</a></li>
+											href="<c:url value="${tempmenus.url}" />">${tempmenus.name}</a></li>
 									</c:forEach>
 									
 								</ul>

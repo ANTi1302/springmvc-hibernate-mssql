@@ -46,13 +46,16 @@
                 <!--  Catagories  -->
                 <div class="catagories-menu">
                     <ul>
-                        <li class="active"><a href="#">Chairs</a></li>
-                        <li><a href="#">Beds</a></li>
-                        <li><a href="#">Accesories</a></li>
-                        <li><a href="#">Furniture</a></li>
-                        <li><a href="#">Home Deco</a></li>
-                        <li><a href="#">Dressings</a></li>
-                        <li><a href="#">Tables</a></li>
+                    <c:forEach var="category" items="${dsCategory }" varStatus="index">
+                    <c:if test="${index.first }">
+						<li class="active">
+					</c:if>
+					<c:if test="${not index.first }">
+						<li class="">
+					</c:if>
+                    <a href="#">${category.name }</a></li>
+                    </c:forEach>
+                       
                     </ul>
                 </div>
             </div>
@@ -63,31 +66,13 @@
                 <h6 class="widget-title mb-30">Brands</h6>
 
                 <div class="widget-desc">
-                    <!-- Single Form Check -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="amado">
-                        <label class="form-check-label" for="amado">Amado</label>
+                <!-- Single Form Check -->
+                <c:forEach var="branchs" items="${dsBranchs }">
+                <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="${branchs.title }">
+                        <label class="form-check-label" for="${branchs.title }">${branchs.title }</label>
                     </div>
-                    <!-- Single Form Check -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="ikea">
-                        <label class="form-check-label" for="ikea">Ikea</label>
-                    </div>
-                    <!-- Single Form Check -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="furniture">
-                        <label class="form-check-label" for="furniture">Furniture Inc</label>
-                    </div>
-                    <!-- Single Form Check -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="factory">
-                        <label class="form-check-label" for="factory">The factory</label>
-                    </div>
-                    <!-- Single Form Check -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="artdeco">
-                        <label class="form-check-label" for="artdeco">Artdeco</label>
-                    </div>
+                </c:forEach>
                 </div>
             </div>
 
@@ -180,7 +165,7 @@
                             <div class="product-img">
                                 <img src="<c:url value="${o[1]}" />" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="<c:url value="/template/img/product-img/product2.jpg" />" alt="">
+                                <img class="hover-img" src="<c:url value="${o[1]}" />" alt="">
                             </div>
 
                             <!-- Product Description -->
@@ -203,7 +188,7 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
                                     <div class="cart">
-                                        <a href="<c:url value="/cart?id=${o[0]}" />" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="<c:url value="/template/img/core-img/cart.png" />" alt=""></a>
+                                        <a href="<c:url value="/cart?id=${o[0]}" />" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="<c:url value="/assets/img/core-img/cart.png" />" alt=""></a>
                                     </div>
                                 </div>
                             </div>
