@@ -178,7 +178,7 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="<c:url value="${o.imageLink}" />" alt="">
+                                <img src="<c:url value="${o[1]}" />" alt="">
                                 <!-- Hover Thumb -->
                                 <img class="hover-img" src="<c:url value="/template/img/product-img/product2.jpg" />" alt="">
                             </div>
@@ -188,9 +188,9 @@
                                 <!-- Product Meta Data -->
                                 <div class="product-meta-data">
                                     <div class="line"></div>
-                                    <p class="product-price">$${o.price}</p>
-                                    <a href="<c:url value="details?idProduct=${o.productID}" />">
-                                        <h6>${o.productName}</h6>
+                                    <p class="product-price">$${o[3]}</p>
+                                    <a href="<c:url value="details?idProduct=${o[0]}" />">
+                                        <h6>${o[2]}</h6>
                                     </a>
                                 </div>
                                 <!-- Ratings & Cart -->
@@ -203,7 +203,7 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
                                     <div class="cart">
-                                        <a href="<c:url value="/cart?id=${o.productID}" />" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="<c:url value="/template/img/core-img/cart.png" />" alt=""></a>
+                                        <a href="<c:url value="/cart?id=${o[0]}" />" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="<c:url value="/template/img/core-img/cart.png" />" alt=""></a>
                                     </div>
                                 </div>
                             </div>

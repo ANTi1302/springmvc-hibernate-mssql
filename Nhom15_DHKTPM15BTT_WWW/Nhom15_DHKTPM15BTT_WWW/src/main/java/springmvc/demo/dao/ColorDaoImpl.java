@@ -90,6 +90,23 @@ public class ColorDaoImpl extends BaseDao implements ColorsDao {
 		// return the results
 		return color;
 	}
+//	SELECT *
+//	FROM (
+//	    SELECT *, ROW_NUMBER() OVER (ORDER BY [product_id]) AS RowNum
+//	    FROM [dbo].Color
+//	) AS MyDerivedTable
+//	WHERE MyDerivedTable.RowNum BETWEEN 0 AND 3
+	@Override
+	public List<Object[]> dsProductTop6(int index) {
+		String hql= "select c.product.productId ,c.img, c.product.name, c.product.price  from Color c group by c.product.productId,c.img, c.product.name, c.product.price\r\n"
+				+ "				order by c.product.productId\r\n";
+//				+ "				offset "+((index-1)*3)+" row fetch next 6 row only";
+		Session currentSession = sessionFactory.getCurrentSession();
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((index-1)*3)).setMaxResults(6);
+//		query.setParameter("index", (6*index)-5);
+		List<Object[]> color = (List<Object[]>) query.getResultList();
+		return color;
+	}
 
 
 }

@@ -24,7 +24,7 @@ public class HomeController extends BaseController {
 	@RequestMapping({ "/home", "/trang-chu" })
 	public ModelAndView index(HttpServletResponse resp, HttpServletRequest req) {
 		modelAndView.addObject("listProduct", homeServer.getDsColorTop9());
-		modelAndView.addObject("listProductSlides", homeServer.getDsColorTop3());
+		
 		try {
 			Cookie arr[] = req.getCookies();
 
@@ -71,7 +71,6 @@ public class HomeController extends BaseController {
 			indexPage = "1";
 		}
 		int index = Integer.parseInt(indexPage);
-		List<Product> products = homeServer.dsProductTop6(index);
 
 		// Phan trang
 		int soLuong = homeServer.demSLProduct();
@@ -111,7 +110,7 @@ public class HomeController extends BaseController {
 		// Add cart wh
 		req.setAttribute("tongSLProduct", soLuongProduct);
 		req.setAttribute("soLuong", soLuongCc);
-		req.setAttribute("dsProduct", products);
+		req.setAttribute("dsProduct",  homeServer.getDsColorTop6(index));
 		req.setAttribute("endpage", endpage);
 		req.setAttribute("tag", index);
 		modelAndView.setViewName("customer/shop");

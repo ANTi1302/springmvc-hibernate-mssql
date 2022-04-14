@@ -34,19 +34,19 @@ public class HomeServiceImpl implements HomeService{
 		return productDao.dsProduct();
 	}
 
-	@Override
-	@Transactional
-	public List<Product> dsProductTop6(int index) {
-		// TODO Auto-generated method stub
-		return productDao.dsProductTop6(index);
-	}
+//	@Override
+//	@Transactional
+//	public List<Product> dsProductTop6(int index) {
+//		// TODO Auto-generated method stub
+//		return productDao.dsProductTop6(index);
+//	}
 
-	@Override
-	@Transactional
-	public List<Product> dsProductTop6(int index, String ten) {
-		// TODO Auto-generated method stub
-		return productDao.dsProductTop6(index, ten);
-	}
+//	@Override
+//	@Transactional
+//	public List<Product> dsProductTop6(int index, String ten) {
+//		// TODO Auto-generated method stub
+//		return productDao.dsProductTop6(index, ten);
+//	}
 
 	@Override
 	@Transactional
@@ -139,5 +139,13 @@ public class HomeServiceImpl implements HomeService{
 		// TODO Auto-generated method stub
 		return colorsDao.getDsColorTop3();
 	}
+
+	@Override
+	@Transactional
+	public List<Object[]> getDsColorTop6(int index) {
+		// TODO Auto-generated method stub
+		return colorsDao.dsProductTop6(index);
+	}
+
 
 }
