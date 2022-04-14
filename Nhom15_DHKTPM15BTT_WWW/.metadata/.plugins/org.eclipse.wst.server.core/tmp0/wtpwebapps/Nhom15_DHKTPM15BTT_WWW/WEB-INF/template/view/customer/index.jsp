@@ -101,69 +101,30 @@
 					</div>
 					<div class="col-md-12">
 						<div class="featured-carousel owl-carousel">
-							<div class="item">
-								<div class="row justify-content-center">
-									<div class="col-md-11">
-										<div class="testimony-wrap d-md-flex">
-											<div class="img"
-												style="background-image: url(images/person-1.jpg);"></div>
-											<div
-												class="text text-center p-4 py-xl-5 px-xl-5 d-flex align-items-center">
-												<div class="desc w-100">
-													<p class="h3 mb-5">"Incredible services and amazing
-														customer support</p>
-													<div class="pt-4">
-														<p class="name mb-0">&mdash; Joy Smith</p>
-														<span class="position">Project Manager</span>
+							<c:forEach var="slide" items="${listProductSlides}">
+								<div class="item">
+									<div class="row justify-content-center">
+										<div class="col-md-11">
+											<div class="testimony-wrap d-md-flex">
+												<img class="img" src="<c:url value="${slide[0]}" />" alt="">
+												<div
+													class="text text-center p-4 py-xl-5 px-xl-5 d-flex align-items-center">
+													<div class="desc w-100">
+														<p class="h3 mb-5">"${slide[2] }"</p>
+														<div class="pt-4">
+															<p class="name mb-0">&mdash; ${slide[2]}</p>
+															<span class="position">${slide[4]}</span>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="item">
-								<div class="row justify-content-center">
-									<div class="col-md-11">
-										<div class="testimony-wrap d-md-flex">
-											<div class="img"
-												style="background-image: url(images/person-2.jpg);"></div>
-											<div
-												class="text text-center p-4 py-xl-5 px-xl-5 d-flex align-items-center">
-												<div class="desc w-100">
-													<p class="h3 mb-5">"Incredible services and amazing
-														customer support</p>
-													<div class="pt-4">
-														<p class="name mb-0">&mdash; Rony Smith</p>
-														<span class="position">Project Manager</span>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="row justify-content-center">
-									<div class="col-md-11">
-										<div class="testimony-wrap d-md-flex">
-											<div class="img"
-												style="background-image: url(images/person-3.jpg);"></div>
-											<div
-												class="text text-center p-4 py-xl-5 px-xl-5 d-flex align-items-center">
-												<div class="desc w-100">
-													<p class="h3 mb-5">"Incredible services and amazing
-														customer support</p>
-													<div class="pt-4">
-														<p class="name mb-0">&mdash; John Doe</p>
-														<span class="position">Project Manager</span>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							</c:forEach>
+
+
+
 						</div>
 					</div>
 				</div>
@@ -173,22 +134,22 @@
 		<!-- slider -->
 		<div class="col-md-12 text-center">
 			<h2 class="heading-section mb-5">Product Highlight</h2>
-			
+
 		</div>
 		<div class="amado-pro-catagory clearfix">
-				<c:forEach items="${listProduct}" var="c">
-					<!-- Single Catagory -->
-					<div class="single-products-catagory clearfix">
-						<a href="<c:url value="${c[1]}" />"> <img
-							src="<c:url value="${c[0]}" />" alt=""> <!-- Hover Content -->
-							<div class="hover-content">
-								<div class="line"></div>
-								<p>From $$${c[3]}</p>
-								<h4>$${c[2]}</h4>
-							</div>
-						</a>
-					</div>
-				</c:forEach>
+			<c:forEach items="${listProduct}" var="c">
+				<!-- Single Catagory -->
+				<div class="single-products-catagory clearfix">
+					<a href="<c:url value="${c[1]}" />"> <img
+						src="<c:url value="${c[0]}" />" alt=""> <!-- Hover Content -->
+						<div class="hover-content">
+							<div class="line"></div>
+							<p>From $$${c[3]}</p>
+							<h4>$${c[2]}</h4>
+						</div>
+					</a>
+				</div>
+			</c:forEach>
 		</div>
 
 	</div>

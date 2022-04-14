@@ -17,10 +17,9 @@ public class ColorDaoImpl extends BaseDao implements ColorsDao {
 	private final boolean NO=false;
 	private StringBuffer sql() {
 		StringBuffer  sql = new StringBuffer();
-		sql.append("select p.product_id, p.name, p.price, p.sale, p.title, p.details, p.highlight, p.new_product, p.size, p.created_at, p.update_at, p.amount, p.voucher_id, ");
-		sql.append("c.color_id, c.name as name_color, c.code, c.img ");
-		sql.append("from  Color c inner join ");
-		sql.append("Product p on c.product.productId = p.product_id ");
+		sql.append("SELECT c.img, c.product.productId,c.product.name, c.product.price,c.product.title ");
+		sql.append("			FROM     Color c ");
+		
 		return sql;
 	}
 	
@@ -28,13 +27,12 @@ public class ColorDaoImpl extends BaseDao implements ColorsDao {
 		StringBuffer sql = sql();
 		sql.append("where 1= 1 ");
 		if(productNew) {
-			sql.append("and p.new_product= 1 ");
+			sql.append("and c.product.newProduct= 1 ");
 		}
 		if (highLight) {
-			sql.append("and p.highlight= 1 ");
+			sql.append("and c.product.highlight= 1 ");
 		}
-		sql.append("group by p.product_id, p.name, p.price, p.sale, p.title, p.details, p.highlight, p.new_product, p.size, p.created_at, p.update_at, p.amount, p.voucher_id, ");
-		sql.append("c.color_id, c.name, c.code, c.img, c.product_id order by p.created_at");
+		sql.append("			GROUP BY c.img, c.product.productId,c.product.name, c.product.price,c.product.title order by newid()");
 		return sql.toString();
 	}
 //	@Override
@@ -60,16 +58,34 @@ public class ColorDaoImpl extends BaseDao implements ColorsDao {
 	}
 
 	@Override
-	public List<Object[]> getDsColor() {
-		String hql="SELECT c.img, c.product.productId,c.product.name, c.product.price\r\n"
-				+ "FROM     Color c\r\n"
-				+ "GROUP BY c.img, c.product.productId,c.product.name, c.product.price";
+	public List<Object[]> getDsColorTop9() {
+//		String hql="SELECT c.img, c.product.productId,c.product.name, c.product.price\r\n"
+//				+ "FROM     Color c\r\n"
+//				+ "GROUP BY c.img, c.product.productId,c.product.name, c.product.price order by newid()";
 		Session currentSession = sessionFactory.getCurrentSession();
 //		Query<Color> theQuery = currentSession.createQuery(" SELECT img, product_id\r\n"
 //				+ "FROM     Color c\r\n"
 //				+ "GROUP BY img, c.product.productId", Color.class);
 		// execute query and get result list
-		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setMaxResults(9);
+		String sql=sqlProductNew(NO, YES);
+		TypedQuery<Object[]> query=currentSession.createQuery(sql,Object[].class).setMaxResults(9);
+		List<Object[]> color = (List<Object[]>) query.getResultList();
+		// return the results
+		return color;
+	}
+
+	@Override
+	public List<Object[]> getDsColorTop3() {
+//		String hql="SELECT c.img, c.product.productId,c.product.name, c.product.price, c.product.title\r\n"
+//				+ "FROM     Color c\r\n"
+//				+ "GROUP BY c.img, c.product.productId,c.product.name, c.product.price, c.product.title order by newid()";
+		Session currentSession = sessionFactory.getCurrentSession();
+//		Query<Color> theQuery = currentSession.createQuery(" SELECT img, product_id\r\n"
+//				+ "FROM     Color c\r\n"
+//				+ "GROUP BY img, c.product.productId", Color.class);
+		// execute query and get result list
+		String sql=sqlProductNew(YES, NO);
+		TypedQuery<Object[]> query=currentSession.createQuery(sql,Object[].class).setMaxResults(3);
 		List<Object[]> color = (List<Object[]>) query.getResultList();
 		// return the results
 		return color;

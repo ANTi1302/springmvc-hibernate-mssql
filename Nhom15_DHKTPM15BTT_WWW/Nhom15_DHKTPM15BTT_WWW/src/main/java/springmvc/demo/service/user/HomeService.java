@@ -33,5 +33,6 @@ public interface HomeService {
 	//color
 	public List<Color> getDsColorsByIDProduct(String id) ;
 //	public List<Color> getDsColorsByIDProduct(Product id) ;
-	public List<Object[]> getDsColor();
+	public List<Object[]> getDsColorTop9();
+	public List<Object[]> getDsColorTop3();
 }

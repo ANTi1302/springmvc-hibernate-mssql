@@ -128,9 +128,16 @@ public class HomeServiceImpl implements HomeService{
 
 	@Override
 	@Transactional
-	public List<Object[]> getDsColor() {
+	public List<Object[]> getDsColorTop9() {
 		// TODO Auto-generated method stub
-		return colorsDao.getDsColor();
+		return colorsDao.getDsColorTop9();
+	}
+
+	@Override
+	@Transactional
+	public List<Object[]> getDsColorTop3() {
+		// TODO Auto-generated method stub
+		return colorsDao.getDsColorTop3();
 	}
 
 }

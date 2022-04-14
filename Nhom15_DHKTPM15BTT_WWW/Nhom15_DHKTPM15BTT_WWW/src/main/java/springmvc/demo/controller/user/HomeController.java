@@ -23,8 +23,8 @@ public class HomeController extends BaseController {
 
 	@RequestMapping({ "/home", "/trang-chu" })
 	public ModelAndView index(HttpServletResponse resp, HttpServletRequest req) {
-		modelAndView.addObject("listProduct", homeServer.getDsColor());
-		
+		modelAndView.addObject("listProduct", homeServer.getDsColorTop9());
+		modelAndView.addObject("listProductSlides", homeServer.getDsColorTop3());
 		try {
 			Cookie arr[] = req.getCookies();
 
