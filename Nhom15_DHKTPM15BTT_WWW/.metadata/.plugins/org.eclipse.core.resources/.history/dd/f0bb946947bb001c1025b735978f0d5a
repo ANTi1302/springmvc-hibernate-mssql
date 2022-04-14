@@ -1,0 +1,15 @@
+package springmvc.demo.dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import springmvc.demo.entity.Color;
+import springmvc.demo.entity.Menus;
+
+public interface ColorsDao {
+
+	@Override
+	public List<Color> getDsColorsByIDProduct() ;
+}

@@ -24,28 +24,28 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 
 	private final boolean YES=true;
 	private final boolean NO=false;
-//	private StringBuffer sql() {
-//		StringBuffer  sql = new StringBuffer();
-//		sql.append("select Product.product_id, Product.name, Product.price, Product.sale, Product.title, Product.details, Product.highlight, Product.new_product, Product.size, Product.created_at, Product.update_at, Product.amount, Product.voucher_id, ");
-//		sql.append("Color.color_id, Color.name as name_color, Color.code, Color.img ");
-//		sql.append("from  Color inner join ");
-//		sql.append("Product on Color.product_id = Product.product_id ");
-//		return sql;
-//	}
-//	
-//	private String sqlProductNew(boolean productNew, boolean highLight) {
-//		StringBuffer sql = sql();
-//		sql.append("where 1= 1 ");
-//		if(productNew) {
-//			sql.append("and Product.new_product= 1 ");
-//		}
-//		if (highLight) {
-//			sql.append("and Product.highlight= 1 ");
-//		}
-//		sql.append("group by Product.product_id, Product.name, Product.price, Product.sale, Product.title, Product.details, Product.highlight, Product.new_product, Product.size, Product.created_at, Product.update_at, Product.amount, Product.voucher_id, ");
-//		sql.append("Color.color_id, Color.name, Color.code, Color.img, Color.product_id order by Product.created_at");
-//		return sql.toString();
-//	}
+	private StringBuffer sql() {
+		StringBuffer  sql = new StringBuffer();
+		sql.append("select p.product_id, p.name, p.price, p.sale, p.title, p.details, p.highlight, p.new_product, p.size, p.created_at, p.update_at, p.amount, p.voucher_id, ");
+		sql.append("c.color_id, c.name as name_color, c.code, c.img ");
+		sql.append("from  Color c inner join ");
+		sql.append("Product p on c.product.productId = p.product_id ");
+		return sql;
+	}
+	
+	private String sqlProductNew(boolean productNew, boolean highLight) {
+		StringBuffer sql = sql();
+		sql.append("where 1= 1 ");
+		if(productNew) {
+			sql.append("and p.new_product= 1 ");
+		}
+		if (highLight) {
+			sql.append("and p.highlight= 1 ");
+		}
+		sql.append("group by p.product_id, p.name, p.price, p.sale, p.title, p.details, p.highlight, p.new_product, p.size, p.created_at, p.update_at, p.amount, p.voucher_id, ");
+		sql.append("c.color_id, c.name, c.code, c.img, c.product_id order by p.created_at");
+		return sql.toString();
+	}
 //	public List<Products> getDsProducts() {
 //		List<Products> products=new ArrayList<Products>();
 //		String sql=sqlProductNew(YES, NO);
@@ -53,15 +53,15 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 //		return products;
 //		
 //	}
-//	@Override
-//	public List<ProductDto> dsProductTop9() {
-//		Session currentSession = sessionFactory.getCurrentSession();
-//		List<ProductDto> products=new ArrayList<ProductDto>();
-//		String sql=sqlProductNew(YES, NO);
-//	
-//		products=(List<ProductDto>) currentSession.createQuery(sql, MappingProducts.class);
-//		return products;
-//	}
+	@Override
+	public List<Object[]> dsProductTop9() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		List<Object[]> products=new ArrayList<Object[]>();
+		String sql=sqlProductNew(YES, NO);
+	
+		products=(List<Object[]>) currentSession.createQuery(sql);
+		return products;
+	}
 //	EntityTransaction tr = em.getTransaction();
 //	try {
 //		tr.begin();
@@ -74,28 +74,20 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 //	}
 //	return null;
 	
-	@Override
-	public List<ProductDto> dsProductTop9() {
-		Session currentSession = sessionFactory.getCurrentSession();
-		 @SuppressWarnings("unchecked")
-		Query<ProductDto> query
-	      =  currentSession.createNativeQuery(
-	          "select Product.product_id, Product.name, Product.price, Product.sale, Product.title, Product.details, Product.highlight, Product.new_product, Product.size, Product.created_at, Product.update_at, Product.amount, Product.voucher_id, \r\n"
-	          + "Color.color_id, Color.name as name_color, Color.code, Color.img \r\n"
-	          + "	from  Color inner join \r\n"
-	          + "Product on Color.product_id = Product.product_id\r\n"
-	          + "where 1= 1 \r\n"
-	          + "		\r\n"
-	          + "		and Product.new_product= 1\r\n"
-	          + "	group by Product.product_id, Product.name, Product.price, Product.sale, Product.title, Product.details, Product.highlight, Product.new_product, Product.size, Product.created_at, Product.update_at, Product.amount, Product.voucher_id,\r\n"
-	          + "	Color.color_id, Color.name, Color.code, Color.img order by Product.created_at",ProductDto.class).setMaxResults(9);
-	    List<ProductDto> resultList = query.getResultList();
-	    return resultList;
-	}
+//	@Override
+//	public List<Product> dsProductTop9() {
+//		Session currentSession = sessionFactory.getCurrentSession();
+//		Query<Product> theQuery = currentSession.createQuery(" from Product ",
+//				Product.class).setMaxResults(9);
+//		// execute query and get result list
+//		List<Product> products = theQuery.getResultList();
+//		// return the results
+//		return products;
+//	}
 	@Override
 	public List<Product> dsProduct() {
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query<Product> theQuery = currentSession.createQuery(" from Product order by  product_id",
+		Query<Product> theQuery = currentSession.createQuery(" from Product ",
 				Product.class);
 		// execute query and get result list
 		List<Product> products = theQuery.getResultList();

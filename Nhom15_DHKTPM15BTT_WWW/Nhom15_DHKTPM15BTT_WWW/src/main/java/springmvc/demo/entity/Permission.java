@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -32,7 +33,7 @@ public class Permission implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date updateAt;
 	
-	@OneToMany(mappedBy = "permissionId")
+	@OneToMany(mappedBy = "permissionId", fetch = FetchType.EAGER)
 	private List<RolePermission> rolePermissions;
 
 	public String getPermissionId() {

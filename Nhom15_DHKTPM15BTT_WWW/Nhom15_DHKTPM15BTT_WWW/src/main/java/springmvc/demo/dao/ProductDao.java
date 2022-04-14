@@ -11,8 +11,8 @@ public interface ProductDao {
 	public List<Product> dsProductTop6(int index) ;
 	public List<Product> dsProductTop6(int index, String ten) ;
 	
-	public List<ProductDto> dsProductTop9() ;
-//	public List<Product> dsProductTop9() ;
+//	public List<ProductDto> dsProductTop9() ;
+	public List<Object[]> dsProductTop9() ;
 	public int demSLProduct() ;
 	public int demSLKhiSearch(String ten) ;
 	public Product thongTinChiTiet(int id) ;

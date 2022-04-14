@@ -8,10 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
-@Entity
 public class ProductDto implements Serializable{
 
-	@Id
 	private String product_id;
 	private String name;
 	private double price;

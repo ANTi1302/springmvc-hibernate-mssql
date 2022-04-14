@@ -21,6 +21,14 @@
     <link rel="stylesheet" href="<c:url value="/assets/css/core-style.css" /> ">
 <link rel="stylesheet"
 	href="<c:url value="/assets/css/position.css" />">
+	<link rel="stylesheet" href="<c:url value="/assets/css/owl.carousel.min.css" /> ">
+    <link rel="stylesheet" href="<c:url value="/assets/css/owl.theme.default.min.css" /> ">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+	<link rel="stylesheet" href="<c:url value="/assets/css/animate.css" /> ">
+	<link rel="stylesheet" href="<c:url value="/assets/bootstrap/style.css" /> ">
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </head>
 
 <body>

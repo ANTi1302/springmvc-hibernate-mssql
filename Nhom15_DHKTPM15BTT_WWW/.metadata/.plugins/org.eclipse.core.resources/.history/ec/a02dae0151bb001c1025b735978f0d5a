@@ -1,0 +1,34 @@
+package springmvc.demo.dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
+
+import springmvc.demo.entity.Color;
+@Repository
+public class ColorDaoImpl extends BaseDao implements ColorsDao {
+
+//	@Override
+//	public List<Color> getDsColorsByIDProduct(String id) {
+//		Session currentSession = sessionFactory.getCurrentSession();
+//		Query<Color> theQuery = currentSession.createQuery(" from Color c where c.product.productId=:id", Color.class);
+//		theQuery.setParameter("id", id);
+//		// execute query and get result list
+//		List<Color> color = (List<Color>) theQuery.getResultList();
+//		// return the results
+//		return color;
+//	}
+	@Override
+	public List<Color> getDsColorsByIDProduct(String id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Color> theQuery = currentSession.createNativeQuery("select Product.product_id, Product.name, Product.price, Product.sale, Product.title, Product.details, Product.highlight, Product.new_product, Product.size, Product.created_at, Product.update_at, Product.amount\r\n"
+				+ " from Color inner join Product Color.product.productId=Product.product_id", Color.class);
+		// execute query and get result list
+		List<Color> color = (List<Color>) theQuery.getResultList();
+		// return the results
+		return color;
+	}
+
+}

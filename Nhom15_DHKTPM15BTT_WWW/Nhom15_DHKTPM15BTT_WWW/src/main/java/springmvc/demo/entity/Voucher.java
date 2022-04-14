@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -30,7 +31,7 @@ public class Voucher implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updateAt;
 	
-	@OneToMany(mappedBy = "voucher")
+	@OneToMany(mappedBy = "voucher", fetch = FetchType.EAGER)
 	private List<Product> products;
 
 	public String getVoucherId() {

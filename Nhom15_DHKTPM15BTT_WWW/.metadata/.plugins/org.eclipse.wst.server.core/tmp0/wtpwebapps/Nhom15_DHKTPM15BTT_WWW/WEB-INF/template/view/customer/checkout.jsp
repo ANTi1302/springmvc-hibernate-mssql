@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="<c:url value="/assets/css/core-style.css" /> ">
 <link rel="stylesheet"
 	href="<c:url value="/assets/css/position.css" />">
+	
 </head>
 
 <body>

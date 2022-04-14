@@ -7,4 +7,5 @@ import springmvc.demo.entity.Menus;
 public interface MenusDao{
 
 	public List<Menus> getDsMenus();
+	
 }

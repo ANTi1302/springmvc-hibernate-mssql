@@ -22,4 +22,6 @@ public class MenusDaoImpl extends BaseDao implements MenusDao {
 		return menus;
 	}
 
+
+
 }
