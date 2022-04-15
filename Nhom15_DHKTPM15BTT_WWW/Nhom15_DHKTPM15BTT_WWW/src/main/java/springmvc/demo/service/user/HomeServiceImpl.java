@@ -172,5 +172,11 @@ public class HomeServiceImpl implements HomeService{
 		return branchsDao.getDsBranchs();
 	}
 
+	@Override
+	public List<Object[]> dsColorTop6(int index, String string) {
+		// TODO Auto-generated method stub
+		return colorsDao. dsColorTop6(index,string);
+	}
+
 
 }

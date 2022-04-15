@@ -149,8 +149,8 @@
 	<div class="mobile-nav">
 		<!-- Navbar Brand -->
 		<div class="amado-navbar-brand">
-			<a href="<c:url value="/template/view/custumer/cart.jsp" />"><img
-				src="<c:url value="/template/img/core-img/logo.png" />" alt=""></a>
+			<a href="<c:url value="/assets/view/custumer/cart.jsp" />"><img
+				src="<c:url value="/assets/img/core-img/logo.png" />" alt=""></a>
 		</div>
 		<!-- Navbar Toggler -->
 		<div class="amado-navbar-toggler">
@@ -206,7 +206,7 @@
 				</c:forEach>
 				<c:if test="${sessionScope.acc == null}">
 					<li><a
-						href="<c:url value="/template/view/custumer/login.jsp" />">Login</a></li>
+						href="<c:url value="/assets/view/custumer/login.jsp" />">Login</a></li>
 				</c:if>
 				<c:if test="${sessionScope.acc != null}">
 					<li><a href="<c:url value="/logout" />">Logout</a></li>
@@ -222,11 +222,11 @@
 		<!-- Cart Menu -->
 		<div class="cart-fav-search mb-100">
 			<a href="<c:url value="/print" />" class="cart-nav"><img
-				src="<c:url value="/template/img/core-img/cart.png" />" alt="">
+				src="<c:url value="/assets/img/core-img/cart.png" />" alt="">
 				Cart <span>(${soLuong})</span></a> <a href="#" class="fav-nav"><img
-				src="<c:url value="/template/img/core-img/favorites.png" />" alt="">
+				src="<c:url value="/assets/img/core-img/favorites.png" />" alt="">
 				Favourite</a> <a href="#" class="search-nav"><img
-				src="<c:url value="/template/img/core-img/search.png" />" alt="">
+				src="<c:url value="/assets/img/core-img/search.png" />" alt="">
 				Search</a>
 		</div>
 		<div class="shipping text-center">

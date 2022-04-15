@@ -13,4 +13,6 @@ public interface ColorsDao {
 	public List<Object[]> getDsColorTop9();
 	public List<Object[]> getDsColorTop3();
 	public List<Object[]> dsProductTop6(int index) ;
+
+	public List<Object[]> dsColorTop6(int index, String string);
 }

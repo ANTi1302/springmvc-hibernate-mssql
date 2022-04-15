@@ -19,7 +19,6 @@ public class ColorDaoImpl extends BaseDao implements ColorsDao {
 		StringBuffer  sql = new StringBuffer();
 		sql.append("SELECT c.img, c.product.productId,c.product.name, c.product.price,c.product.title ");
 		sql.append("			FROM     Color c ");
-		
 		return sql;
 	}
 	
@@ -104,6 +103,16 @@ public class ColorDaoImpl extends BaseDao implements ColorsDao {
 		Session currentSession = sessionFactory.getCurrentSession();
 		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((index-1)*3)).setMaxResults(6);
 //		query.setParameter("index", (6*index)-5);
+		List<Object[]> color = (List<Object[]>) query.getResultList();
+		return color;
+	}
+
+	@Override
+	public List<Object[]> dsColorTop6(int index, String string) {
+		String hql= "select c.product.productId ,c.img, c.product.name, c.product.price  from Color c where c.product.name like '%"+string+"%' group by c.product.productId,c.img, c.product.name, c.product.price\r\n"
+				+ "		order by c.product.productId\r\n";
+		Session currentSession = sessionFactory.getCurrentSession();
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((index-1)*3)).setMaxResults(6);
 		List<Object[]> color = (List<Object[]>) query.getResultList();
 		return color;
 	}

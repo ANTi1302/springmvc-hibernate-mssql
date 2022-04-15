@@ -38,9 +38,10 @@ public interface HomeService {
 	public List<Object[]> getDsColorTop9();
 	public List<Object[]> getDsColorTop3();
 	public List<Object[]> getDsColorTop6(int index);
-	
+	public List<Object[]> dsColorTop6(int index, String string);
 	//category
 	public List<Category> getDsCategory();
 	//branchs
 	public List<Branchs> getDsBranchs();
+	
 }

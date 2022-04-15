@@ -1,7 +1,6 @@
 package springmvc.demo.controller.user;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import springmvc.demo.entity.Color;
 import springmvc.demo.entity.Product;
 
 @Controller
@@ -29,7 +26,6 @@ public class HomeController extends BaseController {
 		try {
 			Cookie arr[] = req.getCookies();
 
-			PrintWriter out = resp.getWriter();
 			List<Product> listCc = new ArrayList<>();
 			for (Cookie o : arr) {
 				if (o.getName().equals("productID")) {
@@ -80,7 +76,6 @@ public class HomeController extends BaseController {
 		}
 		// dem soluong Cart
 		Cookie arr[] = req.getCookies();
-		PrintWriter out = resp.getWriter();
 		List<Product> listCc = new ArrayList<>();
 		for (Cookie o : arr) {
 			if (o.getName().equals("productID")) {
@@ -144,7 +139,6 @@ public class HomeController extends BaseController {
 	@RequestMapping("/print")
 	public ModelAndView print(HttpServletResponse response, HttpServletRequest request) throws IOException {
 		Cookie arr[] = request.getCookies();
-		PrintWriter out = response.getWriter();
 		List<Product> list = new ArrayList<Product>();
 		for (Cookie o : arr) {
 			if (o.getName().equals("productID")) {
@@ -186,7 +180,6 @@ public class HomeController extends BaseController {
 	@RequestMapping("/check")
 	public ModelAndView check(HttpServletResponse response, HttpServletRequest request) throws IOException {
 		Cookie arr[] = request.getCookies();
-		PrintWriter out = response.getWriter();
 		List<Product> list = new ArrayList<>();
 
 		for (Cookie o : arr) {
@@ -225,4 +218,74 @@ public class HomeController extends BaseController {
 		modelAndView.setViewName("customer/checkout");
 		return modelAndView;
 	}
+	@RequestMapping({"/details/search","/search"})
+	public ModelAndView search(HttpServletResponse resp, HttpServletRequest req) {
+		String ten=req.getParameter("txt");
+		String indexPage= req.getParameter("index");
+		String[] tenx=ten.split("[,; \\t\\n\\r]+");
+		for (String string : tenx) {
+		
+		
+		if (indexPage ==null) {
+			indexPage="1";
+		}
+		int index= Integer.parseInt(indexPage);
+		List<Object[]> products= homeServer.dsColorTop6(index,string);
+		
+		//Phan trang
+		int soLuong= homeServer.demSLKhiSearch(string);
+		
+		int endpage= soLuong/3;
+		if (soLuong%3 !=0) {
+			endpage++;
+		}
+		
+		req.setAttribute("dsProduct", products);
+		req.setAttribute("endpage", endpage);
+		req.setAttribute("tag", index);
+		req.setAttribute("tenS", string);
+		}
+		
+//		HttpSession session = req.getSession();
+//		List<String> items = (List<String>) req.getSession().getAttribute("history");
+//		if (items == null) {
+//			items = new ArrayList<String>();
+//			 req.getSession().setAttribute("history", items);
+//		}
+//		// getParameter tra ve String (todo-demo.jsp?theItem=? thi add ?)
+//		String theItem = req.getParameter("txt");
+//		if (theItem != null) {
+//			items.add(theItem);
+//		}
+//		System.out.println(theItem);
+		 Cookie arr[] = req.getCookies();
+	        List<Product> listCc = new ArrayList<>();
+	        for (Cookie o : arr) {
+	            if (o.getName().equals("productID")) {
+	                String txt[] = o.getValue().split("/");
+	                for (String s : txt) {
+	                	listCc.add(homeServer.getProduct(s));
+	                }
+	            }
+	        }
+	        int soLuongCc=0;
+	        for (int i = 0; i < listCc.size(); i++) {
+	            int count = 1;
+	            for (int j = i+1; j < listCc.size(); j++) {
+	                if(listCc.get(i).getProductId() == listCc.get(j).getProductId()){
+	                    count++;
+	                    listCc.remove(j);
+	                    j--;
+	                    listCc.get(i).setAmount(count);
+	                }
+	            }
+	            soLuongCc++;
+	        }
+	        
+	  
+	    req.setAttribute("soLuong", soLuongCc);
+	    modelAndView.setViewName("customer/shop");
+		return modelAndView;
+	}
+	
 }

@@ -113,7 +113,7 @@
                                 <!-- Paypal -->
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" id="paypal">
-                                    <label class="custom-control-label" for="paypal">Paypal <img class="ml-15" src="<c:url value="/template/img/core-img/paypal.png" />" alt=""></label>
+                                    <label class="custom-control-label" for="paypal">Paypal <img class="ml-15" src="<c:url value="/assets/img/core-img/paypal.png" />" alt=""></label>
                                 </div>
                             </div>
 

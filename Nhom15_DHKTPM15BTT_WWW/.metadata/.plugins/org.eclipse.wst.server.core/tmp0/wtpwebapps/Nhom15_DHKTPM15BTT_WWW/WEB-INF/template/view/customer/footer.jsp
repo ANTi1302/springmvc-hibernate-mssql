@@ -40,7 +40,7 @@
 					<!-- Logo -->
 					<div class="footer-logo mr-50">
 						<a href="<c:url value="/home" />"><img
-							src="<c:url value="/template/img/core-img/logo2.png" />" alt=""></a>
+							src="<c:url value="/assets/img/core-img/logo2.png" />" alt=""></a>
 					</div>
 					<!-- Copywrite Text -->
 					<p class="copywrite">

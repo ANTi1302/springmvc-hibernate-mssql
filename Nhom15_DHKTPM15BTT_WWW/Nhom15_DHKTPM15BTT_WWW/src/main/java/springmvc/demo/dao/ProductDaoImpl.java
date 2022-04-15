@@ -122,7 +122,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 	public List<Product> timKiemTheoTen(String ten) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query<Product> theQuery = currentSession
-				.createQuery("from Product\r\n" + "			where name like N'%:ten%'", Product.class);
+				.createQuery("from Product\r\n" + "where name like N'%:ten%'", Product.class);
 		// execute query and get result list
 		theQuery.setParameter("ten", ten);
 		List<Product> products = theQuery.getResultList();
