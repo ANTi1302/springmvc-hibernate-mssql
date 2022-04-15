@@ -40,10 +40,10 @@
 				<div class="col-12">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb mt-50">
-							<li class="breadcrumb-item"><a href="/WebBanHangQuanAo/home">Home</a></li>
-							<li class="breadcrumb-item"><a href="/WebBanHangQuanAo/shop">Shop</a></li>
+							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/home">Home</a></li>
+							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop">Shop</a></li>
 							<li class="breadcrumb-item">
-							<a href="caterogy?txtC=${dsProductChiTiet[12]}">${dsProductChiTiet[12]}</a></li>
+							<a href="caterogy?txtC=${dsProductChiTiet[14]}">${dsProductChiTiet[13]}</a></li>
 							<li class="breadcrumb-item active" aria-current="page">${dsProductChiTiet[2]}</li>
 						</ol>
 					</nav>

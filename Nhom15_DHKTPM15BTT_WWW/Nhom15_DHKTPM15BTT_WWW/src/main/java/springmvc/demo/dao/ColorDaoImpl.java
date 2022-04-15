@@ -153,12 +153,12 @@ public class ColorDaoImpl extends BaseDao implements ColorsDao {
 //	Product.details, Product.size, Product.created_at, Product.amount, Product.voucher_id, Product.quatity, Product.branch_id
 	@Override
 	public List<Object[]> thongTinChiTiet(String id) {
-		String hql= "SELECT c.product.productId,c.img, c.product.name, c.product.price, c.product.sale, c.product.title, c.product.details, c.product.size, c.product.createdAt, c.product.amount, c.product.voucher.voucherId, c.product.quatity, c.product.branchs.title\r\n"
+		String hql= "SELECT c.product.productId,c.img, c.product.name, c.product.price, c.product.sale, c.product.title, c.product.details, c.product.size, c.product.createdAt, c.product.amount, c.product.voucher.voucherId, c.product.quatity, c.product.branchs.title,pc.categoryId.name,pc.categoryId.categoryId\r\n"
 				+ "FROM     Product p INNER JOIN\r\n"
-				+ "                  Color c ON p.productId = c.product.productId\r\n"
+				+ "                  Color c ON p.productId = c.product.productId INNER JOIN ProductCategory pc ON p.productId= pc.productId.productId\r\n"
 				+ "				  where c.product.productId='"+id+"'\r\n"
 				+ "GROUP BY c.product.productId, c.img, c.product.name, c.product.price, c.product.sale, c.product.title,\r\n"
-				+ "c.product.details, c.product.size, c.product.createdAt, c.product.amount, c.product.voucher.voucherId, c.product.quatity, c.product.branchs.title";
+				+ "c.product.details, c.product.size, c.product.createdAt, c.product.amount, c.product.voucher.voucherId, c.product.quatity, c.product.branchs.title,pc.categoryId.name,pc.categoryId.categoryId";
 		Session currentSession = sessionFactory.getCurrentSession();
 		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
 		List<Object[]> product = (List<Object[]>) query.getResultList();
