@@ -137,7 +137,6 @@ public class HomeController extends BaseController {
 		Cookie c = new Cookie("productID", txt);
 		c.setMaxAge(60 * 60 * 24);
 		resp.addCookie(c);
-		resp.sendRedirect("print");
 		modelAndView.setViewName("redirect:print");
 		return modelAndView;
 	}
