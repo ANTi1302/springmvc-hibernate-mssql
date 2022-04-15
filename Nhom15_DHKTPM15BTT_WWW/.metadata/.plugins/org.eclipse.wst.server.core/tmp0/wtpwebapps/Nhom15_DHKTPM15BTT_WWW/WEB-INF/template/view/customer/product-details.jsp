@@ -43,7 +43,7 @@
 							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/home">Home</a></li>
 							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop">Shop</a></li>
 							<li class="breadcrumb-item">
-							<a href="caterogy?txtC=${dsProductChiTiet[14]}">${dsProductChiTiet[13]}</a></li>
+							<a href="caterogy?txtC=${dsProductChiTiet[12]}">${dsProductChiTiet[12]}</a></li>
 							<li class="breadcrumb-item active" aria-current="page">${dsProductChiTiet[2]}</li>
 						</ol>
 					</nav>
@@ -156,7 +156,7 @@
 										class="fa fa-caret-up" aria-hidden="true"></i></span>
 								</div>
 							</div>
-							<button type="submit" name="addtocart" value="/cart?id=${o[1]}"
+							<button type="submit" name="addtocart" value="/cart?id=${dsProductChiTiet[0]}"
 								class="btn amado-btn">Add to cart</button>
 						</form>
 					</div>
