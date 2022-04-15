@@ -83,14 +83,9 @@
 
                 <div class="widget-desc">
                     <ul class="d-flex">
-                        <li><a href="#" class="color1"></a></li>
-                        <li><a href="#" class="color2"></a></li>
-                        <li><a href="#" class="color3"></a></li>
-                        <li><a href="#" class="color4"></a></li>
-                        <li><a href="#" class="color5"></a></li>
-                        <li><a href="#" class="color6"></a></li>
-                        <li><a href="#" class="color7"></a></li>
-                        <li><a href="#" class="color8"></a></li>
+                    <c:forEach var="colors" items="${dsColors }">
+                    <li><a href="${colors[0] }" class="${colors[1] }"></a></li>
+                    </c:forEach>
                     </ul>
                 </div>
             </div>

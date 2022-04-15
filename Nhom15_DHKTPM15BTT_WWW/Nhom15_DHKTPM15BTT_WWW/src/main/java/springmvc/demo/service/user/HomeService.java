@@ -16,13 +16,8 @@ public interface HomeService {
 
 	//product
 	public List<Product> dsProduct() ;
-//	public List<Product> dsProductTop6(int index) ;
-//	public List<Color> dsProductTop6(int index) ;
-//	public List<ProductDto> dsProductTop9() ;
-	public List<Object[]> dsProductTop9() ;
 	public int demSLProduct() ;
 	public int demSLKhiSearch(String ten) ;
-	public Product thongTinChiTiet(int id) ;
 	public List<Product> timKiemTheoTen(String ten) ;
 	public Product getProduct(String txt);
 	public List<Product> dsProductTheoIDCatorogyTop6(int index, int ten) ;
@@ -39,6 +34,8 @@ public interface HomeService {
 	public List<Object[]> getDsColorTop3();
 	public List<Object[]> getDsColorTop6(int index);
 	public List<Object[]> dsColorTop6(int index, String string);
+	public List<Object[]> dsColor();
+	public List<Object[]> thongTinChiTiet(String id) ;
 	//category
 	public List<Category> getDsCategory();
 	//branchs

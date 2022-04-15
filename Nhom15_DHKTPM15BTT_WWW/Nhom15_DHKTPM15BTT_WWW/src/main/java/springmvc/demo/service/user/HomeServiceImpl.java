@@ -45,28 +45,6 @@ public class HomeServiceImpl implements HomeService{
 		return productDao.dsProduct();
 	}
 
-//	@Override
-//	
-//	public List<Product> dsProductTop6(int index) {
-//		// TODO Auto-generated method stub
-//		return productDao.dsProductTop6(index);
-//	}
-
-//	@Override
-//	
-//	public List<Product> dsProductTop6(int index, String ten) {
-//		// TODO Auto-generated method stub
-//		return productDao.dsProductTop6(index, ten);
-//	}
-
-	@Override
-	
-	
-	public List<Object[]> dsProductTop9() {
-		// TODO Auto-generated method stub
-		return productDao.dsProductTop9();
-	}
-
 	@Override
 	
 	public int demSLProduct() {
@@ -83,9 +61,9 @@ public class HomeServiceImpl implements HomeService{
 
 	@Override
 	
-	public Product thongTinChiTiet(int id) {
+	public List<Object[]> thongTinChiTiet(String id) {
 		// TODO Auto-generated method stub
-		return productDao.thongTinChiTiet(id);
+		return colorsDao.thongTinChiTiet(id);
 	}
 
 	@Override
@@ -176,6 +154,12 @@ public class HomeServiceImpl implements HomeService{
 	public List<Object[]> dsColorTop6(int index, String string) {
 		// TODO Auto-generated method stub
 		return colorsDao. dsColorTop6(index,string);
+	}
+
+	@Override
+	public List<Object[]> dsColor() {
+		// TODO Auto-generated method stub
+		return colorsDao.dsColor();
 	}
 
 

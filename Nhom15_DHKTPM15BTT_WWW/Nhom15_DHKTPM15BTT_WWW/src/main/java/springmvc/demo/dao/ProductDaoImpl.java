@@ -22,46 +22,6 @@ import springmvc.demo.entity.Product;
 @Repository
 public class ProductDaoImpl extends BaseDao implements ProductDao {
 
-	private final boolean YES=true;
-	private final boolean NO=false;
-	private StringBuffer sql() {
-		StringBuffer  sql = new StringBuffer();
-		sql.append("select p.product_id, p.name, p.price, p.sale, p.title, p.details, p.highlight, p.new_product, p.size, p.created_at, p.update_at, p.amount, p.voucher_id, ");
-		sql.append("c.color_id, c.name as name_color, c.code, c.img ");
-		sql.append("from  Color c inner join ");
-		sql.append("Product p on c.product.productId = p.product_id ");
-		return sql;
-	}
-	
-	private String sqlProductNew(boolean productNew, boolean highLight) {
-		StringBuffer sql = sql();
-		sql.append("where 1= 1 ");
-		if(productNew) {
-			sql.append("and p.new_product= 1 ");
-		}
-		if (highLight) {
-			sql.append("and p.highlight= 1 ");
-		}
-		sql.append("group by p.product_id, p.name, p.price, p.sale, p.title, p.details, p.highlight, p.new_product, p.size, p.created_at, p.update_at, p.amount, p.voucher_id, ");
-		sql.append("c.color_id, c.name, c.code, c.img, c.product_id order by p.created_at");
-		return sql.toString();
-	}
-//	public List<Products> getDsProducts() {
-//		List<Products> products=new ArrayList<Products>();
-//		String sql=sqlProductNew(YES, NO);
-//		products=jdbcTemplate.query(sql, new MappingProducts());
-//		return products;
-//		
-//	}
-	@Override
-	public List<Object[]> dsProductTop9() {
-		Session currentSession = sessionFactory.getCurrentSession();
-		List<Object[]> products=new ArrayList<Object[]>();
-		String sql=sqlProductNew(YES, NO);
-	
-		products=(List<Object[]>) currentSession.createQuery(sql);
-		return products;
-	}
 	@Override
 	public List<Product> dsProduct() {
 		Session currentSession = sessionFactory.getCurrentSession();
@@ -72,20 +32,6 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 		// return the results
 		return products;
 	}
-
-	@Override
-	public List<Product> dsProductTop6(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Product> dsProductTop6(int index, String ten) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 
 //	SELECT count(productID) FROM [dbo].[Product]
 	@Override
@@ -105,16 +51,19 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 
 	@Override
 	public int demSLKhiSearch(String ten) {
-		// TODO Auto-generated method stub
+		try {
+			String query = "SELECT count(product_id) FROM Product where name like '%"+ten+"%'";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soHoaDon = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soHoaDon;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
-	@Override
-	public Product thongTinChiTiet(int id) {
-		Session currentSession = sessionFactory.getCurrentSession();
-		Product theProduct = currentSession.get(Product.class, id);
-		return theProduct;
-	}
 
 //	select *from [dbo].[Product]
 //			where [name] like N'%a%'

@@ -2,7 +2,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="">
@@ -32,7 +31,7 @@
 	<!-- Search Wrapper Area Start -->
 	<%@ include file="header.jsp"%>
 	<!-- Header Area End -->
-
+<c:forEach var="dsProductChiTiet" items="${dsProductChiTiet}">
 	<!-- Product Details Area Start -->
 	<div class="single-product-area section-padding-100 clearfix">
 		<div class="container-fluid">
@@ -43,9 +42,9 @@
 						<ol class="breadcrumb mt-50">
 							<li class="breadcrumb-item"><a href="/WebBanHangQuanAo/home">Home</a></li>
 							<li class="breadcrumb-item"><a href="/WebBanHangQuanAo/shop">Shop</a></li>
-							<li class="breadcrumb-item"><a
-								href="caterogy?txtC=${dsProductChiTiet.categoryID.catogoryID}">${dsProductChiTiet.categoryID.catogoryName}</a></li>
-							<li class="breadcrumb-item active" aria-current="page">${dsProductChiTiet.productName}</li>
+							<li class="breadcrumb-item">
+							<a href="caterogy?txtC=${dsProductChiTiet[12]}">${dsProductChiTiet[12]}</a></li>
+							<li class="breadcrumb-item active" aria-current="page">${dsProductChiTiet[2]}</li>
 						</ol>
 					</nav>
 				</div>
@@ -59,48 +58,48 @@
 							<ol class="carousel-indicators">
 								<li class="active" data-target="#product_details_slider"
 									data-slide-to="0"
-									style="background-image: url(<c:url value="/template/img/product-img/pro-big-1.jpg" />);">
+									style="background-image: url(<c:url value="/assets/img/product-img/pro-big-1.jpg" />);">
 								</li>
 								<li data-target="#product_details_slider" data-slide-to="1"
-									style="background-image: url(<c:url value="/template/img/product-img/pro-big-2.jpg" />);">
+									style="background-image: url(<c:url value="/assets/img/product-img/pro-big-2.jpg" />);">
 								</li>
 								<li data-target="#product_details_slider" data-slide-to="2"
-									style="background-image: url(<c:url value="/template/img/product-img/pro-big-3.jpg" />);">
+									style="background-image: url(<c:url value="/assets/img/product-img/pro-big-3.jpg" />);">
 								</li>
 								<li data-target="#product_details_slider" data-slide-to="3"
-									style="background-image: url(<c:url value="/template/img/product-img/pro-big-4.jpg" />);">
+									style="background-image: url(<c:url value="/assets/img/product-img/pro-big-4.jpg" />);">
 								</li>
 							</ol>
 							<div class="carousel-inner">
 								<div class="carousel-item active">
 									<a class="gallery_img"
-										href="<c:url value="/template/img/product-img/pro-big-1.jpg" />">
+										href="<c:url value="/assets/img/product-img/pro-big-1.jpg" />">
 										<img class="d-block w-100"
-										src="<c:url value="/template/img/product-img/pro-big-1.jpg" />"
+										src="<c:url value="/assets/img/product-img/pro-big-1.jpg" />"
 										alt="First slide">
 									</a>
 								</div>
 								<div class="carousel-item">
 									<a class="gallery_img"
-										href="<c:url value="/template/img/product-img/pro-big-2.jpg" />">
+										href="<c:url value="/assets/img/product-img/pro-big-2.jpg" />">
 										<img class="d-block w-100"
-										src="<c:url value="/template/img/product-img/pro-big-2.jpg" />"
+										src="<c:url value="/assets/img/product-img/pro-big-2.jpg" />"
 										alt="Second slide">
 									</a>
 								</div>
 								<div class="carousel-item">
 									<a class="gallery_img"
-										href="<c:url value="/template/img/product-img/pro-big-3.jpg" />">
+										href="<c:url value="/assets/img/product-img/pro-big-3.jpg" />">
 										<img class="d-block w-100"
-										src="<c:url value="/template/img/product-img/pro-big-3.jpg" />"
+										src="<c:url value="/assets/img/product-img/pro-big-3.jpg" />"
 										alt="Third slide">
 									</a>
 								</div>
 								<div class="carousel-item">
 									<a class="gallery_img"
-										href="<c:url value="/template/img/product-img/pro-big-4.jpg" />">
+										href="<c:url value="/assets/img/product-img/pro-big-4.jpg" />">
 										<img class="d-block w-100"
-										src="<c:url value="/template/img/product-img/pro-big-4.jpg" />"
+										src="<c:url value="/assets/img/product-img/pro-big-4.jpg" />"
 										alt="Fourth slide">
 									</a>
 								</div>
@@ -114,9 +113,9 @@
 
 						<div class="product-meta-data">
 							<div class="line"></div>
-							<p class="product-price">$${dsProductChiTiet.price}</p>
-							<a href="<c:url value="/template/view/product-details.jsp" />">
-								<h6>${dsProductChiTiet.productName}</h6>
+							<p class="product-price">$${dsProductChiTiet[3]}</p>
+							<a href="<c:url value="/assets/view/product-details.jsp" />">
+								<h6>${dsProductChiTiet[2]}</h6>
 							</a>
 							<!-- Ratings & Review -->
 							<div
@@ -139,25 +138,25 @@
 						</div>
 
 						<div class="short_overview my-5">
-							<p>${dsProductChiTiet.description}</p>
+							<p>${dsProductChiTiet[6]}</p>
 						</div>
 
 						<!-- Add to Cart Form -->
-						<form class="cart clearfix" method="get" action="/WebBanHangQuanAo/cart">
+						<form class="cart clearfix" method="get" action="/Nhom15_DHKTPM15BTT_WWW/cart">
 							<div class="cart-btn d-flex mb-50">
 								<p>Qty</p>
 								<div class="quantity">
 									<span class="qty-minus"
-										onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( ${dsProductChiTiet.amount} ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
+										onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( ${dsProductChiTiet[9]} ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
 										class="fa fa-caret-down" aria-hidden="true"></i></span> <input
 										type="number" class="qty-text" id="qty" step="1" min="1"
-										max="${dsProductChiTiet.amount}" name="quantity" value="1">
+										max="${dsProductChiTiet[9]}" name="quantity" value="1">
 									<span class="qty-plus"
 										onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
 										class="fa fa-caret-up" aria-hidden="true"></i></span>
 								</div>
 							</div>
-							<button type="submit" name="addtocart" value="/cart?id=${o.productID}"
+							<button type="submit" name="addtocart" value="/cart?id=${o[1]}"
 								class="btn amado-btn">Add to cart</button>
 						</form>
 					</div>
@@ -166,6 +165,7 @@
 			<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="1000" data-numposts="5"></div>
 		</div>
 	</div>
+	</c:forEach>
 	<!-- Product Details Area End -->
 	</div>
 

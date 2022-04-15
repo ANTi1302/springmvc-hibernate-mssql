@@ -106,7 +106,8 @@
 									<div class="row justify-content-center">
 										<div class="col-md-11">
 											<div class="testimony-wrap d-md-flex">
-												<img class="img" src="<c:url value="${slide[0]}" />" alt="">
+											<a href="<c:url value="details?idProduct=${slide[1]}" />">
+												<img class="img" src="<c:url value="${slide[0]}" />" alt=""></a>
 												<div
 													class="text text-center p-4 py-xl-5 px-xl-5 d-flex align-items-center">
 													<div class="desc w-100">
@@ -117,6 +118,7 @@
 														</div>
 													</div>
 												</div>
+												
 											</div>
 										</div>
 									</div>
@@ -140,7 +142,7 @@
 			<c:forEach items="${listProduct}" var="c">
 				<!-- Single Catagory -->
 				<div class="single-products-catagory clearfix">
-					<a href="<c:url value="${c[1]}" />"> <img
+					<a href="<c:url value="details?idProduct=${c[1]}" />"> <img
 						src="<c:url value="${c[0]}" />" alt=""> <!-- Hover Content -->
 						<div class="hover-content">
 							<div class="line"></div>

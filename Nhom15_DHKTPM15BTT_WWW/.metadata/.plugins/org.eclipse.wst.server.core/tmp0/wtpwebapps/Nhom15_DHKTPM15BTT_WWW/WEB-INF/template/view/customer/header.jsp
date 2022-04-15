@@ -76,7 +76,7 @@
 										%>
 										<%
 										for (String temp : items) {
-											out.println("<div class='dropdown-item'><a href='/WebBanHangQuanAo/search?txt=" + temp + "'>	" + temp
+											out.println("<div class='dropdown-item'><a href='/Nhom15_DHKTPM15BTT_WWW/search?txt=" + temp + "'>	" + temp
 											+ "</a></div>");
 										}
 										%>

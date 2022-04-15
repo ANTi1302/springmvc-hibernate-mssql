@@ -22,7 +22,7 @@ public class HomeController extends BaseController {
 	public ModelAndView index(HttpServletResponse resp, HttpServletRequest req) {
 		modelAndView.addObject("listProduct", homeServer.getDsColorTop9());
 		modelAndView.addObject("listProductSlides", homeServer.getDsColorTop3());
-		
+
 		try {
 			Cookie arr[] = req.getCookies();
 
@@ -103,9 +103,10 @@ public class HomeController extends BaseController {
 		// Add cart wh
 		req.setAttribute("tongSLProduct", soLuongProduct);
 		req.setAttribute("soLuong", soLuongCc);
-		req.setAttribute("dsProduct",  homeServer.getDsColorTop6(index));
-		req.setAttribute("dsCategory",  homeServer.getDsCategory());
-		req.setAttribute("dsBranchs",  homeServer.getDsBranchs());
+		req.setAttribute("dsProduct", homeServer.getDsColorTop6(index));
+		req.setAttribute("dsCategory", homeServer.getDsCategory());
+		req.setAttribute("dsBranchs", homeServer.getDsBranchs());
+		req.setAttribute("dsColors", homeServer.dsColor());
 		req.setAttribute("endpage", endpage);
 		req.setAttribute("tag", index);
 		modelAndView.setViewName("customer/shop");
@@ -218,34 +219,34 @@ public class HomeController extends BaseController {
 		modelAndView.setViewName("customer/checkout");
 		return modelAndView;
 	}
-	@RequestMapping({"/details/search","/search"})
+
+	@RequestMapping({ "/details/search", "/search" })
 	public ModelAndView search(HttpServletResponse resp, HttpServletRequest req) {
-		String ten=req.getParameter("txt");
-		String indexPage= req.getParameter("index");
-		String[] tenx=ten.split("[,; \\t\\n\\r]+");
+		String ten = req.getParameter("txt");
+		String indexPage = req.getParameter("index");
+		String[] tenx = ten.split("[,; \\t\\n\\r]+");
 		for (String string : tenx) {
-		
-		
-		if (indexPage ==null) {
-			indexPage="1";
+
+			if (indexPage == null) {
+				indexPage = "1";
+			}
+			int index = Integer.parseInt(indexPage);
+			 
+
+			// Phan trang
+			int soLuong = homeServer.demSLKhiSearch(string);
+
+			int endpage = soLuong / 3;
+			if (soLuong % 3 != 0) {
+				endpage++;
+			}
+
+			req.setAttribute("dsProduct", homeServer.dsColorTop6(index, string));
+			req.setAttribute("endpage", endpage);
+			req.setAttribute("tag", index);
+			req.setAttribute("tenS", string);
 		}
-		int index= Integer.parseInt(indexPage);
-		List<Object[]> products= homeServer.dsColorTop6(index,string);
-		
-		//Phan trang
-		int soLuong= homeServer.demSLKhiSearch(string);
-		
-		int endpage= soLuong/3;
-		if (soLuong%3 !=0) {
-			endpage++;
-		}
-		
-		req.setAttribute("dsProduct", products);
-		req.setAttribute("endpage", endpage);
-		req.setAttribute("tag", index);
-		req.setAttribute("tenS", string);
-		}
-		
+
 //		HttpSession session = req.getSession();
 //		List<String> items = (List<String>) req.getSession().getAttribute("history");
 //		if (items == null) {
@@ -258,34 +259,71 @@ public class HomeController extends BaseController {
 //			items.add(theItem);
 //		}
 //		System.out.println(theItem);
-		 Cookie arr[] = req.getCookies();
-	        List<Product> listCc = new ArrayList<>();
-	        for (Cookie o : arr) {
-	            if (o.getName().equals("productID")) {
-	                String txt[] = o.getValue().split("/");
-	                for (String s : txt) {
-	                	listCc.add(homeServer.getProduct(s));
-	                }
-	            }
-	        }
-	        int soLuongCc=0;
-	        for (int i = 0; i < listCc.size(); i++) {
-	            int count = 1;
-	            for (int j = i+1; j < listCc.size(); j++) {
-	                if(listCc.get(i).getProductId() == listCc.get(j).getProductId()){
-	                    count++;
-	                    listCc.remove(j);
-	                    j--;
-	                    listCc.get(i).setAmount(count);
-	                }
-	            }
-	            soLuongCc++;
-	        }
-	        
-	  
-	    req.setAttribute("soLuong", soLuongCc);
-	    modelAndView.setViewName("customer/shop");
+		Cookie arr[] = req.getCookies();
+		List<Product> listCc = new ArrayList<>();
+		for (Cookie o : arr) {
+			if (o.getName().equals("productID")) {
+				String txt[] = o.getValue().split("/");
+				for (String s : txt) {
+					listCc.add(homeServer.getProduct(s));
+				}
+			}
+		}
+		int soLuongCc = 0;
+		for (int i = 0; i < listCc.size(); i++) {
+			int count = 1;
+			for (int j = i + 1; j < listCc.size(); j++) {
+				if (listCc.get(i).getProductId() == listCc.get(j).getProductId()) {
+					count++;
+					listCc.remove(j);
+					j--;
+					listCc.get(i).setAmount(count);
+				}
+			}
+			soLuongCc++;
+		}
+		req.setAttribute("dsCategory", homeServer.getDsCategory());
+		req.setAttribute("dsBranchs", homeServer.getDsBranchs());
+		req.setAttribute("dsColors", homeServer.dsColor());
+		req.setAttribute("soLuong", soLuongCc);
+		modelAndView.setViewName("customer/shop");
 		return modelAndView;
 	}
-	
+
+	@RequestMapping({ "/details/*", "/details" })
+	public ModelAndView details(HttpServletResponse resp, HttpServletRequest req) {
+		String idReq = req.getParameter("idProduct");
+		List<Object[]> product = homeServer.thongTinChiTiet(idReq);
+		req.setAttribute("dsProductChiTiet", product);
+
+		Cookie arr[] = req.getCookies();
+		List<Product> listCc = new ArrayList<>();
+		for (Cookie o : arr) {
+			if (o.getName().equals("productID")) {
+				String txt[] = o.getValue().split("/");
+				for (String s : txt) {
+					listCc.add(homeServer.getProduct(s));
+				}
+			}
+		}
+		int soLuong = 0;
+		for (int i = 0; i < listCc.size(); i++) {
+			int count = 1;
+			for (int j = i + 1; j < listCc.size(); j++) {
+				if (listCc.get(i).getProductId() == listCc.get(j).getProductId()) {
+					count++;
+					listCc.remove(j);
+					j--;
+					listCc.get(i).setAmount(count);
+				}
+			}
+			soLuong++;
+		}
+
+		req.setAttribute("soLuong", soLuong);
+		modelAndView.setViewName("customer/product-details");
+		return modelAndView;
+
+	}
+
 }

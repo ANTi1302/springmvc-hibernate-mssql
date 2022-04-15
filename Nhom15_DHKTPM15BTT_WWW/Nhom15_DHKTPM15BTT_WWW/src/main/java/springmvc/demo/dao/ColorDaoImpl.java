@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import springmvc.demo.entity.Color;
+import springmvc.demo.entity.Menus;
 import springmvc.demo.entity.Product;
 @Repository
 public class ColorDaoImpl extends BaseDao implements ColorsDao {
@@ -116,6 +117,52 @@ public class ColorDaoImpl extends BaseDao implements ColorsDao {
 		List<Object[]> color = (List<Object[]>) query.getResultList();
 		return color;
 	}
+//	SELECT Color.name, Color.code
+//	FROM     Color 
+//	GROUP BY Color.name, Color.code
+	@Override
+	public List<Object[]> dsColor() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql ="SELECT c.name, c.code\r\n"
+				+ "FROM     Color c\r\n"
+				+ "GROUP BY c.name, c.code ";
+		
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
+		List<Object[]> color = (List<Object[]>) query.getResultList();
+		// return the results
+		return color;
+	}
 
-
+//	@Override
+//	public List<Object[]> thongTinChiTiet(String id) {
+//		String hql= "SELECT c.img, c.product.productId,c.product.name,c.product.price,c.product.sale,c.product.title,c.product.details,c.product.size,c.product.createdAt,c.product.amount,c.product.quatity\r\n"
+//				+ "                from Color c\r\n"
+//				+ "				  where c.product.productId='"+id+"'\r\n"
+//				+ "GROUP BY c.img, c.product.productId,c.product.name,c.product.price,c.product.sale,c.product.title,c.product.details,c.product.size,c.product.createdAt,c.product.amount,c.product.quatity";
+//		Session currentSession = sessionFactory.getCurrentSession();
+//		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
+//		List<Object[]> product = (List<Object[]>) query.getResultList();
+//		return product;
+//	}
+//	SELECT Color.img, Product.name, Product.price, Product.sale, Product.title, Product.details, Product.size, Product.created_at, Product.amount, Product.voucher_id, Product.quatity, Product.branch_id
+//	FROM     Product INNER JOIN
+//	                  Color ON Product.product_id = Color.product_id
+//					  where Product.product_id='0647194E-C5AD-40D8-B73D-1822E3751B47'
+//	GROUP BY Color.img, Product.name, Product.price, Product.sale, Product.title,
+//	Product.details, Product.size, Product.created_at, Product.amount, Product.voucher_id, Product.quatity, Product.branch_id
+	@Override
+	public List<Object[]> thongTinChiTiet(String id) {
+		String hql= "SELECT c.product.productId,c.img, c.product.name, c.product.price, c.product.sale, c.product.title, c.product.details, c.product.size, c.product.createdAt, c.product.amount, c.product.voucher.voucherId, c.product.quatity, c.product.branchs.title\r\n"
+				+ "FROM     Product p INNER JOIN\r\n"
+				+ "                  Color c ON p.productId = c.product.productId\r\n"
+				+ "				  where c.product.productId='"+id+"'\r\n"
+				+ "GROUP BY c.product.productId, c.img, c.product.name, c.product.price, c.product.sale, c.product.title,\r\n"
+				+ "c.product.details, c.product.size, c.product.createdAt, c.product.amount, c.product.voucher.voucherId, c.product.quatity, c.product.branchs.title";
+		Session currentSession = sessionFactory.getCurrentSession();
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
+		List<Object[]> product = (List<Object[]>) query.getResultList();
+		return product;
+	}
+	
 }
