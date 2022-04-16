@@ -20,6 +20,7 @@ public interface HomeService {
 	public int demSLKhiSearch(String ten) ;
 	public List<Product> timKiemTheoTen(String ten) ;
 	public Product getProduct(String txt);
+//	public List<Object[]> getProduct(String txt);
 	public List<Product> dsProductTheoIDCatorogyTop6(int index, int ten) ;
 	public int demSLKhiSearchTheoIDCatorogy(int ten) ;
 	public boolean capNhatProduct(int product);

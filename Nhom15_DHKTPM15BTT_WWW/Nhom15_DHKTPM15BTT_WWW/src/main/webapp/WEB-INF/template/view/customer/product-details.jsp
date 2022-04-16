@@ -132,9 +132,17 @@
 								</div>
 							</div>
 							<!-- Avaiable -->
+							<c:if test="${dsProductChiTiet[9]>0}">
 							<p class="avaibility">
 								<i class="fa fa-circle"></i> In Stock
 							</p>
+							</c:if>
+							<c:if test="${dsProductChiTiet[9]<=0}">
+							<p class="avaibility">
+								<i class="fa fa-circle"></i> Out Of Stock
+							</p>
+							</c:if>
+							
 						</div>
 
 						<div class="short_overview my-5">
@@ -142,7 +150,7 @@
 						</div>
 
 						<!-- Add to Cart Form -->
-						<form class="cart clearfix" method="get" action="/Nhom15_DHKTPM15BTT_WWW/cart">
+						<form class="cart clearfix" method="get" action="cart">
 							<div class="cart-btn d-flex mb-50">
 								<p>Qty</p>
 								<div class="quantity">
@@ -156,8 +164,15 @@
 										class="fa fa-caret-up" aria-hidden="true"></i></span>
 								</div>
 							</div>
-							<button type="submit" name="addtocart" value="/cart?id=${dsProductChiTiet[0]}"
+							<c:if test="${dsProductChiTiet[9]<=0}">
+							<button type="submit" name="id" value="${dsProductChiTiet[0]}"
+								class="btn amado-btn" disabled="disabled">Add to cart</button>
+							</c:if>
+							<c:if test="${dsProductChiTiet[9]>0}">
+							<button type="submit" name="id" value="${dsProductChiTiet[0]}"
 								class="btn amado-btn">Add to cart</button>
+							</c:if>
+							
 						</form>
 					</div>
 				</div>

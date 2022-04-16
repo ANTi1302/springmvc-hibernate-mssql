@@ -79,7 +79,10 @@ public class HomeServiceImpl implements HomeService{
 		// TODO Auto-generated method stub
 		return productDao.getProduct(txt);
 	}
-
+//	public List<Object[]> getProduct(String txt) {
+//		// TODO Auto-generated method stub
+//		return productDao.getProduct(txt);
+//	}
 	@Override
 	
 	public List<Product> dsProductTheoIDCatorogyTop6(int index, int ten) {

@@ -88,7 +88,15 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
         Product theProduct = currentSession.get(Product.class, product_id);
         return theProduct;
 	}
-
+//	@Override
+//	public List<Object[]> getProduct(String product_id) {
+//		String hql= "select c.product.productId ,c.img, c.product.name, c.product.price  from Color c where c.product.productId like '%"+product_id+"%' group by c.product.productId,c.img, c.product.name, c.product.price\r\n"
+//				+ "		order by c.product.productId\r\n";
+//		Session currentSession = sessionFactory.getCurrentSession();
+//		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
+//		List<Object[]> product = (List<Object[]>) query.getResultList();
+//		return product;
+//	}
 	@Override
 	public List<Product> dsProductTheoIDCatorogyTop6(int index, int ten) {
 		// TODO Auto-generated method stub
