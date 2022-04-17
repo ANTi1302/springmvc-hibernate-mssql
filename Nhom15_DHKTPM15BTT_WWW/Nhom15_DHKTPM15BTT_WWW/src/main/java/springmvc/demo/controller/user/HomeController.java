@@ -100,7 +100,7 @@ public class HomeController extends BaseController {
 					count++;
 					listCc.remove(j);
 					j--;
-					((Product) listCc.get(i)).setAmount(count);
+					(listCc.get(i)).setAmount(count);
 				}
 			}
 			soLuongCc++;
@@ -145,7 +145,7 @@ public class HomeController extends BaseController {
 		return modelAndView;
 	}
 
-	@GetMapping("/print")
+	@RequestMapping("/print")
 	public ModelAndView print(HttpServletResponse response, HttpServletRequest request) throws IOException {
 		Cookie arr[] = request.getCookies();
 		List<Product> list = new ArrayList<>();
@@ -161,7 +161,7 @@ public class HomeController extends BaseController {
 		 for (int i = 0; i < list.size(); i++) {
 	            int count = 1;
 	            for (int j = i+1; j < list.size(); j++) {
-	                if(list.get(i).getProductId() == list.get(j).getProductId()){
+	                if(list.get(i).getProductId().equals(list.get(j).getProductId()) ){
 	                    count++;
 	                    list.remove(j);
 	                    j--;
@@ -195,7 +195,7 @@ public class HomeController extends BaseController {
 			if (o.getName().equals("productID")) {
 				String txt[] = o.getValue().split("/");
 				for (String s : txt) {
-					list.add((Product) homeServer.getProduct(s));
+					list.add(homeServer.getProduct(s));
 				}
 			}
 		}
@@ -214,8 +214,8 @@ public class HomeController extends BaseController {
 		}
 
 		double total = 0;
-		for (Object o : list) {
-			total = total + ((Product) o).getAmount() * ((Product) o).getPrice();
+		for (Product o : list) {
+			total = total + o.getAmount() * o.getPrice();
 		}
 		HttpSession session01 = request.getSession();
 		request.setAttribute("list", list);
@@ -263,7 +263,7 @@ public class HomeController extends BaseController {
 //		}
 //		System.out.println(theItem);
 		Cookie arr[] = req.getCookies();
-		List<Object> listCc = new ArrayList<>();
+		List<Product> listCc = new ArrayList<>();
 		for (Cookie o : arr) {
 			if (o.getName().equals("productID")) {
 				String txt[] = o.getValue().split("/");
@@ -276,7 +276,7 @@ public class HomeController extends BaseController {
 		for (int i = 0; i < listCc.size(); i++) {
 			int count = 1;
 			for (int j = i + 1; j < listCc.size(); j++) {
-				if (((Product) listCc.get(i)).getProductId() == ((Product) listCc.get(j)).getProductId()) {
+				if (listCc.get(i).getProductId().equals(listCc.get(j).getProductId()) ) {
 					count++;
 					listCc.remove(j);
 					j--;
@@ -313,7 +313,7 @@ public class HomeController extends BaseController {
 		for (int i = 0; i < listCc.size(); i++) {
 			int count = 1;
 			for (int j = i + 1; j < listCc.size(); j++) {
-				if (listCc.get(i).getProductId() == listCc.get(j).getProductId()) {
+				if (listCc.get(i).getProductId().equals(listCc.get(j).getProductId()) ) {
 					count++;
 					listCc.remove(j);
 					j--;
@@ -328,5 +328,74 @@ public class HomeController extends BaseController {
 		return modelAndView;
 
 	}
+	@GetMapping("/sub")
+	public ModelAndView sub(HttpServletResponse response, HttpServletRequest request) throws IOException {
+	        String id = request.getParameter("id");
+	        Cookie arr[] = request.getCookies();
+	        String txt = "";
+	        for (Cookie o : arr) {
+	            if (o.getName().equals("productID")) {
+	                txt = txt + o.getValue();
+	                o.setMaxAge(0);
+	                response.addCookie(o);
+	            }
+	        }
+	        String ids[] = txt.split("/");
+	        String txtOutPut = "";
+	        int check = 0;
+	        for (int i = 0; i < ids.length; i++) {
+	            if (ids[i].equals(id)) {
+	                check++;
+	            }
+	            if (check != 1) {
+	                if (txtOutPut.isEmpty()) {
+	                    txtOutPut = ids[i];
+	                } else {
+	                    txtOutPut = txtOutPut + "/" + ids[i];
+	                }
+	            } else {
+	                check++;
+	            }
+	        }
+	        if (!txtOutPut.isEmpty()) {
+	            Cookie c = new Cookie("productID", txtOutPut);
+	            c.setMaxAge(60 * 60 * 24);
+	            response.addCookie(c);
+	        }
+		modelAndView.setViewName("redirect:print");
+		return modelAndView;
+	}
+	@GetMapping("/remove")
+	public ModelAndView remove(HttpServletResponse response, HttpServletRequest request) throws IOException {
+	        String id = request.getParameter("id");
+	        Cookie arr[] = request.getCookies();
+	        String txt = "";
+	        for (Cookie o : arr) {
+	            if (o.getName().equals("productID")) {
+	                txt = txt + o.getValue();
+	                o.setMaxAge(0);
+	                response.addCookie(o);
+	            }
+	        }
+	        String ids[] = txt.split("/");
+	        String txtOutPut = "";
+	        for (int i = 0; i < ids.length; i++) {
+	            if (!ids[i].equals(id)) {
+	                if (txtOutPut.isEmpty()) {
+	                    txtOutPut = ids[i];
+	                } else {
+	                    txtOutPut = txtOutPut + "/" + ids[i];
+	                }
+	            }
+	        }
+	        if (!txtOutPut.isEmpty()) {
+	            Cookie c = new Cookie("productID", txtOutPut);
+	            c.setMaxAge(60 * 60 * 24);
+	            response.addCookie(c);
+	        }
+		modelAndView.setViewName("redirect:print");
+		return modelAndView;
+	}
+
 
 }

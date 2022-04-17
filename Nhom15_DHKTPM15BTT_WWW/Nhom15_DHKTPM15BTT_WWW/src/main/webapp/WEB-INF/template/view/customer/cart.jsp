@@ -61,7 +61,7 @@
                                         <td class="price">
                                             <span>$${o.price}</span>
                                         </td>
-                                        <td class="align-middle"">
+                                        <td class="align-middle">
                                             <div class="qty-btn d-flex">
                                                
                                                 <div>
@@ -99,7 +99,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <!-- ##### Main Content Wrapper End ##### -->
     <!-- ##### Newsletter Area Start ##### -->
        <%@ include file="footer.jsp" %>
