@@ -7,15 +7,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import springmvc.demo.dao.BranchsDao;
+import springmvc.demo.dao.CartsDao;
 import springmvc.demo.dao.CategoryDao;
 import springmvc.demo.dao.ColorsDao;
 import springmvc.demo.dao.MenusDao;
+import springmvc.demo.dao.OrdersDao;
+import springmvc.demo.dao.ProductCartsDao;
 import springmvc.demo.dao.ProductDao;
 import springmvc.demo.dto.ProductDto;
 import springmvc.demo.entity.Branchs;
+import springmvc.demo.entity.Cart;
 import springmvc.demo.entity.Category;
 import springmvc.demo.entity.Color;
 import springmvc.demo.entity.Menus;
+import springmvc.demo.entity.Order;
 import springmvc.demo.entity.Product;
 
 
@@ -37,6 +42,15 @@ public class HomeServiceImpl implements HomeService{
 	
 	@Autowired
 	private BranchsDao branchsDao;
+	
+	@Autowired
+	private ProductCartsDao productCartsDao;
+	
+	@Autowired
+	private CartsDao cartsDao;
+	
+	@Autowired
+	private OrdersDao orderDao;
 	
 	@Override
 	
@@ -163,6 +177,30 @@ public class HomeServiceImpl implements HomeService{
 	public List<Object[]> dsColor() {
 		// TODO Auto-generated method stub
 		return colorsDao.dsColor();
+	}
+
+	@Override
+	public void addProductCarts(List<Object> cart) {
+		productCartsDao.addProductCarts(cart);
+		
+	}
+
+	@Override
+	public void addCart(Cart cart) {
+		cartsDao.addCart(cart);
+		
+	}
+
+	@Override
+	public Cart findCartId(String id) {
+		// TODO Auto-generated method stub
+		return cartsDao.findCartId(id);
+	}
+
+	@Override
+	public void addOrders(Order order) {
+		orderDao.addOrders(order);
+		
 	}
 
 

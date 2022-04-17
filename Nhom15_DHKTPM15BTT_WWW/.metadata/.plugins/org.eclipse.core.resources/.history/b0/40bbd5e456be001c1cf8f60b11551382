@@ -1,0 +1,11 @@
+package springmvc.demo.dao;
+
+import java.util.List;
+
+import springmvc.demo.entity.Cart;
+
+public interface CartsDao{
+
+	public List<Cart> getDsCarts();
+	
+}

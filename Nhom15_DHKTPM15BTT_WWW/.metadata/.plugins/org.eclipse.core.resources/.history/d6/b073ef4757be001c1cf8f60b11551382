@@ -1,0 +1,22 @@
+package springmvc.demo.dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
+
+import springmvc.demo.entity.Cart;
+import springmvc.demo.entity.Menus;
+
+@Repository
+public class CartsDaoImpl extends BaseDao implements CartsDao {
+
+	@Override
+	public boolean addCart(List<Object> cart) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+}

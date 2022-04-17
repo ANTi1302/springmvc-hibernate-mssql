@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -32,6 +33,7 @@ public class Cart implements Serializable {
 	@GenericGenerator(name = "generator", strategy = "guid", parameters = {})
 	@GeneratedValue(generator = "generator")
 	@JoinColumn(name = "user_id", columnDefinition = "uniqueidentifier")
+	@Cascade(value= {org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.ALL})
 	private Users user;
 	
 	@OneToMany(mappedBy = "cartId", fetch = FetchType.EAGER)
@@ -84,6 +86,20 @@ public class Cart implements Serializable {
 
 	public Cart() {
 		super();
+	}
+	
+
+	public Cart(Date createdAt, Users user) {
+		super();
+		this.createdAt = createdAt;
+		this.user = user;
+	}
+
+	public Cart(Date createdAt, Users user, List<ProductCart> productCarts) {
+		super();
+		this.createdAt = createdAt;
+		this.user = user;
+		this.productCarts = productCarts;
 	}
 
 	@Override

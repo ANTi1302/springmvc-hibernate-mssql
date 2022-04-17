@@ -1,0 +1,10 @@
+package springmvc.demo.dao;
+
+import java.util.List;
+
+
+public interface CartsDao{
+
+	public boolean addCart(List<Object> cart);
+	
+}

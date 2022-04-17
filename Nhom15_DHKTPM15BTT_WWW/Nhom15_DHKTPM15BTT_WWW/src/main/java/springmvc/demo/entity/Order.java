@@ -12,18 +12,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
+@Table(name = "Orders")
 public class Order implements Serializable{
 
 	@Id
 	@GenericGenerator(name = "generator", strategy = "guid", parameters = {})
 	@GeneratedValue(generator = "generator")
-	@Column(name = "orderId", columnDefinition = "uniqueidentifier")
+	@Column(name = "order_id", columnDefinition = "uniqueidentifier")
 	private String orderId;
 	@Column(columnDefinition = "nvarchar(500)")
 	private String status;
@@ -145,12 +147,41 @@ public class Order implements Serializable{
 		super();
 	}
 
+	public Order(String status, Date createdAt, Date updateAt, float discount, String shipAddress, String shipPhone,
+			Users user, List<OrderDetail> orderDetails) {
+		super();
+		this.status = status;
+		this.createdAt = createdAt;
+		this.updateAt = updateAt;
+		this.discount = discount;
+		this.shipAddress = shipAddress;
+		this.shipPhone = shipPhone;
+		this.user = user;
+		this.orderDetails = orderDetails;
+	}
+
+
+
+	public Order(String status, Date createdAt, Date updateAt, Users user, float discount, String shipAddress,
+			String shipPhone) {
+		super();
+		this.status = status;
+		this.createdAt = createdAt;
+		this.updateAt = updateAt;
+		this.user = user;
+		this.discount = discount;
+		this.shipAddress = shipAddress;
+		this.shipPhone = shipPhone;
+	}
+
 	@Override
 	public String toString() {
 		return "Order [orderId=" + orderId + ", status=" + status + ", createdAt=" + createdAt + ", updateAt="
-				+ updateAt + ", discount=" + discount + ", shipAddress=" + shipAddress + ", shipPhone=" + shipPhone
-				+ ", user=" + user + ", orderDetails=" + orderDetails + "]";
+				+ updateAt + ", user=" + user + ", discount=" + discount + ", shipAddress=" + shipAddress
+				+ ", shipPhone=" + shipPhone + "]";
 	}
+
+	
 	
 	
 }
