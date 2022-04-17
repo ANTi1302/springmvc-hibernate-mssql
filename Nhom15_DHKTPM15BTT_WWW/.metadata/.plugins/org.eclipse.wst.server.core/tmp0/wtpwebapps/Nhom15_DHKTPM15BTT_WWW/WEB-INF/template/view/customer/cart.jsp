@@ -63,10 +63,8 @@
                                         </td>
                                         <td class="align-middle">
                                             <div class="qty-btn d-flex">
-                                               
                                                 <div>
-                                                 
-                                                        <a href="sub?id=${o.productId}"><button class="btnSub">-</button></a> <strong>${o.amount}</strong>
+                                                        <a href="sub?id=${o.productId}"><button class="btnSub">-</button></a> <strong >${o.amount}</strong>
                                                         <a href="cart?id=${o.productId}"><button class="btnAdd">+</button></a>
                                                    
                                                     <td class="align-middle"><a href="remove?id=${o.productId}" class="text-dark">
@@ -99,6 +97,7 @@
                 </div>
             </div>
         </div>
+         </div>
     <!-- ##### Main Content Wrapper End ##### -->
     <!-- ##### Newsletter Area Start ##### -->
        <%@ include file="footer.jsp" %>
