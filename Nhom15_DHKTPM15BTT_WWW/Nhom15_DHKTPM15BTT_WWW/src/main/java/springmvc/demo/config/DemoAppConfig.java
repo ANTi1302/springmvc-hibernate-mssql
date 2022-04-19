@@ -86,7 +86,6 @@ public class DemoAppConfig implements WebMvcConfigurer {
 
 		// set hibernate properties
 		Properties props = new Properties();
-
 		props.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 		props.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 		

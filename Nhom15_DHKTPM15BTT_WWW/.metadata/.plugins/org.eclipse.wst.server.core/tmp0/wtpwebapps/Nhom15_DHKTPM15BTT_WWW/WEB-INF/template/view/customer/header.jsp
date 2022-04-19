@@ -67,19 +67,27 @@
 										}
 										// getParameter tra ve String (todo-demo.jsp?theItem=? thi add ?)
 										String theItem = request.getParameter("txt");
-
 										if (theItem != null) {
-
-											items.add(theItem);
-
+											if(!items.contains(theItem)){
+												items.add(theItem);
+											}else{
+												items.remove(theItem);
+												items.add(theItem);
+											}
+											
 										}
 										%>
 										<%
-										for (String temp : items) {
+										/* for (String temp : items) {
 											out.println("<div class='dropdown-item'><a href='/Nhom15_DHKTPM15BTT_WWW/search?txt=" + temp + "'>	" + temp
 											+ "</a></div>");
+										} */
+										for(int i=items.size(); i>0;i--){
+											out.println("<div class='dropdown-item'><a href='/Nhom15_DHKTPM15BTT_WWW/search?txt=" + items.get(i-1) + "'>	" + items.get(i-1)
+													+ "</a></div>");
 										}
 										%>
+										sửa típ đi nam :)) kmđ
 									</c:forEach>
 
 								</div>
@@ -206,7 +214,7 @@
 				</c:forEach>
 				<c:if test="${sessionScope.acc == null}">
 					<li><a
-						href="<c:url value="/assets/view/custumer/login.jsp" />">Login</a></li>
+						href="<c:url value="/login" />">Login</a></li>
 				</c:if>
 				<c:if test="${sessionScope.acc != null}">
 					<li><a href="<c:url value="/logout" />">Logout</a></li>

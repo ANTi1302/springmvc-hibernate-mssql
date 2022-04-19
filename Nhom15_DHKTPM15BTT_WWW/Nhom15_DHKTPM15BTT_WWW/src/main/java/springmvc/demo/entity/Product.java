@@ -3,6 +3,7 @@ package springmvc.demo.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -303,6 +304,23 @@ public class Product implements Serializable{
 		this.createdAt = createdAt;
 		this.amount = amount;
 		this.colors = colors;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(productId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		return Objects.equals(productId, other.productId);
 	}
 
 	@Override

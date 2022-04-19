@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import springmvc.demo.entity.Cart;
 import springmvc.demo.entity.Order;
+import springmvc.demo.entity.OrderDetail;
 import springmvc.demo.entity.Product;
 import springmvc.demo.entity.ProductCart;
 import springmvc.demo.entity.Users;
@@ -83,10 +88,10 @@ public class HomeController extends BaseController {
 		// Phan trang
 		int soLuong = homeServer.demSLProduct();
 
-		int endpage = soLuong / 3;
-		if (soLuong % 3 != 0) {
-			endpage++;
-		}
+		int endpage = (soLuong+5) / 6;
+//		if (soLuong % 3 != 0) {
+//			endpage++;
+//		}
 		// dem soluong Cart
 		Cookie arr[] = req.getCookies();
 		List<Product> listCc = new ArrayList<>();
@@ -96,7 +101,6 @@ public class HomeController extends BaseController {
 				for (String s : txt) {
 					listCc.add(homeServer.getProduct(s));
 				}
-
 			}
 		}
 
@@ -120,6 +124,7 @@ public class HomeController extends BaseController {
 		req.setAttribute("tongSLProduct", soLuongProduct);
 		req.setAttribute("soLuong", soLuongCc);
 		req.setAttribute("dsProduct", homeServer.getDsColorTop6(index));
+//		 homeServer.getDsColorTop6(index).forEach(r -> System.out.println(r));
 		req.setAttribute("dsCategory", homeServer.getDsCategory());
 		req.setAttribute("dsBranchs", homeServer.getDsBranchs());
 		req.setAttribute("dsColors", homeServer.dsColor());
@@ -161,7 +166,6 @@ public class HomeController extends BaseController {
 		Cookie arr[] = request.getCookies();
 		HttpSession session = request.getSession();
 		String amount = (String) session.getAttribute("amount");
-		;
 		if (amount == null) {
 			amount = "1";
 			int sl = Integer.parseInt(amount);
@@ -381,7 +385,6 @@ public class HomeController extends BaseController {
 		req.setAttribute("soLuong", soLuong);
 		modelAndView.setViewName("customer/product-details");
 		return modelAndView;
-
 	}
 
 	@GetMapping("/sub")
@@ -461,7 +464,7 @@ public class HomeController extends BaseController {
 		String address=request.getParameter("street_address");
 		String phone=request.getParameter("phone_number");
 		Cookie arr[] = request.getCookies();
-		List<Product> list = new ArrayList<>();
+		Set<Product> list = new HashSet<Product>();
 		for (Cookie o : arr) {
 			if (o.getName().equals("productID")) {
 				String txt[] = o.getValue().split("/");
@@ -472,30 +475,23 @@ public class HomeController extends BaseController {
 		}
 //       Users users= new Users();
 //       users= new Users(list.getSellerID().getUserID());
-
-		for (int i = 0; i < list.size(); i++) {
-			int count = 1;
-			for (int j = i + 1; j < list.size(); j++) {
-				if (((Product) list.get(i)).getProductId() == ((Product) list.get(j)).getProductId()) {
-					count++;
-					list.remove(j);
-					j--;
-					((Product) list.get(i)).setAmount(count);
-
-				}
-			}
-			// Thêm hóa đơn không cần login
-		}
 		Users username = new Users();
         Order order= new Order("Check", new Date(), new Date(), username, 0, address, phone);
-		//		Cart cart = new Cart(new Date(), username);
-//		Product product = new Product(list.get(i).getProductId());
-//		homeServer.addCart(cart);
 		homeServer.addOrders(order);
-//       List<Object> cart= new ArrayList<Object>();
-//       
-//       cart.add(list);
-//       System.out.println(cart);
+		Order order_add=homeServer.findOrderId(order.getOrderId());
+		Map<Product,Integer> map= new HashMap<>();
+		for (Product product : list) {
+			map.put(product, map.getOrDefault(product, 0) + product.getAmount());
+		}
+//		for (Product product : list) {
+////			int count = 1;
+//			Product pro_add=homeServer.getProduct(product.getProductId());
+//			homeServer.addOrderDetails(new OrderDetail(order_add, pro_add, product.getAmount(), 0, new Date(), new Date(), product.getSale(), product.getPrice()));
+//		}
+		map.forEach((key,value)-> {
+			Product pro_add=homeServer.getProduct(key.getProductId());
+			homeServer.addOrderDetails(new OrderDetail(order_add, pro_add, value, 0, new Date(), new Date(), pro_add.getSale(), pro_add.getPrice()));
+		});
 		for (Cookie o : arr) {
 			if (o.getName().equals("productID")) {
 				o.setMaxAge(0);
@@ -503,6 +499,23 @@ public class HomeController extends BaseController {
 			}
 		}
 		modelAndView.setViewName("redirect:home");
+		return modelAndView;
+	}
+	@GetMapping("/login")
+	public ModelAndView login(HttpServletResponse response, HttpServletRequest request) {
+		String ten=request.getParameter("name");
+		String pass=(String) request.getParameter("pass");
+//		Users users=productFacade.timKiemUserLogin(ten, pass);
+		if (homeServer.timKiemUserLogin(ten, pass)==null) {
+			modelAndView.setViewName("customer/login");
+		}else {
+			
+			HttpSession session= request.getSession();
+			session.setAttribute("acc", homeServer.timKiemUserLogin(ten, pass));
+			modelAndView.setViewName("redirect:home");
+//		
+		}
+		modelAndView.setViewName("customer/login");
 		return modelAndView;
 	}
 

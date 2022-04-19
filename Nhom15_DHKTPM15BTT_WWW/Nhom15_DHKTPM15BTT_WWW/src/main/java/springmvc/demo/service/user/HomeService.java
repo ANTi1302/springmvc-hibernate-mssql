@@ -11,7 +11,9 @@ import springmvc.demo.entity.Category;
 import springmvc.demo.entity.Color;
 import springmvc.demo.entity.Menus;
 import springmvc.demo.entity.Order;
+import springmvc.demo.entity.OrderDetail;
 import springmvc.demo.entity.Product;
+import springmvc.demo.entity.Users;
 
 @Service
 public interface HomeService {
@@ -69,5 +71,15 @@ public interface HomeService {
 
 	// order
 	public void addOrders(Order order);
+
+	public Order findOrderId(String id);
+
+	// orderdetails
+	public void addOrderDetails(OrderDetail order);
+
+	public OrderDetail findOrderDetailId(String id);
+	
+	//user
+	public Users timKiemUserLogin(String ten, String pass);
 
 }

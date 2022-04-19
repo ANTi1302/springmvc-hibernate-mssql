@@ -3,7 +3,6 @@ INDEX VERSION 1.4+E:\ANTi_study\springmvc-hibernate-mssql\Nhom15_DHKTPM15BTT_WWW
 3372768643.index
 628543817.index
 2426947424.index
-4252954297.index
 942321294.index
 2546359095.index
 3926743191.index

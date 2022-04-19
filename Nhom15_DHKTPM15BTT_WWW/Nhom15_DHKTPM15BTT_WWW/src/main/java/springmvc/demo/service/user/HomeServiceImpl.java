@@ -11,9 +11,11 @@ import springmvc.demo.dao.CartsDao;
 import springmvc.demo.dao.CategoryDao;
 import springmvc.demo.dao.ColorsDao;
 import springmvc.demo.dao.MenusDao;
+import springmvc.demo.dao.OrderDetailsDao;
 import springmvc.demo.dao.OrdersDao;
 import springmvc.demo.dao.ProductCartsDao;
 import springmvc.demo.dao.ProductDao;
+import springmvc.demo.dao.UsersDao;
 import springmvc.demo.dto.ProductDto;
 import springmvc.demo.entity.Branchs;
 import springmvc.demo.entity.Cart;
@@ -21,7 +23,9 @@ import springmvc.demo.entity.Category;
 import springmvc.demo.entity.Color;
 import springmvc.demo.entity.Menus;
 import springmvc.demo.entity.Order;
+import springmvc.demo.entity.OrderDetail;
 import springmvc.demo.entity.Product;
+import springmvc.demo.entity.Users;
 
 
 @Service
@@ -52,6 +56,11 @@ public class HomeServiceImpl implements HomeService{
 	@Autowired
 	private OrdersDao orderDao;
 	
+	@Autowired
+	private OrderDetailsDao orderDetailsDao;
+	
+	@Autowired
+	private UsersDao usersDao;
 	@Override
 	
 	public List<Product> dsProduct() {
@@ -201,6 +210,30 @@ public class HomeServiceImpl implements HomeService{
 	public void addOrders(Order order) {
 		orderDao.addOrders(order);
 		
+	}
+
+	@Override
+	public Order findOrderId(String id) {
+		return orderDao.findOrderId(id);
+	}
+
+	@Override
+	public void addOrderDetails(OrderDetail order) {
+		orderDetailsDao.addOrderDetails(order);
+		
+	}
+
+	@Override
+	public OrderDetail findOrderDetailId(String id) {
+		// TODO Auto-generated method stub
+		return orderDetailsDao.findOrderDetailId(id);
+	}
+
+	@Override
+	public Users timKiemUserLogin(String ten, String pass) {
+		// TODO Auto-generated method stub
+//		return usersDao.timKiemUserLogin(ten, pass);
+		return null;
 	}
 
 
