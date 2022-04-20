@@ -71,4 +71,9 @@ public class LoginController extends BaseController {
 		}
 		return modelAndView;
 	}
+	@GetMapping("/mypurchase")
+	public ModelAndView mypurchase(HttpServletResponse response, HttpServletRequest request) {
+		modelAndView.setViewName("customer/mypurchase");
+		return modelAndView;
+	}
 }
