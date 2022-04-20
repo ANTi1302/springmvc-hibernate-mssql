@@ -1,5 +1,0 @@
-package springmvc.demo.dao;
-
-public interface MenuDao{
-
-}

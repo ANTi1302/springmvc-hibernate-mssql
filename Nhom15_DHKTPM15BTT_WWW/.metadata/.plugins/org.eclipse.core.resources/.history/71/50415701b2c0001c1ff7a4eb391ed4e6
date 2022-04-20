@@ -1,0 +1,5 @@
+package springmvc.demo.controller.user;
+
+public class LoginController extends BaseController{
+
+}

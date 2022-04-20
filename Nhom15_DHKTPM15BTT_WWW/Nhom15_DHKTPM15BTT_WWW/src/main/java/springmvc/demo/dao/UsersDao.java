@@ -7,6 +7,7 @@ import springmvc.demo.entity.Users;
 
 public interface UsersDao{
 
-	public List<Users> getDsUsers();
+
+	public Users timKiemUserLogin(String ten, String pass);
 	
 }

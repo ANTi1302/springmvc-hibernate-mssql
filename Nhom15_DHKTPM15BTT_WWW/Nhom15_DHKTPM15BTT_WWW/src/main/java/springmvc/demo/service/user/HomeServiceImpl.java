@@ -231,9 +231,7 @@ public class HomeServiceImpl implements HomeService{
 
 	@Override
 	public Users timKiemUserLogin(String ten, String pass) {
-		// TODO Auto-generated method stub
-//		return usersDao.timKiemUserLogin(ten, pass);
-		return null;
+		return usersDao.timKiemUserLogin(ten, pass);
 	}
 
 

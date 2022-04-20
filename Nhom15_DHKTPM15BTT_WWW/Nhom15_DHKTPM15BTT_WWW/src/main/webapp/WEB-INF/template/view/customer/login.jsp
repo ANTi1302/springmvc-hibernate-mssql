@@ -29,7 +29,7 @@
 						<div class="right-content">
 							<h3 class="form-title">Login</h3>
 
-							<form class="form-horizontal" action="/WebBanHangQuanAo/login"
+							<form class="form-horizontal" action="login"
 								method="post">
 								<div class="form-group">
 									<label>Username / Email</label> <input type="text"

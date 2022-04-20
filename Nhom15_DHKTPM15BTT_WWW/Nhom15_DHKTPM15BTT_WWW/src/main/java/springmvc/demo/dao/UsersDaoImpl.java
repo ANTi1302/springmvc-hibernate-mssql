@@ -12,17 +12,21 @@ import springmvc.demo.entity.Users;
 @Repository
 public class UsersDaoImpl extends BaseDao implements UsersDao {
 
-//	select * from Menus
 	@Override
-	public List<Users> getDsUsers() {
-		Session currentSession = sessionFactory.getCurrentSession();
-		Query<Users> theQuery = currentSession.createQuery(" from Menus", Users.class);
-		// execute query and get result list
-		List<Users> menus = theQuery.getResultList();
-		// return the results
-		return menus;
+	public Users timKiemUserLogin(String ten, String pass) {
+		try {
+			Session currentSession = sessionFactory.getCurrentSession();
+			Query<Users> theQuery = currentSession.createQuery(
+					" from Users where first_Name+' '+last_Name='" + ten + "' and password='" + pass + "'",
+					Users.class);
+			// execute query and get result list
+			Users menus = theQuery.getSingleResult();
+			// return the results
+			return menus;
+		} catch (Exception e) {
+			return null;
+		}
+
 	}
-
-
 
 }

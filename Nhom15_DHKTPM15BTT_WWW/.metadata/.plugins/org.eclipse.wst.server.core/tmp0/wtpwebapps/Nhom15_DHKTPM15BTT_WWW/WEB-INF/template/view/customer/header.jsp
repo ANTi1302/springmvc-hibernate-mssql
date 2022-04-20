@@ -68,13 +68,13 @@
 										// getParameter tra ve String (todo-demo.jsp?theItem=? thi add ?)
 										String theItem = request.getParameter("txt");
 										if (theItem != null) {
-											if(!items.contains(theItem)){
+											if (!items.contains(theItem)) {
 												items.add(theItem);
-											}else{
+											} else {
 												items.remove(theItem);
 												items.add(theItem);
 											}
-											
+
 										}
 										%>
 										<%
@@ -82,9 +82,9 @@
 											out.println("<div class='dropdown-item'><a href='/Nhom15_DHKTPM15BTT_WWW/search?txt=" + temp + "'>	" + temp
 											+ "</a></div>");
 										} */
-										for(int i=items.size(); i>0;i--){
-											out.println("<div class='dropdown-item'><a href='/Nhom15_DHKTPM15BTT_WWW/search?txt=" + items.get(i-1) + "'>	" + items.get(i-1)
-													+ "</a></div>");
+										for (int i = items.size(); i > 0; i--) {
+											out.println("<div class='dropdown-item'><a href='/Nhom15_DHKTPM15BTT_WWW/search?txt=" + items.get(i - 1) + "'>	"
+											+ items.get(i - 1) + "</a></div>");
 										}
 										%>
 										sửa típ đi nam :)) kmđ
@@ -180,28 +180,28 @@
 		<!-- Amado Nav -->
 		<nav class="amado-nav">
 			<ul>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> ANTi </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" style="color: black;" href="#">Action</a> <a
-							class="dropdown-item" style="color: black;" href="#">Another action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#" style="color: black;">Something else here</a>
-					</div></li>
-				<c:forEach var="tempmenus" items="${menus }" varStatus="index">
-					<c:if test="${sessionScope.acc != null}">
-
-						<div class="dropdown" style="float: left;">
-							<button class="dropbtn">${sessionScope.acc.username}</button>
+				<c:if test="${sessionScope.acc != null}">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> ${sessionScope.acc.firstName} ${sessionScope.acc.lastName}</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" style="color: black;" href="#">Action</a>
+							<a class="dropdown-item" style="color: black;" href="#">Another
+								action</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#" style="color: black;">Something
+								else here</a>
+						</div></li>
+					<%-- <div class="dropdown" style="float: left;">
+							<button class="dropbtn">${sessionScope.acc.firstName}</button>
 							<div class="dropdown-content" style="left: 0;">
 								<a href="#">Link 1</a> <a href="#">Link 2</a> <a href="#">Link
 									3</a>
 							</div>
-						</div>
-					</c:if>
-
+						</div> --%>
+				</c:if>
+				<c:forEach var="tempmenus" items="${menus }" varStatus="index">
 					<c:if test="${index.first }">
 						<li class="active">
 					</c:if>
@@ -213,8 +213,7 @@
 
 				</c:forEach>
 				<c:if test="${sessionScope.acc == null}">
-					<li><a
-						href="<c:url value="/login" />">Login</a></li>
+					<li><a href="<c:url value="/login" />">Login</a></li>
 				</c:if>
 				<c:if test="${sessionScope.acc != null}">
 					<li><a href="<c:url value="/logout" />">Logout</a></li>

@@ -501,22 +501,6 @@ public class HomeController extends BaseController {
 		modelAndView.setViewName("redirect:home");
 		return modelAndView;
 	}
-	@GetMapping("/login")
-	public ModelAndView login(HttpServletResponse response, HttpServletRequest request) {
-		String ten=request.getParameter("name");
-		String pass=(String) request.getParameter("pass");
-//		Users users=productFacade.timKiemUserLogin(ten, pass);
-		if (homeServer.timKiemUserLogin(ten, pass)==null) {
-			modelAndView.setViewName("customer/login");
-		}else {
-			
-			HttpSession session= request.getSession();
-			session.setAttribute("acc", homeServer.timKiemUserLogin(ten, pass));
-			modelAndView.setViewName("redirect:home");
-//		
-		}
-		modelAndView.setViewName("customer/login");
-		return modelAndView;
-	}
+	
 
 }
