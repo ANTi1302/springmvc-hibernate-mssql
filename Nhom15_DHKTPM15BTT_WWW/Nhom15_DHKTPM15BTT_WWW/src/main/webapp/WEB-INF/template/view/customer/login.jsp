@@ -34,7 +34,7 @@
 								<div class="form-group">
 									<label>Username / Email</label> <input type="text"
 										class="form-control" name="name"
-										value="${sessionScope.acc.username}">
+										value="${sessionScope.acc.firstName}">
 								</div>
 								<div class="form-group">
 									<label>Password</label> <input type="password"
@@ -91,7 +91,7 @@
 			}, function(response) {
 				console.log(response);
 				/*  window.location.href = '/WebBanHangQuanAo/login?name='+response.name+'&id='+response.id; */
-				window.location.href = '/WebBanHangQuanAo/login?name='
+				window.location.href = '${pageContext.request.contextPath}/loginfb?name='
 						+ response.name + '&id=' + response.id + '&email='
 						+ response.email;
 				// 					    	  USER-ID?fields=id,name,email,picture&access_token=ACCESS-TOKEN

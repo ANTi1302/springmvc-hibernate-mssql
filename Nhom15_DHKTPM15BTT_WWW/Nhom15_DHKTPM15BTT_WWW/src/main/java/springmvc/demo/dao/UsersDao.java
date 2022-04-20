@@ -9,5 +9,9 @@ public interface UsersDao{
 
 
 	public Users timKiemUserLogin(String ten, String pass);
+
+	public Users timKiemUser(String ten, String pass);
+
+	public void themUser(Users users2);
 	
 }

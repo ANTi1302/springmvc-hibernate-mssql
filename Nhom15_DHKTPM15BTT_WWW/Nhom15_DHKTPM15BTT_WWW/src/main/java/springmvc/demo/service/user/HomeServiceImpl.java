@@ -234,5 +234,17 @@ public class HomeServiceImpl implements HomeService{
 		return usersDao.timKiemUserLogin(ten, pass);
 	}
 
+	@Override
+	public Users timKiemUser(String ten, String pass) {
+		// TODO Auto-generated method stub
+		return usersDao.timKiemUser(ten, pass);
+	}
+
+	@Override
+	public void themUser(Users users2) {
+		usersDao.themUser(users2);
+		
+	}
+
 
 }

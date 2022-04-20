@@ -167,6 +167,15 @@ public class Users implements Serializable{
 		this.orders = orders;
 	}
 
+	public Users(String firstName, String lastName, String email, String accessTokenID, Role role) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.accessTokenID = accessTokenID;
+		this.role = role;
+	}
+
 	public Users() {
 		super();
 	}

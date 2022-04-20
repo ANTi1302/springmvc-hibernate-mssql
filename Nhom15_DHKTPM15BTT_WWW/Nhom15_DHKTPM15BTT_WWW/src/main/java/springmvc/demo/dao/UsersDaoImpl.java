@@ -29,4 +29,26 @@ public class UsersDaoImpl extends BaseDao implements UsersDao {
 
 	}
 
+	@Override
+	public Users timKiemUser(String ten, String pass) {
+		try {
+			Session currentSession = sessionFactory.getCurrentSession();
+			Query<Users> theQuery = currentSession.createQuery(
+					" from Users where first_Name='" + ten + "' and access_tokenID='" + pass + "'",
+					Users.class);
+			// execute query and get result list
+			Users menus = theQuery.getSingleResult();
+			// return the results
+			return menus;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public void themUser(Users users2) {
+		 Session currentSession = sessionFactory.getCurrentSession();
+         currentSession.save(users2);		
+	}
+
 }
