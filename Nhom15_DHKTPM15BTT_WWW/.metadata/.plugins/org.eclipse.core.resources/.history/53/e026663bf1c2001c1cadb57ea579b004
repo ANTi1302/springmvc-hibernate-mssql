@@ -298,13 +298,13 @@ public class HomeController extends BaseController {
 			int endpage = soLuong / 3;
 			if (soLuong % 3 != 0) {
 				endpage++;
-			}
+			}}
 			req.setAttribute("dsProduct", homeServer.dsColorTop6(index, string));
 			req.setAttribute("endpage", endpage);
 			req.setAttribute("tag", index);
-			
-		}
-		req.setAttribute("tenS", ten);
+			req.setAttribute("tenS", string);
+		
+
 //		HttpSession session = req.getSession();
 //		List<String> items = (List<String>) req.getSession().getAttribute("history");
 //		if (items == null) {
