@@ -164,6 +164,8 @@ public class HomeController extends BaseController {
 			amount = "1";
 			int sl = Integer.parseInt(amount);
 			List<Product> list = new ArrayList<>();
+			Color color= new Color();
+			String img=null;
 			for (Cookie o : arr) {
 				if (o.getName().equals("productID")) {
 					String txt[] = o.getValue().split("/");

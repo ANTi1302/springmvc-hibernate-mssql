@@ -164,6 +164,8 @@ public class HomeController extends BaseController {
 			amount = "1";
 			int sl = Integer.parseInt(amount);
 			List<Product> list = new ArrayList<>();
+			Color color= new Color();
+			String img=null;
 			for (Cookie o : arr) {
 				if (o.getName().equals("productID")) {
 					String txt[] = o.getValue().split("/");
@@ -194,6 +196,7 @@ public class HomeController extends BaseController {
 			}
 			HttpSession session01 = request.getSession();
 			request.setAttribute("list", list);
+//			request.setAttribute("img", color);
 			request.setAttribute("total", total);
 			request.setAttribute("vat", 0.1 * total);
 			request.setAttribute("sum", 1.1 * total);
