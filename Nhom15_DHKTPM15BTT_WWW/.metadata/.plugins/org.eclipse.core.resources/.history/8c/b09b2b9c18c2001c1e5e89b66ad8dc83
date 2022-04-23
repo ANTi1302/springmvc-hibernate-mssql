@@ -1,0 +1,18 @@
+package springmvc.demo.dto;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
+import springmvc.demo.entity.ProductCategory;
+
+public class CategoryDto {
+
+	private String categoryId;
+	private String name;
+	private String icon;
+	
+	private List<ProductCategory> productCategories;
+}

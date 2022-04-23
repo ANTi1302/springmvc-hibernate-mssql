@@ -1,0 +1,12 @@
+package springmvc.demo.dto;
+
+import springmvc.demo.entity.Product;
+
+public class ColorDto {
+
+	private String colorId;
+	private String name;
+	private String code;
+	private String img;
+	private ProductDto product;
+}

@@ -2,8 +2,6 @@ package springmvc.demo.controller.user;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,20 +14,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import springmvc.demo.entity.Cart;
+import springmvc.demo.entity.Color;
 import springmvc.demo.entity.Order;
 import springmvc.demo.entity.OrderDetail;
 import springmvc.demo.entity.Product;
-import springmvc.demo.entity.ProductCart;
 import springmvc.demo.entity.Users;
 
 @Controller
@@ -170,6 +164,8 @@ public class HomeController extends BaseController {
 			amount = "1";
 			int sl = Integer.parseInt(amount);
 			List<Product> list = new ArrayList<>();
+			Color color= new Color();
+			String img=null;
 			for (Cookie o : arr) {
 				if (o.getName().equals("productID")) {
 					String txt[] = o.getValue().split("/");
@@ -186,10 +182,12 @@ public class HomeController extends BaseController {
 						count++;
 						list.remove(j);
 						j--;
+						
 					}
 				}
 				soLuong++;
 				list.get(i).setAmount(count);
+				list.get(i).setColors(homeServer.getDsColorsByIDProduct(list.get(i).getProductId()));
 			}
 
 			double total = 0;
@@ -198,6 +196,7 @@ public class HomeController extends BaseController {
 			}
 			HttpSession session01 = request.getSession();
 			request.setAttribute("list", list);
+//			request.setAttribute("img", color);
 			request.setAttribute("total", total);
 			request.setAttribute("vat", 0.1 * total);
 			request.setAttribute("sum", 1.1 * total);

@@ -1,0 +1,19 @@
+package springmvc.demo.dto;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import springmvc.demo.entity.Category;
+import springmvc.demo.entity.Product;
+
+public class ProductCategoryDto {
+
+private CategoryDto categoryId;
+	
+	private ProductDto productId;
+	
+}

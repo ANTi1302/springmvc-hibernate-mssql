@@ -1,0 +1,14 @@
+package springmvc.demo.dto;
+
+import java.util.Date;
+
+import springmvc.demo.entity.Users;
+
+public class CartDto {
+
+	private String cartId;
+	private Date createdAt;
+	private Users user;
+	
+	
+}

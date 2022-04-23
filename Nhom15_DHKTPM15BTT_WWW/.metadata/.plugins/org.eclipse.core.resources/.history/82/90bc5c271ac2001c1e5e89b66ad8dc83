@@ -1,0 +1,14 @@
+package springmvc.demo.dto;
+
+
+import springmvc.demo.entity.Cart;
+import springmvc.demo.entity.Product;
+
+public class ProductCartDto {
+
+private Cart cartId;
+	
+	private Product productId;
+	private int quatity;
+	private double price;
+}

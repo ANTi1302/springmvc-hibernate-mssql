@@ -3,6 +3,7 @@ package springmvc.demo.dao;
 import java.util.List;
 
 import springmvc.demo.dto.ProductDto;
+import springmvc.demo.entity.Color;
 import springmvc.demo.entity.Product;
 
 public interface ProductDao {

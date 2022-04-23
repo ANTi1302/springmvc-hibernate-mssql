@@ -49,11 +49,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                               
                                 <c:forEach items="${list}" var="o">
                                 
                                 <tr>
                                         <td class="cart_product_img">
-                                            <a href="#"><img src="<c:url value="" />" alt="Product"></a>
+                                         <%--  <c:forEach items="${img}" var="i"> --%>
+                                            <a href="#"><img src="<c:url value="${o.colors[0][0]}" />" alt="Product"></a>
+                                            <%--   </c:forEach> --%>
                                         </td>
                                         <td class="cart_product_desc">
                                             <h5>${o.name}</h5>
@@ -76,7 +79,7 @@
                                         </td>
                                     </tr>
                                 </c:forEach>
-                                    
+                                  
                                 </tbody>
                             </table>
                         </div>

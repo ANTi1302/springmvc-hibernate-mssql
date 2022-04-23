@@ -1,0 +1,9 @@
+package springmvc.demo.dto;
+
+public class ProductCategoryDto {
+
+	private CategoryDto categoryId;
+
+	private ProductDto productId;
+
+}

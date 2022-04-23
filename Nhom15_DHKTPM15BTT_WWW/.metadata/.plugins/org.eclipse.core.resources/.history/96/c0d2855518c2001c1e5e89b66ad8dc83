@@ -1,0 +1,20 @@
+package springmvc.demo.dto;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import springmvc.demo.entity.Cart;
+import springmvc.demo.entity.Product;
+
+public class ProductCartDto {
+
+private Cart cartId;
+	
+	private Product productId;
+	private int quatity;
+	private double price;
+}

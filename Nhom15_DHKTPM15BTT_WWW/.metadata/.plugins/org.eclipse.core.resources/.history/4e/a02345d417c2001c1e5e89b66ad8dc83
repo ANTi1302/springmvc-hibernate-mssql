@@ -1,0 +1,42 @@
+package springmvc.demo.dto;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+
+import springmvc.demo.entity.Branchs;
+import springmvc.demo.entity.Color;
+import springmvc.demo.entity.OrderDetail;
+import springmvc.demo.entity.ProductCart;
+import springmvc.demo.entity.ProductCategory;
+import springmvc.demo.entity.Users;
+import springmvc.demo.entity.Voucher;
+public class ProductDto implements Serializable{
+
+	private String productId;
+	private String name;
+	private double price;
+	private float sale;
+	private String title;
+	private String details;
+	private int highlight;
+	private int newProduct;
+	private String size;
+	private Date createdAt;
+	private Date updateAt;
+	private int amount;
+	private String quatity ;
+	private BranchDto branchs;
+	private Voucher voucher;
+	private List<Color> colors;
+	private Users user;
+	private List<ProductCart> productCarts;
+	private List<ProductCategory> productCategories;
+	private List<OrderDetail> orderDetails;
+}

@@ -1,0 +1,5 @@
+package springmvc.demo.dto;
+
+public class PermissionDto {
+
+}

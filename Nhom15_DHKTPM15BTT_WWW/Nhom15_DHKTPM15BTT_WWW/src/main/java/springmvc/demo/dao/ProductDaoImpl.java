@@ -13,7 +13,6 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import springmvc.demo.dto.MappingProducts;
 import springmvc.demo.dto.ProductDto;
 import springmvc.demo.entity.Color;
 import springmvc.demo.entity.Menus;
@@ -82,9 +81,9 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 //	select * from Product where product_id ='0647194E-C5AD-40D8-B73D-1822E3751B47'
 	@Override
 	public Product getProduct(String product_id) {
-		// get the current hibernate session
+//		// get the current hibernate session
         Session currentSession = sessionFactory.getCurrentSession();
-        // now retrieve/read from database using the primary key
+//        // now retrieve/read from database using the primary key
         Product theProduct = currentSession.get(Product.class, product_id);
         return theProduct;
 	}

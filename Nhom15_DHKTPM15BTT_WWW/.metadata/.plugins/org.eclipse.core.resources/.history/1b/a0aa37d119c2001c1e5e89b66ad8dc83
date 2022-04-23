@@ -1,0 +1,15 @@
+package springmvc.demo.dto;
+
+import java.util.List;
+
+
+public class BranchsDto {
+
+	private String branchId;
+	private String title;
+	private String img;
+	private String description;
+	private String icon;
+	private List<ProductDto> products;
+	
+}

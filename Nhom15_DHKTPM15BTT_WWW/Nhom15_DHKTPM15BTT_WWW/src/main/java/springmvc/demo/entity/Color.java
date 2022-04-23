@@ -70,24 +70,24 @@ public class Color implements Serializable{
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+//
+//	public Color(String colorId, String name, String code, String img, Product product) {
+//		super();
+//		this.colorId = colorId;
+//		this.name = name;
+//		this.code = code;
+//		this.img = img;
+//		this.product = product;
+//	}
+//
+//	public Color() {
+//		super();
+//	}
 
-	public Color(String colorId, String name, String code, String img, Product product) {
-		super();
-		this.colorId = colorId;
-		this.name = name;
-		this.code = code;
-		this.img = img;
-		this.product = product;
-	}
-
-	public Color() {
-		super();
-	}
-
-	public Color(String colorId) {
-		super();
-		this.colorId = colorId;
-	}
+//	public Color(String colorId) {
+//		super();
+//		this.colorId = colorId;
+//	}
 
 	@Override
 	public String toString() {

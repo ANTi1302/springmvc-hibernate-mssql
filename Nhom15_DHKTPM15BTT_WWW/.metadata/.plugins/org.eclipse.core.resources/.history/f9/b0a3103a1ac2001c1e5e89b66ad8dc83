@@ -1,0 +1,12 @@
+package springmvc.demo.dto;
+
+import java.io.Serializable;
+
+
+public class ProductCartDto implements Serializable {
+
+	private CartDto cartId;
+	private ProductDto productId;
+	private int quatity;
+	private double price;
+}

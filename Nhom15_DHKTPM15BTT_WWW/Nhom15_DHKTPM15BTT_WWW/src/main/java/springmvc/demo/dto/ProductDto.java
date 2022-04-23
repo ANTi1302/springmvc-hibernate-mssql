@@ -2,36 +2,48 @@ package springmvc.demo.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
+
+import springmvc.demo.entity.Branchs;
+import springmvc.demo.entity.Color;
+import springmvc.demo.entity.OrderDetail;
+import springmvc.demo.entity.ProductCart;
+import springmvc.demo.entity.ProductCategory;
+import springmvc.demo.entity.Users;
+import springmvc.demo.entity.Voucher;
 public class ProductDto implements Serializable{
 
-	private String product_id;
+	private String productId;
 	private String name;
 	private double price;
 	private float sale;
 	private String title;
 	private String details;
 	private int highlight;
-	private int new_product;
+	private int newProduct;
 	private String size;
-	private Date created_at;
-	private Date update_at;
+	private Date createdAt;
+	private Date updateAt;
 	private int amount;
-	private String voucher_id ;
-	private String color_id;
-	private String name_color;
-	private String code;
-	private String img;
-	public String getProduct_id() {
-		return product_id;
+	private String quatity ;
+	private BranchsDto branchs;
+	private VoucherDto voucher;
+	private List<ColorDto> colors;
+	private UsersDto user;
+	private List<ProductCartDto> productCarts;
+	private List<ProductCategoryDto> productCategories;
+	private List<OrderDetailDto> orderDetails;
+	public String getProductId() {
+		return productId;
 	}
-	public void setProduct_id(String product_id) {
-		this.product_id = product_id;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 	public String getName() {
 		return name;
@@ -69,11 +81,11 @@ public class ProductDto implements Serializable{
 	public void setHighlight(int highlight) {
 		this.highlight = highlight;
 	}
-	public int getNew_product() {
-		return new_product;
+	public int getNewProduct() {
+		return newProduct;
 	}
-	public void setNew_product(int new_product) {
-		this.new_product = new_product;
+	public void setNewProduct(int newProduct) {
+		this.newProduct = newProduct;
 	}
 	public String getSize() {
 		return size;
@@ -81,17 +93,17 @@ public class ProductDto implements Serializable{
 	public void setSize(String size) {
 		this.size = size;
 	}
-	public Date getCreated_at() {
-		return created_at;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
-	public Date getUpdate_at() {
-		return update_at;
+	public Date getUpdateAt() {
+		return updateAt;
 	}
-	public void setUpdate_at(Date update_at) {
-		this.update_at = update_at;
+	public void setUpdateAt(Date updateAt) {
+		this.updateAt = updateAt;
 	}
 	public int getAmount() {
 		return amount;
@@ -99,36 +111,53 @@ public class ProductDto implements Serializable{
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	public String getVoucher_id() {
-		return voucher_id;
+	public String getQuatity() {
+		return quatity;
 	}
-	public void setVoucher_id(String voucher_id) {
-		this.voucher_id = voucher_id;
+	public void setQuatity(String quatity) {
+		this.quatity = quatity;
 	}
-	public String getColor_id() {
-		return color_id;
+	public BranchsDto getBranchs() {
+		return branchs;
 	}
-	public void setColor_id(String color_id) {
-		this.color_id = color_id;
+	public void setBranchs(BranchsDto branchs) {
+		this.branchs = branchs;
 	}
-	public String getName_color() {
-		return name_color;
+	public VoucherDto getVoucher() {
+		return voucher;
 	}
-	public void setName_color(String name_color) {
-		this.name_color = name_color;
+	public void setVoucher(VoucherDto voucher) {
+		this.voucher = voucher;
 	}
-	public String getCode() {
-		return code;
+	public List<ColorDto> getColors() {
+		return colors;
 	}
-	public void setCode(String code) {
-		this.code = code;
+	public void setColors(List<ColorDto> colors) {
+		this.colors = colors;
 	}
-	public String getImg() {
-		return img;
+	public UsersDto getUser() {
+		return user;
 	}
-	public void setImg(String img) {
-		this.img = img;
+	public void setUser(UsersDto user) {
+		this.user = user;
 	}
-	
+	public List<ProductCartDto> getProductCarts() {
+		return productCarts;
+	}
+	public void setProductCarts(List<ProductCartDto> productCarts) {
+		this.productCarts = productCarts;
+	}
+	public List<ProductCategoryDto> getProductCategories() {
+		return productCategories;
+	}
+	public void setProductCategories(List<ProductCategoryDto> productCategories) {
+		this.productCategories = productCategories;
+	}
+	public List<OrderDetailDto> getOrderDetails() {
+		return orderDetails;
+	}
+	public void setOrderDetails(List<OrderDetailDto> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
 	
 }

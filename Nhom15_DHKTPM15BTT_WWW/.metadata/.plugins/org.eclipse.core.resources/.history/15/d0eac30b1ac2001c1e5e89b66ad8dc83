@@ -1,0 +1,22 @@
+package springmvc.demo.dto;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import springmvc.demo.entity.Order;
+import springmvc.demo.entity.Product;
+
+public class OrderDetailDto implements Serializable {
+
+	private OrderDto orderId;
+	private ProductDto productId;
+	private int amount;
+	private int amountShip;
+	private Date createdAt;
+	private Date updateAt;
+	private float discount;
+	private double price;
+}

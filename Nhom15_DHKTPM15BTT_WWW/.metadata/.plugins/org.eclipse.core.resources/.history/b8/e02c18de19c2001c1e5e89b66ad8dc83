@@ -1,0 +1,12 @@
+package springmvc.demo.dto;
+
+import java.util.List;
+
+
+public class CategoryDto {
+
+	private String categoryId;
+	private String name;
+	private String icon;
+	private List<ProductCategoryDto> productCategories;
+}
