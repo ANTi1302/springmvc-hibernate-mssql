@@ -13,6 +13,7 @@ import springmvc.demo.entity.Menus;
 import springmvc.demo.entity.Order;
 import springmvc.demo.entity.OrderDetail;
 import springmvc.demo.entity.Product;
+import springmvc.demo.entity.ProductCategory;
 import springmvc.demo.entity.Users;
 
 @Service
@@ -30,11 +31,13 @@ public interface HomeService {
 	public Product getProduct(String txt);
 
 //	public List<Object[]> getProduct(String txt);
-	public List<Product> dsProductTheoIDCatorogyTop6(int index, int ten);
+	public List<Object[]> dsProductTheoIDCatorogyTop6(int index, String ten);
 
-	public int demSLKhiSearchTheoIDCatorogy(int ten);
+	public int demSLKhiSearchTheoIDCatorogy(String ten);
+	public int demSLKhiSearchTheoIDBranch(String ten);
 
 	public boolean capNhatProduct(int product);
+	public List<Object[]> dsProductTheoIDBranchsTop6(int index, String ten);
 
 	// menus
 	public List<Menus> getDsMenus();

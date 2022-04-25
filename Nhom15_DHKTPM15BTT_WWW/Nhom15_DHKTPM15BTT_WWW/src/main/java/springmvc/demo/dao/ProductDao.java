@@ -2,9 +2,8 @@ package springmvc.demo.dao;
 
 import java.util.List;
 
-import springmvc.demo.dto.ProductDto;
-import springmvc.demo.entity.Color;
 import springmvc.demo.entity.Product;
+import springmvc.demo.entity.ProductCategory;
 
 public interface ProductDao {
 
@@ -14,7 +13,9 @@ public interface ProductDao {
 	public List<Product> timKiemTheoTen(String ten);
 	public Product getProduct(String product_id);
 //	public List<Object[]> getProduct(String product_id);
-	public List<Product> dsProductTheoIDCatorogyTop6(int index, int ten) ;
-	public int demSLKhiSearchTheoIDCatorogy(int ten) ;
+	public List<Object[]> dsProductTheoIDCatorogyTop6(int index, String ten) ;
+	public int demSLKhiSearchTheoIDCatorogy(String ten) ;
 	public boolean capNhatProduct(int product);
+	public List<Object[]> dsProductTheoIDBranchsTop6(int index, String ten);
+	public int demSLKhiSearchTheoIDBranch(String ten);
 }

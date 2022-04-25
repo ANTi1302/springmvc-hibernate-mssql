@@ -25,6 +25,7 @@ import springmvc.demo.entity.Menus;
 import springmvc.demo.entity.Order;
 import springmvc.demo.entity.OrderDetail;
 import springmvc.demo.entity.Product;
+import springmvc.demo.entity.ProductCategory;
 import springmvc.demo.entity.Users;
 
 
@@ -108,16 +109,16 @@ public class HomeServiceImpl implements HomeService{
 //	}
 	@Override
 	
-	public List<Product> dsProductTheoIDCatorogyTop6(int index, int ten) {
+	public List<Object[]> dsProductTheoIDCatorogyTop6(int index, String ten) {
 		// TODO Auto-generated method stub
-		return null;
+		return productDao.dsProductTheoIDCatorogyTop6(index, ten);
 	}
 
 	@Override
 	
-	public int demSLKhiSearchTheoIDCatorogy(int ten) {
+	public int demSLKhiSearchTheoIDCatorogy(String ten) {
 		// TODO Auto-generated method stub
-		return 0;
+		return productDao.demSLKhiSearchTheoIDCatorogy(ten);
 	}
 
 	@Override
@@ -244,6 +245,18 @@ public class HomeServiceImpl implements HomeService{
 	public void themUser(Users users2) {
 		usersDao.themUser(users2);
 		
+	}
+
+	@Override
+	public List<Object[]> dsProductTheoIDBranchsTop6(int index, String ten) {
+		// TODO Auto-generated method stub
+		return productDao.dsProductTheoIDBranchsTop6(index, ten);
+	}
+
+	@Override
+	public int demSLKhiSearchTheoIDBranch(String ten) {
+		// TODO Auto-generated method stub
+		return productDao.demSLKhiSearchTheoIDBranch(ten);
 	}
 
 

@@ -5,12 +5,9 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import springmvc.demo.entity.Color;
-import springmvc.demo.entity.Menus;
-import springmvc.demo.entity.Product;
 @Repository
 public class ColorDaoImpl extends BaseDao implements ColorsDao {
 
@@ -134,12 +131,12 @@ public class ColorDaoImpl extends BaseDao implements ColorsDao {
 
 	@Override
 	public List<Object[]> thongTinChiTiet(String id) {
-		String hql= "SELECT p.productId,c.img, c.product.name, c.product.price, c.product.sale, c.product.title, c.product.details, c.product.size, c.product.createdAt, c.product.amount, c.product.voucher.voucherId, c.product.quatity, c.product.branchs.title\r\n"
+		String hql= "SELECT p.productId,c.img, c.product.name, c.product.price, c.product.sale, c.product.title, c.product.details, c.product.size, c.product.createdAt, c.product.amount, c.product.voucher.voucherId, c.product.quatity, c.product.branchs.title, c.product.branchs.branchId\r\n"
 				+ "FROM     Product p INNER JOIN\r\n"
 				+ "                  Color c ON p.productId = c.product.productId INNER JOIN ProductCategory pc ON p.productId= pc.productId.productId\r\n"
 				+ "				  where p.productId='"+id+"'\r\n"
 				+ "GROUP BY p.productId, c.img, c.product.name, c.product.price, c.product.sale, c.product.title,\r\n"
-				+ "c.product.details, c.product.size, c.product.createdAt, c.product.amount, c.product.voucher.voucherId, c.product.quatity, c.product.branchs.title";
+				+ "c.product.details, c.product.size, c.product.createdAt, c.product.amount, c.product.voucher.voucherId, c.product.quatity, c.product.branchs.title, c.product.branchs.branchId";
 		Session currentSession = sessionFactory.getCurrentSession();
 		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
 		List<Object[]> product = (List<Object[]>) query.getResultList();

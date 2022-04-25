@@ -1,0 +1,19 @@
+package springmvc.demo.dao;
+
+import java.util.List;
+
+import springmvc.demo.entity.Product;
+import springmvc.demo.entity.ProductCategory;
+
+public interface ProductDao {
+
+	public List<Product> dsProduct() ;
+	public int demSLProduct() ;
+	public int demSLKhiSearch(String ten) ;
+	public List<Product> timKiemTheoTen(String ten);
+	public Product getProduct(String product_id);
+//	public List<Object[]> getProduct(String product_id);
+	public List<Object[]> dsProductTheoIDCatorogyTop6(int index, String ten) ;
+	public int demSLKhiSearchTheoIDCatorogy(String ten) ;
+	public boolean capNhatProduct(int product);
+}

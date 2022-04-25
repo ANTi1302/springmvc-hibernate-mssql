@@ -53,7 +53,7 @@
 					<c:if test="${not index.first }">
 						<li class="">
 					</c:if>
-                    <a href="#">${category.name }</a></li>
+                    <a href="caterogy?txtC=${category.categoryId}" >${category.name }</a></li>
                     </c:forEach>
                        
                     </ul>

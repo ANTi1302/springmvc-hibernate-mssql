@@ -24,6 +24,7 @@ import springmvc.demo.entity.Color;
 import springmvc.demo.entity.Order;
 import springmvc.demo.entity.OrderDetail;
 import springmvc.demo.entity.Product;
+import springmvc.demo.entity.ProductCategory;
 import springmvc.demo.entity.Users;
 
 @Controller
@@ -497,6 +498,115 @@ public class HomeController extends BaseController {
 		modelAndView.setViewName("redirect:home");
 		return modelAndView;
 	}
+	@GetMapping( {"/details/caterogy","/caterogy"})
+	public ModelAndView category(HttpServletResponse res, HttpServletRequest req) throws IOException {
+		String textSearch = req.getParameter("txtC");
+//		int tenC=Integer.parseInt(textSearch);
 	
+	String indexPageC = req.getParameter("index");
+
+	if (indexPageC == null) {
+		indexPageC = "1";
+	}
+	int indexC = Integer.parseInt(indexPageC);
+
+	// Phan trang
+	int soLuongC = homeServer.demSLKhiSearchTheoIDCatorogy(textSearch);
+
+	int endpage = (soLuongC+5) / 6;
+	
+	/////////////
+	 Cookie arr[] = req.getCookies();
+     List<Product> listCc = new ArrayList<>();
+     for (Cookie o : arr) {
+         if (o.getName().equals("productID")) {
+             String txt[] = o.getValue().split("/");
+             for (String s : txt) {
+             	listCc.add(homeServer.getProduct(s));
+             }
+         }
+     }
+     int soLuong = 0;
+		for (int i = 0; i < listCc.size(); i++) {
+			int count = 1;
+			for (int j = i + 1; j < listCc.size(); j++) {
+				if (listCc.get(i).getProductId().equals(listCc.get(j).getProductId())) {
+					count++;
+					listCc.remove(j);
+					j--;
+				}
+			}
+			soLuong++;
+			listCc.get(i).setAmount(count);
+		}
+     
+
+	req.setAttribute("soLuong", soLuong);
+	////////////
+	req.setAttribute("dsProduct",  homeServer.dsProductTheoIDCatorogyTop6(indexC, textSearch));
+	req.setAttribute("endpage", endpage);
+	req.setAttribute("tag", indexC);
+	req.setAttribute("tenC", textSearch);
+	req.setAttribute("dsCategory", homeServer.getDsCategory());
+	req.setAttribute("dsBranchs", homeServer.getDsBranchs());
+	req.setAttribute("dsColors", homeServer.dsColor());
+		modelAndView.setViewName("customer/shop");
+		return modelAndView;
+	}
+	@GetMapping( {"/details/branch","/branch"})
+	public ModelAndView branchs(HttpServletResponse res, HttpServletRequest req) throws IOException {
+		String textSearch = req.getParameter("txtC");
+//		int tenC=Integer.parseInt(textSearch);
+	
+	String indexPageC = req.getParameter("index");
+
+	if (indexPageC == null) {
+		indexPageC = "1";
+	}
+	int indexC = Integer.parseInt(indexPageC);
+
+	// Phan trang
+	int soLuongC = homeServer.demSLKhiSearchTheoIDBranch(textSearch);
+
+	int endpage = (soLuongC+5) / 6;
+	
+	/////////////
+	 Cookie arr[] = req.getCookies();
+     List<Product> listCc = new ArrayList<>();
+     for (Cookie o : arr) {
+         if (o.getName().equals("productID")) {
+             String txt[] = o.getValue().split("/");
+             for (String s : txt) {
+             	listCc.add(homeServer.getProduct(s));
+             }
+         }
+     }
+     int soLuong = 0;
+		for (int i = 0; i < listCc.size(); i++) {
+			int count = 1;
+			for (int j = i + 1; j < listCc.size(); j++) {
+				if (listCc.get(i).getProductId().equals(listCc.get(j).getProductId())) {
+					count++;
+					listCc.remove(j);
+					j--;
+				}
+			}
+			soLuong++;
+			listCc.get(i).setAmount(count);
+		}
+     
+
+	req.setAttribute("soLuong", soLuong);
+	////////////
+	req.setAttribute("dsProduct",  homeServer.dsProductTheoIDBranchsTop6(indexC, textSearch));
+	req.setAttribute("endpage", endpage);
+	req.setAttribute("tag", indexC);
+	req.setAttribute("tenC", textSearch);
+	req.setAttribute("dsCategory", homeServer.getDsCategory());
+	req.setAttribute("dsBranchs", homeServer.getDsBranchs());
+	req.setAttribute("dsColors", homeServer.dsColor());
+		modelAndView.setViewName("customer/shop");
+		return modelAndView;
+	}
 
 }

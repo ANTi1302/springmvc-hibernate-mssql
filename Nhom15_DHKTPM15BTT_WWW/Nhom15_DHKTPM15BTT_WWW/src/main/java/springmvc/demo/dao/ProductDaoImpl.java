@@ -1,10 +1,5 @@
 package springmvc.demo.dao;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -13,10 +8,9 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import springmvc.demo.dto.ProductDto;
-import springmvc.demo.entity.Color;
-import springmvc.demo.entity.Menus;
+import springmvc.demo.entity.Branchs;
 import springmvc.demo.entity.Product;
+import springmvc.demo.entity.ProductCategory;
 
 @Repository
 public class ProductDaoImpl extends BaseDao implements ProductDao {
@@ -97,14 +91,44 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 //		return product;
 //	}
 	@Override
-	public List<Product> dsProductTheoIDCatorogyTop6(int index, int ten) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Object[]> dsProductTheoIDCatorogyTop6(int index, String ten) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="select p.productId.productId ,c.img, p.productId.name, p.productId.price FROM Color c INNER JOIN\r\n"
+				+ "                  ProductCategory p ON c.product.productId = p.productId.productId\r\n"
+				+ "				where p.categoryId.categoryId='"+ten+"' group by p.productId.productId ,c.img, p.productId.name, p.productId.price\r\n"
+				+ "				order by p.productId.productId";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((index-1)*6)).setMaxResults(6);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
 	}
-
 	@Override
-	public int demSLKhiSearchTheoIDCatorogy(int ten) {
-		// TODO Auto-generated method stub
+	public List<Object[]> dsProductTheoIDBranchsTop6(int index, String ten) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="select p.productId.productId ,c.img, p.productId.name, p.productId.price FROM Color c INNER JOIN\r\n"
+				+ "                  ProductCategory p ON c.product.productId = p.productId.productId\r\n"
+				+ "				where c.product.branchs.branchId='"+ten+"' group by p.productId.productId ,c.img, p.productId.name, p.productId.price\r\n"
+				+ "				order by p.productId.productId";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((index-1)*6)).setMaxResults(6);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+	@Override
+	public int demSLKhiSearchTheoIDCatorogy(String ten) {
+		try {
+			String query = "select count(*)from Product_Category\r\n"
+					+ "				where  category_id='"+ten+"'";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soHoaDon = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soHoaDon;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
@@ -112,6 +136,22 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 	public boolean capNhatProduct(int product) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int demSLKhiSearchTheoIDBranch(String ten) {
+		try {
+			String query = "select count(*)from Product\r\n"
+					+ "				where  branch_id='"+ten+"'";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soHoaDon = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soHoaDon;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

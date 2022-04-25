@@ -43,7 +43,7 @@
 							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/home">Home</a></li>
 							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop">Shop</a></li>
 							<li class="breadcrumb-item">
-							<a href="caterogy?txtC=${dsProductChiTiet[12]}">${dsProductChiTiet[12]}</a></li>
+							<a href="branch?txtC=${dsProductChiTiet[13]}">${dsProductChiTiet[12]}</a></li>
 							<li class="breadcrumb-item active" aria-current="page">${dsProductChiTiet[2]}</li>
 						</ol>
 					</nav>
