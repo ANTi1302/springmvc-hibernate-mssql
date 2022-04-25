@@ -76,4 +76,10 @@ public class LoginController extends BaseController {
 		modelAndView.setViewName("customer/mypurchase");
 		return modelAndView;
 	}
+	@RequestMapping("/account")
+	public ModelAndView account(HttpServletResponse response, HttpServletRequest request) throws IOException {
+		
+		modelAndView.setViewName("customer/account");
+		return modelAndView;
+	}
 }

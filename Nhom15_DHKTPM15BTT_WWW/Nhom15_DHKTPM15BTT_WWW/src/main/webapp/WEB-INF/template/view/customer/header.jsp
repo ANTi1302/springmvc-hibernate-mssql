@@ -186,7 +186,7 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> ${sessionScope.acc.firstName} ${sessionScope.acc.lastName}</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" style="color: black;" href="#">My Account</a>
+							<a class="dropdown-item" style="color: black;" href="account">My Account</a>
 							<a class="dropdown-item" style="color: black;" href="mypurchase">My Purchase</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#" style="color: black;">My Vouchers</a>
