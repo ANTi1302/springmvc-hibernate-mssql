@@ -352,14 +352,13 @@ public class HomeController extends BaseController {
 			session01.getAttribute("sum");
 			request.setAttribute("soLuong", homeServer.demSLCartTheoIdUser(username.getUserId()));
 		}
-
 		modelAndView.setViewName("customer/checkout");
 		return modelAndView;
 	}
 
 	@RequestMapping({ "/details/search", "/search" })
 	public ModelAndView search(HttpServletResponse resp, HttpServletRequest req) {
-		String ten = req.getParameter("txt");
+		String ten = req.getParameter("txt").trim();
 		String indexPage = req.getParameter("index");
 		String[] tenx = ten.split("[,; \\t\\n\\r]+");
 		for (String string : tenx) {
@@ -485,7 +484,9 @@ public class HomeController extends BaseController {
 		}
 		///// Delete product_cart have acc
 		else {
-//			 homeServer.deleteProductCarts(id);
+
+//			homeServer.updateProductCarts(id);
+		
 		}
 		modelAndView.setViewName("redirect:print");
 		return modelAndView;
