@@ -25,6 +25,7 @@ import springmvc.demo.entity.Menus;
 import springmvc.demo.entity.Order;
 import springmvc.demo.entity.OrderDetail;
 import springmvc.demo.entity.Product;
+import springmvc.demo.entity.ProductCart;
 import springmvc.demo.entity.ProductCategory;
 import springmvc.demo.entity.Users;
 
@@ -190,7 +191,7 @@ public class HomeServiceImpl implements HomeService{
 	}
 
 	@Override
-	public void addProductCarts(List<Object> cart) {
+	public void addProductCarts(ProductCart cart) {
 		productCartsDao.addProductCarts(cart);
 		
 	}
@@ -257,6 +258,18 @@ public class HomeServiceImpl implements HomeService{
 	public int demSLKhiSearchTheoIDBranch(String ten) {
 		// TODO Auto-generated method stub
 		return productDao.demSLKhiSearchTheoIDBranch(ten);
+	}
+
+	@Override
+	public List<Object[]> getProductByUserID(String userId) {
+		// TODO Auto-generated method stub
+		return productCartsDao.getProductByUserID(userId);
+	}
+
+	@Override
+	public Users timKiemUserByPhone(String phone) {
+		// TODO Auto-generated method stub
+		return usersDao.timKiemUserByPhone(phone) ;
 	}
 
 

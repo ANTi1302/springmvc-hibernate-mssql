@@ -184,12 +184,15 @@
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> ${sessionScope.acc.firstName} ${sessionScope.acc.lastName}</a>
+						aria-expanded="false"> ${sessionScope.acc.firstName}
+							${sessionScope.acc.lastName}</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" style="color: black;" href="account">My Account</a>
-							<a class="dropdown-item" style="color: black;" href="mypurchase">My Purchase</a>
+							<a class="dropdown-item" style="color: black;" href="account">My
+								Account</a> <a class="dropdown-item" style="color: black;"
+								href="mypurchase">My Purchase</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#" style="color: black;">My Vouchers</a>
+							<a class="dropdown-item" href="#" style="color: black;">My
+								Vouchers</a>
 						</div></li>
 					<%-- <div class="dropdown" style="float: left;">
 							<button class="dropbtn">${sessionScope.acc.firstName}</button>
@@ -216,7 +219,9 @@
 				<c:if test="${sessionScope.acc != null}">
 					<li><a href="<c:url value="/logout" />">Logout</a></li>
 				</c:if>
-
+				<c:if test="${sessionScope.acc == null}">
+					<li><a href="<c:url value="" />">Register</a></li>
+				</c:if>
 			</ul>
 		</nav>
 		<!-- Button Group -->

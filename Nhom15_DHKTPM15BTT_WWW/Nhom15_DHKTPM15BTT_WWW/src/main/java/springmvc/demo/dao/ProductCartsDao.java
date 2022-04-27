@@ -2,9 +2,11 @@ package springmvc.demo.dao;
 
 import java.util.List;
 
+import springmvc.demo.entity.ProductCart;
+
 
 public interface ProductCartsDao{
 
-	public void addProductCarts(List<Object> cart);
-	
+	public void addProductCarts(ProductCart cart);
+	public List<Object[]> getProductByUserID(String userId);
 }

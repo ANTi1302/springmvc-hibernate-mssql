@@ -8,6 +8,8 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="REGISTER"/>
+			<item value="Register"/>
 			<item value="@Transactional"/>
 			<item value="Category"/>
 			<item value="Branch"/>

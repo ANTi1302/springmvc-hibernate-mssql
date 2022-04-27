@@ -42,10 +42,10 @@
                             <form action="order" method="post">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" name="first_name" value="${sessionScope.acc.username}" placeholder="First Name" required>
+                                        <input type="text" class="form-control" name="first_name" value="${sessionScope.acc.firstName}" placeholder="First Name" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" name="last_name" value="" placeholder="Last Name" required>
+                                        <input type="text" class="form-control" name="last_name" value="${sessionScope.acc.lastName}" placeholder="Last Name" required>
                                     </div>
                                     <div class="col-12 mb-3">
                                         <input type="text" class="form-control" name="company" placeholder="Company Name" value="">
@@ -66,7 +66,7 @@
                                     </select>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="text" class="form-control mb-3" name="street_address" placeholder="Address" value="">
+                                        <input type="text" class="form-control mb-3" name="street_address" placeholder="Address" value="${sessionScope.acc.address}">
                                     </div>
                                     <div class="col-12 mb-3">
                                         <input type="text" class="form-control" name="city" placeholder="Town" value="">
@@ -75,7 +75,7 @@
                                         <input type="text" class="form-control" name="zipCode" placeholder="Zip Code" value="">
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <input type="number" class="form-control" name="phone_number" min="0" placeholder="Phone No" value="">
+                                        <input type="number" class="form-control" name="phone_number" min="0" placeholder="Phone No" value="${sessionScope.acc.phone}">
                                     </div>
                                     <div class="col-12 mb-3">
                                         <textarea name="comment" class="form-control w-100" id="comment" cols="30" rows="10" placeholder="Leave a comment about your order"></textarea>
