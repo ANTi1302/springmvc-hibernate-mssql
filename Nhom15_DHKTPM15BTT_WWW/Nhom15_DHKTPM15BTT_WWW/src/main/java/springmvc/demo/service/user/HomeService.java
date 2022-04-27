@@ -86,12 +86,14 @@ public interface HomeService {
 	
 	//user
 	public Users timKiemUserLogin(String ten, String pass);
-	public Users timKiemUser(String ten, String pass);
+	public Users timKiemUser( String pass);
 	public void themUser(Users users2);
 
 	public  Users timKiemUserByPhone(String phone);
 
 	public int demSLCartTheoIdUser(String userId);
+
+	public void deleteProductCarts(String id);
 	
 	
 

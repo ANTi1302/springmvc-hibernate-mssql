@@ -30,11 +30,11 @@ public class UsersDaoImpl extends BaseDao implements UsersDao {
 	}
 
 	@Override
-	public Users timKiemUser(String ten, String pass) {
+	public Users timKiemUser(String pass) {
 		try {
 			Session currentSession = sessionFactory.getCurrentSession();
 			Query<Users> theQuery = currentSession.createQuery(
-					" from Users where first_Name='" + ten + "' and access_tokenID='" + pass + "'",
+					" from Users where access_tokenID='" + pass + "'",
 					Users.class);
 			// execute query and get result list
 			Users menus = theQuery.getSingleResult();

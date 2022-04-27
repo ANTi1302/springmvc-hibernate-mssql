@@ -155,16 +155,8 @@ public class HomeController extends BaseController {
 			Product pro_add = homeServer.getProduct(id);
 			homeServer.addProductCarts(new ProductCart(homeServer.findCartId(cart.getCartId()), pro_add,
 					pro_add.getAmount(), pro_add.getPrice()));
-//			Map<Product, Integer> map = new HashMap<>();
-//			for (Product product : list) {
-//				map.put(product, map.getOrDefault(product, 0) + product.getAmount());
-//			}
-//			map.forEach((key, value) -> {
-//				Product pro_add = homeServer.getProduct(key.getProductId());
-//				homeServer.addProductCarts(
-//						new ProductCart( homeServer.findCartId(cart.getCartId()), pro_add, pro_add.getAmount(), pro_add.getPrice()));
-//			});
-		} else {
+		} 
+		else {
 			for (Cookie o : arr) {
 				if (o.getName().equals("productID")) {
 					txt = txt + o.getValue();
@@ -317,7 +309,6 @@ public class HomeController extends BaseController {
 	public ModelAndView check(HttpServletResponse response, HttpServletRequest request) throws IOException {
 		Cookie arr[] = request.getCookies();
 		List<Product> list = new ArrayList<>();
-
 		for (Cookie o : arr) {
 			if (o.getName().equals("productID")) {
 				String txt[] = o.getValue().split("/");
@@ -446,6 +437,9 @@ public class HomeController extends BaseController {
 	@GetMapping("/sub")
 	public ModelAndView sub(HttpServletResponse response, HttpServletRequest request) throws IOException {
 		String id = request.getParameter("id");
+		HttpSession session = request.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		if (username == null) {
 		Cookie arr[] = request.getCookies();
 		String txt = "";
 		for (Cookie o : arr) {
@@ -477,6 +471,11 @@ public class HomeController extends BaseController {
 			c.setMaxAge(60 * 60 * 24);
 			response.addCookie(c);
 		}
+		}
+		/////Delete product_cart have acc
+		else {
+//			 homeServer.deleteProductCarts(id);
+		}
 		modelAndView.setViewName("redirect:print");
 		return modelAndView;
 	}
@@ -484,6 +483,9 @@ public class HomeController extends BaseController {
 	@GetMapping("/remove")
 	public ModelAndView remove(HttpServletResponse response, HttpServletRequest request) throws IOException {
 		String id = request.getParameter("id");
+		HttpSession session = request.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		if (username == null) {
 		Cookie arr[] = request.getCookies();
 		String txt = "";
 		for (Cookie o : arr) {
@@ -509,6 +511,9 @@ public class HomeController extends BaseController {
 			c.setMaxAge(60 * 60 * 24);
 			response.addCookie(c);
 		}
+	}else {
+		 homeServer.deleteProductCarts(id);
+	}
 		modelAndView.setViewName("redirect:print");
 		return modelAndView;
 	}

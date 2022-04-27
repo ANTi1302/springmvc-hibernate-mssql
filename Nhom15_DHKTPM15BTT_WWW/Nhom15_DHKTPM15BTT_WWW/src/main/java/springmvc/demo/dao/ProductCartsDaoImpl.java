@@ -59,6 +59,15 @@ public class ProductCartsDaoImpl extends BaseDao implements ProductCartsDao {
 		}
 		return 0;
 	}
+	@Override
+	public void deleteProductCarts(String id) {
+		Session currentSession=sessionFactory.getCurrentSession();
+		Query<ProductCart> query=currentSession.createQuery("delete from ProductCart p where p.productId.productId=:id");
+		query.setParameter("id", id);
+		query.executeUpdate();
+
+		
+	}
 
 
 }

@@ -22,7 +22,7 @@ public class LoginController extends BaseController {
 
 	@RequestMapping("/login")
 	public ModelAndView showformlogin(HttpServletResponse response, HttpServletRequest request) throws IOException {
-		
+
 		modelAndView.setViewName("customer/login");
 		return modelAndView;
 	}
@@ -32,8 +32,8 @@ public class LoginController extends BaseController {
 		String ten = request.getParameter("name");
 		String pass = (String) request.getParameter("pass");
 		HttpSession session = request.getSession();
-		
-		//tim sdt de lay id_user
+
+		// tim sdt de lay id_user
 		session.setAttribute("phone", homeServer.timKiemUserByPhone(ten));
 //		Users users=productFacade.timKiemUserLogin(ten, pass);
 		if (homeServer.timKiemUserLogin(ten, pass) == null) {
@@ -59,21 +59,24 @@ public class LoginController extends BaseController {
 		modelAndView.setViewName("redirect:home");
 		return modelAndView;
 	}
-	
+
 	@GetMapping("/loginfb")
 	public ModelAndView loginbyFb(HttpServletResponse response, HttpServletRequest request) throws IOException {
 		String ten = request.getParameter("name");
 		String pass = request.getParameter("id");
-		Users users = homeServer.timKiemUser(ten, pass);
-		Role role= new Role("4df7559c-9c34-485a-9421-5e351b682866");
+		Users users = homeServer.timKiemUser(pass);
+		Role role = new Role("4df7559c-9c34-485a-9421-5e351b682866");
 		// Users users2= new Users(ten, null, pass, 0, 0, null);
 		Users users2 = new Users(ten, null, null, pass, role);
+		HttpSession session = request.getSession();
 
+		// tim sdt de lay id_user
+		
 		if (users == null) {
 			homeServer.themUser(users2);
-			HttpSession session = request.getSession();
 			session.setAttribute("acc", users2);
 			response.sendRedirect("home");
+			session.setAttribute("phone", homeServer.timKiemUser(pass));
 		} else {
 			Cookie arr[] = request.getCookies();
 			for (Cookie o : arr) {
@@ -82,20 +85,22 @@ public class LoginController extends BaseController {
 					response.addCookie(o);
 				}
 			}
-			HttpSession session = request.getSession();
 			session.setAttribute("acc", users);
 			response.sendRedirect("home");
+			session.setAttribute("phone", homeServer.timKiemUser(pass));
 		}
 		return modelAndView;
 	}
+
 	@GetMapping("/mypurchase")
 	public ModelAndView mypurchase(HttpServletResponse response, HttpServletRequest request) {
 		modelAndView.setViewName("customer/mypurchase");
 		return modelAndView;
 	}
+
 	@RequestMapping("/account")
 	public ModelAndView account(HttpServletResponse response, HttpServletRequest request) throws IOException {
-		
+
 		modelAndView.setViewName("customer/account");
 		return modelAndView;
 	}

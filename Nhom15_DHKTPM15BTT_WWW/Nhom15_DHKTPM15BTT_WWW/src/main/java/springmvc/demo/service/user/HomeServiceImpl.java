@@ -237,9 +237,9 @@ public class HomeServiceImpl implements HomeService{
 	}
 
 	@Override
-	public Users timKiemUser(String ten, String pass) {
+	public Users timKiemUser(String pass) {
 		// TODO Auto-generated method stub
-		return usersDao.timKiemUser(ten, pass);
+		return usersDao.timKiemUser(pass);
 	}
 
 	@Override
@@ -276,6 +276,12 @@ public class HomeServiceImpl implements HomeService{
 	public int demSLCartTheoIdUser(String userId) {
 		// TODO Auto-generated method stub
 		return productCartsDao.demSLCartTheoIdUser(userId);
+	}
+
+	@Override
+	public void deleteProductCarts(String id) {
+		productCartsDao.deleteProductCarts(id);
+		
 	}
 
 
