@@ -79,10 +79,12 @@
 										<c:if test="${not index.first }">
 											<li class="nav-item">
 										</c:if>
-										<a class="nav-link"
-											href="<c:url value="${tempmenus.url}" />">${tempmenus.name}</a></li>
+										<a class="nav-link" href="<c:url value="${tempmenus.url}" />">${tempmenus.name}</a>
+										</li>
 									</c:forEach>
-									
+									<c:if test="${sessionScope.acc == null}">
+										<li class="nav-item"><a class="nav-link" href="<c:url value="" />">Register</a></li>
+									</c:if>
 								</ul>
 							</div>
 						</nav>

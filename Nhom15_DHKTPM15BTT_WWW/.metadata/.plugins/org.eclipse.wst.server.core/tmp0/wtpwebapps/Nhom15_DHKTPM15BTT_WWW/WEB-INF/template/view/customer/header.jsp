@@ -202,14 +202,14 @@
 							</div>
 						</div> --%>
 				</c:if>
-				<c:forEach var="tempmenus" items="${menus }" varStatus="index">
-					<c:if test="${index.first }">
-						<li class="active">
+				<c:forEach var="tempmenus" items="${menus}" varStatus="index" >
+					<c:if test="${index.first}">
+						<li class="active" >
 					</c:if>
-					<c:if test="${not index.first }">
+					<c:if test="${not index.first}">
 						<li class="">
 					</c:if>
-					<a href="<c:url value="${tempmenus.url }" />">${tempmenus.name }</a>
+					<a href="<c:url value="${tempmenus.url}" />">${tempmenus.name}</a>
 					</li>
 
 				</c:forEach>

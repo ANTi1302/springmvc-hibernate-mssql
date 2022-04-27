@@ -101,7 +101,7 @@
                             <ul class="summary-table">
                                 <li><span>subtotal:</span> <span>${total}</span></li>
                                 <li><span>delivery:</span> <span>Free</span></li>
-                                <li><span>total:</span> <span id="total">${total}</span></li>
+                                <li><span>total:</span> <span >${sum}</span></li>
                             </ul>
 
                             <div class="payment-method">
