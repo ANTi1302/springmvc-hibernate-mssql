@@ -38,6 +38,27 @@ public class ProductCartsDaoImpl extends BaseDao implements ProductCartsDao {
 		List<Object[]> product =  query.getResultList();
 		return product;
 	}
+//	SELECT COUNT(DISTINCT Product_Cart.product_id) sl
+//	FROM     Cart INNER JOIN
+//	                  Product_Cart ON Cart.cart_id = Product_Cart.cart_id
+//					  where [user_id]='BF832D0D-A988-4095-A2CF-E96CA327C101'
+	@Override
+	public int demSLCartTheoIdUser(String userId) {
+		try {
+			String query = "SELECT COUNT(DISTINCT Product_Cart.product_id) sl\r\n"
+					+ "FROM     Cart INNER JOIN\r\n"
+					+ "                  Product_Cart ON Cart.cart_id = Product_Cart.cart_id\r\n"
+					+ "				  where [user_id]='"+userId+"'";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soHoaDon = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soHoaDon;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 
 
 }

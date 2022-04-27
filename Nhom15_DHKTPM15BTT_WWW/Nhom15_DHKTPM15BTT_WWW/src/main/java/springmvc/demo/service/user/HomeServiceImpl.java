@@ -272,5 +272,11 @@ public class HomeServiceImpl implements HomeService{
 		return usersDao.timKiemUserByPhone(phone) ;
 	}
 
+	@Override
+	public int demSLCartTheoIdUser(String userId) {
+		// TODO Auto-generated method stub
+		return productCartsDao.demSLCartTheoIdUser(userId);
+	}
+
 
 }

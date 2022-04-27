@@ -90,6 +90,8 @@ public interface HomeService {
 	public void themUser(Users users2);
 
 	public  Users timKiemUserByPhone(String phone);
+
+	public int demSLCartTheoIdUser(String userId);
 	
 	
 
