@@ -485,7 +485,7 @@ public class HomeController extends BaseController {
 		///// Delete product_cart have acc
 		else {
 
-//			homeServer.updateProductCarts(id);
+			homeServer.deleteProductCartsByCreated_At( id);
 		
 		}
 		modelAndView.setViewName("redirect:print");

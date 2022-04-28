@@ -94,6 +94,8 @@ public interface HomeService {
 	public int demSLCartTheoIdUser(String userId);
 
 	public void deleteProductCarts(String id);
+
+	public void deleteProductCartsByCreated_At(String id);
 	
 	
 

@@ -68,6 +68,29 @@ public class ProductCartsDaoImpl extends BaseDao implements ProductCartsDao {
 
 		
 	}
-
+//	DELETE top (1) FROM Product_Cart
+//	where  EXISTS
+//	   (SELECT top 1 Product_Cart.product_id, Cart.created_at
+//	FROM     Product_Cart INNER JOIN
+//	                  Cart ON Product_Cart.cart_id = Cart.cart_id
+//					  where Product_Cart.product_id='0647194e-c5ad-40d8-b73d-1822e3751b47'
+//					
+//					order by  [created_at] DESC);  
+//	GO  
+	@Override
+	public void deleteProductCartsByCreated_At(String id) {
+		Session currentSession=sessionFactory.getCurrentSession();
+		String query = "DELETE top (1) FROM Product_Cart\r\n"
+				+ "where  EXISTS\r\n"
+				+ "   (SELECT top 1 Product_Cart.product_id, Cart.created_at\r\n"
+				+ "FROM     Product_Cart INNER JOIN\r\n"
+				+ "                  Cart ON Product_Cart.cart_id = Cart.cart_id\r\n"
+				+ "				  where Product_Cart.product_id='"+id+"'\r\n"
+				+ "				\r\n"
+				+ "				order by  [created_at] DESC) ";
+		 currentSession.createNativeQuery(query).executeUpdate();
+		// return the results
+	
+	}
 
 }
