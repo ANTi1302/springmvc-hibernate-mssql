@@ -71,7 +71,7 @@ public class LoginController extends BaseController {
 		HttpSession session = request.getSession();
 
 		// tim sdt de lay id_user
-		
+
 		if (users == null) {
 			homeServer.themUser(users2);
 			session.setAttribute("acc", users2);
@@ -100,8 +100,34 @@ public class LoginController extends BaseController {
 
 	@RequestMapping("/account")
 	public ModelAndView account(HttpServletResponse response, HttpServletRequest request) throws IOException {
+		HttpSession session = request.getSession();
+		Users username = (Users) session.getAttribute("acc");
 
+		request.setAttribute("listuser", homeServer.getUsers(username.getUserId()));
 		modelAndView.setViewName("customer/account");
+		return modelAndView;
+	}
+
+	@GetMapping("/updateuser")
+	public ModelAndView updateuser(HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		String address = request.getParameter("address");
+		username.setFirstName(firstName);
+		username.setLastName(lastName);
+		username.setEmail(email);
+		username.setPhone(phone);
+		username.setAddress(address);
+		username.setAccessTokenID(username.getAccessTokenID());
+		username.setPassword(username.getPassword());
+		username.setRole(username.getRole());
+		homeServer.saveUser(username,username.getUserId());
+		// set customer as a model attribute to pre-populate the form
+		modelAndView.setViewName("redirect:account");
 		return modelAndView;
 	}
 }

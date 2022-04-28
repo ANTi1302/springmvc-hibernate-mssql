@@ -290,5 +290,17 @@ public class HomeServiceImpl implements HomeService{
 		productCartsDao.deleteProductCartsByCreated_At(id);
 	}
 
+	@Override
+	public List<Users> getUsers(String id) {
+		// TODO Auto-generated method stub
+		return usersDao.getUsers(id);
+	}
+
+	@Override
+	public void saveUser(Users thUsers,String id) {
+		usersDao.saveUser(thUsers,id);
+		
+	}
+
 
 }

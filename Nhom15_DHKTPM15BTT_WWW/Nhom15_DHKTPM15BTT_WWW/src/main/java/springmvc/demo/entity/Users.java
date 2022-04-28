@@ -185,6 +185,14 @@ public class Users implements Serializable{
 		this.userId = userId;
 	}
 
+	public Users(String firstName, String lastName, String address, String email) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address

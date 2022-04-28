@@ -96,6 +96,9 @@ public interface HomeService {
 	public void deleteProductCarts(String id);
 
 	public void deleteProductCartsByCreated_At(String id);
+
+	public List<Users> getUsers(String id);
+	public void saveUser(Users theUsers,String id);
 	
 	
 
