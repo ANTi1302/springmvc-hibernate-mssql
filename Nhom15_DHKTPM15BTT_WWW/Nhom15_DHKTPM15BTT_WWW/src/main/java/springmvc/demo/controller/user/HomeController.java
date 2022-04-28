@@ -300,6 +300,7 @@ public class HomeController extends BaseController {
 			request.setAttribute("sum", 1.1 * total);
 			session01.setAttribute("total", total);
 			session01.setAttribute("sum", 1.1 * total);
+			session01.setAttribute("soLuong", homeServer.demSLCartTheoIdUser(username.getUserId()));
 		}
 		modelAndView.setViewName("customer/cart");
 		return modelAndView;

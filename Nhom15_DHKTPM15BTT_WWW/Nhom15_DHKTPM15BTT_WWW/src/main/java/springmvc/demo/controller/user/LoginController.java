@@ -94,6 +94,9 @@ public class LoginController extends BaseController {
 
 	@GetMapping("/mypurchase")
 	public ModelAndView mypurchase(HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		request.setAttribute("soLuong", homeServer.demSLCartTheoIdUser(username.getUserId()));
 		modelAndView.setViewName("customer/mypurchase");
 		return modelAndView;
 	}
@@ -104,6 +107,7 @@ public class LoginController extends BaseController {
 		Users username = (Users) session.getAttribute("acc");
 
 		request.setAttribute("listuser", homeServer.getUsers(username.getUserId()));
+		request.setAttribute("soLuong", homeServer.demSLCartTheoIdUser(username.getUserId()));
 		modelAndView.setViewName("customer/account");
 		return modelAndView;
 	}
@@ -125,7 +129,7 @@ public class LoginController extends BaseController {
 		username.setAccessTokenID(username.getAccessTokenID());
 		username.setPassword(username.getPassword());
 		username.setRole(username.getRole());
-		homeServer.saveUser(username,username.getUserId());
+		homeServer.saveUser(username, username.getUserId());
 		// set customer as a model attribute to pre-populate the form
 		modelAndView.setViewName("redirect:account");
 		return modelAndView;
