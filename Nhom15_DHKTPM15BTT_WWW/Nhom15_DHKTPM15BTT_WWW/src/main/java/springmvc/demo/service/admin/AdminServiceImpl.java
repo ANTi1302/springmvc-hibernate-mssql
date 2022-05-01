@@ -28,14 +28,14 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private VouchersDao vouchersDao;
 	@Override
-	public List<Object[]> getDsOrderByStatus(int index,String id) {
+	public List<Object[]> getDsOrderByStatus(int index) {
 		// TODO Auto-generated method stub
-		return ordersDao.getDsOrderByStatus(index,id);
+		return ordersDao.getDsOrderByStatus(index);
 	}
 	@Override
-	public int demSLOrderByStatus(String id) {
+	public int demSLOrderByStatus() {
 		// TODO Auto-generated method stub
-		return ordersDao.demSLOrderByStatus(id);
+		return ordersDao.demSLOrderByStatus();
 	}
 	@Override
 	public List<Object[]> findOrderDetailId(String id) {

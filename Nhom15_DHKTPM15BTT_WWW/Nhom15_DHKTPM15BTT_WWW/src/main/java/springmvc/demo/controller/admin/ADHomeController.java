@@ -26,7 +26,7 @@ public class ADHomeController {
 
 	@RequestMapping("/adorder/{index}&{tenS}")
 	public String order(Model model, @PathVariable(name = "index") String index) {
-		int soLuong = adminService.demSLOrderByStatus("Check");
+		int soLuong = adminService.demSLOrderByStatus();
 
 		if (index == null) {
 			index = "1";
@@ -37,7 +37,7 @@ public class ADHomeController {
 		
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("tag", indexPage);
-		model.addAttribute("listorder", adminService.getDsOrderByStatus(indexPage, "Check"));
+		model.addAttribute("listorder", adminService.getDsOrderByStatus(indexPage));
 		return "admin/order";
 	}
 

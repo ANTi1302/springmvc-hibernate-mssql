@@ -12,9 +12,9 @@ import springmvc.demo.entity.Voucher;
 @Service
 public interface AdminService {
 
-	public List<Object[]> getDsOrderByStatus(int index,String id) ;
+	public List<Object[]> getDsOrderByStatus(int index) ;
 
-	public int demSLOrderByStatus(String id);
+	public int demSLOrderByStatus();
 	public List<Object[]> findOrderDetailId(String id);
 	
 	///category
