@@ -9,7 +9,6 @@
           <a class="nav-link" href="${pageContext.request.contextPath}/admin/home-admin">
             <i class="mdi mdi-view-quilt menu-icon"></i>
             <span class="menu-title">Dashboard</span>
-            <div class="badge badge-info badge-pill">2</div>
           </a>
         </li>
         <li class="nav-item sidebar-category">
@@ -35,21 +34,15 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/admin/category">
+          <a class="nav-link" href="${pageContext.request.contextPath}/admin/category/1&">
             <i class="mdi mdi-grid-large menu-icon"></i>
             <span class="menu-title">Categories</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/admin/voucher">
+          <a class="nav-link" href="${pageContext.request.contextPath}/admin/voucher/1&">
             <i class="mdi mdi-cards menu-icon"></i>
             <span class="menu-title">Vouchers</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/admin/slide">
-            <i class="mdi mdi-grid menu-icon"></i>
-            <span class="menu-title">Slides</span>
           </a>
         </li>
         <li class="nav-item">

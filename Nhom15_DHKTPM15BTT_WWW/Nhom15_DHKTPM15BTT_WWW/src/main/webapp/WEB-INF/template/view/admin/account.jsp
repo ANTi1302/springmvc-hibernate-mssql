@@ -40,12 +40,17 @@
                 </div>
                 <div class="card-body">
                   <div class="author">
-                    <div style="height:0px;overflow:hidden">
-                      <input type="file" id="fileInput" name="fileInput" />
-                    </div>
-                    <button style="background-color: #FBB710; border-style: none;" class="btn btn-primary btn-round"
-                      type="button" onclick="chooseFile();">Select Image</button>
-                    </a>
+                    
+                    <div class="form-group">
+                <label>File upload</label>
+                <input type="file" name="img[]" class="file-upload-default">
+                <div class="input-group col-xs-12">
+                  <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                  <span class="input-group-append">
+                    <button style="background-color: #223E9C" class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                  </span>
+                </div>
+              </div>
                     <p class="description">
                       File size: maximum 1 MB <br>
                       File extension: .JPEG, .PNG
@@ -124,7 +129,7 @@
                     </div>
                     <div class="row">
                       <div class="update ml-auto mr-auto">
-                        <button type="submit" style="background-color: #FBB710; border-style: none;"
+                        <button type="submit" style="background-color: #223E9C; border-style: none;"
                           class="btn btn-primary btn-round">Update
                           Profile</button>
                       </div>
@@ -147,13 +152,14 @@
   <script src="<c:url value="/assets/assets-admin/vendors/js/vendor.bundle.base2.js" />"></script>
   <!-- endinject -->
   <!-- Plugin js for this page-->
-  <script src="<c:url value="/assets/assets-admin/vendors/vendors/chart.js/Chart.min.js" />"></script>
+  <script src="<c:url value="/assets/assets-admin/vendors/chart/Chart.min.js" />"></script>
   <script src="<c:url value="/assets/assets-admin/js/jquery.cookie.js" />" type="text/javascript"></script>
   <!-- End plugin js for this page-->
   <!-- inject:js -->
   <script src="<c:url value="/assets/assets-admin/js/off-canvas.js" />"></script>
   <script src="<c:url value="/assets/assets-admin/js/hoverable-collapse.js" />"></script>
   <script src="<c:url value="/assets/assets-admin/js/template.js" />"></script>
+   <script src="<c:url value="/assets/assets-admin/js/file-upload.js" />"></script>
   <!-- endinject -->
   <!-- plugin js for this page -->
   <script src="<c:url value="/assets/assets-admin/js/jquery.cookie.js" />" type="text/javascript"></script>

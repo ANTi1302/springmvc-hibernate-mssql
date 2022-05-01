@@ -66,7 +66,8 @@
                       </div>
                     </div>
                   </div>
-                  <button>App Category</button>
+                <input type="button" value="Add Category"
+                           onclick="window.location.href='${pageContext.request.contextPath}/admin/formcategory'; return false;" />
                   <thead>
                     <tr>
                       <th>Category</th>
@@ -74,37 +75,14 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Jacob</td>
-                      <td><button class="badge badge-warning">Edit</button>
-                        <button class="badge badge-warning">Delete</button>
-                      </td>
-  
-                    </tr>
-                    <tr>
-                      <td>Messsy</td>
-                      <td><button class="badge badge-warning">Edit</button>
-                        <button class="badge badge-warning">Delete</button>
+                  <c:forEach items="${listcate }" var="o">
+                  <tr>
+                      <td>${o.name }</td>
+                      <td><button class="badge badge-warning"  onclick="window.location.href='${pageContext.request.contextPath}/admin/updatecategory'; return false;" >Edit</button>
+                        <button class="badge badge-warning" >Delete</button>
                       </td>
                     </tr>
-                    <tr>
-                      <td>John</td>
-                      <td><button class="badge badge-warning">Edit</button>
-                        <button class="badge badge-warning">Delete</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Peter</td>
-                      <td><button class="badge badge-warning">Edit</button>
-                        <button class="badge badge-warning">Delete</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Dave</td>
-                      <td><button class="badge badge-warning">Edit</button>
-                        <button class="badge badge-warning">Delete</button>
-                      </td>
-                    </tr>
+                  </c:forEach>
                   </tbody>
                 </table>
               </div>
@@ -114,15 +92,17 @@
         <div>
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-end">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-              </li>
+              <c:if test="${tag>1 }">
+							<li class="page-item disabled"><a class="page-link"
+								href="${tag-1}" tabindex="-1">Previous</a></li>
+						</c:if>
+						<c:forEach begin="1" end="${endpage}" var="i">
+							<li class="page-item"><a class="page-link" href="${i}&${tenS}">${i}</a></li>
+						</c:forEach>
+						<c:if test="${tag<endpage }">
+							<li class="page-item"><a class="page-link" href="${tag+1}">Next</a>
+							</li>
+						</c:if>
             </ul>
           </nav>
         </div>

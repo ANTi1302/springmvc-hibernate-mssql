@@ -1,0 +1,24 @@
+package springmvc.demo.dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
+
+import springmvc.demo.entity.Voucher;
+
+@Repository
+public class VouchesDaoImpl  extends BaseDao implements VouchersDao{
+
+	@Override
+	public List<Voucher> getDsVouchers() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Voucher> theQuery = currentSession.createQuery(" from Voucher", Voucher.class);
+		// execute query and get result list
+		List<Voucher> Branchs = theQuery.getResultList();
+		// return the results
+		return Branchs;
+	}
+
+}

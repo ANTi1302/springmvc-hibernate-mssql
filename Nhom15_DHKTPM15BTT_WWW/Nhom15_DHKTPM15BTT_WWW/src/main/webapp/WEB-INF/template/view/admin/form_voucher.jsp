@@ -34,24 +34,13 @@
         <div class="row">
           <div class="card-body">
             <h4 class="card-title">Voucher form</h4>
-            <p class="card-description">
-              Voucher form
-            </p>
             <form class="forms-sample">
               <div class="form-group">
                 <label for="exampleInputName1">Code</label>
                 <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
               </div>
-              <div class="form-group">
-                <label for="exampleInputName1">Day Created</label>
-                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputName1">Day Update</label>
-                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-              </div>
-              <button type="submit" class="btn btn-primary me-2">Submit</button>
-              <button class="btn btn-light">Cancel</button>
+              <button style="background-color: #223E9C" type="submit" class="btn btn-primary me-2">Submit</button>
+              <button class="btn btn-light" onclick="window.location.href='${pageContext.request.contextPath}/admin/voucher/1&'; return false;" >Cancel</button>
             </form>
           </div>
         </div>

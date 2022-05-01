@@ -8,5 +8,9 @@ public interface CategoryDao{
 
 	public List<Category> getDsCategory();
 
+	public List<Category> getDsCategory(int index);
+
+	public int demSLCategory();
+
 	
 }

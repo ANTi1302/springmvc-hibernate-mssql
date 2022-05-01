@@ -2,6 +2,8 @@ package springmvc.demo.dao;
 
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
@@ -20,6 +22,31 @@ public class CategoryDaoImpl extends BaseDao implements CategoryDao {
 		List<Category> Category = theQuery.getResultList();
 		// return the results
 		return Category;
+	}
+
+	@Override
+	public List<Category> getDsCategory(int index) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		TypedQuery<Category> theQuery = currentSession.createQuery(" from Category", Category.class).setHibernateFirstResult(((index-1)*6)).setMaxResults(6);
+		// execute query and get result list
+		List<Category> Category = theQuery.getResultList();
+		// return the results
+		return Category;
+	}
+
+	@Override
+	public int demSLCategory() {
+		try {
+			String query = "SELECT count(category_id) FROM Category";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soHoaDon = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soHoaDon;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 

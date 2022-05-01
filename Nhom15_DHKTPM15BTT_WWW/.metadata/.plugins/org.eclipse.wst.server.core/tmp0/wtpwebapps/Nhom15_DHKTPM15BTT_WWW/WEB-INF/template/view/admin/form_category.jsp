@@ -34,10 +34,7 @@
       <div class="main-panel">
         <div class="row">
           <div class="card-body">
-            <h4 class="card-title">Basic form elements</h4>
-            <p class="card-description">
-              Basic form elements
-            </p>
+            <h4 class="card-title">Category form</h4>
             <form class="forms-sample">
               <div class="form-group">
                 <label for="exampleInputName1">Name</label>
@@ -49,12 +46,12 @@
                 <div class="input-group col-xs-12">
                   <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                   <span class="input-group-append">
-                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                    <button style="background-color: #223E9C" class="file-upload-browse btn btn-primary" type="button">Upload</button>
                   </span>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary me-2">Submit</button>
-              <button class="btn btn-light">Cancel</button>
+              <button style="background-color: #223E9C" type="submit" class="btn btn-primary me-2">Submit</button>
+              <button class="btn btn-light" onclick="window.location.href='${pageContext.request.contextPath}/admin/category/1&'; return false;">Cancel</button>
             </form>
           </div>
         </div>

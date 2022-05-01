@@ -11131,3 +11131,6 @@ java.net.UnknownHostException: No such host is known (org.chromium.sdk)
 
 !ENTRY org.eclipse.equinox.p2.repository 2 0 2022-05-01 10:38:34.907
 !MESSAGE Using unsafe http transport to retrieve http://download.eclipse.org/webtools/repository/2021-09/, see CVE-2021-41033. Consider using https instead.
+
+!ENTRY org.eclipse.lsp4e 1 0 2022-05-01 13:21:20.477
+!MESSAGE [Info]	ESLint server running in node v16.9.0
