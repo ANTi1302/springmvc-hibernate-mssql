@@ -82,7 +82,6 @@ public interface HomeService {
 	// orderdetails
 	public void addOrderDetails(OrderDetail order);
 
-	public OrderDetail findOrderDetailId(String id);
 	
 	//user
 	public Users timKiemUserLogin(String ten, String pass);

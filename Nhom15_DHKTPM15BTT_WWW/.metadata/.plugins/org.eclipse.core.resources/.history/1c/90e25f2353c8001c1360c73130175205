@@ -1,0 +1,23 @@
+package springmvc.demo.service.admin;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import springmvc.demo.dao.OrdersDao;
+import springmvc.demo.entity.Order;
+
+@Service
+@Transactional
+public class AdminServiceImpl implements AdminService{
+
+	@Override
+	private OrdersDao ordersDao;
+	@Override
+	public List<Order> getDsOrderByStatus(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

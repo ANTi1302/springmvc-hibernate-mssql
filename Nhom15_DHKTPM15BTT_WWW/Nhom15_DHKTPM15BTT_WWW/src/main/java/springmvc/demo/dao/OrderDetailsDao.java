@@ -10,5 +10,5 @@ import springmvc.demo.entity.OrderDetail;
 public interface OrderDetailsDao{
 
 	public void addOrderDetails(OrderDetail cart);
-	public OrderDetail findOrderDetailId(String id);
+	public List<Object[]> findOrderDetailId(String id);
 }

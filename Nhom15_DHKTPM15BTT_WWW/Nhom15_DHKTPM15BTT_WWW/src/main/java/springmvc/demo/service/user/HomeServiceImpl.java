@@ -225,11 +225,6 @@ public class HomeServiceImpl implements HomeService{
 		
 	}
 
-	@Override
-	public OrderDetail findOrderDetailId(String id) {
-		// TODO Auto-generated method stub
-		return orderDetailsDao.findOrderDetailId(id);
-	}
 
 	@Override
 	public Users timKiemUserLogin(String ten, String pass) {
