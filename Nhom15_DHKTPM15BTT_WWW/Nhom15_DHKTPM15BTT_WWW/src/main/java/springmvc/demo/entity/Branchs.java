@@ -26,7 +26,6 @@ public class Branchs implements Serializable{
 	@Column(columnDefinition = "nvarchar(1000)")
 	private String description;
 	@Column(columnDefinition = "nvarchar(50)")
-	private String icon;
 	
 	@OneToMany(mappedBy = "branchs", fetch = FetchType.EAGER)
 	private List<Product> products;
@@ -62,20 +61,14 @@ public class Branchs implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getIcon() {
-		return icon;
-	}
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
 	
-	public Branchs(String branchId, String title, String img, String description, String icon, List<Product> products) {
+	
+	public Branchs(String branchId, String title, String img, String description, List<Product> products) {
 		super();
 		this.branchId = branchId;
 		this.title = title;
 		this.img = img;
 		this.description = description;
-		this.icon = icon;
 		this.products = products;
 	}
 	public Branchs(String branchId) {
@@ -88,7 +81,7 @@ public class Branchs implements Serializable{
 	@Override
 	public String toString() {
 		return "Branchs [branchId=" + branchId + ", title=" + title + ", img=" + img + ", description=" + description
-				+ ", icon=" + icon + "]";
+				+ "]";
 	}
 	
 

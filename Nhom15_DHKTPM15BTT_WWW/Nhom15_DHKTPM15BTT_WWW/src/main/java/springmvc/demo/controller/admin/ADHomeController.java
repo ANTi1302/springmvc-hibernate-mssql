@@ -74,6 +74,28 @@ public class ADHomeController {
 		model.addAttribute("listvou", adminService.getDsVouchers(indexPage));
 		return "admin/voucher";
 	}
+	
+	@RequestMapping("/inventory/{index}&{tenS}")
+	public String inventory(Model model, @PathVariable(name = "index") String index) {
+	
+		return "admin/inventory";
+	}
+	
+	@RequestMapping("/product/{index}&{tenS}")
+	public String product(Model model, @PathVariable(name = "index") String index) {
+		return "admin/product";
+	}
+	
+	@RequestMapping("/sales/{index}&{tenS}")
+	public String sales(Model model, @PathVariable(name = "index") String index) {
+		return "admin/sales";
+	}
+	
+	@RequestMapping("/branch/{index}&{tenS}")
+	public String branch(Model model, @PathVariable(name = "index") String index) {
+		return "admin/branch";
+	}
+	
 	@RequestMapping("/formcategory")
 	public String formcategory() {
 		return "admin/form_category";
@@ -93,5 +115,48 @@ public class ADHomeController {
 	public String updatevoucher() {
 		return "admin/form_voucher_update";
 	}
+	
+
+	
+	@RequestMapping("/formbranch")
+	public String formbranch() {
+		return "admin/form_branch";
+	}
+	
+	@RequestMapping("/formbranchupdate")
+	public String formbranchupdate() {
+		return "admin/form_branch_update";
+	}
+	
+	@RequestMapping("/formcategoryproduct")
+	public String formcategoryproduct() {
+		return "admin/form_category_product";
+	}
+	
+	@RequestMapping("/formcategoryproductupdate")
+	public String formcategoryproductupdate() {
+		return "admin/form_category_product_update";
+	}
+	
+	@RequestMapping("/formcolorupdate")
+	public String formcolorupdate() {
+		return "admin/form_color_update";
+	}
+	
+	@RequestMapping("/formcolor")
+	public String formcolor() {
+		return "admin/form_color";
+	}
+	
+	@RequestMapping("/formproductupdate")
+	public String formproductupdate() {
+		return "admin/form_product_update";
+	}
+	
+	@RequestMapping("/formproduct")
+	public String formproduct() {
+		return "admin/form_product";
+	}
+	
 	
 }

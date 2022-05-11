@@ -50,7 +50,7 @@
                   </span>
                 </div>
               </div>
-              <button style="background-color: #223E9C" type="submit" class="btn btn-primary me-2">Submit</button>
+              <button style="background-color: #223E9C" type="submit" class="btn btn-primary me-2" onclick="window.location.href='${pageContext.request.contextPath}/admin/category/1&'; return false;">Submit</button>
               <button class="btn btn-light" onclick="window.location.href='${pageContext.request.contextPath}/admin/category/1&'; return false;">Cancel</button>
             </form>
           </div>

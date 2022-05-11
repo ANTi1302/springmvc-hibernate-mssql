@@ -43,7 +43,7 @@
                 <label for="exampleInputName1">Day Created</label>
                 <input type="date" class="form-control" id="exampleInputName1" placeholder="Name">
               </div>
-              <button style="background-color: #223E9C" type="submit" class="btn btn-primary me-2">Update</button>
+              <button style="background-color: #223E9C" type="submit" class="btn btn-primary me-2" onclick="window.location.href='${pageContext.request.contextPath}/admin/voucher/1&'; return false;">Update</button>
               <button class="btn btn-light"  onclick="window.location.href='${pageContext.request.contextPath}/admin/voucher/1&'; return false;" >Cancel</button>
             </form>
           </div>

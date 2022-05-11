@@ -22,13 +22,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="pages/forms/basic_elements.html">
+          <a class="nav-link" href="${pageContext.request.contextPath}/admin/product/1&">
             <i class="mdi mdi-gift menu-icon"></i>
             <span class="menu-title">Products</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="pages/icons/mdi.html">
+          <a class="nav-link" href="${pageContext.request.contextPath}/admin/branch/1&">
             <i class="mdi mdi-codepen menu-icon"></i>
             <span class="menu-title">Branch</span>
           </a>
@@ -46,13 +46,6 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="pages/icons/mdi.html">
-            <i class="mdi mdi-emoticon menu-icon"></i>
-            <span class="menu-title">Customers</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
             <i class="mdi mdi-clipboard-text menu-icon"></i>
             <span class="menu-title">Statistical</span>
@@ -60,9 +53,8 @@
           </a>
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="<c:url value="/assets/assets-admin/pages/ui-features/buttons.html" />">Sales</a></li>
-              <li class="nav-item"> <a class="nav-link" href="<c:url value="/assets/assets-admin/pages/ui-features/typography.html" />">Inventory</a></li>
-              <li class="nav-item"> <a class="nav-link" href="<c:url value="/assets/assets-admin/pages/ui-features/typography.html" />">Profit</a></li>
+              <li class="nav-item"> <a class="nav-link" href="<c:url value="/admin/sales/1&" />">Sales</a></li>
+              <li class="nav-item"> <a class="nav-link" href="<c:url value="/admin/inventory/1&" />">Inventory</a></li>
             </ul>
           </div>
         </li>

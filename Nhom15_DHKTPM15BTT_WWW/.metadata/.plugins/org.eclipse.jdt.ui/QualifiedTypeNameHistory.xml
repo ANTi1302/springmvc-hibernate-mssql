@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="springmvc.demo.dao.BaseDao"/>
-    <fullyQualifiedTypeName name="springmvc.demo.dao.ColorsDao"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestAttribute"/>
     <fullyQualifiedTypeName name="org.hibernate.query.Query"/>
     <fullyQualifiedTypeName name="springmvc.demo.entity.Category"/>
-    <fullyQualifiedTypeName name="springmvc.demo.dao.CategoryDao"/>
     <fullyQualifiedTypeName name="springmvc.demo.dao.BranchsDao"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="java.util.Collections"/>
@@ -14,7 +10,6 @@
     <fullyQualifiedTypeName name="springmvc.demo.dao.ProductCartsDao"/>
     <fullyQualifiedTypeName name="springmvc.demo.dao.CartsDao"/>
     <fullyQualifiedTypeName name="org.hibernate.annotations.Cascade"/>
-    <fullyQualifiedTypeName name="java.lang.Double"/>
     <fullyQualifiedTypeName name="java.lang.Float"/>
     <fullyQualifiedTypeName name="javax.persistence.Table"/>
     <fullyQualifiedTypeName name="org.springframework.beans.propertyeditors.StringArrayPropertyEditor"/>
@@ -29,7 +24,6 @@
     <fullyQualifiedTypeName name="springmvc.demo.entity.Role"/>
     <fullyQualifiedTypeName name="springmvc.demo.dto.ProductDto"/>
     <fullyQualifiedTypeName name="java.io.Serializable"/>
-    <fullyQualifiedTypeName name="javax.persistence.TypedQuery"/>
     <fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
     <fullyQualifiedTypeName name="springmvc.demo.entity.Color"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
@@ -50,14 +44,20 @@
     <fullyQualifiedTypeName name="springmvc.demo.dao.OrdersDao"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="net.bytebuddy.matcher.ModifierMatcher.Mode"/>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="springmvc.demo.service.admin.AdminService"/>
     <fullyQualifiedTypeName name="springmvc.demo.service.user.HomeService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
-    <fullyQualifiedTypeName name="java.lang.Object"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="springmvc.demo.dao.OrderDetailsDao"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="springmvc.demo.entity.OrderDetail"/>
+    <fullyQualifiedTypeName name="antlr.collections.List"/>
+    <fullyQualifiedTypeName name="java.lang.Double"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.lang.Object"/>
+    <fullyQualifiedTypeName name="springmvc.demo.dao.CategoryDao"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="springmvc.demo.entity.Voucher"/>
+    <fullyQualifiedTypeName name="springmvc.demo.dao.VouchersDao"/>
+    <fullyQualifiedTypeName name="javax.persistence.TypedQuery"/>
 </qualifiedTypeNameHistroy>
