@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Date;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+
 import springmvc.demo.entity.Color;
 import springmvc.demo.entity.Product;
 import springmvc.demo.entity.ProductCategory;
@@ -28,13 +32,13 @@ import springmvc.demo.service.user.HomeService;
 
 @Controller
 @RequestMapping("/admin")
-@MultipartConfig
 public class ADHomeController{
 	@Autowired
 	AdminService adminService;
 	@Autowired
 	HomeService homeService;
-
+	@Autowired
+	private Cloudinary cloudinary;
 	@RequestMapping("/home-admin")
 	public String home(Model model) {
 
@@ -148,25 +152,37 @@ public class ADHomeController{
 
 	@PostMapping("/saveColor")
 	private String luu(@ModelAttribute("color") Color theColor, HttpServletRequest req)throws ServletException, IOException {
+//		try {
+//			Part part = req.getPart("img");
+//
+//			String realPath = req.getServletContext().getRealPath("/images");
+//			String fileName=Path.of(part.getSubmittedFileName()).getFileName().toString();
+//			if (!Files.exists(Path.of(realPath))) {
+//				Files.createDirectories(Path.of(realPath));
+//			}
+//
+//			part.write(realPath + "/" + fileName);
+//
+//			adminService.saveColor(theColor);
+//			
+//
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}
 		try {
-			Part part = req.getPart("img");
-
-			String realPath = req.getServletContext().getRealPath("/images");
-			String fileName=Path.of(part.getSubmittedFileName()).getFileName().toString();
-			if (!Files.exists(Path.of(realPath))) {
-				Files.createDirectories(Path.of(realPath));
-			}
-
-			part.write(realPath + "/" + fileName);
-
-			adminService.saveColor(theColor);
-			
-
+		Map r=	this.cloudinary.uploader().upload(theColor.getFile().getBytes(), 
+					ObjectUtils.asMap("resource_type","auto"));
+		String img=(String) r.get("secure_url");
+		theColor.setImg(img);
+		adminService.saveColor(theColor);
+			return "redirect:product/1&";
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
+			System.err.print("ADD PRODUCT "+e.getMessage());
 		}
-		return "redirect:product/1&";
+		return "admin/form_color";
+		
 
 	}
 

@@ -16,12 +16,15 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
@@ -49,7 +52,24 @@ public class DemoAppConfig implements WebMvcConfigurer {
 		
 		return viewResolver;
 	}
-	
+	@Bean
+    public CommonsMultipartResolver multipartResolver() {
+		CommonsMultipartResolver resolver
+								=new CommonsMultipartResolver();
+		resolver.setDefaultEncoding("UTF-8");
+		return resolver;
+	}
+    @Bean
+    public Cloudinary cloudinary() {
+		Cloudinary cloudinary=new Cloudinary(ObjectUtils.asMap(
+				"cloud_name", "doimf2dji",
+				"api_key", "633678264692263",
+				"api_secret", "AZQJp7tRp67RD7Y4i48Vvt99PSs",
+				"secure",true
+				));
+		
+		return cloudinary;
+	}
 	@Bean
 	public DataSource myDataSource() {
 		
@@ -137,6 +157,7 @@ public class DemoAppConfig implements WebMvcConfigurer {
           .addResourceHandler("/assets/**")
           .addResourceLocations("/assets/"); 
     }	
+    
 }
 
 

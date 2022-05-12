@@ -160,7 +160,7 @@
                             <div class="product-img">
                                 <img src="<c:url value="${o[1]}" />" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="<c:url value="${o[1]}" />" alt="">
+                                <img class="hover-img" src="${o[1]}" alt="">
                             </div>
 
                             <!-- Product Description -->
