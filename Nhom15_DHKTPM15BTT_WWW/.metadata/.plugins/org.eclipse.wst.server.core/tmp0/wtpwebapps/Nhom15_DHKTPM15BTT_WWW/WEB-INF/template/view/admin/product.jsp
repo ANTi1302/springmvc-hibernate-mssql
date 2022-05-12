@@ -35,7 +35,6 @@
 			<!-- row end -->
 			<div class="main-panel">
 				<div class="row">
-					<!-- Gắn vô đây nha Thảo-->
 					<div class="col-lg-12 stretch-card">
 						<div class="card">
 							<div class="card-body">
@@ -55,7 +54,7 @@
 											style="line-height: 50px;"></div>
 										<div class="col-md-6 col-sm-5 col-xs-12">
 											<input type="button" value="Add Product"
-												class="add-product-button" onclick="window.location.href='${pageContext.request.contextPath}/admin/formcategoryproduct'; return false;" />
+												class="add-product-button" onclick="window.location.href='${pageContext.request.contextPath}/admin/formproduct'; return false;" />
 										</div>
 									</div>
 								</div>
@@ -75,71 +74,29 @@
 											</tr>
 										</thead>
 										<tbody>
+											
+											<c:forEach items="${listproduct }" var="c">
 											<tr class="table-info">
-												<td>Herman</td>
-												<td>2000</td>
-												<td>Quận 1</td>
-												<td>X</td>
-												<td>12-2-2022</td>
-												<td>12-2-2022</td>
-												<td>fcdgssssss</td>
-												<td><label class="badge badge-danger">Pending</label> <label
-													class="badge badge-success">Completed</label></td>
+												<td>${c.name }</td>
+												<td>${c.price }</td>
+												<td>${c.title }</td>
+												<td>${c.branchs.title }</td>
+												<td>${c.createdAt }</td>
+												<td>${c.updateAt }</td>
+												<td>${c.amount }</td>
+												<td>
+												<c:if test="${c.quatity<=0}">
+							<label class="badge badge-danger">Out of stock</label>
+							</c:if>
+							<c:if test="${c.quatity>0}">
+							 <label class="badge badge-success">Stocking</label>
+							</c:if>
+											</td>
 												<td><button class="badge badge-warning"  onclick="window.location.href='${pageContext.request.contextPath}/admin/formcategoryproductupdate'; return false;">Edit</button>
 													<button class="badge badge-warning">Delete</button></td>
 											</tr>
-											<tr class="table-info">
-												<td>Herman</td>
-												<td>2000</td>
-												<td>Quận 1</td>
-												<td>X</td>
-												<td>12-2-2022</td>
-												<td>12-2-2022</td>
-												<td>fcdgssssss</td>
-												<td><label class="badge badge-danger">Pending</label> <label
-													class="badge badge-success">Completed</label></td>
-												<td><button class="badge badge-warning">Edit</button>
-													<button class="badge badge-warning">Delete</button></td>
-											</tr>
-											<tr class="table-info">
-												<td>Herman</td>
-												<td>2000</td>
-												<td>Quận 1</td>
-												<td>X</td>
-												<td>12-2-2022</td>
-												<td>12-2-2022</td>
-												<td>fcdgssssss</td>
-												<td><label class="badge badge-danger">Pending</label> <label
-													class="badge badge-success">Completed</label></td>
-												<td><button class="badge badge-warning">Edit</button>
-													<button class="badge badge-warning">Delete</button></td>
-											</tr>
-											<tr class="table-info">
-												<td>Herman</td>
-												<td>2000</td>
-												<td>Quận 1</td>
-												<td>X</td>
-												<td>12-2-2022</td>
-												<td>12-2-2022</td>
-												<td>fcdgssssss</td>
-												<td><label class="badge badge-danger">Pending</label> <label
-													class="badge badge-success">Completed</label></td>
-												<td><button class="badge badge-warning">Edit</button>
-													<button class="badge badge-warning">Delete</button></td>
-											</tr>
-											<tr class="table-info">
-												<td>Herman</td>
-												<td>2000</td>
-												<td>Quận 1</td>
-												<td>X</td>
-												<td>12-2-2022</td>
-												<td>12-2-2022</td>
-												<td>fcdgssssss</td>
-												<td><label class="badge badge-danger">Pending</label> <label
-													class="badge badge-success">Completed</label></td>
-												<td><button class="badge badge-warning">Edit</button>
-													<button class="badge badge-warning">Delete</button></td>
-											</tr>
+											
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -149,16 +106,21 @@
 				</div>
 				<div>
 					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-end">
-							<li class="page-item disabled"><a class="page-link" href="#"
-								tabindex="-1">Previous</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">Next</a>
+					<ul class="pagination justify-content-end">
+						<c:if test="${tag>1 }">
+							<li class="page-item disabled"><a class="page-link"
+								href="${tag-1}" tabindex="-1">Previous</a></li>
+						</c:if>
+						<c:forEach begin="1" end="${endpage}" var="i">
+							<li class="page-item"><a class="page-link" href="${i}&${tenS}">${i}</a></li>
+						</c:forEach>
+						<c:if test="${tag<endpage }">
+							<li class="page-item"><a class="page-link" href="${tag+1}">Next</a>
 							</li>
-						</ul>
-					</nav>
+						</c:if>
+
+					</ul>
+				</nav>
 				</div>
 			</div>
 			<!-- row end -->

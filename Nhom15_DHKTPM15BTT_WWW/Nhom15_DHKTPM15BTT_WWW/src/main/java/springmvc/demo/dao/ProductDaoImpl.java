@@ -154,4 +154,26 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 		return 0;
 	}
 
+	@Override
+	public List<Object[]> getDsProductTop9(int indexPage) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		TypedQuery<Object[]> theQuery = currentSession.createQuery(" from Product ",Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
+		// execute query and get result list
+		List<Object[]> products = theQuery.getResultList();
+		// return the results
+		return products;
+	}
+
+//	insert [dbo].[Product] 
+//			([name],[price],[sale],[title],[details],[highlight],[new_product],[size],[created_at],[update_at]
+//			,[amount],[quatity],[voucher_id],[branch_id],[saller_id])
+//			values ('Holzperle Christbaumkugel weiß',60,0,'Holzperle Christbaumkugel weiß ','Holzperle Christbaumkugel weiß oder natürliche Dekoration Wohnkultur Bauernhaus Baumschmuck B',0,1,'None','5/12/2022','5/12/2022'
+//			,'50','50','ba41cb0c-3c49-43cc-b048-2a4e01a71ab4','6c684c2f-c1df-4ad8-b066-3a0e4decdb40','bf832d0d-a988-4095-a2cf-e96ca327c101')
+	@Override
+	public void saveProduct(Product theProduct) {
+		// TODO Auto-generated method stub
+		 Session currentSession = sessionFactory.getCurrentSession();
+         // save/upate the customer ... finally
+         currentSession.saveOrUpdate(theProduct);
+	}
 }

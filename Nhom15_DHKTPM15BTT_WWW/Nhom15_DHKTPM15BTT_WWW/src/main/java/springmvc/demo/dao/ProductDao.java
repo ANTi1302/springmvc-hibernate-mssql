@@ -18,4 +18,6 @@ public interface ProductDao {
 	public boolean capNhatProduct(int product);
 	public List<Object[]> dsProductTheoIDBranchsTop6(int index, String ten);
 	public int demSLKhiSearchTheoIDBranch(String ten);
+	public List<Object[]> getDsProductTop9(int indexPage);
+	 public void saveProduct(Product theProduct);
 }

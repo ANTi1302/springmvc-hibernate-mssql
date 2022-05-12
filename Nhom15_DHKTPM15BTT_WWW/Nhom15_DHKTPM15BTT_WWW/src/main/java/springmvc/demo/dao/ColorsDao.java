@@ -14,4 +14,5 @@ public interface ColorsDao {
 	public List<Object[]> dsColor();
 	public List<Object[]> dsColorTop6(int index, String string);
 	public List<Object[]> thongTinChiTiet(String id) ;
+	public void saveColor(Color theColor);
 }

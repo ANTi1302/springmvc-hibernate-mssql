@@ -5,8 +5,10 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
+import springmvc.demo.entity.Branchs;
 import springmvc.demo.entity.Voucher;
 
 @Repository
@@ -35,5 +37,15 @@ public class VouchesDaoImpl  extends BaseDao implements VouchersDao{
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	@Override
+	public List<Voucher> getDsVoucher() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Voucher> theQuery = currentSession.createQuery(" from Voucher", Voucher.class);
+		// execute query and get result list
+		List<Voucher> vouchers = theQuery.getResultList();
+		// return the results
+		return vouchers;
 	}
 }

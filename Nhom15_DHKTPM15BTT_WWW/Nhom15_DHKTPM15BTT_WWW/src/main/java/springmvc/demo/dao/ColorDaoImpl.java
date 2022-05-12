@@ -142,5 +142,12 @@ public class ColorDaoImpl extends BaseDao implements ColorsDao {
 		List<Object[]> product = (List<Object[]>) query.getResultList();
 		return product;
 	}
+
+	@Override
+	public void saveColor(Color theColor) {
+		 Session currentSession = sessionFactory.getCurrentSession();
+         // save/upate the customer ... finally
+         currentSession.saveOrUpdate(theColor);		
+	}
 	
 }

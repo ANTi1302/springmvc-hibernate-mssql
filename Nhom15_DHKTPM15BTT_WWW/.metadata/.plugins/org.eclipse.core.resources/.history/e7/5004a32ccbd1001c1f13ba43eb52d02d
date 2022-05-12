@@ -1,0 +1,14 @@
+package springmvc.demo.dao;
+
+import java.util.List;
+
+import springmvc.demo.entity.Branchs;
+
+public interface ProductCategoryDao{
+
+	public List<Branchs> getDsBranchs();
+
+	
+
+	
+}

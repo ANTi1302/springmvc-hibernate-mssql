@@ -31,6 +31,18 @@ public class ProductCategory implements Serializable{
 	@JoinColumn(name = "product_id", columnDefinition = "uniqueidentifier")
 	private Product productId;
 	
+	public Category getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(Category categoryId) {
+		this.categoryId = categoryId;
+	}
+	public Product getProductId() {
+		return productId;
+	}
+	public void setProductId(Product productId) {
+		this.productId = productId;
+	}
 	public Category getCategory() {
 		return categoryId;
 	}

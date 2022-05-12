@@ -4,14 +4,18 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import springmvc.demo.entity.Branchs;
 import springmvc.demo.entity.Category;
-import springmvc.demo.entity.Order;
-import springmvc.demo.entity.OrderDetail;
+import springmvc.demo.entity.Color;
+import springmvc.demo.entity.Product;
+import springmvc.demo.entity.ProductCategory;
+import springmvc.demo.entity.Users;
 import springmvc.demo.entity.Voucher;
 
 @Service
 public interface AdminService {
 
+	//order
 	public List<Object[]> getDsOrderByStatus(int index) ;
 
 	public int demSLOrderByStatus();
@@ -19,6 +23,7 @@ public interface AdminService {
 	
 	///category
 	public List<Category> getDsCategory(int index);
+	public List<Category> getDsCategory();
 
 	public int demSLCategory();
 	
@@ -26,4 +31,26 @@ public interface AdminService {
 	
 	public List<Voucher> getDsVouchers(int index);
 	public int demSLVoucher() ;
+	public List<Voucher> getDsVoucher();
+	
+
+	//product
+	public List<Object[]> getDsProductTop9(int indexPage);
+	public void saveProduct(Product theProduct);
+	//user
+	public  Users timKiemUserByPhone(String phone);
+	public Users timKiemUserLogin(String ten, String pass);
+
+	
+	//branch
+	public List<Branchs> getDsBranchs();
+
+	//productcategory
+	public void saveProductCategory(ProductCategory theProductCategory);
+
+	public void saveColor(Color theColor);
+
+
+
+	
 }

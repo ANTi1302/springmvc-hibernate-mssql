@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib  uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,19 +40,22 @@
 			<!-- row end -->
 			<div class="main-panel">
 				<div class="row">
-					<!-- Gắn vô đây nha Thảo-->
 					<div class="col-12 grid-margin">
 						<div class="card">
 							<div class="card-body">
 								<h4 class="card-title">Choose Color</h4>
-								<form class="form-sample">
+								<form:form class="form-sample" action="saveColor" modelAttribute="color" method="POST" enctype="multipart/form-data">
 
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group row">
 												<label class="col-sm-3 col-form-label">Product name</label>
 												<div class="col-sm-9">
-													<input type="text" class="form-control" name="Name">
+													<form:select class="form-control"  path="product">
+													<form:option class="form-control" value="${sessionScope.productid}">
+													${sessionScope.productname}
+													</form:option>
+												</form:select>
 												</div>
 											</div>
 										</div>
@@ -59,7 +63,7 @@
 											<div class="form-group row">
 												<label class="col-sm-3 col-form-label">Color</label>
 												<div class="col-sm-9">
-													<input type="text" class="form-control" name="Amount">
+													<form:input class="form-control" path="name" />
 												</div>
 											</div>
 										</div>
@@ -69,18 +73,18 @@
 											<div class="form-group row">
 												<label class="col-sm-3 col-form-label">Code</label>
 												<div class="col-sm-9">
-													<input type="text" class="form-control" name="Price">
+													<form:input class="form-control" path="code" />
 												</div>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group row">
 												<div class="form-group">
-													<label>File upload</label> <input type="file" name="img[]"
-														class="file-upload-default">
+													<label>File upload</label> <form:input type="file" name="img[]" path="img" 
+														class="file-upload-default"/>
 													<div class="input-group col-xs-12">
 														<input type="text" class="form-control file-upload-info"
-															disabled placeholder="Upload Image"> <span
+															disabled placeholder="Upload Image" > <span
 															class="input-group-append">
 															<button class="file-upload-browse btn btn-primary"
 																type="button">Upload</button>
@@ -90,10 +94,10 @@
 											</div>
 										</div>
 									</div>
-									<button type="submit" class="btn btn-primary me-2"
-										name="submid" onclick="window.location.href='${pageContext.request.contextPath}/admin/product/1&'; return false;">Save & Display</button>
+									<input type="submit" class="btn btn-primary me-2"
+									 value="Save & Display" />
 									<button class="btn btn-light" name="cancel" onclick="window.location.href='${pageContext.request.contextPath}/admin/product/1&' ; return false;">Cancel</button>
-								</form>
+								</form:form>
 							</div>
 						</div>
 					</div>

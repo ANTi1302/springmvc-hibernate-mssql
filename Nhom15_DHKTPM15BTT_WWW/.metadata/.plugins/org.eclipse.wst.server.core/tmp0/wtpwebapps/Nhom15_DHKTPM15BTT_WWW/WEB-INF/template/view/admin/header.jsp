@@ -84,10 +84,12 @@
         </div>
         <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
           <ul class="navbar-nav navbar-nav-right">
+          <c:if test="${sessionScope.acc != null}">
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
                 <img src="<c:url value="/assets/assets-admin/images/faces/face5.jpg" />" alt="profile" />
-                <span class="nav-profile-name">Eleanor Richardson</span>
+                <span class="nav-profile-name">${sessionScope.acc.firstName}
+							${sessionScope.acc.lastName}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                <a class="dropdown-item"  href="${pageContext.request.contextPath}/admin/adaccount">
@@ -100,6 +102,7 @@
                 </a>
               </div>
             </li>
+            </c:if>
           </ul>
         </div>
       </nav>

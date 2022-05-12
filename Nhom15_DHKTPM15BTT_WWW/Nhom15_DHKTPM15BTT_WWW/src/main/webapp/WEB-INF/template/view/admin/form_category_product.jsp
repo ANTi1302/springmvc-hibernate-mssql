@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib  uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,29 +40,41 @@
 			<!-- row end -->
 			<div class="main-panel">
 				<div class="row">
-					<!-- Gắn vô đây nha Thảo-->
 					<div class="col-12 grid-margin">
 						<div class="card">
 							<div class="card-body">
 								<h4 class="card-title">ADD PRODUCT</h4>
-								<form class="form-sample">
+								<form:form class="form-sample" action="saveProductCategory" modelAttribute="productcategory" method="POST">
 
 									<div class="row">
+									<div class="col-md-6">
+											<div class="form-group row">
+												<label class="col-sm-3 col-form-label">Name</label>
+												<div class="col-sm-9">
+												<form:select class="form-control"  path="productId">
+													<form:option class="form-control" value="${sessionScope.productid}">
+													${sessionScope.productname}
+													</form:option>
+												</form:select>
+												</div>
+											</div>
+										</div>
 										<div class="col-md-6">
 											<div class="form-group row">
 												<label class="col-sm-3 col-form-label">Category</label>
 												<div class="col-sm-9">
-													<select class="form-control" name="saller">
-														<option>thao</option>
-														<option>thu</option>
-													</select>
+													<form:select class="form-control" path="categoryId">
+													<c:forEach items="${listcategory }" var="c">
+													<form:option value="${c.categoryId }">${c.name }</form:option>
+													</c:forEach>
+													</form:select>
 												</div>
 											</div>
 										</div>
 									</div>
-									<button type="submit" class="btn btn-primary me-2"
-										name="submid" onclick="window.location.href='${pageContext.request.contextPath}/admin/formproduct'; return false;"  >Next</button>
-								</form>
+									<input type="submit" class="btn btn-primary me-2" value="Next"
+										/>
+								</form:form>
 							</div>
 						</div>
 					</div>
