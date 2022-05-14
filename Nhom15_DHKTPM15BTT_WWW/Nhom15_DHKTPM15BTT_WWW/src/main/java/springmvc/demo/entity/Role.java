@@ -131,7 +131,7 @@ public class Role implements Serializable{
 	@Override
 	public String toString() {
 		return "Role [roleId=" + roleId + ", title=" + title + ", active=" + active + ", description=" + description
-				+ ", createdAt=" + createdAt + ", updateAt=" + updateAt + ", rolePermissions=" + rolePermissions + "]";
+				+ ", createdAt=" + createdAt + ", updateAt=" + updateAt + "]";
 	}
 
 	

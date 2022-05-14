@@ -95,7 +95,7 @@ public class Voucher implements Serializable{
 	@Override
 	public String toString() {
 		return "Voucher [voucherId=" + voucherId + ", code=" + code + ", createdAt=" + createdAt + ", updateAt="
-				+ updateAt + ", products=" + products + "]";
+				+ updateAt + "]";
 	}
 	
 	

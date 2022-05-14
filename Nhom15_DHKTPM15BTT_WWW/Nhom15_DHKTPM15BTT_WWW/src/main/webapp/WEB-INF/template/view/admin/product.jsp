@@ -84,6 +84,9 @@
 												<c:url var="deleteLink" value="/admin/delete">
 													<c:param name="productId" value="${c.productId }" />
 												</c:url>
+												<c:url var="updateLink" value="/admin/update">
+													<c:param name="productId" value="${c.productId }" />
+												</c:url>
 												<tr class="table-info">
 													<td>${c.name }</td>
 													<td>${c.price }</td>
@@ -97,10 +100,9 @@
 														</c:if> <c:if test="${c.quatity>0}">
 															<label class="badge badge-success">Stocking</label>
 														</c:if></td>
-													<td><button class="badge badge-warning"
-															onclick="window.location.href='${pageContext.request.contextPath}/admin/formcategoryproductupdate'; return false;">Edit</button>
+													<td><a class="badge badge-warning"  href="${updateLink}">Edit</a>
 														<a class="badge badge-warning" href="${deleteLink}"
-															onclick="if (!(confirm('Are you sure you want to delete this student?'))) return false">Delete</a></td>
+														onclick="if (!(confirm('Are you sure you want to delete this product?'))) return false">Delete</a></td>
 												</tr>
 
 											</c:forEach>

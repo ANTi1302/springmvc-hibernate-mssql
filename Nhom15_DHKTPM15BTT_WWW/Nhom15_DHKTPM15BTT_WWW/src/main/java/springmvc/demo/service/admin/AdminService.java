@@ -32,13 +32,14 @@ public interface AdminService {
 	public List<Voucher> getDsVouchers(int index);
 	public int demSLVoucher() ;
 	public List<Voucher> getDsVoucher();
-	
+	public Voucher getDsVoucherById(String id);
 
 	//product
 	public List<Object[]> getDsProductTop9(int indexPage);
 	public void saveProduct(Product theProduct);
 	public void deleteProduct(String id);
 	public void updateProductByStatus(String id);
+	public Product getProductById(String id);
 	
 	//user
 	public  Users timKiemUserByPhone(String phone);
@@ -47,7 +48,7 @@ public interface AdminService {
 	
 	//branch
 	public List<Branchs> getDsBranchs();
-
+	public Branchs getDsBranchsById(String id);
 	//productcategory
 	public void saveProductCategory(ProductCategory theProductCategory);
 	public int demSLTheoProductId(String productId);
@@ -59,6 +60,9 @@ public interface AdminService {
 	
 	//productcart
 	public int demSLCartTheoProductId(String productId);
+	
+	
+	
 
 
 

@@ -15,6 +15,7 @@ import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -122,7 +123,17 @@ public class ADHomeController{
 		model.addAttribute("product", theProduct);
 		return "admin/form_product";
 	}
-
+	
+	@RequestMapping("/formproductupload")
+	public String formproductupload(Model model, HttpServletRequest req, @ModelAttribute("product") Product theProduct) {
+		HttpSession session = req.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		model.addAttribute("listvoucher", adminService.getDsVoucher());
+		model.addAttribute("listbranch", adminService.getDsBranchs());
+		model.addAttribute("product", theProduct);
+		return "admin/form_product_upload";
+	}
+	
 	@PostMapping("/saveProduct")
 	private String luu(@ModelAttribute("product") Product theProduct, HttpServletRequest request) {
 		theProduct.setCreatedAt(new Date());
@@ -132,6 +143,16 @@ public class ADHomeController{
 		session.setAttribute("productid", theProduct.getProductId());
 		return "redirect:formcategoryproduct";
 	}
+	
+	@PostMapping("/updateProduct")
+	private String update(@ModelAttribute("product") Product theProduct, HttpServletRequest request) {
+		theProduct.setUpdateAt(new Date());
+		adminService.saveProduct(theProduct);
+		HttpSession session = request.getSession();
+		session.setAttribute("productname", theProduct.getName());
+		session.setAttribute("productid", theProduct.getProductId());
+		return "redirect:product/1&";
+	}
 
 	@RequestMapping("/formcategoryproduct")
 	public String formcategoryproduct(Model model,
@@ -139,13 +160,12 @@ public class ADHomeController{
 		model.addAttribute("listcategory", adminService.getDsCategory());
 		return "admin/form_category_product";
 	}
-
+	
 	@PostMapping("/saveProductCategory")
 	private String luu(@ModelAttribute("productcategory") ProductCategory theProductCategory) {
 		adminService.saveProductCategory(theProductCategory);
 		return "redirect:formcolor";
 	}
-
 	@RequestMapping("/formcolor")
 	public String formcolor(@ModelAttribute("color") Color theColor) {
 		return "admin/form_color";
@@ -202,6 +222,16 @@ public class ADHomeController{
 		
 	}
 	
+	@RequestMapping("/update")
+	private String update(Model model, @RequestParam("productId") String id,HttpServletRequest req) {
+		Product st=adminService.getProductById(id);
+		
+		model.addAttribute("listvoucher", adminService.getDsVoucher());
+		model.addAttribute("listbranch", adminService.getDsBranchs());
+		model.addAttribute("product",st );
+		return "admin/form_product_update";
+	}
+	
 	@RequestMapping("/inventory/{index}&{tenS}")
 	public String inventory(Model model, @PathVariable(name = "index") String index) {
 
@@ -248,19 +278,6 @@ public class ADHomeController{
 		return "admin/form_branch_update";
 	}
 
-	@RequestMapping("/formcategoryproductupdate")
-	public String formcategoryproductupdate() {
-		return "admin/form_category_product_update";
-	}
-
-	@RequestMapping("/formcolorupdate")
-	public String formcolorupdate() {
-		return "admin/form_color_update";
-	}
-
-	@RequestMapping("/formproductupdate")
-	public String formproductupdate() {
-		return "admin/form_product_update";
-	}
+	
 
 }

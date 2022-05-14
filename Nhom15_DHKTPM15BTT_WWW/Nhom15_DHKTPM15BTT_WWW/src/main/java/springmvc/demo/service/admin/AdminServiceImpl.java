@@ -178,5 +178,20 @@ public class AdminServiceImpl implements AdminService{
 		productDao.updateProductByStatus(id);
 		
 	}
+	@Override
+	public Product getProductById(String id) {
+		// TODO Auto-generated method stub
+		return productDao.getProductById(id);
+	}
+	@Override
+	public Voucher getDsVoucherById(String id) {
+		// TODO Auto-generated method stub
+		return vouchersDao.getDsVoucherById(id);
+	}
+	@Override
+	public Branchs getDsBranchsById(String id) {
+		// TODO Auto-generated method stub
+		return branchsDao.getDsBranchsById(id);
+	}
 
 }

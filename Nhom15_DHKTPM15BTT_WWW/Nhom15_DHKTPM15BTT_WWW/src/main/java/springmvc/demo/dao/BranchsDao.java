@@ -8,6 +8,8 @@ public interface BranchsDao{
 
 	public List<Branchs> getDsBranchs();
 
+	public Branchs getDsBranchsById(String id);
+
 	
 
 	

@@ -48,4 +48,11 @@ public class VouchesDaoImpl  extends BaseDao implements VouchersDao{
 		// return the results
 		return vouchers;
 	}
+
+	@Override
+	public Voucher getDsVoucherById(String id) {
+		 Session currentSession = sessionFactory.getCurrentSession();
+		 Voucher theVoucher = currentSession.get(Voucher.class, id);
+         return theVoucher;
+	}
 }

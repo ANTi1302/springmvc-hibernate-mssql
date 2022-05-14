@@ -155,9 +155,9 @@
 												<label class="col-sm-3 col-form-label">Voucher</label>
 												<div class="col-sm-9">
 													<form:select class="form-control" path="voucher">
-													<c:forEach items="${listvoucher }" var="v">
-													<form:option value="${v.voucherId }">${v.code }</form:option>
-													</c:forEach>
+												
+													<form:options path="voucher" items="${listvoucher}" itemValue="voucherId" itemLabel="code"/>
+												
 													</form:select>
 												</div>
 											</div>
@@ -189,9 +189,7 @@
 												<label class="col-sm-3 col-form-label">Branch</label>
 												<div class="col-sm-9">
 													<form:select class="form-control" path="branchs">
-													<c:forEach items="${listbranch }" var="b">
-													<form:option value="${b.branchId }">${b.title }</form:option>
-													</c:forEach>
+													<form:options path="branchs" items="${listbranch}" itemValue="branchId" itemLabel="title"/>
 													</form:select>
 												</div>
 											</div>

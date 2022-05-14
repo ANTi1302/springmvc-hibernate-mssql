@@ -22,4 +22,5 @@ public interface ProductDao {
 	public void saveProduct(Product theProduct);
 	public void updateProductByStatus(String id) ;
 	public void deleteProduct(String id);
+	public Product getProductById(String id);
 }

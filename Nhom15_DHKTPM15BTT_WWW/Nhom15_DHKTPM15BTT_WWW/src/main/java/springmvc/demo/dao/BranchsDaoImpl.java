@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import springmvc.demo.entity.Branchs;
+import springmvc.demo.entity.Voucher;
 
 @Repository
 public class BranchsDaoImpl extends BaseDao implements BranchsDao {
@@ -20,6 +21,13 @@ public class BranchsDaoImpl extends BaseDao implements BranchsDao {
 		List<Branchs> Branchs = theQuery.getResultList();
 		// return the results
 		return Branchs;
+	}
+
+	@Override
+	public Branchs getDsBranchsById(String id) {
+		 Session currentSession = sessionFactory.getCurrentSession();
+		 Branchs theBranchs = currentSession.get(Branchs.class, id);
+         return theBranchs;
 	}
 
 

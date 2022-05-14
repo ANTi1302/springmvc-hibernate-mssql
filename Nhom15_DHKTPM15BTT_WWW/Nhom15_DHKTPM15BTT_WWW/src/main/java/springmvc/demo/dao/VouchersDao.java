@@ -11,4 +11,6 @@ public interface VouchersDao {
 	int demSLVoucher();
 
 	public List<Voucher> getDsVoucher();
+
+	public Voucher getDsVoucherById(String id);
 }
