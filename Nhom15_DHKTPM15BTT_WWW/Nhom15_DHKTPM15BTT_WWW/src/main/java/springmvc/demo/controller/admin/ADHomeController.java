@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -185,7 +186,22 @@ public class ADHomeController{
 		
 
 	}
-
+	@RequestMapping("/delete")
+	private String delete(Model model, @RequestParam("productId") String id) {
+		if (adminService.demSLOrderDeatilTheoProductId(id)==0&&adminService.demSLCartTheoProductId(id)==0) {
+				adminService.deleteColor(id);
+				adminService.deleteProductCategory(id);
+			
+				adminService.deleteProduct(id);
+				return "redirect:product/1&";
+			
+		}else {
+			adminService.updateProductByStatus(id);
+			return "redirect:product/1&";
+		}
+		
+	}
+	
 	@RequestMapping("/inventory/{index}&{tenS}")
 	public String inventory(Model model, @PathVariable(name = "index") String index) {
 

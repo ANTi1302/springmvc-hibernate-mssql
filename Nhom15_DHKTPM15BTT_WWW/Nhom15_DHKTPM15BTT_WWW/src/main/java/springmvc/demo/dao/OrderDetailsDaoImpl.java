@@ -36,6 +36,22 @@ public class OrderDetailsDaoImpl extends BaseDao implements OrderDetailsDao {
 		return products;
 	}
 
+	@Override
+	public int demSLOrderDeatilTheoProductId(String productId) {
+		try {
+			String query = "select count([product_id]) from [dbo].[Order_Detail]\r\n"
+					+ "where [product_id]='"+productId+"'";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soProduct = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soProduct;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 
 
 }

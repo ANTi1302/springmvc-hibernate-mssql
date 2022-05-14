@@ -19,8 +19,31 @@ public class ProductCategoryDaoImpl extends BaseDao implements ProductCategoryDa
          currentSession.saveOrUpdate(theProductCategory);
 	}
 
+//	select count([product_id]) from [dbo].[Product_Cart]
+//	where [product_id]='146786a3-7e44-4d94-8620-3ff6f12a6cc2'
+	@Override
+	public int demSLTheoProductId(String productId) {
+		try {
+			String query = "select count(product_id) from Product_Category\r\n"
+					+ "where [product_id]='"+productId+"'";
+			Session currentSession = sessionFactory.getCurrentSession();
 
+			int soProduct = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soProduct;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 
+	@Override
+	public void deleteProductCategory(String id) {
+		Session currentSession=sessionFactory.getCurrentSession();
+		Query<ProductCategory> query=currentSession.createQuery("delete from ProductCategory p where p.productId.productId=:product_id");
+		query.setParameter("product_id", id);
+		query.executeUpdate();
 
+	}
 
 }

@@ -12,4 +12,5 @@ public interface ProductCartsDao{
 	public int demSLCartTheoIdUser(String userId);
 	public void deleteProductCarts(String id);
 	public void deleteProductCartsByCreated_At(String id);
+	public int demSLCartTheoProductId(String productId);
 }

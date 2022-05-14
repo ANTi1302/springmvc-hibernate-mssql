@@ -92,5 +92,20 @@ public class ProductCartsDaoImpl extends BaseDao implements ProductCartsDao {
 		// return the results
 	
 	}
+	@Override
+	public int demSLCartTheoProductId(String productId) {
+		try {
+			String query = "select count(product_id) from Product_Cart\r\n"
+					+ "where [product_id]='"+productId+"'";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soProduct = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soProduct;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 
 }

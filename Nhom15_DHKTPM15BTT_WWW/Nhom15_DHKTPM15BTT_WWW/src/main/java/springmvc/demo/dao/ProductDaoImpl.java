@@ -133,9 +133,25 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 	}
 
 	@Override
-	public boolean capNhatProduct(int product) {
-		// TODO Auto-generated method stub
-		return false;
+	public void updateProductByID(String id) {
+		Product pr= new Product();
+		 Session currentSession = sessionFactory.getCurrentSession();		
+		 Query<Product> query=currentSession.createQuery("update Product set [name]=:name, [price]=:price, [sale]=:sale, [title]=:title, [details]=:details, [highlight]=:highlight, [new_product]=:new_product, [size]=:size, [amount]=:amount, [quatity]=:quatity, [voucher_id]=:voucher_id, [branch_id]=:branch_id, [saller_id]=:saller_id where [product_id]=:product_id");
+			query.setParameter("product_id", id);
+			query.setParameter("name", pr.getName());
+			query.setParameter("price", pr.getPrice());
+			query.setParameter("sale", pr.getSale());
+			query.setParameter("title", pr.getTitle());
+			query.setParameter("details", pr.getDetails());
+			query.setParameter("highlight", pr.getHighlight());
+			query.setParameter("new_product", pr.getNewProduct());
+			query.setParameter("size", pr.getSize());
+			query.setParameter("amount", pr.getAmount());
+			query.setParameter("quatity", pr.getQuatity());
+			query.setParameter("voucher_id", pr.getVoucher().getVoucherId());
+			query.setParameter("branch_id", pr.getBranchs().getBranchId());
+			query.setParameter("saller_id", pr.getUser().getUserId());
+			query.executeUpdate();
 	}
 
 	@Override
@@ -171,9 +187,27 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 //			,'50','50','ba41cb0c-3c49-43cc-b048-2a4e01a71ab4','6c684c2f-c1df-4ad8-b066-3a0e4decdb40','bf832d0d-a988-4095-a2cf-e96ca327c101')
 	@Override
 	public void saveProduct(Product theProduct) {
-		// TODO Auto-generated method stub
 		 Session currentSession = sessionFactory.getCurrentSession();
          // save/upate the customer ... finally
          currentSession.saveOrUpdate(theProduct);
 	}
+
+	@Override
+	public void updateProductByStatus(String id) {
+		Product pr= new Product();
+		 Session currentSession = sessionFactory.getCurrentSession();		
+		 Query<Product> query=currentSession.createQuery("update Product set quatity=0 where product_id=:product_id");
+			query.setParameter("product_id", id);
+			query.executeUpdate();
+	}
+
+	@Override
+	public void deleteProduct(String id) {
+		Session currentSession=sessionFactory.getCurrentSession();
+		Query<Product> query=currentSession.createQuery("delete from Product where product_id=:product_id");
+		query.setParameter("product_id", id);
+		query.executeUpdate();		
+	}
+
+	
 }
