@@ -11,6 +11,6 @@ public interface OrdersDao{
 
 	public void addOrders(Order cart);
 	public Order findOrderId(String id);
-	public List<Object[]> getDsOrderByStatus(int index) ;
+	public List<Object[]> getDsOrderByStatus(int index, String id) ;
 	public int demSLOrderByStatus();
 }

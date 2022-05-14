@@ -48,9 +48,10 @@ public class ADHomeController{
 	}
 
 	@RequestMapping("/adorder/{index}&{tenS}")
-	public String order(Model model, @PathVariable(name = "index") String index) {
+	public String order(Model model, @PathVariable(name = "index") String index,HttpServletRequest req) {
 		int soLuong = adminService.demSLOrderByStatus();
-
+		HttpSession session = req.getSession();
+		Users username = (Users) session.getAttribute("acc");
 		if (index == null) {
 			index = "1";
 		}
@@ -59,7 +60,7 @@ public class ADHomeController{
 
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("tag", indexPage);
-		model.addAttribute("listorder", adminService.getDsOrderByStatus(indexPage));
+		model.addAttribute("listorder", adminService.getDsOrderByStatus(indexPage,username.getUserId()));
 		return "admin/order";
 	}
 
@@ -100,9 +101,10 @@ public class ADHomeController{
 
 	///// Dang xu ly cho nay nhaaaaaaaaaaaaaa
 	@RequestMapping("/product/{index}&{tenS}")
-	public String product(Model model, @PathVariable(name = "index") String index) {
+	public String product(Model model, @PathVariable(name = "index") String index,HttpServletRequest req) {
 		int soLuong = homeService.demSLProduct();
-
+		HttpSession session = req.getSession();
+		Users username = (Users) session.getAttribute("acc");
 		if (index == null) {
 			index = "1";
 		}
@@ -110,7 +112,7 @@ public class ADHomeController{
 		int endpage = (soLuong + 5) / 6;
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("tag", indexPage);
-		model.addAttribute("listproduct", adminService.getDsProductTop9(indexPage));
+		model.addAttribute("listproduct", adminService.getDsProductTop9(indexPage,username.getUserId()));
 		return "admin/product";
 	}
 
@@ -118,6 +120,9 @@ public class ADHomeController{
 	public String formproduct(Model model, HttpServletRequest req, @ModelAttribute("product") Product theProduct) {
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
+		if (username==null) {
+			return "admin/login";
+		}
 		model.addAttribute("listvoucher", adminService.getDsVoucher());
 		model.addAttribute("listbranch", adminService.getDsBranchs());
 		model.addAttribute("product", theProduct);

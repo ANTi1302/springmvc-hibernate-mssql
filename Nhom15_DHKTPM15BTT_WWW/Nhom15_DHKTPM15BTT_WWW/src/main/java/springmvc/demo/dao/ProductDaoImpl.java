@@ -171,9 +171,9 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 	}
 
 	@Override
-	public List<Object[]> getDsProductTop9(int indexPage) {
+	public List<Object[]> getDsProductTop9(int indexPage,String id) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		TypedQuery<Object[]> theQuery = currentSession.createQuery(" from Product ",Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
+		TypedQuery<Object[]> theQuery = currentSession.createQuery(" from Product where saller_id='"+id+"'",Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
 		// execute query and get result list
 		List<Object[]> products = theQuery.getResultList();
 		// return the results

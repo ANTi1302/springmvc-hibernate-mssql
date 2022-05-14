@@ -16,7 +16,7 @@ import springmvc.demo.entity.Voucher;
 public interface AdminService {
 
 	//order
-	public List<Object[]> getDsOrderByStatus(int index) ;
+	public List<Object[]> getDsOrderByStatus(int index, String string) ;
 	public int demSLOrderByStatus();
 	public List<Object[]> findOrderDetailId(String id);
 	
@@ -35,7 +35,7 @@ public interface AdminService {
 	public Voucher getDsVoucherById(String id);
 
 	//product
-	public List<Object[]> getDsProductTop9(int indexPage);
+	public List<Object[]> getDsProductTop9(int indexPage,String id);
 	public void saveProduct(Product theProduct);
 	public void deleteProduct(String id);
 	public void updateProductByStatus(String id);

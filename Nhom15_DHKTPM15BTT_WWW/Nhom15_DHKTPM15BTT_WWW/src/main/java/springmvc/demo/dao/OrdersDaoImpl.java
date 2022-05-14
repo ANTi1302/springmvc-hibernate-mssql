@@ -37,12 +37,12 @@ public class OrdersDaoImpl extends BaseDao implements OrdersDao {
 //GROUP BY Orders.order_id
 
 	@Override
-	public List<Object[]> getDsOrderByStatus(int index) {
+	public List<Object[]> getDsOrderByStatus(int index,String id) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		String hql="SELECT  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,sum(d.amount* d.price)\r\n"
+		String hql="SELECT  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,sum(d.amount* d.price),d.productId.user.userId\r\n"
 				+ "FROM     Order o INNER JOIN\r\n"
-				+ "                  OrderDetail d ON o.orderId = d.orderId.orderId\r\n"
-				+ "GROUP BY  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status";
+				+ "                  OrderDetail d ON o.orderId = d.orderId.orderId\r\n where d.productId.user.userId='"+id+"'"
+				+ "GROUP BY  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,d.productId.user.userId";
 		// execute query and get result list
 		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((index-1)*6)).setMaxResults(6);
 		// return the results

@@ -73,7 +73,8 @@
             <a class="navbar-brand brand-logo" href="index.html"><img src="<c:url value="/assets/assets-admin/images/logo.svg" />" alt="logo" /></a>
             <a class="navbar-brand brand-logo-mini" href="index.html"><img src="<c:url value="/assets/assets-admin/images/logo-mini.svg" />" alt="logo" /></a>
           </div>
-          <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, Brandon Haynes</h4>
+          <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, ${sessionScope.acc.firstName}
+							${sessionScope.acc.lastName}</h4>
           <ul class="navbar-nav navbar-nav-right">
 
           </ul>
@@ -96,7 +97,7 @@
                   <i class="mdi mdi-settings text-primary"></i>
                   My Account
                 </a>
-                <a class="dropdown-item">
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/adlogout">
                   <i class="mdi mdi-logout text-primary"></i>
                   Logout
                 </a>

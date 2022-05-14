@@ -55,7 +55,7 @@
                                 <tr>
                                         <td class="cart_product_img">
                                          <%--  <c:forEach items="${img}" var="i"> --%>
-                                            <a href="#"><img src="<c:url value="${o.colors[0][0]}" />" alt="Product"></a>
+                                            <a href="#"><img src="${o.colors[0][0]}" alt="Product"></a>
                                             <%--   </c:forEach> --%>
                                         </td>
                                         <td class="cart_product_desc">

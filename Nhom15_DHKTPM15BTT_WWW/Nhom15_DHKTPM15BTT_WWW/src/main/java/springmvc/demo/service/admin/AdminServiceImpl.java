@@ -52,9 +52,9 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private ProductCartsDao productCartsDao;
 	@Override
-	public List<Object[]> getDsOrderByStatus(int index) {
+	public List<Object[]> getDsOrderByStatus(int index,String id) {
 		// TODO Auto-generated method stub
-		return ordersDao.getDsOrderByStatus(index);
+		return ordersDao.getDsOrderByStatus(index,id);
 	}
 	@Override
 	public int demSLOrderByStatus() {
@@ -87,9 +87,9 @@ public class AdminServiceImpl implements AdminService{
 		return vouchersDao.demSLVoucher();
 	}
 	@Override
-	public List<Object[]> getDsProductTop9(int indexPage) {
+	public List<Object[]> getDsProductTop9(int indexPage,String id) {
 		// TODO Auto-generated method stub
-		return productDao.getDsProductTop9(indexPage);
+		return productDao.getDsProductTop9(indexPage,id);
 	}
 	@Override
 	public List<Category> getDsCategory() {

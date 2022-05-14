@@ -18,7 +18,7 @@ public interface ProductDao {
 	public void updateProductByID(String id) ;
 	public List<Object[]> dsProductTheoIDBranchsTop6(int index, String ten);
 	public int demSLKhiSearchTheoIDBranch(String ten);
-	public List<Object[]> getDsProductTop9(int indexPage);
+	public List<Object[]> getDsProductTop9(int indexPage,String id);
 	public void saveProduct(Product theProduct);
 	public void updateProductByStatus(String id) ;
 	public void deleteProduct(String id);
