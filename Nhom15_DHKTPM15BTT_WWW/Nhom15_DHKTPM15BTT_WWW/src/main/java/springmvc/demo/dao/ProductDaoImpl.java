@@ -215,5 +215,30 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
          Product theProduct = currentSession.get(Product.class, id);
          return theProduct;
 	}
+
+	@Override
+	public List<Object[]> getDsProductTop9ToSearxh(int indexPage, String userId, String tenS) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		TypedQuery<Object[]> theQuery = currentSession.createQuery(" from Product where saller_id='"+userId+"' and name like '%"+tenS+"%'",Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
+		// execute query and get result list
+		List<Object[]> products = theQuery.getResultList();
+		// return the results
+		return products;
+	}
+
+	@Override
+	public int demSLKhiSearchTheoIDSaller(String tenS, String userId) {
+		try {
+		String query = "SELECT count(product_id) FROM Product where saller_id='"+userId+"' and name like '%"+tenS+"%'";
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		int soHoaDon = (int) currentSession.createNativeQuery(query).getSingleResult();
+		// return the results
+		return soHoaDon;
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return 0;
+	}
 	
 }

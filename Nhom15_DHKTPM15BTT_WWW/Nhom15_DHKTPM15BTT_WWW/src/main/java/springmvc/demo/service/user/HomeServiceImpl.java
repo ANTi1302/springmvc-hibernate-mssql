@@ -297,5 +297,11 @@ public class HomeServiceImpl implements HomeService{
 		
 	}
 
+	@Override
+	public int demSLKhiSearchTheoIDSaller(String tenS, String userId) {
+		// TODO Auto-generated method stub
+		return productDao.demSLKhiSearchTheoIDSaller(tenS, userId);
+	}
+
 
 }

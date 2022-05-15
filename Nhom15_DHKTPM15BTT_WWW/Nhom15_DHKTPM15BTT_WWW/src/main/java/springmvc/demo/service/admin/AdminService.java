@@ -19,8 +19,10 @@ public interface AdminService {
 	public List<Object[]> getDsOrderByStatus(int index, String string) ;
 	public int demSLOrderByStatus();
 	public List<Object[]> findOrderDetailId(String id);
-	
 	public int demSLOrderDeatilTheoProductId(String productId);
+	public void confirm(String id, String string);
+	public void cancel(String id, String string);
+	public List<Object[]> getDsOrderByStatusCheck(int indexPage, String userId, String tenS);
 	///category
 	public List<Category> getDsCategory(int index);
 	public List<Category> getDsCategory();
@@ -40,6 +42,7 @@ public interface AdminService {
 	public void deleteProduct(String id);
 	public void updateProductByStatus(String id);
 	public Product getProductById(String id);
+	public List<Object[]> getDsProductTop9ToSearxh(int indexPage, String userId, String tenS);
 	
 	//user
 	public  Users timKiemUserByPhone(String phone);
@@ -60,6 +63,9 @@ public interface AdminService {
 	
 	//productcart
 	public int demSLCartTheoProductId(String productId);
+	
+	
+
 	
 	
 	

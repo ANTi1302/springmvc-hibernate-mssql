@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="springmvc.demo.controller.admin.BaseController"/>
-    <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
-    <fullyQualifiedTypeName name="springmvc.demo.entity.Order"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="springmvc.demo.dao.OrdersDao"/>
     <fullyQualifiedTypeName name="net.bytebuddy.matcher.ModifierMatcher.Mode"/>
     <fullyQualifiedTypeName name="springmvc.demo.service.admin.AdminService"/>
     <fullyQualifiedTypeName name="springmvc.demo.service.user.HomeService"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="springmvc.demo.dao.OrderDetailsDao"/>
     <fullyQualifiedTypeName name="springmvc.demo.entity.OrderDetail"/>
     <fullyQualifiedTypeName name="antlr.collections.List"/>
@@ -21,19 +15,12 @@
     <fullyQualifiedTypeName name="javax.persistence.TypedQuery"/>
     <fullyQualifiedTypeName name="springmvc.demo.dao.ProductDao"/>
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
-    <fullyQualifiedTypeName name="springmvc.demo.entity.Voucher"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestAttribute"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpRequest"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.dom4j.Branch"/>
-    <fullyQualifiedTypeName name="springmvc.demo.entity.Branchs"/>
     <fullyQualifiedTypeName name="springmvc.demo.dao.BranchsDao"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
-    <fullyQualifiedTypeName name="springmvc.demo.entity.Product"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
-    <fullyQualifiedTypeName name="springmvc.demo.entity.ProductCategory"/>
     <fullyQualifiedTypeName name="springmvc.demo.dao.ProductCategoryDao"/>
     <fullyQualifiedTypeName name="springmvc.demo.entity.Color"/>
     <fullyQualifiedTypeName name="java.nio.file.Files"/>
@@ -58,6 +45,19 @@
     <fullyQualifiedTypeName name="com.cloudinary.utils.ObjectUtils"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="springmvc.demo.entity.ProductCategory"/>
+    <fullyQualifiedTypeName name="org.hibernate.query.Query"/>
+    <fullyQualifiedTypeName name="springmvc.demo.entity.ProductCart"/>
+    <fullyQualifiedTypeName name="springmvc.demo.dao.ProductCartsDao"/>
+    <fullyQualifiedTypeName name="springmvc.demo.entity.Voucher"/>
+    <fullyQualifiedTypeName name="springmvc.demo.entity.Branchs"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="springmvc.demo.entity.Product"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
 </qualifiedTypeNameHistroy>

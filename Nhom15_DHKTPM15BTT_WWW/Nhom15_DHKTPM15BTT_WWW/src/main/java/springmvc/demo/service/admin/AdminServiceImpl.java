@@ -193,5 +193,25 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return branchsDao.getDsBranchsById(id);
 	}
+	@Override
+	public List<Object[]> getDsProductTop9ToSearxh(int indexPage, String userId, String tenS) {
+		// TODO Auto-generated method stub
+		return productDao.getDsProductTop9ToSearxh(indexPage,userId,tenS) ;
+	}
+	@Override
+	public void confirm(String id, String string) {
+
+		ordersDao.confirm(id,string);
+	}
+	@Override
+	public void cancel(String id, String string) {
+		ordersDao.cancel(id, string);
+		
+	}
+	@Override
+	public List<Object[]> getDsOrderByStatusCheck(int indexPage, String userId, String tenS) {
+		// TODO Auto-generated method stub
+		return ordersDao.getDsOrderByStatusCheck(indexPage, userId, tenS) ;
+	}
 
 }

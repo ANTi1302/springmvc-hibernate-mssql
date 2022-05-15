@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,19 +41,8 @@
 				<div class="row">
 					<div class="card-body">
 						<h4 class="card-title">Orders Table</h4>
-
 						<div class="table-responsive">
 							<table class="table table-hover">
-								<div class="form-group">
-									<div class="input-group">
-										<input type="text" class="form-control"
-											placeholder="Recipient's username"
-											aria-label="Recipient's username">
-										<div class="input-group-append">
-											<button class="btn btn-sm btn-primary" type="button">Search</button>
-										</div>
-									</div>
-								</div>
 								<div class="col-md-12">
 									<div class="form-group" style="float: right;">
 										<div class="input-group">
@@ -60,13 +50,28 @@
 												<button
 													class="btn btn-sm btn-outline-primary dropdown-toggle"
 													type="button" data-bs-toggle="dropdown"
-													aria-haspopup="true" aria-expanded="false">Dropdown</button>
+													aria-haspopup="true" aria-expanded="false">Filter</button>
 												<div class="dropdown-menu">
-													<a class="dropdown-item" href="#">Action</a> <a
-														class="dropdown-item" href="#">Another action</a> <a
-														class="dropdown-item" href="#">Something else here</a>
+													<c:url var="Url" value="/admin/filterCheck/1&" />
+													<c:url var="Url1" value="/admin/filterConfirm/1&" />
+													<c:url var="Url2" value="/admin/filterCancel/1&" />
+													<c:url var="Url3" value="/admin/adorder/1&" />
+													<form:form class="input-group" action="${Url}" method="GET">
+														<input type="submit" name="Check" class="dropdown-item"
+															value="Check" />
+													</form:form>
+													<form:form class="input-group" action="${Url1}" method="GET">
+														<input type="submit" name="Confirm" class="dropdown-item"
+															href="filterconfirm" value="Confirm" />
+													</form:form>
+													<form:form class="input-group" action="${Url2}" method="GET">
+													<input type="submit" name="Cancel" class="dropdown-item" href="filtercancel" value="Cancel"/>
+														</form:form>
 													<div role="separator" class="dropdown-divider"></div>
-													<a class="dropdown-item" href="#">Separated link</a>
+													<form:form class="input-group" action="${Url3}" method="GET">
+													<input type="submit" name="All" class="dropdown-item" href="filterall" value="All"/>
+														</form:form>
+
 												</div>
 											</div>
 										</div>
@@ -84,20 +89,24 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${listorder }" var="o">
+										<c:url var="updateLink" value="/admin/confirm">
+											<c:param name="userId" value="${o[0]}" />
+										</c:url>
+										<c:url var="deleteLink" value="/admin/cancel">
+											<c:param name="userId" value="${o[0]}" />
+										</c:url>
 										<tr>
-											<td>${o[1] } ${o[2] }</td>
+											<td>${o[1] }${o[2] }</td>
 											<td>${o[3] }</td>
 											<td>${o[4] }</td>
-											
+
 											<td class="text-danger">${o[6]}<i
 												class="mdi mdi-arrow-down"></i></td>
-											
-											
+
+
 											<td><label class="badge badge-danger">${o[5] }</label></td>
-											<td>
-												<button class="badge badge-warning">Confirm</button>
-												<button class="badge badge-warning">Cancel</button>
-											</td>
+											<td><a href="${updateLink}" class="badge badge-warning">Confirm</a>
+												<a href="${deleteLink}" class="badge badge-warning">Cancel</a></td>
 
 										</tr>
 									</c:forEach>
@@ -115,7 +124,8 @@
 								href="${tag-1}" tabindex="-1">Previous</a></li>
 						</c:if>
 						<c:forEach begin="1" end="${endpage}" var="i">
-							<li class="page-item"><a class="page-link" href="${i}&${tenS}">${i}</a></li>
+							<li class="page-item"><a class="page-link"
+								href="${i}&?${tenS}=${tenS}">${i}</a></li>
 						</c:forEach>
 						<c:if test="${tag<endpage }">
 							<li class="page-item"><a class="page-link" href="${tag+1}">Next</a>

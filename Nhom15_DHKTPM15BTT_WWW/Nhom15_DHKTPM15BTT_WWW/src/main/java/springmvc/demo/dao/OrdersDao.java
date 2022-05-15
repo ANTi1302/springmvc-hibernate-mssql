@@ -13,4 +13,7 @@ public interface OrdersDao{
 	public Order findOrderId(String id);
 	public List<Object[]> getDsOrderByStatus(int index, String id) ;
 	public int demSLOrderByStatus();
+	public void confirm(String id, String string);
+	public void cancel(String id, String string);
+	public List<Object[]> getDsOrderByStatusCheck(int indexPage, String userId, String tenS);
 }

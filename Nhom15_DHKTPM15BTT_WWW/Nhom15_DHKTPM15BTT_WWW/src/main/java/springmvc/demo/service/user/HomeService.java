@@ -39,7 +39,7 @@ public interface HomeService {
 
 	public boolean capNhatProduct(int product);
 	public List<Object[]> dsProductTheoIDBranchsTop6(int index, String ten);
-
+	public int demSLKhiSearchTheoIDSaller(String tenS, String userId);
 	// menus
 	public List<Menus> getDsMenus();
 
@@ -98,6 +98,8 @@ public interface HomeService {
 
 	public List<Users> getUsers(String id);
 	public void saveUser(Users theUsers,String id);
+
+
 	
 	
 

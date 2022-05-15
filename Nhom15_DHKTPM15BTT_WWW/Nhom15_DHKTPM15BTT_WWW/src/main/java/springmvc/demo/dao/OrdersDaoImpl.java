@@ -12,6 +12,7 @@ import springmvc.demo.entity.Branchs;
 import springmvc.demo.entity.Cart;
 import springmvc.demo.entity.Menus;
 import springmvc.demo.entity.Order;
+import springmvc.demo.entity.Product;
 
 @Repository
 public class OrdersDaoImpl extends BaseDao implements OrdersDao {
@@ -63,6 +64,38 @@ public class OrdersDaoImpl extends BaseDao implements OrdersDao {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	@Override
+	public void confirm(String id, String string) {
+		 Session currentSession = sessionFactory.getCurrentSession();		
+		 Query<Order> query=currentSession.createQuery("update Order set status=:status where orderId=:userId");
+			query.setParameter("userId", id);
+			query.setParameter("status", string);
+			query.executeUpdate();
+	}
+	
+	@Override
+	public void cancel(String id, String string) {
+		 Session currentSession = sessionFactory.getCurrentSession();		
+		 Query<Order> query=currentSession.createQuery("update Order set status=:status where orderId=:userId");
+			query.setParameter("userId", id);
+			query.setParameter("status", string);
+			query.executeUpdate();
+	}
+
+	@Override
+	public List<Object[]> getDsOrderByStatusCheck(int indexPage, String userId, String tenS) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="SELECT  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,sum(d.amount* d.price),d.productId.user.userId\r\n"
+				+ "FROM     Order o INNER JOIN\r\n"
+				+ "                  OrderDetail d ON o.orderId = d.orderId.orderId\r\n where d.productId.user.userId='"+userId+"' and o.status='"+tenS+"'"
+				+ "GROUP BY  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,d.productId.user.userId";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
 	}
 
 
