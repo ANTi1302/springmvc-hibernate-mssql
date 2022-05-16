@@ -176,6 +176,7 @@ public class HomeController extends BaseController {
 
 			///////////
 			session.setAttribute("amount", amount);
+			
 		}
 		modelAndView.setViewName("redirect:print");
 		return modelAndView;
@@ -252,6 +253,7 @@ public class HomeController extends BaseController {
 					}
 					soLuong++;
 					list.get(i).setAmount(count);
+					list.get(i).setColors(homeServer.getDsColorsByIDProduct(list.get(i).getProductId()));
 				}
 				double total = 0;
 				for (Product o : list) {

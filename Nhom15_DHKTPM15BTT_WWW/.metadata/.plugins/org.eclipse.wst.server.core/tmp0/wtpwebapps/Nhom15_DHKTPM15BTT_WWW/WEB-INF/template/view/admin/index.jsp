@@ -427,7 +427,7 @@
   <script src="<c:url value="/assets/assets-admin/js/jquery.cookie.js" />" type="text/javascript"></script>
   <!-- End plugin js for this page -->
   <!-- Custom js for this page-->
-  <script src="<c:url value="/assets/assets-admin/js/dashboard.js" />"></script>
+ <jsp:include page="_index.jsp"></jsp:include>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <!-- End custom js for this page-->
 </body>

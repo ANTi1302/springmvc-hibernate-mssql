@@ -40,7 +40,6 @@
 			<!-- row end -->
 			<div class="main-panel">
 				<div class="row">
-					<!-- Gáº¯n vÃ´ ÄÃ¢y nha Tháº£o-->
 					<div class="orders">
 						<div
 							class="breadcrumbs-fixed col-md-offset-2 panel-action panel-action2 padding-left-10">
@@ -115,54 +114,28 @@
 									<table class="table table-bordered table-striped" id="tblData">
 										<thead>
 											<tr>
-												<th class="text-center">Mã đơn hàng</th>
-												<th class="text-center">Ngày bán</th>
-												<th class="text-center">Khách hàng</th>
-												<th class="text-center">SL</th>
-												<th class="text-center">Tổng tiền</th>
+												<th class="text-center">Loai</th>
+												<th class="text-center">Tong so luong</th>
+												<th class="text-center">Tong gia tri</th>
+												<th class="text-center">Price Min</th>
+												<th class="text-center">Price MAx</th>
+												<th class="text-center">Price Avg</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
+										<c:forEach items="${list }" var="l">
+										<tr>
 												<td onclick="cms_show_product_history(9)"
-													style="color: #2a6496;">DH00001</td>
-												<td class="text-center">5-6-2022</td>
-												<td class="text-center">Admin01</td>
-												<td class="text-center">5</td>
-												<td class="text-center">10,000,000</td>
+													style="color: #2a6496;">${l[0] }</td>
+												<td class="text-center">${l[1] }</td>
+												<td class="text-center">${l[2] }</td>
+												<td class="text-center">${l[3] }</td>
+												<td class="text-center">${l[4] }</td>
+												<td class="text-center">${l[5] }</td>
 											</tr>
-											<tr>
-												<td onclick="cms_show_product_history(9)" class="hidden-xs"
-													style="color: #2a6496; cursor: pointer;">DH00002</td>
-												<td class="text-center">5-1-2022</td>
-												<td class="text-center">User01</td>
-												<td class="text-center">1</td>
-												<td class="text-center">2,000,000</td>
-											</tr>
-											<tr>
-												<td onclick="cms_show_product_history(9)" class="hidden-xs"
-													style="color: #2a6496; cursor: pointer;">DH00002</td>
-												<td class="text-center">5-1-2022</td>
-												<td class="text-center">User01</td>
-												<td class="text-center">1</td>
-												<td class="text-center">2,000,000</td>
-											</tr>
-											<tr>
-												<td onclick="cms_show_product_history(9)" class="hidden-xs"
-													style="color: #2a6496; cursor: pointer;">DH00002</td>
-												<td class="text-center">5-1-2022</td>
-												<td class="text-center">User01</td>
-												<td class="text-center">1</td>
-												<td class="text-center">2,000,000</td>
-											</tr>
-											<tr>
-												<td onclick="cms_show_product_history(9)" class="hidden-xs"
-													style="color: #2a6496; cursor: pointer;">DH00002</td>
-												<td class="text-center">5-1-2022</td>
-												<td class="text-center">User01</td>
-												<td class="text-center">1</td>
-												<td class="text-center">2,000,000</td>
-											</tr>
+										</c:forEach>
+											
+											
 										</tbody>
 									</table>
 								</div>
@@ -173,13 +146,19 @@
 				<div>
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-end">
-							<li class="page-item disabled"><a class="page-link" href="#"
-								tabindex="-1">Previous</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">Next</a>
-							</li>
+							<c:if test="${tag>1 }">
+								<li class="page-item "><a class="page-link"
+									href="${tag-1}&?tenS=" tabindex="-1">Previous</a></li>
+							</c:if>
+							<c:forEach begin="1" end="${endpage}" var="i">
+								<li class="page-item"><a class="page-link"
+									href="${i}&?tenS=${tenS}">${i}</a></li>
+							</c:forEach>
+							<c:if test="${tag<endpage }">
+								<li class="page-item"><a class="page-link" href="${tag+1}&?tenS=">Next</a>
+								</li>
+							</c:if>
+
 						</ul>
 					</nav>
 				</div>
@@ -215,7 +194,6 @@
 				type="text/javascript"></script>
 			<!-- End plugin js for this page -->
 			<!-- Custom js for this page-->
-			<script src="<c:url value="/assets/assets-admin/js/dashboard.js" />"></script>
 			<!-- End custom js for this page-->
 			<script src="<c:url value="/assets/assets-admin/js/export.js" />"></script>
 			<script

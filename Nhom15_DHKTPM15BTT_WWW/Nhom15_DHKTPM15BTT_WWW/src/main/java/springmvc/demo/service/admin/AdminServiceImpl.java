@@ -213,5 +213,20 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return ordersDao.getDsOrderByStatusCheck(indexPage, userId, tenS) ;
 	}
+	@Override
+	public List<Object[]> inventoryByCategory(int indexPage, String userId) {
+		// TODO Auto-generated method stub
+		return productDao.inventoryByCategory(indexPage, userId);
+	}
+	@Override
+	public int countInventoryByCategory(String userId) {
+		// TODO Auto-generated method stub
+		return productDao.countInventoryByCategory( userId);
+	}
+	@Override
+	public List<Object[]> inventoryByCategory(String userId) {
+		// TODO Auto-generated method stub
+		return productDao.inventoryByCategory(userId);
+	}
 
 }

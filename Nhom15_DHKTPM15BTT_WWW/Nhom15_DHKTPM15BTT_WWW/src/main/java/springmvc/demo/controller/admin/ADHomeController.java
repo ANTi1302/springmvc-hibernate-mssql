@@ -44,7 +44,11 @@ public class ADHomeController {
 	private Cloudinary cloudinary;
 
 	@RequestMapping("/home-admin")
-	public String home(Model model) {
+	public String home(Model model,HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		model.addAttribute("list",
+				adminService.inventoryByCategory(username.getUserId()));
 		return "admin/index";
 	}
 
@@ -322,8 +326,21 @@ public class ADHomeController {
 	}
 
 	@RequestMapping("/inventory/{index}&{tenS}")
-	public String inventory(Model model, @PathVariable(name = "index") String index) {
+	public String inventory(Model model, @PathVariable(name = "index") String index,HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		if (index == null) {
+			index = "1";
+		}
+		
+		int indexPage = Integer.parseInt(index);
+		int soLuong = adminService.countInventoryByCategory(username.getUserId());
+		int endpage = (soLuong + 5) / 6;
 
+		model.addAttribute("list",
+				adminService.inventoryByCategory(indexPage, username.getUserId()));
+		model.addAttribute("endpage", endpage);
+		model.addAttribute("tag", indexPage);
 		return "admin/inventory";
 	}
 

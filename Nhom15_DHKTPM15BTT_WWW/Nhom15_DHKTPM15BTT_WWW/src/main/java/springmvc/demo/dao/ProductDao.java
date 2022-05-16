@@ -25,4 +25,9 @@ public interface ProductDao {
 	public Product getProductById(String id);
 	public List<Object[]> getDsProductTop9ToSearxh(int indexPage, String userId, String tenS);
 	public int demSLKhiSearchTheoIDSaller(String tenS, String userId);
+	
+	///inventory
+	public List<Object[]> inventoryByCategory(int indexPage,String userId) ;
+	public int countInventoryByCategory(String userId);
+	public List<Object[]> inventoryByCategory(String userId);
 }

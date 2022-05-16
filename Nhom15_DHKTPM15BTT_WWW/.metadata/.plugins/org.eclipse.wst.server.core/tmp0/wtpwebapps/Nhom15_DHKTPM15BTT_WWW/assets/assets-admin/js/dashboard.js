@@ -19,11 +19,6 @@
               label: 'Offline Sales',
               data: [100, 230, 340, 340, 260, 340],
               backgroundColor: '#6640b2'
-            },
-            {
-              label: 'Online Sales',
-              data: [130, 190, 250, 250, 190, 260],
-              backgroundColor: '#1cbccd'
             }
           ]
         },

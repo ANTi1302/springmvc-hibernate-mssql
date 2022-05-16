@@ -64,7 +64,10 @@ public interface AdminService {
 	//productcart
 	public int demSLCartTheoProductId(String productId);
 	
-	
+	///inventory
+	public List<Object[]> inventoryByCategory(int indexPage, String userId);
+	public int countInventoryByCategory(String userId);
+	public List<Object[]> inventoryByCategory(String userId);
 
 	
 	
