@@ -30,4 +30,9 @@ public interface ProductDao {
 	public List<Object[]> inventoryByCategory(int indexPage,String userId) ;
 	public int countInventoryByCategory(String userId);
 	public List<Object[]> inventoryByCategory(String userId);
+	public List<Object[]> revenueByCategory(String userId);
+	public List<Object[]> revenueByCustomer(String userId);
+	public List<Object[]> revenueByYear(String userId);
+	public List<Object[]> revenueByMonth(String userId);
+	public List<Object[]> revenueByQuater(String userId);
 }

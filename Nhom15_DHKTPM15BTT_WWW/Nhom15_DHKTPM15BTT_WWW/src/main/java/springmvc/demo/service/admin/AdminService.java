@@ -15,65 +15,99 @@ import springmvc.demo.entity.Voucher;
 @Service
 public interface AdminService {
 
-	//order
-	public List<Object[]> getDsOrderByStatus(int index, String string) ;
+	// order
+	public List<Object[]> getDsOrderByStatus(int index, String string);
+
 	public int demSLOrderByStatus();
+
 	public List<Object[]> findOrderDetailId(String id);
+
 	public int demSLOrderDeatilTheoProductId(String productId);
+
 	public void confirm(String id, String string);
+
 	public void cancel(String id, String string);
+
 	public List<Object[]> getDsOrderByStatusCheck(int indexPage, String userId, String tenS);
-	///category
+
+	/// category
 	public List<Category> getDsCategory(int index);
+
 	public List<Category> getDsCategory();
 
 	public int demSLCategory();
-	
-	///voucher
-	
+
+	/// voucher
+
 	public List<Voucher> getDsVouchers(int index);
-	public int demSLVoucher() ;
+
+	public int demSLVoucher();
+
 	public List<Voucher> getDsVoucher();
+
 	public Voucher getDsVoucherById(String id);
 
-	//product
-	public List<Object[]> getDsProductTop9(int indexPage,String id);
+	// product
+	public List<Object[]> getDsProductTop9(int indexPage, String id);
+
 	public void saveProduct(Product theProduct);
+
 	public void deleteProduct(String id);
+
 	public void updateProductByStatus(String id);
+
 	public Product getProductById(String id);
+
 	public List<Object[]> getDsProductTop9ToSearxh(int indexPage, String userId, String tenS);
-	
-	//user
-	public  Users timKiemUserByPhone(String phone);
+
+	// user
+	public Users timKiemUserByPhone(String phone);
+
 	public Users timKiemUserLogin(String ten, String pass);
 
-	
-	//branch
+	// branch
 	public List<Branchs> getDsBranchs();
+
 	public Branchs getDsBranchsById(String id);
-	//productcategory
+
+	// productcategory
 	public void saveProductCategory(ProductCategory theProductCategory);
+
 	public int demSLTheoProductId(String productId);
+
 	public void deleteProductCategory(String id);
-	//color
+
+	// color
 	public void saveColor(Color theColor);
+
 	public void deleteColor(String id);
+
 	public int demSLColorTheoProductId(String productId);
-	
-	//productcart
+
+	// productcart
 	public int demSLCartTheoProductId(String productId);
-	
-	///inventory
+
+	/// inventory
 	public List<Object[]> inventoryByCategory(int indexPage, String userId);
+
 	public int countInventoryByCategory(String userId);
+
+	// ton kho theo loai san pham
 	public List<Object[]> inventoryByCategory(String userId);
 
-	
-	
-	
+	// doanh so ban hang
+	public List<Object[]> revenueByCategory(String userId);
 
+	// thong ke theo khach hang
+	public List<Object[]> revenueByCustomer(String userId);
 
+	// thong ke theo doanh thu theo nam
+	public List<Object[]> revenueByYear(String userId);
 
-	
+	// thong ke theo doanh thu theo thang
+	public List<Object[]> revenueByMonth(String userId);
+
+	// thong ke theo doanh thu theo quy
+	public List<Object[]> revenueByQuater(String userId);
+
 }

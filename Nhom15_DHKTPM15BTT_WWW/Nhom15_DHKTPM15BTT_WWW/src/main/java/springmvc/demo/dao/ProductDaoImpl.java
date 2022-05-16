@@ -306,6 +306,93 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 		return productCategories;
 	}
 
+	@Override
+	public List<Object[]> revenueByCategory(String userId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="SELECT pc.categoryId.name, sum(od.amount),\r\n"
+				+ "sum( od.amount * od.price),MIN(od.price),\r\n"
+				+ "MAX(od.price),AVG(od.price)\r\n"
+				+ "FROM     OrderDetail od INNER JOIN\r\n"
+				+ "                  Product p ON od.productId.productId = p.productId INNER JOIN\r\n"
+				+ "                  ProductCategory pc ON p.productId = pc.productId.productId"
+				+ " where p.user.userId='"+userId+"'\r\n"
+				+ "GROUP BY pc.categoryId.name";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+	@Override
+	public List<Object[]> revenueByCustomer(String userId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="SELECT u.userId, sum(od.amount),\r\n"
+				+ "sum( od.amount * od.price),MIN(od.price),\r\n"
+				+ "MAX(od.price),AVG(od.price)\r\n"
+				+ "FROM     Product p INNER JOIN\r\n"
+				+ "                  Users u ON p.user.userId = u.userId INNER JOIN\r\n"
+				+ "                  OrderDetail od ON p.productId = od.productId.productId"
+				+ " where p.user.userId='"+userId+"'\r\n"
+				+ "GROUP BY u.userId ORDER by sum( od.amount * od.price) desc";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+	@Override
+	public List<Object[]> revenueByYear(String userId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="select YEAR(od.createdAt),SUM(od.amount),\r\n"
+				+ "SUM(od.amount*od.price),MIN(od.price),MAX(od.price),\r\n"
+				+ "AVG(od.price) "
+				+ "FROM     OrderDetail od INNER JOIN\r\n"
+				+ "                  Product p ON od.productId.productId = p.productId"
+				+ " where p.user.userId='"+userId+"'\r\n"
+				+ "GROUP BY YEAR(od.createdAt) ORDER by YEAR(od.createdAt) DESC";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+	@Override
+	public List<Object[]> revenueByMonth(String userId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="select MONTH(od.createdAt),SUM(od.amount),\r\n"
+				+ "SUM(od.amount*od.price),MIN(od.price),MAX(od.price),\r\n"
+				+ "AVG(od.price) "
+				+ "FROM     OrderDetail od INNER JOIN\r\n"
+				+ "                  Product p ON od.productId.productId = p.productId"
+				+ " where p.user.userId='"+userId+"'\r\n"
+				+ "GROUP BY MONTH(od.createdAt) ORDER by MONTH(od.createdAt) DESC";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+	@Override
+	public List<Object[]> revenueByQuater(String userId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="select CEILING(MONTH(od.createdAt)/3.0),SUM(od.amount),\r\n"
+				+ "SUM(od.amount*od.price),MIN(od.price),MAX(od.price),\r\n"
+				+ "AVG(od.price) "
+				+ "FROM     OrderDetail od INNER JOIN\r\n"
+				+ "                  Product p ON od.productId.productId = p.productId"
+				+ " where p.user.userId='"+userId+"'\r\n"
+				+ "GROUP BY CEILING(MONTH(od.createdAt)/3.0) ORDER by CEILING(MONTH(od.createdAt)/3.0) DESC";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
 	
 	
 	

@@ -228,5 +228,30 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return productDao.inventoryByCategory(userId);
 	}
+	@Override
+	public List<Object[]> revenueByCategory(String userId) {
+		// TODO Auto-generated method stub
+		return productDao.revenueByCategory(userId);
+	}
+	@Override
+	public List<Object[]> revenueByCustomer(String userId) {
+		// TODO Auto-generated method stub
+		return productDao.revenueByCustomer(userId) ;
+	}
+	@Override
+	public List<Object[]> revenueByYear(String userId) {
+		// TODO Auto-generated method stub
+		return productDao.revenueByYear(userId);
+	}
+	@Override
+	public List<Object[]> revenueByMonth(String userId) {
+		// TODO Auto-generated method stub
+		return productDao.revenueByMonth( userId);
+	}
+	@Override
+	public List<Object[]> revenueByQuater(String userId) {
+		// TODO Auto-generated method stub
+		return productDao.revenueByQuater(userId);
+	}
 
 }

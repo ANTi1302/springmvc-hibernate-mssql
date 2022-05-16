@@ -49,6 +49,16 @@ public class ADHomeController {
 		Users username = (Users) session.getAttribute("acc");
 		model.addAttribute("list",
 				adminService.inventoryByCategory(username.getUserId()));
+//		model.addAttribute("listsale",
+//				adminService.revenueByCategory(username.getUserId()));
+//		model.addAttribute("listcus",
+//				adminService.revenueByCustomer(username.getUserId()));
+//		model.addAttribute("listyear",
+//				adminService.revenueByYear(username.getUserId()));
+//		model.addAttribute("listmonth",
+//				adminService.revenueByMonth(username.getUserId()));
+//		model.addAttribute("listquarter",
+//				adminService.revenueByQuater(username.getUserId()));
 		return "admin/index";
 	}
 
