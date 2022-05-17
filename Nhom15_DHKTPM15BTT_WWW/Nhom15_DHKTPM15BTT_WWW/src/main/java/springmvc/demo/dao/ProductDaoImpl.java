@@ -1,5 +1,7 @@
 package springmvc.demo.dao;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
@@ -334,7 +336,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 				+ "                  Users u ON p.user.userId = u.userId INNER JOIN\r\n"
 				+ "                  OrderDetail od ON p.productId = od.productId.productId"
 				+ " where p.user.userId='"+userId+"'\r\n"
-				+ "GROUP BY u.userId ORDER by sum( od.amount * od.price) desc";
+				+ "GROUP BY u.userId ";
 		// execute query and get result list
 		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
 		// return the results
@@ -393,6 +395,119 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 		return productCategories;
 	}
 
+	@Override
+	public List<Object[]> revenueByCategory(int indexPage, String userId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="SELECT pc.categoryId.name, sum(od.amount),\r\n"
+				+ "sum( od.amount * od.price),MIN(od.price),\r\n"
+				+ "MAX(od.price),AVG(od.price)\r\n"
+				+ "FROM     OrderDetail od INNER JOIN\r\n"
+				+ "                  Product p ON od.productId.productId = p.productId INNER JOIN\r\n"
+				+ "                  ProductCategory pc ON p.productId = pc.productId.productId"
+				+ " where p.user.userId='"+userId+"'\r\n"
+				+ "GROUP BY pc.categoryId.name";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+	@Override
+	public int countRevenueByCategory(String userId) {
+		try {
+			String query = "select count(RowNum) from\r\n"
+					+ "(\r\n"
+					+ " SELECT ROW_NUMBER() OVER (ORDER BY Product_Category.category_id) AS RowNum\r\n"
+					+ "FROM     Product INNER JOIN\r\n"
+					+ "                  Product_Category ON Product.product_id = Product_Category.product_id\r\n"
+					+ "				where [saller_id]='"+userId+"'\r\n"
+					+ "GROUP BY Product_Category.category_id\r\n"
+					+ "\r\n"
+					+ ") as RowNum";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soHoaDon = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soHoaDon;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public int countQuantityProduct(String userId) {
+		try {
+			String query = "select sum([quatity]) from [dbo].[Product] where [saller_id]='"+userId+"'";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soHoaDon = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soHoaDon;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+//	select count(RowNum) from(
+//			
+//			 SELECT ROW_NUMBER() OVER (ORDER BY [dbo].[Orders].[order_id]) AS RowNum
+//			FROM     Order_Detail INNER JOIN
+//             Orders ON Order_Detail.order_id = Orders.order_id INNER JOIN
+//             Product ON Order_Detail.product_id = Product.product_id
+//						where [saller_id]='bf832d0d-a988-4095-a2cf-e96ca327c101'
+//						group by [dbo].[Orders].order_id
+//			
+//			
+//			) as RowNum
+
+	@Override
+	public int countOrder(String userId) {
+		try {
+			String query = "select count(RowNum) from(\r\n"
+					+ "				\r\n"
+					+ "				 SELECT ROW_NUMBER() OVER (ORDER BY [dbo].[Orders].[order_id]) AS RowNum\r\n"
+					+ "				FROM     Order_Detail INNER JOIN\r\n"
+					+ "                  Orders ON Order_Detail.order_id = Orders.order_id INNER JOIN\r\n"
+					+ "                  Product ON Order_Detail.product_id = Product.product_id\r\n"
+					+ "							where [saller_id]='"+userId+"'\r\n"
+					+ "							group by [dbo].[Orders].order_id\r\n"
+					+ "				\r\n"
+					+ "				\r\n"
+					+ "				) as RowNum";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soHoaDon = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soHoaDon;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public BigDecimal salesOrderDetail(String userId) {
+		
+			String query = "select sum(RowNum) from(\r\n"
+					+ "				\r\n"
+					+ "			 SELECT sum(Order_Detail.[amount]*Order_Detail.[price]) as RowNum\r\n"
+					+ "		FROM     Order_Detail INNER JOIN\r\n"
+					+ "    Orders ON Order_Detail.order_id = Orders.order_id INNER JOIN\r\n"
+					+ "    Product ON Order_Detail.product_id = Product.product_id\r\n"
+					+ "		where [saller_id]='"+userId+"'\r\n"
+					+ "		group by [dbo].[Orders].order_id\r\n"
+					+ "				\r\n"
+					+ "				) as RowNum";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			BigDecimal soHoaDon = (BigDecimal) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soHoaDon;
+		
+	
+	}
 	
 	
 	

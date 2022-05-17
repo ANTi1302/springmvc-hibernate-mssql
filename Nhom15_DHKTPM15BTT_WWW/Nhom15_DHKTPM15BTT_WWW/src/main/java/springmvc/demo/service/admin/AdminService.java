@@ -1,5 +1,7 @@
 package springmvc.demo.service.admin;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -97,6 +99,7 @@ public interface AdminService {
 
 	// doanh so ban hang
 	public List<Object[]> revenueByCategory(String userId);
+	public List<Object[]> revenueByCategory(int indexPage,String userId);
 
 	// thong ke theo khach hang
 	public List<Object[]> revenueByCustomer(String userId);
@@ -109,5 +112,13 @@ public interface AdminService {
 
 	// thong ke theo doanh thu theo quy
 	public List<Object[]> revenueByQuater(String userId);
+
+	public int countRevenueByCategory(String userId);
+	
+	public int countQuantityProduct(String userId);
+	
+	public int countOrder(String userId);
+	
+	public BigDecimal salesOrderDetail(String userId);
 
 }

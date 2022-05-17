@@ -1,5 +1,7 @@
 package springmvc.demo.dao;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 import springmvc.demo.entity.Product;
@@ -35,4 +37,10 @@ public interface ProductDao {
 	public List<Object[]> revenueByYear(String userId);
 	public List<Object[]> revenueByMonth(String userId);
 	public List<Object[]> revenueByQuater(String userId);
+	public List<Object[]> revenueByCategory(int indexPage, String userId);
+	public int countRevenueByCategory(String userId);
+	
+	public int countQuantityProduct(String userId);
+	public int countOrder(String userId);
+	public BigDecimal salesOrderDetail(String userId);
 }

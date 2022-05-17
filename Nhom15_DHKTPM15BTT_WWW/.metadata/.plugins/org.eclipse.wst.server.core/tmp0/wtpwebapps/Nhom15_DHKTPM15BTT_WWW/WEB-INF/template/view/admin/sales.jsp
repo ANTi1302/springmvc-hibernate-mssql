@@ -35,10 +35,12 @@
 			<!-- row end -->
 			<div class="main-panel">
 				<div class="row">
-					<!-- Gắn vô đây nha Thảo-->
+					<!-- Gáº¯n vÃ´ ÄÃ¢y nha Tháº£o-->
 					<div class="card-body">
 						<input id="modal_product_id" style="display: none;">
+						
 						<div class="product-sear panel-sear">
+						
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-0">
 								<h5 style="float: left;">
 									<label style="color: #307ecc; padding-left: 10px;">
@@ -49,9 +51,9 @@
 									</label> <label style="color: #307ecc;"> <select
 										class="form-control search_option_3" id="prd_manufacture_id">
 											<option value="-1" selected="selected">-Branch-</option>
-											<optgroup label="Chọn nhà sản xuất">
+											<optgroup label="Chá»n nhÃ  sáº£n xuáº¥t">
 												<option value="1">TQ</option>
-												<option value="2">Hồng Hà</option>
+												<option value="2">Há»ng HÃ </option>
 												<option value="3">qaeqsadadas</option>
 												<option value="4">Duc tuong</option>
 											</optgroup>
@@ -63,8 +65,9 @@
 								<div class="">
 									<select class="form-control" id="option_inventory">
 										<option value="0">--All--</option>
-										<option value="1">Chỉ lấy hàng tồn</option>
-										<option value="2">Hết Hàng</option>
+										<option value="2">Revenue By Year</option>
+										<option value="3">Revenue By Month</option>
+										<option value="3">Revenue By Quarter</option>
 									</select>
 								</div>
 							</label> <label for="">
@@ -121,55 +124,27 @@
 								<table class="table table-bordered table-striped" id="tblData">
 									<thead>
 										<tr>
-											<th class="text-center hidden-xs">Product Id</th>
-											<th class="text-center">Product Name</th>
-											<th class="text-center">Quantity</th>
-											<th class="text-center">Inventory Value</th>
+											<th class="text-center hidden-xs">Category</th>
+											<th class="text-center">Sum Quantity</th>
+											<th class="text-center">Sum Price</th>
+											<th class="text-center">Min Price</th>
+											<th class="text-center">Max Price</th>
+											<th class="text-center">AVG Price</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
+									<c:forEach items="${list }" var="l">
+									<tr>
 											<td onclick="cms_show_product_history(9)" class="hidden-xs"
-												style="color: #2a6496; cursor: pointer;">SP00001</td>
-											<td class="text-center ">DIY Pumpkin Spice Candles</td>
-											<td class="text-center">5</td>
-											<td class="text-center">10,000,000</td>
+												style="color: #2a6496; cursor: pointer;">${l[0] }</td>
+											<td class="text-center ">${l[1] }</td>
+											<td class="text-center">${l[2] }</td>
+											<td class="text-center">${l[3] }</td>
+											<td class="text-center">${l[4] }</td>
+											<td class="text-center">${l[5] }</td>
 										</tr>
-										<tr>
-											<td onclick="cms_show_product_history(9)" class="hidden-xs"
-												style="color: #2a6496; cursor: pointer;">SP00001</td>
-											<td class="text-center ">DIY Pumpkin Spice Candles</td>
-											<td class="text-center">5</td>
-											<td class="text-center">10,000,000</td>
-										</tr>
-										<tr>
-											<td onclick="cms_show_product_history(9)" class="hidden-xs"
-												style="color: #2a6496; cursor: pointer;">SP00001</td>
-											<td class="text-center ">DIY Pumpkin Spice Candles</td>
-											<td class="text-center">5</td>
-											<td class="text-center">10,000,000</td>
-										</tr>
-										<tr>
-											<td onclick="cms_show_product_history(9)" class="hidden-xs"
-												style="color: #2a6496; cursor: pointer;">SP00001</td>
-											<td class="text-center ">DIY Pumpkin Spice Candles</td>
-											<td class="text-center">5</td>
-											<td class="text-center">10,000,000</td>
-										</tr>
-										<tr>
-											<td onclick="cms_show_product_history(9)" class="hidden-xs"
-												style="color: #2a6496; cursor: pointer;">SP00002</td>
-											<td class="text-center ">Pet Toys</td>
-											<td class="text-center">20</td>
-											<td class="text-center">20,000,000</td>
-										</tr>
-										<tr>
-											<td onclick="cms_show_product_history(9)" class="hidden-xs"
-												style="color: #2a6496; cursor: pointer;">SP00003</td>
-											<td class="text-center ">Holzperle Christbaumkugel</td>
-											<td class="text-center">15</td>
-											<td class="text-center">13,000,000</td>
-										</tr>
+									</c:forEach>
+										
 									</tbody>
 								</table>
 							</div>
@@ -179,16 +154,21 @@
 			</div>
 			<div>
 				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-end">
-						<li class="page-item disabled"><a class="page-link" href="#"
-							tabindex="-1">Previous</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">Next</a>
-						</li>
-					</ul>
-				</nav>
+						<ul class="pagination justify-content-end">
+							<c:if test="${tag>1 }">
+								<li class="page-item "><a class="page-link"
+									href="${tag-1}&?tenS=" tabindex="-1">Previous</a></li>
+							</c:if>
+							<c:forEach begin="1" end="${endpage}" var="i">
+								<li class="page-item"><a class="page-link"
+									href="${i}&?tenS=${tenS}">${i}</a></li>
+							</c:forEach>
+							<c:if test="${tag<endpage }">
+								<li class="page-item"><a class="page-link" href="${tag+1}&?tenS=">Next</a>
+								</li>
+							</c:if>
+						</ul>
+					</nav>
 			</div>
 		</div>
 

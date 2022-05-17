@@ -4,6 +4,7 @@ encoding//src/main/resources=UTF-8
 encoding//src/main/webapp/WEB-INF/template/view/admin/form_branch.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/template/view/admin/form_branch_update.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/template/view/admin/inventory.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/template/view/admin/sales.jsp=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/resources=UTF-8
 encoding/<project>=UTF-8

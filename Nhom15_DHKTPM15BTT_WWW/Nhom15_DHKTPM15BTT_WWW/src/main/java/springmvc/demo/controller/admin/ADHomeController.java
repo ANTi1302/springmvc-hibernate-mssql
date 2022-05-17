@@ -49,16 +49,22 @@ public class ADHomeController {
 		Users username = (Users) session.getAttribute("acc");
 		model.addAttribute("list",
 				adminService.inventoryByCategory(username.getUserId()));
-//		model.addAttribute("listsale",
-//				adminService.revenueByCategory(username.getUserId()));
-//		model.addAttribute("listcus",
-//				adminService.revenueByCustomer(username.getUserId()));
-//		model.addAttribute("listyear",
-//				adminService.revenueByYear(username.getUserId()));
-//		model.addAttribute("listmonth",
-//				adminService.revenueByMonth(username.getUserId()));
-//		model.addAttribute("listquarter",
-//				adminService.revenueByQuater(username.getUserId()));
+		model.addAttribute("listsale",
+				adminService.revenueByCategory(username.getUserId()));
+		model.addAttribute("listcus",
+				adminService.revenueByCustomer(username.getUserId()));
+		model.addAttribute("listyear",
+				adminService.revenueByYear(username.getUserId()));
+		model.addAttribute("listmonth",
+				adminService.revenueByMonth(username.getUserId()));
+		model.addAttribute("listquarter",
+				adminService.revenueByQuater(username.getUserId()));
+		model.addAttribute("count",
+				adminService.countQuantityProduct(username.getUserId()));
+		model.addAttribute("countorder",
+				adminService.countOrder(username.getUserId()));
+		model.addAttribute("salesorder",
+				adminService.salesOrderDetail(username.getUserId()));
 		return "admin/index";
 	}
 
@@ -355,7 +361,21 @@ public class ADHomeController {
 	}
 
 	@RequestMapping("/sales/{index}&{tenS}")
-	public String sales(Model model, @PathVariable(name = "index") String index) {
+	public String sales(Model model, @PathVariable(name = "index") String index,HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		if (index == null) {
+			index = "1";
+		}
+		
+		int indexPage = Integer.parseInt(index);
+		int soLuong = adminService.countRevenueByCategory(username.getUserId());
+		int endpage = (soLuong + 5) / 6;
+
+		model.addAttribute("list",
+				adminService.revenueByCategory(indexPage, username.getUserId()));
+		model.addAttribute("endpage", endpage);
+		model.addAttribute("tag", indexPage);
 		return "admin/sales";
 	}
 

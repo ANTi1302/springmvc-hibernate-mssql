@@ -41,7 +41,7 @@
                   <i class="mdi mdi-cash-usd text-white icon-lg"></i>
                   <div class="ms-3 ml-md-0 ml-xl-3">
                     <h5 class="text-white font-weight-bold">Sales Promotion</h5>
-                    <p class="mt-2 text-white card-text">0</p>
+                    <p class="mt-2 text-white card-text">${salesorder }</p>
                   </div>
                 </div>
               </div>
@@ -55,7 +55,7 @@
                   <i class="mdi mdi-cart-outline text-white icon-lg"></i>
                   <div class="ms-3 ml-md-0 ml-xl-3">
                     <h5 class="text-white font-weight-bold">Order Number</h5>
-                    <p class="mt-2 text-white card-text">0</p>
+                    <p class="mt-2 text-white card-text">${countorder }</p>
                   </div>
                 </div>
               </div>
@@ -68,8 +68,8 @@
                   class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
                   <i class="mdi mdi-calculator text-white icon-lg"></i>
                   <div class="ms-3 ml-md-0 ml-xl-3">
-                    <h5 class="text-white font-weight-bold">Products Sold</h5>
-                    <p class="mt-2 text-white card-text">0</p>
+                    <h5 class="text-white font-weight-bold">Products Inventory</h5>
+                    <p class="mt-2 text-white card-text">${count }</p>
                   </div>
                 </div>
               </div>
@@ -200,6 +200,8 @@
                     <canvas height="150" id="activity-chart"></canvas>
                   </div>
                 </div>
+                <div class="col-md-12 grid-margin stretch-card">
+                  <div class="row w-100 flex-grow">
                 <div class="col-md-12 stretch-card">
                   <div class="card">
                     <div class="card-body pb-0">
@@ -233,6 +235,8 @@
                     </div>
                     <canvas height="170" id="status-chart"></canvas>
                   </div>
+                </div>
+              </div>
                 </div>
               </div>
             </div>

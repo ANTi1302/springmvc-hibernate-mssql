@@ -1,5 +1,7 @@
 package springmvc.demo.service.admin;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -252,6 +254,31 @@ public class AdminServiceImpl implements AdminService{
 	public List<Object[]> revenueByQuater(String userId) {
 		// TODO Auto-generated method stub
 		return productDao.revenueByQuater(userId);
+	}
+	@Override
+	public List<Object[]> revenueByCategory(int indexPage, String userId) {
+		// TODO Auto-generated method stub
+		return productDao.revenueByCategory(indexPage, userId);
+	}
+	@Override
+	public int countRevenueByCategory(String userId) {
+		// TODO Auto-generated method stub
+		return productDao.countRevenueByCategory(userId);
+	}
+	@Override
+	public int countQuantityProduct(String userId) {
+		// TODO Auto-generated method stub
+		return productDao.countQuantityProduct(userId);
+	}
+	@Override
+	public int countOrder(String userId) {
+		// TODO Auto-generated method stub
+		return productDao.countOrder(userId);
+	}
+	@Override
+	public BigDecimal salesOrderDetail(String userId) {
+		// TODO Auto-generated method stub
+		return productDao.salesOrderDetail(userId);
 	}
 
 }

@@ -7,7 +7,6 @@
 (function($) {
 	  'use strict';
 	  $(function() {
-		 
 	    if ($("#audience-chart").length) {
 	      var AudienceChartCanvas = $("#audience-chart").get(0).getContext("2d");
 	      var AudienceChart = new Chart(AudienceChartCanvas, {
@@ -106,13 +105,22 @@
 	        },
 	      });
 	    }
-	   
+		   
 	    if ($("#balance-chart").length) {
 	      var areaData = {
-	        labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Mon","Tue","Wed","Thu"],
+	        labels: [
+	        	<c:forEach items="${listyear }" var="y">
+	        	  "${y[0] }",
+	        	  </c:forEach>
+	        	],
 	        datasets: [
 	          {
-	            data: [2600, 1400, 2200, 1200, 2300, 2400, 2700, 1200, 2800, 2600, 1250, 1900, 1800, 2800, 2800, 1200, 2500, 2600, 1800, 1200, 2000, 1800, 2700, 1600, 2800, 2000, 2100, 1200, 2000, 1200, 1200, 2500],
+	            data: [
+	            	 <c:forEach items="${listmonth}" var="y">
+	            	  ${y[4] }, 
+	            	  </c:forEach>, 
+	            	
+	            	],
 	            borderColor: [
 	              '#1faf47'
 	            ],
@@ -208,10 +216,18 @@
 	      var taskChart = new Chart(taskChartCanvas, {
 	        type: 'bar',
 	        data: {
-	          labels: ["Jan", "Feb", "Mar", "Apr", "May","Jun", "Jul", "Aug"],
+	          labels: [
+	        	  <c:forEach items="${listmonth }" var="y">
+	        	  "${y[0] }",
+	        	  </c:forEach>
+	        	  ],
 	          datasets: [{
 	              label: 'Profit',
-	              data: [-3, -5, -5, 3, 4, -5, -1, 9],
+	              data: [
+	            	  <c:forEach items="${listmonth}" var="y">
+	            	  ${y[5] }, 
+	            	  </c:forEach>
+	            	  ],
 	              backgroundColor: '#f83e37'
 	            }
 	          ]
@@ -281,16 +297,28 @@
 	      var regionalChart = new Chart(regionalChartCanvas, {
 	        type: 'horizontalBar',
 	        data: {
-	          labels: ["12", "8", "4", "0"],
+	          labels: [
+	        	  <c:forEach items="${listsale }" var="c">
+	        	  "${c[0] }",
+	        	  </c:forEach>
+	        	  ],
 	          datasets: [
 	            {
-	              label: 'Income',
-	              data: [400, 360, 360, 360],
+	              label: 'Max',
+	              data: [
+	            	  <c:forEach items="${listsale}" var="c">
+	            	  ${c[4] }, 
+	            	  </c:forEach>
+	            	  ],
 	              backgroundColor: '#1cbccd'
 	            },
 	            {
-	              label: 'Expenses',
-	              data: [320, 190, 180, 140],
+	              label: 'Min',
+	              data: [
+	            	  <c:forEach items="${listsale}" var="c">
+	            	  ${c[3] }, 
+	            	  </c:forEach>
+	            	  ],
 	              backgroundColor: '#ffbf36'
 	            }
 	          ]
@@ -372,16 +400,19 @@
 	      var activityChart = new Chart(activityChartCanvas, {
 	        type: 'bar',
 	        data: {
-	          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+	          labels: [
+	        	  <c:forEach items="${listquarter }" var="q">
+	        	  "${q[0] }",
+	        	  </c:forEach>
+	        	  ],
 	          datasets: [{
 	              label: 'Profit',
-	              data: [320, 300, 340, 320, 315, 270, 290, 310, 340, 335, 300, 320, 300, 340, 320, 315, 270, 290, 310, 340, 335, 300, 320, 300, 340, 320, 315, 270, 290, 310, 340, 335, 300, 320, 300, 340, 320, 315, 270, 290, 310, 340, 335, 300],
+	              data: [
+	            	  <c:forEach items="${listquarter }" var="q">
+	            	  ${q[2]},
+	            	  </c:forEach>
+	            	  ],
 	              backgroundColor: '#ffbf36'
-	            },
-	            {
-	              label: 'Target',
-	              data: [540, 500, 600, 540, 535, 470, 490, 510, 540, 535, 500, 540, 500, 450, 570, 535, 470, 490, 510, 540, 535, 500, 540, 500, 470, 500, 535, 470, 490, 510, 540, 535, 500, 540, 500, 490, 590, 505, 470, 490, 510, 540, 535, 500],
-	              backgroundColor: '#6640b2'
 	            }
 	          ]
 	        },
@@ -439,40 +470,40 @@
 	    }
 
 	    if ($("#status-chart").length) {
-	      var areaData = {
-	        labels: ["IA", "RI", "NY", "CO", "MI", "FL", "IL", "PA", "LA", "NJ", "CA", "TX", "LA", "PQ", "RF", "JG",     "IA", "RI", "NY", "CO", "MI", "FL", "IL", "PA", "LA", "NJ", "CA", "TX", "LA", "PQ", "RF", "JG",     "IA", "RI", "NY", "CO", "MI", "FL", "IL", "PA", "LA", "NJ", "CA", "TX", "LA", "PQ", "RF", "JG",     "IA", "RI", "NY", "CO", "MI", "FL", "IL", "PA", "LA", "NJ", "CA", "TX", "LA", "PQ", "RF", "JG",     "IA", "RI", "NY", "CO", "MI", "FL", "IL", "PA", "LA", "NJ", "CA", "TX", "LA", "PQ", "RF", "JG",     "IA", "RI", "NY", "CO", "MI", "FL", "IL", "PA", "LA", "NJ", "CA", "TX", "LA", "PQ", "RF", "JG",     "IA", "RI", "NY", "CO", "MI", "FL", "IL", "PA", "LA", "NJ"],
-	        datasets: [{
-	            data: [30,40,34,48,35,43,40,48,38,39,35,45,32,33,28,22,24,23,36,28,31,22,32,27,30,25,36,30,38,34,30,27,30,26,26,18,23,31,18,19,17,19,17,17,14,16,15,17,10,15,9,14,13,20,18,15,12,16,17,14,20,10,19,12,12,16,11,17,15,17,9,8,12,15,10,15,16,20,18,20,18,28,28,33,23,38,20,28,23,24,17,14,21,15,24,11,13,13,19,13,15,18,10,20,22,28],
-	            backgroundColor: [
-	              '#00cccb'
-	            ],
-	            borderColor: "#00cccb",
-	            borderWidth: 0,
-	            fill: 'origin',
-	            label: "purchases"
-	          },
-	          {
-	            data: [60,70,64,78,65,73,70,78,68,69,65,75,62,63,58,52,54,53,66,58,61,52,62,57,60,55,66,60,68,64,60,57,60,56,56,48,53,61,48,49,47,49,47,47,34,36,35,37,40,35,39,44,43,50,48,45,42,46,37,44,50,40,39,42,32,36,41,47,45,47,39,38,42,45,40,45,46,50,48,50,48,58,58,63,53,68,50,58,53,54,47,44,51,45,54,41,43,43,49,43,45,48,40,50,52,58],
-	            backgroundColor: [
-	              '#d8d8d8'
-	            ],
-	            borderColor: '#d8d8d8',
-	            borderWidth: 1,
-	            fill: 'origin',
-	            label: "services"
-	          },
-	          {
-	            data: [90, 100, 94, 108, 95, 103, 100, 108, 98 ,99, 95, 105, 92, 93, 88, 82, 84, 83, 96, 88, 91, 82, 92, 87, 90, 85, 96, 90, 98, 94, 90, 87, 90, 86, 86, 78, 83, 91, 78, 79, 77, 79, 77, 77, 64, 66, 65, 67, 70, 65, 69, 74, 73, 80, 78, 75, 72, 76, 67, 74, 80, 70, 69, 72, 62, 66, 71, 77, 75, 77, 69, 68, 72, 75, 70, 75, 76, 80, 78, 80, 78, 88, 88, 93, 83, 98, 80, 88, 83, 84, 77, 74, 81, 75, 84, 71, 73, 73, 79, 73, 75, 78, 70, 80, 82, 88],
-	            backgroundColor: [
-	              '#6640b2'
-	            ],
-	            borderColor: '#6640b2',
-	            borderWidth: 1,
-	            fill: 'origin',
-	            label: "services"
-	          }
-	        ]
-	      };
+	        var areaData = {
+	          labels: ["IA", "RI", "NY", "CO", "MI", "FL", "IL", "PA", "LA", "NJ", "CA", "TX", "LA", "PQ", "RF", "JG",     "IA", "RI", "NY", "CO", "MI", "FL", "IL", "PA", "LA", "NJ", "CA", "TX", "LA", "PQ", "RF", "JG",     "IA", "RI", "NY", "CO", "MI", "FL", "IL", "PA", "LA", "NJ", "CA", "TX", "LA", "PQ", "RF", "JG",     "IA", "RI", "NY", "CO", "MI", "FL", "IL", "PA", "LA", "NJ", "CA", "TX", "LA", "PQ", "RF", "JG",     "IA", "RI", "NY", "CO", "MI", "FL", "IL", "PA", "LA", "NJ", "CA", "TX", "LA", "PQ", "RF", "JG",     "IA", "RI", "NY", "CO", "MI", "FL", "IL", "PA", "LA", "NJ", "CA", "TX", "LA", "PQ", "RF", "JG"],
+	          datasets: [{
+	              data: [30,40,34,48,35,43,40,48,38,39,35,45,32,33,28,22,24,23,36,28,31,22,32,27,30,25,36,30,38,34,30,27,30,26,26,18,23,31,18,19,17,19,17,17,14,16,15,17,10,15,9,14,13,20,18,15,12,16,17,14,20,10,19,12,12,16,11,17,15,17,9,8,12,15,10,15,16,20,18,20,18,28,28,33,23,38,20,28,23,24,17,14,21,15,24,11,13,13,19,13,15,18,10,20,22,28],
+	              backgroundColor: [
+	                '#00cccb'
+	              ],
+	              borderColor: "#00cccb",
+	              borderWidth: 0,
+	              fill: 'origin',
+	              label: "purchases"
+	            },
+	            {
+	              data: [60,70,64,78,65,73,70,78,68,69,65,75,62,63,58,52,54,53,66,58,61,52,62,57,60,55,66,60,68,64,60,57,60,56,56,48,53,61,48,49,47,49,47,47,34,36,35,37,40,35,39,44,43,50,48,45,42,46,37,44,50,40,39,42,32,36,41,47,45,47,39,38,42,45,40,45,46,50,48,50,48,58,58,63,53,68,50,58,53,54,47,44,51,45,54,41,43,43,49,43,45,48,40,50,52,58],
+	              backgroundColor: [
+	                '#d8d8d8'
+	              ],
+	              borderColor: '#d8d8d8',
+	              borderWidth: 1,
+	              fill: 'origin',
+	              label: "services"
+	            },
+	            {
+	              data: [90, 100, 94, 108, 95, 103, 100, 108, 98 ,99, 95, 105, 92, 93, 88, 82, 84, 83, 96, 88, 91, 82, 92, 87, 90, 85, 96, 90, 98, 94, 90, 87, 90, 86, 86, 78, 83, 91, 78, 79, 77, 79, 77, 77, 64, 66, 65, 67, 70, 65, 69, 74, 73, 80, 78, 75, 72, 76, 67, 74, 80, 70, 69, 72, 62, 66, 71, 77, 75, 77, 69, 68, 72, 75, 70, 75, 76, 80, 78, 80, 78, 88, 88, 93, 83, 98, 80, 88, 83, 84, 77, 74, 81, 75, 84, 71, 73, 73, 79, 73, 75, 78, 70, 80, 82, 88],
+	              backgroundColor: [
+	                '#6640b2'
+	              ],
+	              borderColor: '#6640b2',
+	              borderWidth: 1,
+	              fill: 'origin',
+	              label: "services"
+	            }
+	          ]
+	        };
 	      var areaOptions = {
 	        responsive: true,
 	        maintainAspectRatio: true,

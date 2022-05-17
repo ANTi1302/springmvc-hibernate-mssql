@@ -44,20 +44,6 @@
 						<div
 							class="breadcrumbs-fixed col-md-offset-2 panel-action panel-action2 padding-left-10">
 							<br> <br>
-							<h5 style="float: left;">
-
-								<label style="color: #428bca; font-size: 23px;">Báo cáo
-									doanh số </label> <label style="color: #307ecc; padding-left: 10px;" />
-									<input type="radio" name="revenue" value="1" checked="">
-									<span class="lbl">Theo đơn hàng</span>
-								</label> <label style="color: #307ecc;"> <input type="radio"
-									name="revenue" value="2"> <span class="lbl">Theo
-										KH</span>
-								</label> <label style="color: #307ecc;"> <input type="radio"
-									name="revenue" value="4"> <span class="lbl">Theo
-										NV bán hàng</span>
-								</label>
-							</h5>
 							<button style="float: right;" type="button"
 								class="btn btn-info btn-icon-text" onclick="window.print()">
 								Print <i class="mdi mdi-printer btn-icon-append"></i>
@@ -158,7 +144,6 @@
 								<li class="page-item"><a class="page-link" href="${tag+1}&?tenS=">Next</a>
 								</li>
 							</c:if>
-
 						</ul>
 					</nav>
 				</div>
