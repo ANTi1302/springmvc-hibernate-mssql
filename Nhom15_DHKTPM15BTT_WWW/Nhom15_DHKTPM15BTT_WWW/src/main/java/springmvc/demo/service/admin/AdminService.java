@@ -120,5 +120,6 @@ public interface AdminService {
 	public int countOrder(String userId);
 	
 	public BigDecimal salesOrderDetail(String userId);
+	public List<Object[]> getDs40Order(String userId, String tenS);
 
 }

@@ -280,5 +280,10 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return productDao.salesOrderDetail(userId);
 	}
+	@Override
+	public List<Object[]> getDs40Order(String userId, String tenS) {
+		// TODO Auto-generated method stub
+		return productDao.getDs40Order(userId, tenS);
+	}
 
 }

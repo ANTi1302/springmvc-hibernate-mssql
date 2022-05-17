@@ -65,6 +65,8 @@ public class ADHomeController {
 				adminService.countOrder(username.getUserId()));
 		model.addAttribute("salesorder",
 				adminService.salesOrderDetail(username.getUserId()));
+		model.addAttribute("order",
+				adminService.getDs40Order(username.getUserId(),"Check"));
 		return "admin/index";
 	}
 
