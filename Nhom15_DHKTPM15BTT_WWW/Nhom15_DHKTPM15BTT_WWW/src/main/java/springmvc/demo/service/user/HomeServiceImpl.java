@@ -303,5 +303,17 @@ public class HomeServiceImpl implements HomeService{
 		return productDao.demSLKhiSearchTheoIDSaller(tenS, userId);
 	}
 
+	@Override
+	public List<Object[]> listOrder(String userId) {
+		// TODO Auto-generated method stub
+		return orderDao.listOrder(userId) ;
+	}
+
+	@Override
+	public List<OrderDetail> getDsOrderByIDProduct(String productId) {
+		// TODO Auto-generated method stub
+		return orderDetailsDao.getDsOrderByIDProduct(productId);
+	}
+
 
 }

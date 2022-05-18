@@ -1,0 +1,71 @@
+package springmvc.demo.dao;
+
+import java.util.List;
+
+import javax.persistence.TypedQuery;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
+
+import springmvc.demo.entity.Cart;
+import springmvc.demo.entity.Color;
+import springmvc.demo.entity.Menus;
+import springmvc.demo.entity.Order;
+import springmvc.demo.entity.OrderDetail;
+import springmvc.demo.entity.Product;
+
+@Repository
+public class OrderDetailsDaoImpl extends BaseDao implements OrderDetailsDao {
+
+	@Override
+	public void addOrderDetails(OrderDetail cart) {
+		  Session currentSession = sessionFactory.getCurrentSession();
+          // save/upate the customer ... finally
+          currentSession.save(cart);
+	}
+
+	@Override
+	public List<Object[]> findOrderDetailId(String id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		TypedQuery<Object[]> theQuery = currentSession
+				.createQuery("select d.orderId.orderId, (d.amount* d.price) as Tong from OrderDetail d \r\n"
+						+ "where d.orderId.orderId='"+id+"'");
+		// execute query and get result list
+		List<Object[]> products = theQuery.getResultList();
+		// return the results
+		return products;
+	}
+
+	@Override
+	public int demSLOrderDeatilTheoProductId(String productId) {
+		try {
+			String query = "select count([product_id]) from [dbo].[Order_Detail]\r\n"
+					+ "where [product_id]='"+productId+"'";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soProduct = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soProduct;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public List<OrderDetail> getDsOrderByIDProduct(String productId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		TypedQuery<OrderDetail> theQuery = currentSession.createQuery(" SELECT o.productId.productId, o.price, sum(o.amount*o.price)\r\n"
+				+ "FROM     OrderDetail o c\r\n"
+				+ "where o.productId.productId='"+productId+"'\r\n"
+				+ "GROUP BY  o.productId.productId ,o.price");
+		// execute query and get result list
+		List<OrderDetail> orderDetails = (List<OrderDetail>) theQuery.getResultList();
+		// return the results
+		return orderDetails;
+	}
+
+
+
+}

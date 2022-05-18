@@ -54,7 +54,7 @@ public class ADLoginController {
 	public String logout(HttpServletResponse response, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("acc");
-		return "redirect:home-admin";
+		return "admin/login";
 	}
 
 	

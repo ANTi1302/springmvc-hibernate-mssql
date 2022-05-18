@@ -188,6 +188,7 @@ public class HomeController extends BaseController {
 		HttpSession session = request.getSession();
 		String amount = (String) session.getAttribute("amount");
 		Users username = (Users) session.getAttribute("acc");
+		String idProduct = (String) session.getAttribute("productId");
 		if (username == null) {
 			if (amount == null) {
 				amount = "1";
@@ -205,7 +206,7 @@ public class HomeController extends BaseController {
 				for (int i = 0; i < list.size(); i++) {
 					int count = sl;
 					for (int j = i + 1; j < list.size(); j++) {
-						if (list.get(i).getProductId().equals(list.get(j).getProductId())) {
+						if (list.get(i).getProductId().equals(list.get(j).getProductId()) ) {
 							count++;
 							list.remove(j);
 							j--;
@@ -233,14 +234,38 @@ public class HomeController extends BaseController {
 			else {
 				List<Product> list = new ArrayList<>();
 				int sl = Integer.parseInt(amount);
+				String txt="";
 				for (Cookie o : arr) {
 					if (o.getName().equals("productID")) {
-						String txt[] = o.getValue().split("/");
-						for (String s : txt) {
+						String txt1[] = o.getValue().split("/");
+						for (String s : txt1) {
 							list.add(homeServer.getProduct(s));
 						}
 					}
 				}
+				String ids[] = txt.split("/");
+				String txtOutPut = "";
+				int check = 0;
+				for (int i = 0; i < ids.length; i++) {
+					if (ids[i].equals(idProduct)) {
+						check++;
+					}
+					if (check != 1) {
+						if (txtOutPut.isEmpty()) {
+							txtOutPut = ids[i];
+						} else {
+							txtOutPut = txtOutPut + "/" + ids[i];
+						}
+					} else {
+						check++;
+					}
+				}
+				if (!txtOutPut.isEmpty()) {
+					Cookie c = new Cookie("productID", txtOutPut);
+					c.setMaxAge(60 * 60 * 24);
+					response.addCookie(c);
+				}
+				
 				int soLuong = 0;
 				for (int i = 0; i < list.size(); i++) {
 					int count = sl;
@@ -255,6 +280,7 @@ public class HomeController extends BaseController {
 					list.get(i).setAmount(count);
 					list.get(i).setColors(homeServer.getDsColorsByIDProduct(list.get(i).getProductId()));
 				}
+				
 				double total = 0;
 				for (Product o : list) {
 					total = total + o.getAmount() * o.getPrice();
@@ -440,9 +466,11 @@ public class HomeController extends BaseController {
 			}
 			soLuong++;
 			listCc.get(i).setAmount(count);
+			req.setAttribute("productId", listCc.get(i).getProductId());
 		}
 
 		req.setAttribute("soLuong", soLuong);
+		
 		modelAndView.setViewName("customer/product-details");
 		return modelAndView;
 	}

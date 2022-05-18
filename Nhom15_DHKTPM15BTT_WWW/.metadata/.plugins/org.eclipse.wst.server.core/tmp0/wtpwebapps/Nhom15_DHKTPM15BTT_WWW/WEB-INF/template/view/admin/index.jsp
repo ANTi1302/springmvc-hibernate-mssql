@@ -132,38 +132,6 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6 stretch-card">
-								<div class="card">
-									<div class="card-body">
-										<div
-											class="d-flex align-items-center justify-content-between flex-wrap">
-											<p class="card-title">Weekly Balance</p>
-											<p class="text-success font-weight-medium">20.15 %</p>
-										</div>
-										<div class="d-flex align-items-center flex-wrap mb-3">
-											<h5 class="font-weight-normal mb-0 mb-md-1 mb-lg-0 me-3">$22.736</h5>
-											<p class="text-muted mb-0">Avg Sessions</p>
-										</div>
-										<canvas id="balance-chart" height="130"></canvas>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 stretch-card">
-								<div class="card">
-									<div class="card-body">
-										<div
-											class="d-flex align-items-center justify-content-between flex-wrap">
-											<p class="card-title">Weekly Product</p>
-											<p class="text-success font-weight-medium">45.39 %</p>
-										</div>
-										<div class="d-flex align-items-center flex-wrap mb-3">
-											<h5 class="font-weight-normal mb-0 mb-md-1 mb-lg-0 me-3">17.247</h5>
-											<p class="text-muted mb-0">Avg Sessions</p>
-										</div>
-										<canvas id="task-chart" height="130"></canvas>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 					<div class="col-12 col-xl-6 grid-margin stretch-card">
@@ -199,45 +167,6 @@
 										</div>
 									</div>
 									<canvas height="150" id="activity-chart"></canvas>
-								</div>
-							</div>
-							<div class="col-md-12 grid-margin stretch-card">
-								<div class="row w-100 flex-grow">
-									<div class="col-md-12 stretch-card">
-										<div class="card">
-											<div class="card-body pb-0">
-												<p class="card-title">Products in stock</p>
-												<div class="d-flex justify-content-between flex-wrap">
-													<p class="text-muted">Last update: 2 Hours ago</p>
-													<div
-														class="d-flex align-items-center flex-wrap server-status-legend mt-3 mb-3 mb-md-0">
-														<div class="item me-3">
-															<div class="d-flex align-items-center">
-																<div class="color-bullet"></div>
-																<h5 class="font-weight-bold mb-0">128GB</h5>
-															</div>
-															<p class="mb-">Total Usage</p>
-														</div>
-														<div class="item me-3">
-															<div class="d-flex align-items-center">
-																<div class="color-bullet"></div>
-																<h5 class="font-weight-bold mb-0">92%</h5>
-															</div>
-															<p class="mb-">Memory Usage</p>
-														</div>
-														<div class="item me-3">
-															<div class="d-flex align-items-center">
-																<div class="color-bullet"></div>
-																<h5 class="font-weight-bold mb-0">16%</h5>
-															</div>
-															<p class="mb-">Disk Usage</p>
-														</div>
-													</div>
-												</div>
-											</div>
-											<canvas height="170" id="status-chart"></canvas>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>

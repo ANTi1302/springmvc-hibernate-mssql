@@ -44,81 +44,37 @@
                                         <th></th>
                                         <th>Name</th>
                                         <th>Price</th>
-                                        <th>Status</th>
+                                       <!--  <th>Status</th> -->
                                         <th>Order Total</th>
                                        
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                <c:forEach items="${listorder }" var="o">
+                                <tr>
                                         <td class="cart_product_img">
-                                            <a href="#"><img src="img/bg-img/cart1.jpg" alt="Product"></a>
+                                            <a href="#"><img src="${o.colors[0][0] }" alt="Product"></a>
                                         </td>
                                         <td class="cart_product_desc">
-                                            <h5>Chair</h5>
-                                            <h5>White Modern Chair</h5>
+                                            <h5>${o.name}</h5>
                                         </td>
                                         <td class="price">
-                                            <span>$130</span>
+                                            <span>$${o.price}</span>
                                         </td>
+                                      <%--   <td class="price">
+                                            <span>${o[3] }</span>
+                                        </td> --%>
                                         <td class="price">
-                                            <span>COMPLETED</span>
-                                        </td>
-                                        <td class="price">
-                                            <span>$130</span>
+                                            <span>$${o.orderDetails[0][2] }</span>
                                         </td>
                                         <td>
                                            
-                                                <a href="cart.html" class="btn amado-btn w-100">Buy Again</a>
+                                                <a href="<c:url value="/cart?id=${o.productId}" />"  class="btn amado-btn w-100">Buy Again</a>
                                             
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="cart_product_img">
-                                            <a href="#"><img src="img/bg-img/cart2.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <h5>Chair</h5>
-                                            <h5>Minimal Plant Pot</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span>$10</span>
-                                        </td>
-                                        <td class="price">
-                                            <span>COMPLETED</span>
-                                        </td>
-                                        <td class="price">
-                                            <span>$130</span>
-                                        </td>
-                                        <td>
-                                          
-                                                <a href="cart.html" class="btn amado-btn w-100">Buy Again</a>
-                                          
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cart_product_img">
-                                            <a href="#"><img src="img/bg-img/cart3.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <h5>Chair</h5>
-                                            <h5>Minimal Plant Pot</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span>$10</span>
-                                        </td>
-                                        <td class="price">
-                                            <span>COMPLETED</span>
-                                        </td>
-                                        <td class="price">
-                                            <span>$130</span>
-                                        </td>
-                                        <td>
-                                     
-                                                <a href="cart.html" class="btn amado-btn w-100">Buy Again</a>
-                                           
-                                        </td>
-                                    </tr>
+                                </c:forEach>
+                                    
                                 </tbody>
                             </table>
                         </div>

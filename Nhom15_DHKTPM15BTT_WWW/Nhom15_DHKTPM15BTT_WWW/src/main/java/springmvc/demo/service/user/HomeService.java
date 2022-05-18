@@ -78,10 +78,10 @@ public interface HomeService {
 	public void addOrders(Order order);
 
 	public Order findOrderId(String id);
-
+	public List<Object[]> listOrder(String userId);
 	// orderdetails
 	public void addOrderDetails(OrderDetail order);
-
+	public List<OrderDetail> getDsOrderByIDProduct(String productId);
 	
 	//user
 	public Users timKiemUserLogin(String ten, String pass);
@@ -98,6 +98,10 @@ public interface HomeService {
 
 	public List<Users> getUsers(String id);
 	public void saveUser(Users theUsers,String id);
+
+	
+
+	
 
 
 

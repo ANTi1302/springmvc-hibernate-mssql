@@ -12,4 +12,5 @@ public interface OrderDetailsDao{
 	public void addOrderDetails(OrderDetail cart);
 	public List<Object[]> findOrderDetailId(String id);
 	public int demSLOrderDeatilTheoProductId(String productId);
+	public List<OrderDetail> getDsOrderByIDProduct(String productId);
 }

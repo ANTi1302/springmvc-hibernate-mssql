@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import springmvc.demo.entity.Cart;
+import springmvc.demo.entity.Color;
 import springmvc.demo.entity.Menus;
 import springmvc.demo.entity.Order;
 import springmvc.demo.entity.OrderDetail;
@@ -50,6 +51,19 @@ public class OrderDetailsDaoImpl extends BaseDao implements OrderDetailsDao {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	@Override
+	public List<OrderDetail> getDsOrderByIDProduct(String productId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		TypedQuery<OrderDetail> theQuery = currentSession.createQuery(" SELECT o.productId.productId, o.price, sum(o.amount*o.price)\r\n"
+				+ "FROM     OrderDetail o \r\n"
+				+ "where o.productId.productId='"+productId+"'\r\n"
+				+ "GROUP BY  o.productId.productId ,o.price");
+		// execute query and get result list
+		List<OrderDetail> orderDetails = (List<OrderDetail>) theQuery.getResultList();
+		// return the results
+		return orderDetails;
 	}
 
 

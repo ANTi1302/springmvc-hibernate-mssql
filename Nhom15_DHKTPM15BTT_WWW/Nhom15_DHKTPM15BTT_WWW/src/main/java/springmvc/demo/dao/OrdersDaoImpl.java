@@ -98,5 +98,35 @@ public class OrdersDaoImpl extends BaseDao implements OrdersDao {
 		return productCategories;
 	}
 
+	@Override
+	public List<Object[]> getDsOrderByAccount(int index,String id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="SELECT  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,sum(d.amount* d.price),d.productId.user.userId\r\n"
+				+ "FROM     Order o INNER JOIN\r\n"
+				+ "                  OrderDetail d ON o.orderId = d.orderId.orderId\r\n where d.productId.user.userId='"+id+"'"
+				+ "GROUP BY  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,d.productId.user.userId";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((index-1)*6)).setMaxResults(6);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+	
+	@Override
+	public List<Object[]> listOrder(String userId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="SELECT o.orderId, od.productId.name, od.price,o.status, sum( od.amount* od.price), od.productId.productId\r\n"
+				+ "FROM     OrderDetail od INNER JOIN\r\n"
+				+ "                  Order o ON od.orderId.orderId = o.orderId INNER JOIN\r\n"
+				+ "                  Users u ON o.user.userId = u.userId\r\n"
+				+ "				  where u.userId='"+userId+"'\r\n"
+				+ "GROUP BY o.orderId, od.productId.name, od.price,o.status, od.productId.productId";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
 
 }

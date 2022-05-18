@@ -91,7 +91,6 @@
 											</tr>
 										</thead>
 										<tbody>
-
 											<c:forEach items="${listproduct }" var="c">
 												<c:url var="deleteLink" value="/admin/delete">
 													<c:param name="productId" value="${c.productId }" />

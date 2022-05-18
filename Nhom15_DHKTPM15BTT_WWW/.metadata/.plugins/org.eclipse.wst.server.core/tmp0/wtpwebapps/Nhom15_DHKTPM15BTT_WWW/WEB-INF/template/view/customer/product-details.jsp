@@ -114,7 +114,7 @@
 						<div class="product-meta-data">
 							<div class="line"></div>
 							<p class="product-price">$${dsProductChiTiet[3]}</p>
-							<a href="<c:url value="/assets/view/product-details.jsp" />">
+							<a href="<c:url value="" />">
 								<h6>${dsProductChiTiet[2]}</h6>
 							</a>
 							<!-- Ratings & Review -->

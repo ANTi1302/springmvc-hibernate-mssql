@@ -100,11 +100,11 @@
 									<table class="table table-bordered table-striped" id="tblData">
 										<thead>
 											<tr>
-												<th class="text-center">Loai</th>
-												<th class="text-center">Tong so luong</th>
-												<th class="text-center">Tong gia tri</th>
+												<th class="text-center">Category</th>
+												<th class="text-center">Inventory Value</th>
+												<th class="text-center">Sum Price</th>
 												<th class="text-center">Price Min</th>
-												<th class="text-center">Price MAx</th>
+												<th class="text-center">Price Max</th>
 												<th class="text-center">Price Avg</th>
 											</tr>
 										</thead>

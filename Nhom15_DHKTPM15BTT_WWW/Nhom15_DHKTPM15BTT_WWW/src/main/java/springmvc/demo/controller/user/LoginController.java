@@ -1,6 +1,8 @@
 package springmvc.demo.controller.user;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import springmvc.demo.entity.Product;
 import springmvc.demo.entity.Role;
 import springmvc.demo.entity.Users;
 
@@ -96,6 +99,28 @@ public class LoginController extends BaseController {
 	public ModelAndView mypurchase(HttpServletResponse response, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Users username = (Users) session.getAttribute("acc");
+
+		List<Product> products = new ArrayList<>();
+		List<Object[]> pr_list = new ArrayList<Object[]>();
+		pr_list.addAll(homeServer.listOrder(username.getUserId()));
+		for (Object[] objects : pr_list) {
+			products.add(homeServer.getProduct((String) objects[5]));
+		}
+		int soLuong = 0;
+		for (int i = 0; i < products.size(); i++) {
+			int count = 1;
+			for (int j = i + 1; j < products.size(); j++) {
+				if (products.get(i).getProductId().equals(products.get(j).getProductId())) {
+					count++;
+					products.remove(j);
+					j--;
+				}
+			}
+			soLuong++;
+			products.get(i).setColors(homeServer.getDsColorsByIDProduct(products.get(i).getProductId()));
+			products.get(i).setOrderDetails(homeServer.getDsOrderByIDProduct(products.get(i).getProductId()));
+		}
+		request.setAttribute("listorder", products);
 		request.setAttribute("soLuong", homeServer.demSLCartTheoIdUser(username.getUserId()));
 		modelAndView.setViewName("customer/mypurchase");
 		return modelAndView;

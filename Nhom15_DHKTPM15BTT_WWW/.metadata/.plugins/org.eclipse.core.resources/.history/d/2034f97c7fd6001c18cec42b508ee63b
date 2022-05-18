@@ -1,0 +1,132 @@
+package springmvc.demo.dao;
+
+import java.util.List;
+
+import javax.persistence.TypedQuery;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
+
+import springmvc.demo.entity.Branchs;
+import springmvc.demo.entity.Cart;
+import springmvc.demo.entity.Menus;
+import springmvc.demo.entity.Order;
+import springmvc.demo.entity.Product;
+
+@Repository
+public class OrdersDaoImpl extends BaseDao implements OrdersDao {
+
+	@Override
+	public void addOrders(Order cart) {
+		  Session currentSession = sessionFactory.getCurrentSession();
+          // save/upate the customer ... finally
+          currentSession.save(cart);
+	}
+
+	@Override
+	public Order findOrderId(String id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+        // now retrieve/read from database using the primary key
+		Order theOrder = currentSession.get(Order.class, id);
+        return theOrder;
+	}
+//	SELECT  Orders.order_id 
+//	FROM     Orders INNER JOIN
+//    Order_Detail ON Orders.order_id = Order_Detail.order_id
+//	   where [status]='check'
+//GROUP BY Orders.order_id
+
+	@Override
+	public List<Object[]> getDsOrderByStatus(int index,String id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="SELECT  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,sum(d.amount* d.price),d.productId.user.userId\r\n"
+				+ "FROM     Order o INNER JOIN\r\n"
+				+ "                  OrderDetail d ON o.orderId = d.orderId.orderId\r\n where d.productId.user.userId='"+id+"'"
+				+ "GROUP BY  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,d.productId.user.userId";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((index-1)*6)).setMaxResults(6);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+	@Override
+	public int demSLOrderByStatus() {
+		try {
+			String query = "select count(*)from Orders";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soHoaDon = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soHoaDon;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public void confirm(String id, String string) {
+		 Session currentSession = sessionFactory.getCurrentSession();		
+		 Query<Order> query=currentSession.createQuery("update Order set status=:status where orderId=:userId");
+			query.setParameter("userId", id);
+			query.setParameter("status", string);
+			query.executeUpdate();
+	}
+	
+	@Override
+	public void cancel(String id, String string) {
+		 Session currentSession = sessionFactory.getCurrentSession();		
+		 Query<Order> query=currentSession.createQuery("update Order set status=:status where orderId=:userId");
+			query.setParameter("userId", id);
+			query.setParameter("status", string);
+			query.executeUpdate();
+	}
+
+	@Override
+	public List<Object[]> getDsOrderByStatusCheck(int indexPage, String userId, String tenS) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="SELECT  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,sum(d.amount* d.price),d.productId.user.userId\r\n"
+				+ "FROM     Order o INNER JOIN\r\n"
+				+ "                  OrderDetail d ON o.orderId = d.orderId.orderId\r\n where d.productId.user.userId='"+userId+"' and o.status='"+tenS+"'"
+				+ "GROUP BY  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,d.productId.user.userId";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+	@Override
+	public List<Object[]> getDsOrderByAccount(int index,String id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="SELECT  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,sum(d.amount* d.price),d.productId.user.userId\r\n"
+				+ "FROM     Order o INNER JOIN\r\n"
+				+ "                  OrderDetail d ON o.orderId = d.orderId.orderId\r\n where d.productId.user.userId='"+id+"'"
+				+ "GROUP BY  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,d.productId.user.userId";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((index-1)*6)).setMaxResults(6);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+	
+	@Override
+	public List<Object[]> listOrder(String userId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="SELECT o.orderId, od.price,o.status, sum( od.amount* od.price)\r\n"
+				+ "FROM     OrderDetail od INNER JOIN\r\n"
+				+ "                  Order o ON od.orderId.orderId = o.orderId INNER JOIN\r\n"
+				+ "                  User u ON o.userId = u.user_id\r\n"
+				+ "				  where Users.user_id='"+userId+"'\r\n"
+				+ "GROUP BY o.order_id,  od.price,od.status";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+}

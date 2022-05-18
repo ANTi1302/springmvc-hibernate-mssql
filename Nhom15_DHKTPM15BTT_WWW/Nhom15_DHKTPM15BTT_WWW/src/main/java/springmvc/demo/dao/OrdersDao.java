@@ -16,4 +16,6 @@ public interface OrdersDao{
 	public void confirm(String id, String string);
 	public void cancel(String id, String string);
 	public List<Object[]> getDsOrderByStatusCheck(int indexPage, String userId, String tenS);
+	public List<Object[]> getDsOrderByAccount(int index,String id);
+	public List<Object[]> listOrder(String userId);
 }

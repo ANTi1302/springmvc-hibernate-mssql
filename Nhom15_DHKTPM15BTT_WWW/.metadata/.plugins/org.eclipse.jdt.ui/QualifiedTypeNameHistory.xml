@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="springmvc.demo.dao.OrdersDao"/>
-    <fullyQualifiedTypeName name="net.bytebuddy.matcher.ModifierMatcher.Mode"/>
-    <fullyQualifiedTypeName name="springmvc.demo.service.admin.AdminService"/>
     <fullyQualifiedTypeName name="springmvc.demo.service.user.HomeService"/>
     <fullyQualifiedTypeName name="springmvc.demo.dao.OrderDetailsDao"/>
     <fullyQualifiedTypeName name="springmvc.demo.entity.OrderDetail"/>
     <fullyQualifiedTypeName name="antlr.collections.List"/>
-    <fullyQualifiedTypeName name="java.lang.Double"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="springmvc.demo.dao.CategoryDao"/>
     <fullyQualifiedTypeName name="springmvc.demo.dao.VouchersDao"/>
@@ -52,12 +48,16 @@
     <fullyQualifiedTypeName name="springmvc.demo.entity.Product"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="springmvc.demo.entity.Order"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="java.lang.Double"/>
+    <fullyQualifiedTypeName name="java.math.BigInteger"/>
+    <fullyQualifiedTypeName name="java.math.BigDecimal"/>
+    <fullyQualifiedTypeName name="java.lang.Long"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
 </qualifiedTypeNameHistroy>
