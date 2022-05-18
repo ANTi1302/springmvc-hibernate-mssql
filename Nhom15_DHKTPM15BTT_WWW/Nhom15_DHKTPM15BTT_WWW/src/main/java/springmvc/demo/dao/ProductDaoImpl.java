@@ -519,5 +519,16 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 		List<Object[]> productCategories =  query.getResultList();
 		return productCategories;
 	}
+
+	@Override
+	public void capNhatProduct(String productId) {
+		Session currentSession=sessionFactory.getCurrentSession();
+		String query = "UPDATE Product\r\n"
+				+ "SET quatity = Product.quatity-Order_Detail.amount\r\n"
+				+ "FROM     Product ,\r\n"
+				+ "                  Order_Detail WHERE Product.product_id = Order_Detail.product_id\r\n"
+				+ "and  Product.product_id='"+productId+"'";
+		 currentSession.createNativeQuery(query).executeUpdate();
+	}
 	
 }

@@ -12,20 +12,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import javax.persistence.Transient;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Users")
-public class Users implements Serializable{
+public class Users implements Serializable {
+	public static final String ADMIN = "ROLE_ADMIN";
+	public static final String USER = "ROLE_USER";
 	@Id
 	@GenericGenerator(name = "generator", strategy = "guid", parameters = {})
 	@GeneratedValue(generator = "generator")
 	@Column(name = "user_id", columnDefinition = "uniqueidentifier")
 	private String userId;
-	@Column(name = "first_Name",columnDefinition = "nvarchar(500)")
+	@Column(name = "first_Name", columnDefinition = "nvarchar(500)")
 	private String firstName;
-	@Column(name = "last_Name",columnDefinition = "nvarchar(500)")
+	@Column(name = "last_Name", columnDefinition = "nvarchar(500)")
 	private String lastName;
 	@Column(columnDefinition = "nvarchar(500)")
 	private String address;
@@ -35,23 +37,34 @@ public class Users implements Serializable{
 	private String phone;
 	@Column(columnDefinition = "nvarchar(1000)")
 	private String password;
-	@Column(name = "access_tokenID",columnDefinition = "nvarchar(1000)")
+	@Column(name = "access_tokenID", columnDefinition = "nvarchar(1000)")
 	private String accessTokenID;
-	
+
 	@ManyToOne
 	@GenericGenerator(name = "generator", strategy = "guid", parameters = {})
 	@GeneratedValue(generator = "generator")
-	@JoinColumn(name ="role_id", columnDefinition = "uniqueidentifier")
+	@JoinColumn(name = "role_id", columnDefinition = "uniqueidentifier")
 	private Role role;
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<Cart> carts;
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<Product> products;
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders;
+
+	@Transient
+	private String confirmPassword;
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
 
 	public String getUserId() {
 		return userId;
@@ -176,6 +189,16 @@ public class Users implements Serializable{
 		this.role = role;
 	}
 
+	public Users(String firstName, String lastName, String email, String phone, String password, Role role) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phone = phone;
+		this.password = password;
+		this.role = role;
+	}
+
 	public Users() {
 		super();
 	}
@@ -199,7 +222,5 @@ public class Users implements Serializable{
 				+ ", email=" + email + ", phone=" + phone + ", password=" + password + ", accessTokenID="
 				+ accessTokenID + ", role=" + role + "]";
 	}
-	
-	
-	
+
 }

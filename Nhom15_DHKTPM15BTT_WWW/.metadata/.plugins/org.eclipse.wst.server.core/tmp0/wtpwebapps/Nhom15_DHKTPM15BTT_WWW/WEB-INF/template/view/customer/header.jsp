@@ -87,7 +87,6 @@
 											+ items.get(i - 1) + "</a></div>");
 										}
 										%>
-										sửa típ đi nam :)) kmđ
 									</c:forEach>
 
 								</div>
@@ -110,10 +109,9 @@
 				<div class="col-sm-12">
 					<div class="contactinfo">
 						<ul class="nav nav-pills">
-							<li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88
-									821</a></li>
+							<li><a href="#"><i class="fa fa-phone"></i> +84 932 904 529</a></li>
 							<li><a href="#"><i class="fa fa-envelope"></i>
-									info@domain.com</a></li>
+									info@ellentshop.com</a></li>
 						</ul>
 
 					</div>
@@ -220,7 +218,7 @@
 					<li><a href="<c:url value="/logout" />">Logout</a></li>
 				</c:if>
 				<c:if test="${sessionScope.acc == null}">
-					<li><a href="<c:url value="" />">Register</a></li>
+					<li><a href="<c:url value="/registerform" />">Register</a></li>
 				</c:if>
 			</ul>
 		</nav>

@@ -83,4 +83,11 @@ public class UsersDaoImpl extends BaseDao implements UsersDao {
 		
 	}
 
+	@Override
+	public void addNewUser(Users users) {
+		 Session currentSession = sessionFactory.getCurrentSession();
+         currentSession.save(users);		
+		
+	}
+
 }

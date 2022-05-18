@@ -18,5 +18,7 @@ public interface UsersDao{
 	
 	public List<Users> getUsers(String id);
 	public void saveUser(Users theUsers,String id);
+
+	public void addNewUser(Users users);
 	
 }

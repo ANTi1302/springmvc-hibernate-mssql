@@ -6,8 +6,9 @@ public class MySpringMvcDisspatcherServletInstall extends AbstractAnnotationConf
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Class[] {
+				DemoSecurityConfig.class
+		};
 	}
 
 	@Override

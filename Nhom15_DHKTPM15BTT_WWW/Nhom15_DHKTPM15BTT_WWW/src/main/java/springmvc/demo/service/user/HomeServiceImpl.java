@@ -1,10 +1,18 @@
 package springmvc.demo.service.user;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import springmvc.demo.dao.BranchsDao;
 import springmvc.demo.dao.CartsDao;
@@ -30,7 +38,7 @@ import springmvc.demo.entity.ProductCategory;
 import springmvc.demo.entity.Users;
 
 
-@Service
+@Service("userDetailsService")
 @Transactional
 public class HomeServiceImpl implements HomeService{
 
@@ -63,6 +71,10 @@ public class HomeServiceImpl implements HomeService{
 	
 	@Autowired
 	private UsersDao usersDao;
+	
+	@Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+	
 	@Override
 	
 	public List<Product> dsProduct() {
@@ -315,5 +327,29 @@ public class HomeServiceImpl implements HomeService{
 		return orderDetailsDao.getDsOrderByIDProduct(productId);
 	}
 
+	@Override
+	public void capNhatProduct(String productId) {
+		// TODO Auto-generated method stub
+		productDao.capNhatProduct(productId);
+	}
+
+	@Override
+	public void addNewUser(Users users) {
+		String pass=users.getPassword();
+		users.setPassword(passwordEncoder.encode(pass));
+//		users.setRole(users.USER);
+		 usersDao.addNewUser(users);
+	}
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		List<Users> customers =usersDao.getUsers(username);
+		if (customers.isEmpty()) 
+			throw new UsernameNotFoundException("Not customer ");
+			
+		Users customer=customers.get(0);
+		Set<GrantedAuthority> authorities= new HashSet<>();
+		authorities.add(new SimpleGrantedAuthority(customer.getRole().getTitle()));
+		return new User(customer.getFirstName()+customer.getLastName(),customer.getPassword(),authorities);
+	}
 
 }

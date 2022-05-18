@@ -2,6 +2,7 @@ package springmvc.demo.service.user;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import springmvc.demo.dto.ProductDto;
@@ -18,7 +19,7 @@ import springmvc.demo.entity.ProductCategory;
 import springmvc.demo.entity.Users;
 
 @Service
-public interface HomeService {
+public interface HomeService extends UserDetailsService{
 
 	// product
 	public List<Product> dsProduct();
@@ -40,6 +41,7 @@ public interface HomeService {
 	public boolean capNhatProduct(int product);
 	public List<Object[]> dsProductTheoIDBranchsTop6(int index, String ten);
 	public int demSLKhiSearchTheoIDSaller(String tenS, String userId);
+	public void capNhatProduct(String productId);
 	// menus
 	public List<Menus> getDsMenus();
 
@@ -68,6 +70,10 @@ public interface HomeService {
 	// productcart
 	public void addProductCarts(ProductCart cart);
 	public List<Object[]> getProductByUserID(String userId);
+	public void deleteProductCarts(String id);
+
+	public void deleteProductCartsByCreated_At(String id);
+
 
 	// cart
 	public void addCart(Cart cart);
@@ -89,15 +95,17 @@ public interface HomeService {
 	public void themUser(Users users2);
 
 	public  Users timKiemUserByPhone(String phone);
+	public void addNewUser(Users users);
 
 	public int demSLCartTheoIdUser(String userId);
 
-	public void deleteProductCarts(String id);
-
-	public void deleteProductCartsByCreated_At(String id);
-
+	
 	public List<Users> getUsers(String id);
 	public void saveUser(Users theUsers,String id);
+
+	
+
+
 
 	
 

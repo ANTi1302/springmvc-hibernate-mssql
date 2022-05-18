@@ -46,4 +46,5 @@ public interface ProductDao {
 	
 	///trong index xuat 40 don hang gan nhat
 	public List<Object[]> getDs40Order(String userId, String tenS);
+	public void capNhatProduct(String productId);
 }
