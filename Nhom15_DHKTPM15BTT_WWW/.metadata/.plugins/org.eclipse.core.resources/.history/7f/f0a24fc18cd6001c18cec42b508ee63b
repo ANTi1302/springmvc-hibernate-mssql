@@ -120,7 +120,7 @@ public class OrdersDaoImpl extends BaseDao implements OrdersDao {
 				+ "FROM     OrderDetail od INNER JOIN\r\n"
 				+ "                  Order o ON od.orderId.orderId = o.orderId INNER JOIN\r\n"
 				+ "                  Users u ON o.user.userId = u.userId\r\n"
-				+ "				  where u.userId='"+userId+"' and o.status='Confirm'\r\n"
+				+ "				  where u.userId='"+userId+"'\r\n"
 				+ "GROUP BY o.orderId, od.productId.name, od.price,o.status, od.productId.productId";
 		// execute query and get result list
 		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
