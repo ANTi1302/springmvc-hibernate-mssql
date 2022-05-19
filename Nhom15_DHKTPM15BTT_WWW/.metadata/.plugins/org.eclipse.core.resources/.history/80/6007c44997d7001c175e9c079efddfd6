@@ -1,0 +1,3 @@
+product.name.lenErr=Product name minimum 5-100 characters
+product.price.minErr=Product price minimum 1$
+product.price.maxErr=Product price minimum 100000000$

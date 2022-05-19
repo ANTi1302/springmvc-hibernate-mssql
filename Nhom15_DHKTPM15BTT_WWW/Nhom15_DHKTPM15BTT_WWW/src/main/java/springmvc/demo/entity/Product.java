@@ -13,6 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,7 +29,10 @@ public class Product implements Serializable{
 	@Column(name = "product_id", columnDefinition = "uniqueidentifier")
 	private String productId;
 	@Column(columnDefinition = "nvarchar(1000)")
+	@Size(min = 5, max=100, message = "{product.name.lenErr}")
 	private String name;
+	@Min(value = 1, message = "{product.price.minErr}")
+	@Max(value = 100000000,message = "{product.price.maxErr}")
 	private double price;
 	private float sale;
 	@Column(columnDefinition = "nvarchar(1000)")

@@ -352,4 +352,10 @@ public class HomeServiceImpl implements HomeService{
 		return new org.springframework.security.core.userdetails.User(customer.getPhone(),customer.getPassword(),authorities);
 	}
 
+	@Override
+	public List<Users> getUsersByPhone(String id) {
+		// TODO Auto-generated method stub
+		return usersDao.getUsersByPhone(id);
+	}
+
 }

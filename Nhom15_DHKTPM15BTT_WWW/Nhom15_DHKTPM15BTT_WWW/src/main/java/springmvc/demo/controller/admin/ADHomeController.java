@@ -12,10 +12,12 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,35 +49,25 @@ public class ADHomeController {
 	private Cloudinary cloudinary;
 
 	@RequestMapping("/home-admin")
-	public String home(Model model,HttpServletRequest req) {
+	public String home(Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		if (username!=null) {
-			model.addAttribute("list",
-					adminService.inventoryByCategory(username.getUserId()));
-			model.addAttribute("listsale",
-					adminService.revenueByCategory(username.getUserId()));
-			model.addAttribute("listcus",
-					adminService.revenueByCustomer(username.getUserId()));
-			model.addAttribute("listyear",
-					adminService.revenueByYear(username.getUserId()));
-			model.addAttribute("listmonth",
-					adminService.revenueByMonth(username.getUserId()));
-			model.addAttribute("listquarter",
-					adminService.revenueByQuater(username.getUserId()));
-			model.addAttribute("count",
-					adminService.countQuantityProduct(username.getUserId()));
-			model.addAttribute("countorder",
-					adminService.countOrder(username.getUserId()));
-			model.addAttribute("salesorder",
-					adminService.salesOrderDetail(username.getUserId()));
-			model.addAttribute("order",
-					adminService.getDs40Order(username.getUserId(),"Check"));
+		if (username != null) {
+			model.addAttribute("list", adminService.inventoryByCategory(username.getUserId()));
+			model.addAttribute("listsale", adminService.revenueByCategory(username.getUserId()));
+			model.addAttribute("listcus", adminService.revenueByCustomer(username.getUserId()));
+			model.addAttribute("listyear", adminService.revenueByYear(username.getUserId()));
+			model.addAttribute("listmonth", adminService.revenueByMonth(username.getUserId()));
+			model.addAttribute("listquarter", adminService.revenueByQuater(username.getUserId()));
+			model.addAttribute("count", adminService.countQuantityProduct(username.getUserId()));
+			model.addAttribute("countorder", adminService.countOrder(username.getUserId()));
+			model.addAttribute("salesorder", adminService.salesOrderDetail(username.getUserId()));
+			model.addAttribute("order", adminService.getDs40Order(username.getUserId(), "Check"));
 			return "admin/index";
-		}else {
+		} else {
 			return "redirect:adlogin";
 		}
-		
+
 	}
 
 	@RequestMapping("/adorder/{index}&{tenS}")
@@ -94,9 +86,9 @@ public class ADHomeController {
 		model.addAttribute("listorder", adminService.getDsOrderByStatus(indexPage, username.getUserId()));
 		return "admin/order";
 	}
-	
-	@RequestMapping({"/filterCheck/{index}&"})
-	public String filter(Model theModel, @RequestParam("Check") String tenS,@PathVariable(name = "index") String index,
+
+	@RequestMapping({ "/filterCheck/{index}&" })
+	public String filter(Model theModel, @RequestParam("Check") String tenS, @PathVariable(name = "index") String index,
 			HttpServletRequest req) {
 		int soLuong = adminService.demSLOrderByStatus();
 		HttpSession session = req.getSession();
@@ -110,12 +102,13 @@ public class ADHomeController {
 		theModel.addAttribute("endpage", endpage);
 		theModel.addAttribute("tag", indexPage);
 		req.setAttribute("tenS", tenS);
-		theModel.addAttribute("listorder", adminService.getDsOrderByStatusCheck(indexPage, username.getUserId(),tenS));
+		theModel.addAttribute("listorder", adminService.getDsOrderByStatusCheck(indexPage, username.getUserId(), tenS));
 		return "admin/order";
 	}
-	@RequestMapping({"/filterConfirm/{index}&"})
-	public String filterConfirm(Model theModel, @RequestParam("Confirm") String tenS,@PathVariable(name = "index") String index,
-			HttpServletRequest req) {
+
+	@RequestMapping({ "/filterConfirm/{index}&" })
+	public String filterConfirm(Model theModel, @RequestParam("Confirm") String tenS,
+			@PathVariable(name = "index") String index, HttpServletRequest req) {
 		int soLuong = adminService.demSLOrderByStatus();
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
@@ -128,12 +121,13 @@ public class ADHomeController {
 		theModel.addAttribute("endpage", endpage);
 		theModel.addAttribute("tag", indexPage);
 		req.setAttribute("tenS", tenS);
-		theModel.addAttribute("listorder", adminService.getDsOrderByStatusCheck(indexPage, username.getUserId(),tenS));
+		theModel.addAttribute("listorder", adminService.getDsOrderByStatusCheck(indexPage, username.getUserId(), tenS));
 		return "admin/order";
 	}
-	@RequestMapping({"/filterCancel/{index}&"})
-	public String filterCancel(Model theModel, @RequestParam("Cancel") String tenS,@PathVariable(name = "index") String index,
-			HttpServletRequest req) {
+
+	@RequestMapping({ "/filterCancel/{index}&" })
+	public String filterCancel(Model theModel, @RequestParam("Cancel") String tenS,
+			@PathVariable(name = "index") String index, HttpServletRequest req) {
 		int soLuong = adminService.demSLOrderByStatus();
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
@@ -146,22 +140,24 @@ public class ADHomeController {
 		theModel.addAttribute("endpage", endpage);
 		theModel.addAttribute("tag", indexPage);
 		req.setAttribute("tenS", tenS);
-		theModel.addAttribute("listorder", adminService.getDsOrderByStatusCheck(indexPage, username.getUserId(),tenS));
+		theModel.addAttribute("listorder", adminService.getDsOrderByStatusCheck(indexPage, username.getUserId(), tenS));
 		return "admin/order";
 	}
 
 	@GetMapping("/confirm")
-	private String confirm( @RequestParam("userId") String id, HttpServletRequest request) {
-		
-		adminService.confirm(id,"Confirm");
+	private String confirm(@RequestParam("userId") String id, HttpServletRequest request) {
+
+		adminService.confirm(id, "Confirm");
 		return "redirect:adorder/1&";
 	}
+
 	@GetMapping("/cancel")
-	private String cancel( @RequestParam("userId") String id, HttpServletRequest request) {
-		
-		adminService.confirm(id,"Cancel");
+	private String cancel(@RequestParam("userId") String id, HttpServletRequest request) {
+
+		adminService.confirm(id, "Cancel");
 		return "redirect:adorder/1&";
 	}
+
 	@RequestMapping("/adaccount")
 	public String home() {
 		return "admin/account";
@@ -245,13 +241,18 @@ public class ADHomeController {
 	}
 
 	@PostMapping("/saveProduct")
-	private String luu(@ModelAttribute("product") Product theProduct, HttpServletRequest request) {
-		theProduct.setCreatedAt(new Date());
-		adminService.saveProduct(theProduct);
-		HttpSession session = request.getSession();
-		session.setAttribute("productname", theProduct.getName());
-		session.setAttribute("productid", theProduct.getProductId());
-		return "redirect:formcategoryproduct";
+	private String luu(@ModelAttribute("product") @Valid Product theProduct, BindingResult result,
+			HttpServletRequest request) {
+		if (!(result.hasErrors())) {
+			theProduct.setCreatedAt(new Date());
+			adminService.saveProduct(theProduct);
+			HttpSession session = request.getSession();
+			session.setAttribute("productname", theProduct.getName());
+			session.setAttribute("productid", theProduct.getProductId());
+			return "redirect:formcategoryproduct";
+		}
+		return "admin/form_product";
+
 	}
 
 	@PostMapping("/updateProduct")
@@ -326,64 +327,63 @@ public class ADHomeController {
 		return "admin/form_product_update";
 	}
 
-	@GetMapping({"/search/{index}&"})
-	public String searchProduct(Model theModel, @RequestParam("tenS") String tenS,@PathVariable(name = "index") String index,
-			HttpServletRequest req) {
+	@GetMapping({ "/search/{index}&" })
+	public String searchProduct(Model theModel, @RequestParam("tenS") String tenS,
+			@PathVariable(name = "index") String index, HttpServletRequest req) {
 		String ten = tenS.trim();
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		
+
 		String[] tenx = ten.split("[,; \\t\\n\\r]+");
 		for (String string : tenx) {
-		if (index == null) {
-			index = "1";
-		}
-		
-		int indexPage = Integer.parseInt(index);
-		int soLuong = homeService.demSLKhiSearchTheoIDSaller(string,username.getUserId());
-		int endpage = (soLuong + 5) / 6;
+			if (index == null) {
+				index = "1";
+			}
 
-		theModel.addAttribute("listproduct",
-				adminService.getDsProductTop9ToSearxh(indexPage, username.getUserId(), string));
-		theModel.addAttribute("endpage", endpage);
-		theModel.addAttribute("tag", indexPage);}
+			int indexPage = Integer.parseInt(index);
+			int soLuong = homeService.demSLKhiSearchTheoIDSaller(string, username.getUserId());
+			int endpage = (soLuong + 5) / 6;
+
+			theModel.addAttribute("listproduct",
+					adminService.getDsProductTop9ToSearxh(indexPage, username.getUserId(), string));
+			theModel.addAttribute("endpage", endpage);
+			theModel.addAttribute("tag", indexPage);
+		}
 		req.setAttribute("tenS", tenS);
 		return "admin/product";
 	}
 
 	@RequestMapping("/inventory/{index}&{tenS}")
-	public String inventory(Model model, @PathVariable(name = "index") String index,HttpServletRequest req) {
+	public String inventory(Model model, @PathVariable(name = "index") String index, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
 		if (index == null) {
 			index = "1";
 		}
-		
+
 		int indexPage = Integer.parseInt(index);
 		int soLuong = adminService.countInventoryByCategory(username.getUserId());
 		int endpage = (soLuong + 5) / 6;
 
-		model.addAttribute("list",
-				adminService.inventoryByCategory(indexPage, username.getUserId()));
+		model.addAttribute("list", adminService.inventoryByCategory(indexPage, username.getUserId()));
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("tag", indexPage);
 		return "admin/inventory";
 	}
 
 	@RequestMapping("/sales/{index}&{tenS}")
-	public String sales(Model model, @PathVariable(name = "index") String index,HttpServletRequest req) {
+	public String sales(Model model, @PathVariable(name = "index") String index, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
 		if (index == null) {
 			index = "1";
 		}
-		
+
 		int indexPage = Integer.parseInt(index);
 		int soLuong = adminService.countRevenueByCategory(username.getUserId());
 		int endpage = (soLuong + 5) / 6;
 
-		model.addAttribute("list",
-				adminService.revenueByCategory(indexPage, username.getUserId()));
+		model.addAttribute("list", adminService.revenueByCategory(indexPage, username.getUserId()));
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("tag", indexPage);
 		return "admin/sales";
@@ -408,6 +408,7 @@ public class ADHomeController {
 	public String formcategory(@ModelAttribute("category") Category theCategory) {
 		return "admin/form_category";
 	}
+
 	@PostMapping("/saveCategory")
 	private String saveCategory(@ModelAttribute("category") Category theCategory, HttpServletRequest request)
 			throws ServletException, IOException {
@@ -416,7 +417,7 @@ public class ADHomeController {
 			Map r = this.cloudinary.uploader().upload(theCategory.getFile().getBytes(),
 					ObjectUtils.asMap("resource_type", "auto"));
 			String icon = (String) r.get("secure_url");
-			 theCategory.setIcon(icon);
+			theCategory.setIcon(icon);
 			adminService.saveCategory(theCategory);
 			return "redirect:category/1&";
 		} catch (Exception e) {
@@ -426,6 +427,7 @@ public class ADHomeController {
 		return "admin/form_category";
 
 	}
+
 	@RequestMapping("/updatecategory")
 	public String updatecategory(@RequestParam("categoryId") String theId, Model theModel) {
 		Category theCategory = adminService.getCategory(theId);
@@ -433,6 +435,7 @@ public class ADHomeController {
 
 		return "admin/form_category_update";
 	}
+
 	@RequestMapping("/deleteCategory")
 	public String deleteCategory(@RequestParam("categoryId") String categoryId) {
 
@@ -440,6 +443,7 @@ public class ADHomeController {
 		return "redirect:category/1&";
 
 	}
+
 	@RequestMapping("/formvoucher")
 	public String formvoucher(Model model, HttpServletRequest req, @ModelAttribute("voucher") Voucher theVoucher) {
 
@@ -448,6 +452,7 @@ public class ADHomeController {
 
 		return "admin/form_voucher";
 	}
+
 	@PostMapping("/saveVoucher")
 	private String saveVoucher(@ModelAttribute("voucher") Voucher theVoucher, HttpServletRequest request) {
 		theVoucher.setCreatedAt(new Date());
@@ -464,6 +469,7 @@ public class ADHomeController {
 		theModel.addAttribute("voucher", theVoucher);
 		return "admin/form_voucher_update";
 	}
+
 	@RequestMapping("/deletevoucher")
 	public String deleteVoucher(@RequestParam("voucherId") String voucherId) {
 
@@ -472,7 +478,7 @@ public class ADHomeController {
 		return "redirect:voucher/1&";
 
 	}
-	
+
 	@RequestMapping("/formbranch")
 	public String formbranch(Model model, HttpServletRequest req, @ModelAttribute("branch") Branchs theBranchs) {
 
@@ -513,6 +519,5 @@ public class ADHomeController {
 		adminService.deleteBranch(theId);
 		return "redirect:branch/1&";
 	}
-
 
 }

@@ -1615,3 +1615,15 @@ java.net.UnknownHostException: No such host is known (org.chromium.sdk)
 
 !ENTRY org.eclipse.equinox.p2.repository 2 0 2022-05-19 12:12:55.607
 !MESSAGE Using unsafe http transport to retrieve http://download.eclipse.org/webtools/repository/2021-09/, see CVE-2021-41033. Consider using https instead.
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-05-20 00:00:02.904
+!MESSAGE The artifact org.hibernate:hibernate-validator:jar:6.1.1.Final has been relocated to org.hibernate.validator:hibernate-validator:jar:6.1.1.Final
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-05-20 00:00:06.186
+!MESSAGE The artifact org.hibernate:hibernate-validator:jar:6.1.1.Final has been relocated to org.hibernate.validator:hibernate-validator:jar:6.1.1.Final
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-05-20 00:00:07.444
+!MESSAGE The artifact org.hibernate:hibernate-validator:jar:6.1.1.Final has been relocated to org.hibernate.validator:hibernate-validator:jar:6.1.1.Final
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2022-05-20 00:00:08.838
+!MESSAGE The artifact org.hibernate:hibernate-validator:jar:6.1.1.Final has been relocated to org.hibernate.validator:hibernate-validator:jar:6.1.1.Final

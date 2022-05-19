@@ -8,14 +8,18 @@ import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -52,6 +56,26 @@ public class DemoAppConfig implements WebMvcConfigurer {
 		
 		return viewResolver;
 	}
+	
+	@Override
+	public Validator getValidator() {
+		// TODO Auto-generated method stub
+		return validator();
+	}
+	
+	@Bean
+	public LocalValidatorFactoryBean validator() {
+		LocalValidatorFactoryBean v=new LocalValidatorFactoryBean();
+		v.setValidationMessageSource(messageSource());
+		return v;
+	}
+	@Bean
+	public MessageSource messageSource() {
+		ResourceBundleMessageSource source=new ResourceBundleMessageSource();
+		source.setBasename("messages");
+		return source;
+	}
+	
 	@Bean
     public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver resolver

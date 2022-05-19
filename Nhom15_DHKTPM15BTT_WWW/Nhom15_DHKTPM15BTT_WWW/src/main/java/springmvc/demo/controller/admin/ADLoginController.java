@@ -29,25 +29,7 @@ public class ADLoginController {
 	
 	@RequestMapping("/adlogin")
 	public String showformlogin(HttpServletResponse response, HttpServletRequest request) throws IOException {
-		return "admin/login";
-	}
-
-	@PostMapping("/adlogin")
-	public String login(HttpServletResponse response, HttpServletRequest request) {
-		String ten = request.getParameter("name");
-		String pass = (String) request.getParameter("pass");
-		HttpSession session = request.getSession();
-
-		// tim sdt de lay id_user
-		session.setAttribute("phone", adminService.timKiemUserByPhone(ten));
-//		Users users=productFacade.timKiemUserLogin(ten, pass);
-		if (adminService.timKiemUserLogin(ten, pass) == null) {
-			return "admin/adlogin";
-		} else {
-			session.setAttribute("acc", adminService.timKiemUserLogin(ten, pass));
-			return "redirect:home-admin";
-		}
-//		return "customer/login";
+		return "customer/login";
 	}
 
 	@GetMapping("/adlogout")

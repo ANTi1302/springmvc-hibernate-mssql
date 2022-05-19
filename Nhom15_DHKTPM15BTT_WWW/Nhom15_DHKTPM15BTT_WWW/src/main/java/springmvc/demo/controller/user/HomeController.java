@@ -73,6 +73,7 @@ public class HomeController extends BaseController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		req.setAttribute("acc",username);
 		modelAndView.setViewName("customer/index");
 		return modelAndView;
 	}
@@ -295,7 +296,7 @@ public class HomeController extends BaseController {
 
 			}
 		} else {
-			Users us = (Users) session.getAttribute("phone");
+			Users us = (Users) session.getAttribute("acc");
 			List<Product> products = new ArrayList<>();
 			List<Object[]> pr_list = new ArrayList<Object[]>();
 			pr_list.addAll(homeServer.getProductByUserID(us.getUserId()));

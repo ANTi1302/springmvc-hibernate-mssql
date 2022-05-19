@@ -29,10 +29,16 @@
 						<div class="right-content">
 							<h3 class="form-title">Login</h3>
 
-							<form class="form-horizontal" action="login"
-								method="post">
+							<form class="form-horizontal" action="login" method="post">
+								<c:if test="${param.error !=null }">
+									<i class="alert alert-success">Sorry! You entered invalid
+										username / password </i>
+								</c:if>
+								<c:if test="${param.accessDenied !=null}">
+									<i class="alert alert-success">You have been logged out </i>
+								</c:if>
 								<div class="form-group">
-									<label>Username / Email</label> <input type="text"
+									<label>Phone</label> <input type="text"
 										class="form-control" name="name"
 										value="${sessionScope.acc.phone}">
 								</div>
@@ -81,18 +87,24 @@
 			FB.getLoginStatus(function(response) {
 				statusChangeCallback(response);
 			});
-			FB.api('/me', {
-				fields : ' name, email, id'
-			}, function(response) {
-				console.log(response);
-				/*  window.location.href = '/WebBanHangQuanAo/login?name='+response.name+'&id='+response.id; */
-				window.location.href = '${pageContext.request.contextPath}/loginfb?name='
-						+ response.name + '&id=' + response.id + '&email='
-						+ response.email;
-				// 					    	  USER-ID?fields=id,name,email,picture&access_token=ACCESS-TOKEN
-				// 				window.location.href = '/WebBanHangQuanAo/login?name='+response.name;
-				// 				window.location.href = '/WebBanHangQuanAo/login';
-			});
+			FB
+					.api(
+							'/me',
+							{
+								fields : ' name, email, id'
+							},
+							function(response) {
+								console.log(response);
+								/*  window.location.href = '/WebBanHangQuanAo/login?name='+response.name+'&id='+response.id; */
+								window.location.href = '${pageContext.request.contextPath}/loginfb?name='
+										+ response.name
+										+ '&id='
+										+ response.id
+										+ '&email=' + response.email;
+								// 					    	  USER-ID?fields=id,name,email,picture&access_token=ACCESS-TOKEN
+								// 				window.location.href = '/WebBanHangQuanAo/login?name='+response.name;
+								// 				window.location.href = '/WebBanHangQuanAo/login';
+							});
 		}
 
 		window.fbAsyncInit = function() {

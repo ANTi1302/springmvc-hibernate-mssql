@@ -51,6 +51,7 @@
 												<label class="col-sm-3 col-form-label">Name</label>
 												<div class="col-sm-9">
 													<form:input path="name" class="form-control" />
+												 <form:errors path="name" cssClass="alert alert-danger" element="div"/>
 												</div>
 											</div>
 										</div>
@@ -59,6 +60,7 @@
 												<label class="col-sm-3 col-form-label">Amount</label>
 												<div class="col-sm-9">
 													<form:input path="amount" class="form-control" />
+													
 												</div>
 											</div>
 										</div>
@@ -69,6 +71,7 @@
 												<label class="col-sm-3 col-form-label">Price</label>
 												<div class="col-sm-9">
 													<form:input path="price" class="form-control" />
+													 <form:errors path="price" cssClass="alert alert-danger" element="div"/>
 												</div>
 											</div>
 										</div>

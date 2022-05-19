@@ -93,7 +93,7 @@ public interface HomeService extends UserDetailsService{
 	public Users timKiemUserLogin(String ten, String pass);
 	public Users timKiemUser( String pass);
 	public void themUser(Users users2);
-
+	public List<Users> getUsersByPhone(String id);
 	public  Users timKiemUserByPhone(String phone);
 	public void addNewUser(Users users);
 

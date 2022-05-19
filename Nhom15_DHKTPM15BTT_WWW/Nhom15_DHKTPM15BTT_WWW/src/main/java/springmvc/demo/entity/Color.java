@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +26,7 @@ public class Color implements Serializable{
 	@Column(columnDefinition = "nvarchar(500)")
 	private String code;
 	@Column(columnDefinition = "nvarchar(1000)")
+	@NotNull(message = "{product.color.nullErr}")
 	private String img;
 	@Transient
 	private MultipartFile file;

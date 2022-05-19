@@ -12,7 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import springmvc.demo.handler.LoginSuccessHandler;
 
 
 @Configuration
@@ -22,6 +25,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class DemoSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired 
 	private UserDetailsService userDetailsService;
+	@Autowired 
+	private AuthenticationSuccessHandler logSuccessHandler;
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -31,6 +36,10 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
+	@Bean
+	public AuthenticationSuccessHandler loginSuccessHandler() {
+		return new LoginSuccessHandler();
 	}
 	
 	//phan quyen
@@ -52,8 +61,7 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter{
 		.usernameParameter("name")
 		.passwordParameter("pass");
 		http.formLogin().defaultSuccessUrl("/home").failureUrl("/login?error");
-		http.logout().logoutSuccessUrl("/logout");
-		http.exceptionHandling().accessDeniedPage("/login?accessDenied");
+		http.formLogin().successHandler(this.logSuccessHandler);
 		http.authorizeRequests()
 		.antMatchers("/").permitAll()
 		.antMatchers("/customer/**").access("hasRole('ROLE_ADMIN')");

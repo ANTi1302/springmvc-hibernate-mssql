@@ -178,12 +178,11 @@
 		<!-- Amado Nav -->
 		<nav class="amado-nav">
 			<ul>
-				<c:if test="${sessionScope.acc != null}">
+				
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> ${sessionScope.acc.firstName}
-							${sessionScope.acc.lastName}</a>
+						aria-expanded="false"> ${acc.firstName} ${acc.lastName}</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" style="color: black;" href="account">My
 								Account</a> <a class="dropdown-item" style="color: black;"
@@ -199,7 +198,7 @@
 									3</a>
 							</div>
 						</div> --%>
-				</c:if>
+				
 				<c:forEach var="tempmenus" items="${menus}" varStatus="index" >
 					<c:if test="${index.first}">
 						<li class="active" >
@@ -211,6 +210,7 @@
 					</li>
 
 				</c:forEach>
+				
 				<c:if test="${sessionScope.acc == null}">
 					<li><a href="<c:url value="/login" />">Login</a></li>
 				</c:if>
@@ -220,6 +220,7 @@
 				<c:if test="${sessionScope.acc == null}">
 					<li><a href="<c:url value="/registerform" />">Register</a></li>
 				</c:if>
+              
 			</ul>
 		</nav>
 		<!-- Button Group -->
