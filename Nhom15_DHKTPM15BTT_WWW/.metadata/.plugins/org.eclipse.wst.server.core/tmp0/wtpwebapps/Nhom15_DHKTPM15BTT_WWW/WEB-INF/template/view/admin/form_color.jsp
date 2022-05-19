@@ -80,7 +80,8 @@
 										<div class="col-md-6">
 											<div class="form-group row">
 												<div class="form-group">
-													<label>File upload</label> <form:input type="file" name="img[]" path="file" 
+													<label>File upload</label> 
+													<form:input type="file" name="img[]" path="file" 
 														class="file-upload-default"/>
 													<div class="input-group col-xs-12">
 														<input type="text" class="form-control file-upload-info"

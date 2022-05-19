@@ -34,7 +34,7 @@
 								<div class="form-group">
 									<label>Username / Email</label> <input type="text"
 										class="form-control" name="name"
-										value="${sessionScope.acc.firstName}">
+										value="${sessionScope.acc.phone}">
 								</div>
 								<div class="form-group">
 									<label>Password</label> <input type="password"

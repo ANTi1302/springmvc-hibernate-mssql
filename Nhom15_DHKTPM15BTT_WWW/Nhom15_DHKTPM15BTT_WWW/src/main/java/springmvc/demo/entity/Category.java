@@ -10,8 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "Category")
@@ -23,10 +25,18 @@ public class Category implements Serializable{
 	private String categoryId;
 	@Column(columnDefinition = "nvarchar(500)")
 	private String name;
-	@Column(columnDefinition = "nvarchar(50)")
+	@Column(columnDefinition = "nvarchar(1000)")
 	private String icon;
-	
-	@OneToMany(mappedBy = "categoryId", fetch = FetchType.EAGER)
+	@Transient
+	private MultipartFile file;
+		
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+	@OneToMany(mappedBy = "categoryId")
 	private List<ProductCategory> productCategories;
 	
 	public List<ProductCategory> getProductCategories() {
@@ -47,6 +57,7 @@ public class Category implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public String getIcon() {
 		return icon;
 	}

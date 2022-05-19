@@ -17,4 +17,6 @@ public interface ColorsDao {
 	public void saveColor(Color theColor);
 	public void deleteColor(String id);
 	public int demSLColorTheoProductId(String productId);
+	public Color getColor(String theId);
+	public void deleteColorById(String theId);
 }

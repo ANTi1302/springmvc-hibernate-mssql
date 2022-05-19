@@ -12,5 +12,12 @@ public interface CategoryDao{
 
 	public int demSLCategory();
 
+	public void saveCategory(Category theCategory);
+
+	public Category getCategory(String theId);
+
+	public void deleteCategory(String theId);
+
+
 	
 }

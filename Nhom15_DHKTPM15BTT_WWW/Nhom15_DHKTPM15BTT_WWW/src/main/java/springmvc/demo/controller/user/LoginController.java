@@ -40,30 +40,30 @@ public class LoginController extends BaseController {
 		return modelAndView;
 	}
 
-	@PostMapping("/login")
-	public ModelAndView login(HttpServletResponse response, HttpServletRequest request) {
-		String ten = request.getParameter("name");
-		String pass = (String) request.getParameter("pass");
-		HttpSession session = request.getSession();
-
-		// tim sdt de lay id_user
-		session.setAttribute("phone", homeServer.timKiemUserByPhone(ten));
-//		Users users=productFacade.timKiemUserLogin(ten, pass);
-		if (homeServer.timKiemUserLogin(ten, pass) == null) {
-			modelAndView.setViewName("customer/login");
-		} else {
-			Cookie arr[] = request.getCookies();
-			for (Cookie o : arr) {
-				if (o.getName().equals("productID")) {
-					o.setMaxAge(0);
-					response.addCookie(o);
-				}
-			}
-			session.setAttribute("acc", homeServer.timKiemUserLogin(ten, pass));
-			modelAndView.setViewName("redirect:home");
-		}
-		return modelAndView;
-	}
+//	@PostMapping("/login")
+//	public ModelAndView login(HttpServletResponse response, HttpServletRequest request) {
+//		String ten = request.getParameter("name");
+//		String pass = (String) request.getParameter("pass");
+//		HttpSession session = request.getSession();
+//
+//		// tim sdt de lay id_user
+//		session.setAttribute("phone", homeServer.timKiemUserByPhone(ten));
+////		Users users=productFacade.timKiemUserLogin(ten, pass);
+//		if (homeServer.timKiemUserLogin(ten, pass) == null) {
+//			modelAndView.setViewName("customer/login");
+//		} else {
+//			Cookie arr[] = request.getCookies();
+//			for (Cookie o : arr) {
+//				if (o.getName().equals("productID")) {
+//					o.setMaxAge(0);
+//					response.addCookie(o);
+//				}
+//			}
+//			session.setAttribute("acc", homeServer.timKiemUserLogin(ten, pass));
+//			modelAndView.setViewName("redirect:home");
+//		}
+//		return modelAndView;
+//	}
 
 	@GetMapping("/logout")
 	public ModelAndView logout(HttpServletResponse response, HttpServletRequest request) {

@@ -26,10 +26,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
+import springmvc.demo.entity.Branchs;
+import springmvc.demo.entity.Category;
 import springmvc.demo.entity.Color;
 import springmvc.demo.entity.Product;
 import springmvc.demo.entity.ProductCategory;
 import springmvc.demo.entity.Users;
+import springmvc.demo.entity.Voucher;
 import springmvc.demo.service.admin.AdminService;
 import springmvc.demo.service.user.HomeService;
 
@@ -47,27 +50,32 @@ public class ADHomeController {
 	public String home(Model model,HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		model.addAttribute("list",
-				adminService.inventoryByCategory(username.getUserId()));
-		model.addAttribute("listsale",
-				adminService.revenueByCategory(username.getUserId()));
-		model.addAttribute("listcus",
-				adminService.revenueByCustomer(username.getUserId()));
-		model.addAttribute("listyear",
-				adminService.revenueByYear(username.getUserId()));
-		model.addAttribute("listmonth",
-				adminService.revenueByMonth(username.getUserId()));
-		model.addAttribute("listquarter",
-				adminService.revenueByQuater(username.getUserId()));
-		model.addAttribute("count",
-				adminService.countQuantityProduct(username.getUserId()));
-		model.addAttribute("countorder",
-				adminService.countOrder(username.getUserId()));
-		model.addAttribute("salesorder",
-				adminService.salesOrderDetail(username.getUserId()));
-		model.addAttribute("order",
-				adminService.getDs40Order(username.getUserId(),"Check"));
-		return "admin/index";
+		if (username!=null) {
+			model.addAttribute("list",
+					adminService.inventoryByCategory(username.getUserId()));
+			model.addAttribute("listsale",
+					adminService.revenueByCategory(username.getUserId()));
+			model.addAttribute("listcus",
+					adminService.revenueByCustomer(username.getUserId()));
+			model.addAttribute("listyear",
+					adminService.revenueByYear(username.getUserId()));
+			model.addAttribute("listmonth",
+					adminService.revenueByMonth(username.getUserId()));
+			model.addAttribute("listquarter",
+					adminService.revenueByQuater(username.getUserId()));
+			model.addAttribute("count",
+					adminService.countQuantityProduct(username.getUserId()));
+			model.addAttribute("countorder",
+					adminService.countOrder(username.getUserId()));
+			model.addAttribute("salesorder",
+					adminService.salesOrderDetail(username.getUserId()));
+			model.addAttribute("order",
+					adminService.getDs40Order(username.getUserId(),"Check"));
+			return "admin/index";
+		}else {
+			return "redirect:adlogin";
+		}
+		
 	}
 
 	@RequestMapping("/adorder/{index}&{tenS}")
@@ -383,37 +391,128 @@ public class ADHomeController {
 
 	@RequestMapping("/branch/{index}&{tenS}")
 	public String branch(Model model, @PathVariable(name = "index") String index) {
+		int soLuong = adminService.demSLBranch();
+
+		if (index == null) {
+			index = "1";
+		}
+		int indexPage = Integer.parseInt(index);
+		int endpage = (soLuong + 5) / 6;
+		model.addAttribute("endpage", endpage);
+		model.addAttribute("tag", indexPage);
+		model.addAttribute("listbranch", adminService.getDsBranchs(indexPage));
 		return "admin/branch";
 	}
 
 	@RequestMapping("/formcategory")
-	public String formcategory() {
+	public String formcategory(@ModelAttribute("category") Category theCategory) {
 		return "admin/form_category";
 	}
+	@PostMapping("/saveCategory")
+	private String saveCategory(@ModelAttribute("category") Category theCategory, HttpServletRequest request)
+			throws ServletException, IOException {
 
+		try {
+			Map r = this.cloudinary.uploader().upload(theCategory.getFile().getBytes(),
+					ObjectUtils.asMap("resource_type", "auto"));
+			String icon = (String) r.get("secure_url");
+			 theCategory.setIcon(icon);
+			adminService.saveCategory(theCategory);
+			return "redirect:category/1&";
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.print("Add Category" + e.getMessage());
+		}
+		return "admin/form_category";
+
+	}
 	@RequestMapping("/updatecategory")
-	public String updatecategory() {
+	public String updatecategory(@RequestParam("categoryId") String theId, Model theModel) {
+		Category theCategory = adminService.getCategory(theId);
+		theModel.addAttribute("category", theCategory);
+
 		return "admin/form_category_update";
 	}
+	@RequestMapping("/deleteCategory")
+	public String deleteCategory(@RequestParam("categoryId") String categoryId) {
 
+		adminService.deleteCategory(categoryId);
+		return "redirect:category/1&";
+
+	}
 	@RequestMapping("/formvoucher")
-	public String formvoucher() {
+	public String formvoucher(Model model, HttpServletRequest req, @ModelAttribute("voucher") Voucher theVoucher) {
+
+		Voucher theVouchers = new Voucher();
+		model.addAttribute("voucher", theVoucher);
+
 		return "admin/form_voucher";
+	}
+	@PostMapping("/saveVoucher")
+	private String saveVoucher(@ModelAttribute("voucher") Voucher theVoucher, HttpServletRequest request) {
+		theVoucher.setCreatedAt(new Date());
+		theVoucher.setUpdateAt(new Date());
+
+		adminService.saveVoucher(theVoucher);
+
+		return "redirect:voucher/1&";
 	}
 
 	@RequestMapping("/updatevoucher")
-	public String updatevoucher() {
+	public String updatevoucher(@RequestParam("voucherId") String theId, Model theModel) {
+		Voucher theVoucher = adminService.getVoucher(theId);
+		theModel.addAttribute("voucher", theVoucher);
 		return "admin/form_voucher_update";
 	}
+	@RequestMapping("/deletevoucher")
+	public String deleteVoucher(@RequestParam("voucherId") String voucherId) {
 
+		adminService.deleteVoucher(voucherId);
+
+		return "redirect:voucher/1&";
+
+	}
+	
 	@RequestMapping("/formbranch")
-	public String formbranch() {
+	public String formbranch(Model model, HttpServletRequest req, @ModelAttribute("branch") Branchs theBranchs) {
+
 		return "admin/form_branch";
 	}
 
-	@RequestMapping("/formbranchupdate")
-	public String formbranchupdate() {
-		return "admin/form_branch_update";
+	@PostMapping("/saveBranch")
+	private String saveBranch(@ModelAttribute("branch") Branchs theBranchs, HttpServletRequest request)
+			throws ServletException, IOException {
+
+		try {
+			Map r = this.cloudinary.uploader().upload(theBranchs.getFile().getBytes(),
+					ObjectUtils.asMap("resource_type", "auto"));
+			String img = (String) r.get("secure_url");
+			theBranchs.setImg(img);
+			adminService.saveBranch(theBranchs);
+			return "redirect:branch/1&";
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.print("Add Branch" + e.getMessage());
+		}
+		return "admin/form_branch";
+
 	}
+
+	@RequestMapping("/formbranchupdate")
+	public String formbranchupdate(@RequestParam("branchId") String theId, Model theModel) {
+
+		Branchs theBranchs = adminService.getBranch(theId);
+		theModel.addAttribute("branch", theBranchs);
+		return "admin/form_branch_update";
+
+	}
+
+	@RequestMapping("/deleteBranch")
+	public String deleteCustomer(@RequestParam("branchId") String theId) {
+
+		adminService.deleteBranch(theId);
+		return "redirect:branch/1&";
+	}
+
 
 }

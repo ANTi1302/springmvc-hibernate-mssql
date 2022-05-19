@@ -48,11 +48,11 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter{
 //		.permitAll()
 //		.and()
 //		.exceptionHandling().accessDeniedPage("/access-denied");
-		http.formLogin().loginPage("/admin/adlogin")
-		.usernameParameter("username")
-		.passwordParameter("password");
-		http.formLogin().defaultSuccessUrl("/admin/home-admin").failureUrl("/login?error");
-		http.logout().logoutSuccessUrl("/login");
+		http.formLogin().loginPage("/login")
+		.usernameParameter("name")
+		.passwordParameter("pass");
+		http.formLogin().defaultSuccessUrl("/home").failureUrl("/login?error");
+		http.logout().logoutSuccessUrl("/logout");
 		http.exceptionHandling().accessDeniedPage("/login?accessDenied");
 		http.authorizeRequests()
 		.antMatchers("/").permitAll()

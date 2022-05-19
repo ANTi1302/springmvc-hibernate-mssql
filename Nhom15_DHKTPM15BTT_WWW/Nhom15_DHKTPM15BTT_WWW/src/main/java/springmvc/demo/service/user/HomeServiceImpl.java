@@ -342,14 +342,14 @@ public class HomeServiceImpl implements HomeService{
 	}
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		List<Users> customers =usersDao.getUsers(username);
+		List<Users> customers =usersDao.getUsersByPhone(username);
 		if (customers.isEmpty()) 
 			throw new UsernameNotFoundException("Not customer ");
 			
 		Users customer=customers.get(0);
 		Set<GrantedAuthority> authorities= new HashSet<>();
 		authorities.add(new SimpleGrantedAuthority(customer.getRole().getTitle()));
-		return new User(customer.getFirstName()+customer.getLastName(),customer.getPassword(),authorities);
+		return new org.springframework.security.core.userdetails.User(customer.getPhone(),customer.getPassword(),authorities);
 	}
 
 }

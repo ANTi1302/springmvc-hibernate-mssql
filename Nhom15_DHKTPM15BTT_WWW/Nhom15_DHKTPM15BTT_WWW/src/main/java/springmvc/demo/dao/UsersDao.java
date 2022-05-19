@@ -20,5 +20,6 @@ public interface UsersDao{
 	public void saveUser(Users theUsers,String id);
 
 	public void addNewUser(Users users);
+	public List<Users> getUsersByPhone(String id);
 	
 }

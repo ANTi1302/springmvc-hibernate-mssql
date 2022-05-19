@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib  uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,14 +36,14 @@
         <div class="row">
           <div class="card-body">
             <h4 class="card-title">Category form</h4>
-            <form class="forms-sample">
+            <form:form class="forms-sample" action="saveCategory" modelAttribute="category" method="POST" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="exampleInputName1">Name</label>
-                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                <form:input path="name" type="text" class="form-control" id="exampleInputName1" placeholder="Name"/>
               </div>
               <div class="form-group">
                 <label>File upload</label>
-                <input type="file" name="img[]" class="file-upload-default">
+                <form:input  type="file" name="img[]" class="file-upload-default" path="file"/>
                 <div class="input-group col-xs-12">
                   <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                   <span class="input-group-append">
@@ -50,9 +51,9 @@
                   </span>
                 </div>
               </div>
-              <button style="background-color: #223E9C" type="submit" class="btn btn-primary me-2" onclick="window.location.href='${pageContext.request.contextPath}/admin/category/1&'; return false;">Submit</button>
+              <button style="background-color: #223E9C" type="submit" class="btn btn-primary me-2" >Submit</button>
               <button class="btn btn-light" onclick="window.location.href='${pageContext.request.contextPath}/admin/category/1&'; return false;">Cancel</button>
-            </form>
+            </form:form>
           </div>
         </div>
       </div>

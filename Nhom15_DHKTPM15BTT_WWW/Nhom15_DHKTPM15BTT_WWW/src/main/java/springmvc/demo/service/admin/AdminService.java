@@ -38,7 +38,11 @@ public interface AdminService {
 	public List<Category> getDsCategory();
 
 	public int demSLCategory();
+	public void saveCategory(Category theCategory);
 
+	public Category getCategory(String theId);
+
+	public void deleteCategory(String theId);
 	/// voucher
 
 	public List<Voucher> getDsVouchers(int index);
@@ -48,6 +52,11 @@ public interface AdminService {
 	public List<Voucher> getDsVoucher();
 
 	public Voucher getDsVoucherById(String id);
+	public void saveVoucher(Voucher theVoucher);
+
+	public void deleteVoucher(String voucherId);
+
+	public Voucher getVoucher(String theId);
 
 	// product
 	public List<Object[]> getDsProductTop9(int indexPage, String id);
@@ -71,6 +80,15 @@ public interface AdminService {
 	public List<Branchs> getDsBranchs();
 
 	public Branchs getDsBranchsById(String id);
+	public void saveBranch(Branchs theBranchs);
+
+	public int demSLBranch();
+
+	public List<Branchs> getDsBranchs(int index);
+
+	public Branchs getBranch(String theId);
+
+	public void deleteBranch(String theId);
 
 	// productcategory
 	public void saveProductCategory(ProductCategory theProductCategory);
@@ -78,6 +96,9 @@ public interface AdminService {
 	public int demSLTheoProductId(String productId);
 
 	public void deleteProductCategory(String id);
+	
+
+	public ProductCategory getProductCategory(String theid);
 
 	// color
 	public void saveColor(Color theColor);
@@ -86,6 +107,8 @@ public interface AdminService {
 
 	public int demSLColorTheoProductId(String productId);
 
+	public Color getColor(String theId);
+	public void deleteColorById(String theId);
 	// productcart
 	public int demSLCartTheoProductId(String productId);
 

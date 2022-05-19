@@ -46,4 +46,11 @@ public class ProductCategoryDaoImpl extends BaseDao implements ProductCategoryDa
 
 	}
 
+	@Override
+	public ProductCategory getProductCategory(String theid) {
+		Session currentSession = sessionFactory.getCurrentSession();
+        ProductCategory theProductCategory = currentSession.get(ProductCategory.class, theid);
+        return theProductCategory;
+	}
+
 }

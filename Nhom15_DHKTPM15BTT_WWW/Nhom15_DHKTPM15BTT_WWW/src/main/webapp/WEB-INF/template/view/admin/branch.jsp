@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 <!-- Required meta tags -->
@@ -9,17 +10,21 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Spica Admin</title>
 <!-- base:css -->
- <link rel="stylesheet" href="<c:url value="/assets/assets-admin/vendors/mdi/css/materialdesignicons.min.css" />">
-  <link rel="stylesheet" href="<c:url value="/assets/assets-admin/vendors/css/vendor.bundle.base.css" />">
-  <!-- endinject -->
-  <!-- plugin css for this page -->
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="<c:url value="/assets/assets-admin/css/style.css" />" >
-  <!-- endinject -->
-  <link rel="shortcut icon" href="<c:url value="/assets/assets-admin/images/favicon.png" />" />
+<link rel="stylesheet"
+	href="<c:url value="/assets/assets-admin/vendors/mdi/css/materialdesignicons.min.css" />">
+<link rel="stylesheet"
+	href="<c:url value="/assets/assets-admin/vendors/css/vendor.bundle.base.css" />">
+<!-- endinject -->
+<!-- plugin css for this page -->
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<link rel="stylesheet"
+	href="<c:url value="/assets/assets-admin/css/style.css" />">
+<!-- endinject -->
+<link rel="shortcut icon"
+	href="<c:url value="/assets/assets-admin/images/favicon.png" />" />
 
-  <!-- table edit -->
+<!-- table edit -->
 
 </style>
 </head>
@@ -55,7 +60,8 @@
 											style="line-height: 50px;"></div>
 										<div class="col-md-6 col-sm-5 col-xs-12">
 											<input type="button" value="Add Branch"
-												class="add-branch-button" onclick="window.location.href='${pageContext.request.contextPath}/admin/formbranch'; return false;"/>
+												class="add-branch-button"
+												onclick="window.location.href='${pageContext.request.contextPath}/admin/formbranch'; return false;" />
 										</div>
 									</div>
 								</div>
@@ -71,46 +77,27 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="table-info">
-												<td>Herman</td>
-												<td><img src="images/faces/face12.jpg" alt=""></td>
-												<td>Quận 1</td>
 
-												<td><button class="badge badge-warning" onclick="window.location.href='${pageContext.request.contextPath}/admin/formbranchupdate'; return false;">Edit</button>
-													<button class="badge badge-warning">Delete</button></td>
-											</tr>
-											<tr class="table-info">
-												<td>Herman</td>
-												<td><img src="images/faces/face12.jpg" alt=""></td>
-												<td>Quận 1</td>
-
-												<td><button class="badge badge-warning">Edit</button>
-													<button class="badge badge-warning">Delete</button></td>
-											</tr>
-											<tr class="table-info">
-												<td>Herman</td>
-												<td><img src="images/faces/face12.jpg" alt=""></td>
-												<td>Quận 1</td>
-
-												<td><button class="badge badge-warning">Edit</button>
-													<button class="badge badge-warning">Delete</button></td>
-											</tr>
-											<tr class="table-info">
-												<td>Herman</td>
-												<td><img src="images/faces/face12.jpg" alt=""></td>
-												<td>Quận 1</td>
-
-												<td><button class="badge badge-warning">Edit</button>
-													<button class="badge badge-warning">Delete</button></td>
-											</tr>
-											<tr class="table-info">
-												<td>Herman</td>
-												<td><img src="images/faces/face12.jpg" alt=""></td>
-												<td>Quận 1</td>
-
-												<td><button class="badge badge-warning">Edit</button>
-													<button class="badge badge-warning">Delete</button></td>
-											</tr>
+											<c:forEach items="${listbranch}" var="v">
+												<c:url var="updateLink" value="/admin/formbranchupdate">
+													<c:param name="branchId" value="${v.branchId}" />
+												</c:url>
+												<c:url var="deleteLink" value="/admin/deleteBranch">
+													<c:param name="branchId" value="${v.branchId}" />
+												</c:url>
+												<tr>
+													<td>${v.title }</td>
+													<td><img src="<c:url value="${v.img }"/>" width="500"
+														height="600" alt=""></td>
+													<td>${v.description }</td>
+													<td>
+														<button class="badge badge-warning"
+															onclick="window.location.href='${updateLink}/admin/formbranchupdate'; return false;">Edit</button>
+														<button class="badge badge-warning"
+															onclick="window.location.href='${deleteLink}/admin/deleteBranch';if (!(confirm('Are you sure you want to delete this branch?'))) return false">Delete</button>
+													</td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -121,13 +108,18 @@
 				<div>
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-end">
-							<li class="page-item disabled"><a class="page-link" href="#"
-								tabindex="-1">Previous</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">Next</a>
-							</li>
+							<c:if test="${tag>1 }">
+								<li class="page-item disabled"><a class="page-link"
+									href="${tag-1}" tabindex="-1">Previous</a></li>
+							</c:if>
+							<c:forEach begin="1" end="${endpage}" var="i">
+								<li class="page-item"><a class="page-link"
+									href="${i}&${tenS}">${i}</a></li>
+							</c:forEach>
+							<c:if test="${tag<endpage }">
+								<li class="page-item"><a class="page-link" href="${tag+1}">Next</a>
+								</li>
+							</c:if>
 						</ul>
 					</nav>
 				</div>
@@ -138,29 +130,39 @@
 
 			<!-- content-wrapper ends -->
 			<!-- partial:./partials/_footer.html -->
-		  <%@ include file="footer.jsp" %>
-		
+			<%@ include file="footer.jsp"%>
 
-	<!-- base:js -->
-	 <script src="<c:url value="/assets/assets-admin/vendors/js/vendor.bundle.base2.js" />"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
-  <script src="<c:url value="/assets/assets-admin/vendors/chart/Chart.min.js" />"></script>
-  <script src="<c:url value="/assets/assets-admin/js/jquery.cookie.js" />" type="text/javascript"></script>
-  <!-- End plugin js for this page-->
- <!-- inject:js -->
-  <script src="<c:url value="/assets/assets-admin/js/off-canvas.js" />"></script>
-  <script src="<c:url value="/assets/assets-admin/js/hoverable-collapse.js" />"></script>
-  <script src="<c:url value="/assets/assets-admin/js/template.js" />"></script>
-	<!-- endinject -->
-	<!-- plugin js for this page -->
- <script src="<c:url value="/assets/assets-admin/js/jquery.cookie.js" />" type="text/javascript"></script>
-	<!-- End plugin js for this page -->
-	<!-- Custom js for this page-->
- <script src="<c:url value="/assets/assets-admin/js/dashboard.js" />"></script>
-	<!-- End custom js for this page-->
-	<script src="<c:url value="/assets/assets-admin/js/export.js" />"></script>
-	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+			<!-- base:js -->
+			<script
+				src="<c:url value="/assets/assets-admin/vendors/js/vendor.bundle.base2.js" />"></script>
+			<!-- endinject -->
+			<!-- Plugin js for this page-->
+			<script
+				src="<c:url value="/assets/assets-admin/vendors/chart/Chart.min.js" />"></script>
+			<script
+				src="<c:url value="/assets/assets-admin/js/jquery.cookie.js" />"
+				type="text/javascript"></script>
+			<!-- End plugin js for this page-->
+			<!-- inject:js -->
+			<script src="<c:url value="/assets/assets-admin/js/off-canvas.js" />"></script>
+			<script
+				src="<c:url value="/assets/assets-admin/js/hoverable-collapse.js" />"></script>
+			<script src="<c:url value="/assets/assets-admin/js/template.js" />"></script>
+			<!-- endinject -->
+			<!-- plugin js for this page -->
+			<script
+				src="<c:url value="/assets/assets-admin/js/jquery.cookie.js" />"
+				type="text/javascript"></script>
+			<!-- End plugin js for this page -->
+			<!-- Custom js for this page-->
+			<script src="<c:url value="/assets/assets-admin/js/dashboard.js" />"></script>
+			<!-- End custom js for this page-->
+			<script src="<c:url value="/assets/assets-admin/js/export.js" />"></script>
+			<script
+				src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+				crossorigin="anonymous"></script>
 </body>
 
 </html>

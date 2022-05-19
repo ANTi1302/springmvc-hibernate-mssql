@@ -55,4 +55,26 @@ public class VouchesDaoImpl  extends BaseDao implements VouchersDao{
 		 Voucher theVoucher = currentSession.get(Voucher.class, id);
          return theVoucher;
 	}
+
+	@Override
+	public void addVoucher(Voucher theVoucher) {
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		currentSession.saveOrUpdate(theVoucher);
+		
+	}
+
+	@Override
+	public void deleteVoucher(String voucherId) {
+		Session session = sessionFactory.getCurrentSession();
+		Voucher voucher = session.byId(Voucher.class).load(voucherId);
+		session.delete(voucher);		
+	}
+
+	@Override
+	public Voucher getVoucher(String theId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Voucher theVoucher = currentSession.get(Voucher.class, theId);
+		return theVoucher;
+	}
 }

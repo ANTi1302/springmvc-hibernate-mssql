@@ -69,6 +69,15 @@ public class UsersDaoImpl extends BaseDao implements UsersDao {
 		// return the results
 		return users;
 	}
+	@Override
+	public List<Users> getUsersByPhone(String id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Users> theQuery = currentSession.createQuery(" from Users where phone='"+id+"'", Users.class);
+		// execute query and get result list
+		List<Users> users = theQuery.getResultList();
+		// return the results
+		return users;
+	}
 //	UPDATE [dbo].[Users]
 //			SET [first_Name] = 'Anh', [last_Name] = 'Thu Ne', [address]='13 duong hiep binh chanh',[email]='porkoe3443334@gmail.com'
 //			WHERE [user_id]='100C39A7-400E-40DF-BA43-A31B7ADA4BAC'

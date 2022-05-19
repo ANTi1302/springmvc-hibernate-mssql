@@ -49,6 +49,27 @@ public class CategoryDaoImpl extends BaseDao implements CategoryDao {
 		return 0;
 	}
 
+	@Override
+	public void saveCategory(Category theCategory) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+        currentSession.saveOrUpdate(theCategory);		
+	}
+
+	@Override
+	public Category getCategory(String theId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Category theCategory = currentSession.get(Category.class, theId);
+		return theCategory;
+	}
+
+	@Override
+	public void deleteCategory(String theId) {
+		Session session = sessionFactory.getCurrentSession();
+		Category category = session.byId(Category.class).load(theId);
+		session.delete(category);		
+	}
+
 
 
 }

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib  uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,15 +43,18 @@
                     <h4 class="modal-title" id="myModalLabel">Tạo mới nhà cung
 								cấp</h4>
                 </div>
+                <form:form  class="forms-sample" action="saveBranch" modelAttribute="branch" method="POST" enctype="multipart/form-data">
+                <form:hidden path="branchId" />
                 <div class="modal-body">
+                
                     <div class="form-horizontal" id="frm-crcust">
                         <div class="col-md-6 col-xs-12 padd-0" style="margin-top: 18px;">
                             <div class="col-md-3 col-xs-5">
                                 <label for="customer_Title">Title</label>
                             </div>
                             <div class="col-md-9 col-xs-7 padd-0">
-                                <input type="text" id="customer_Title" name="customer_Title" class="form-control" value=""
-                                       placeholder="Nhập tên nhà cung cấp">
+                                <form:input path="title" type="text" id="customer_Title" name="customer_Title" class="form-control" value=""
+                                       placeholder="Nhập tên nhà cung cấp"/>
                                 <span style="color: red; font-style: italic;" class="error error-customer_Title"></span>
                             </div>
                         </div>
@@ -59,7 +63,7 @@
                             <div class="form-group row">
                               <div class="form-group">
                                 <label>File upload</label>
-                                <input type="file" name="img[]" class="file-upload-default">
+                                <form:input type="file" name="img[]" class="file-upload-default" path="file"/>
                                 <div class="input-group col-xs-12">
                                   <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                   <span class="input-group-append">
@@ -75,21 +79,22 @@
                                 <label for="customer_Description">Description</label>
                             </div>
                             <div class="col-md-9 col-xs-7 padd-0">
-                                    <textarea name=""id="customer_Description" name="customer_Description"
-                                    class="form-control" cols="70" rows="10"></textarea>   
+                                   <form:textarea  path="description" class="form-control" cols="70"
+												rows="10"></form:textarea>
                                 <span style="color: red; font-style: italic;" class="error error-customer_Description"></span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary me-2" onclick="window.location.href='${pageContext.request.contextPath}/admin/branch/1&'; return false;"><i
+                    <button type="submit" class="btn btn-primary me-2" ><i
                                 class="fa fa-check"></i> Update
                     </button>
                     <button type="button" class="btn btn-light" data-dismiss="modal" onclick="window.location.href='${pageContext.request.contextPath}/admin/branch/1&'; return false;"><i
                                 class="fa fa-undo"></i> Cancel
                     </button>
                 </div>
+                </form:form>
             </div>
         </div>       
         </div>

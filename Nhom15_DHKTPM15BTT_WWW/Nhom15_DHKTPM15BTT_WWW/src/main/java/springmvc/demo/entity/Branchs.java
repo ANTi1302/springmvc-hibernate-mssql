@@ -9,8 +9,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Branchs implements Serializable{
@@ -30,6 +32,19 @@ public class Branchs implements Serializable{
 	@OneToMany(mappedBy = "branchs", fetch = FetchType.EAGER)
 	private List<Product> products;
 	
+	@Transient
+	private MultipartFile file;
+	
+	
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 	
 	public List<Product> getProducts() {
 		return products;

@@ -11,5 +11,6 @@ public interface ProductCategoryDao{
 	public void saveProductCategory(ProductCategory theProductCategory);
 	public int demSLTheoProductId(String productId);
 	public void deleteProductCategory(String id);
+	public ProductCategory getProductCategory(String theid);
 	
 }

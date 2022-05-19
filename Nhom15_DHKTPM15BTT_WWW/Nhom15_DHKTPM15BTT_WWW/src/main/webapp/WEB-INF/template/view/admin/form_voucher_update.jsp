@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib  uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,18 +35,19 @@
         <div class="row">
           <div class="card-body">
             <h4 class="card-title">Voucher form update</h4>
-            <form class="forms-sample">
+            <form:form class="forms-sample"  action="saveVoucher" modelAttribute="voucher" method="POST"> 
+             <form:hidden path="voucherId" />
               <div class="form-group">
                 <label for="exampleInputName1">Code</label>
-                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                <form:input path="code" type="text" class="form-control" id="exampleInputName1" placeholder="Name"/>
               </div>
               <div class="form-group">
                 <label for="exampleInputName1">Day Created</label>
-                <input type="date" class="form-control" id="exampleInputName1" placeholder="Name">
+                <form:input path="createdAt" type="date" class="form-control" id="exampleInputName1" placeholder="Name"/>
               </div>
-              <button style="background-color: #223E9C" type="submit" class="btn btn-primary me-2" onclick="window.location.href='${pageContext.request.contextPath}/admin/voucher/1&'; return false;">Update</button>
+              <button style="background-color: #223E9C" type="submit" class="btn btn-primary me-2" >Update</button>
               <button class="btn btn-light"  onclick="window.location.href='${pageContext.request.contextPath}/admin/voucher/1&'; return false;" >Cancel</button>
-            </form>
+            </form:form>
           </div>
         </div>
       </div>

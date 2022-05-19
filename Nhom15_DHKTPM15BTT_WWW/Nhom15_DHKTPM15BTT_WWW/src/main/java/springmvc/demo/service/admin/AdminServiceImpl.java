@@ -285,5 +285,59 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return productDao.getDs40Order(userId, tenS);
 	}
+	@Override
+	public void saveCategory(Category theCategory) {
+		categoryDao.saveCategory(theCategory);		
+	}
+	@Override
+	public Category getCategory(String theId) {
+		return categoryDao.getCategory(theId);	}
+	@Override
+	public void deleteCategory(String theId) {
+		categoryDao.deleteCategory(theId);		
+	}
+	@Override
+	public void saveVoucher(Voucher theVoucher) {
+		vouchersDao.addVoucher(theVoucher);		
+	}
+	@Override
+	public void deleteVoucher(String voucherId) {
+		vouchersDao.deleteVoucher(voucherId);		
+	}
+	@Override
+	public Voucher getVoucher(String theId) {
+		return vouchersDao.getVoucher(theId);	}
+	@Override
+	public void saveBranch(Branchs theBranchs) {
+		branchsDao.saveBranch(theBranchs);		
+	}
+	@Override
+	public int demSLBranch() {
+		return branchsDao.demSLBranch();	}
+	@Override
+	public List<Branchs> getDsBranchs(int index) {
+		return branchsDao.getDsBranchs(index);
+		}
+	@Override
+	public Branchs getBranch(String theId) {
+		return branchsDao.getBranch(theId);
+		}
+	@Override
+	public void deleteBranch(String theId) {
+		branchsDao.deleteBranch(theId);		
+	}
+	@Override
+	public ProductCategory getProductCategory(String theid) {
+		return productCategoryDao.getProductCategory(theid);
+		}
+	@Override
+	public Color getColor(String theId) {
+		return colorsDao.getColor(theId);
+	}
+	@Override
+	public void deleteColorById(String theId) {
+		colorsDao.deleteColorById(theId);
+		
+	}
 
 }

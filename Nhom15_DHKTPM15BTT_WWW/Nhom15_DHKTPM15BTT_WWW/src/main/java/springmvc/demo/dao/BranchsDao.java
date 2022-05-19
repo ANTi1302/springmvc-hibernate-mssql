@@ -10,6 +10,16 @@ public interface BranchsDao{
 
 	public Branchs getDsBranchsById(String id);
 
+	public void saveBranch(Branchs theBranchs);
+
+	public int demSLBranch();
+
+	public List<Branchs> getDsBranchs(int index);
+
+	public Branchs getBranch(String theId);
+
+	public void deleteBranch(String theId);
+
 	
 
 	
