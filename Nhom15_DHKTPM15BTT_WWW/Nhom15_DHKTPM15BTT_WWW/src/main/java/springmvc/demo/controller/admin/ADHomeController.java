@@ -3,6 +3,7 @@ package springmvc.demo.controller.admin;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.validation.Valid;
@@ -52,6 +54,7 @@ public class ADHomeController {
 	public String home(Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
+		List<Users> ad=new ArrayList<>();
 		if (username != null) {
 			model.addAttribute("list", adminService.inventoryByCategory(username.getUserId()));
 			model.addAttribute("listsale", adminService.revenueByCategory(username.getUserId()));
@@ -63,6 +66,11 @@ public class ADHomeController {
 			model.addAttribute("countorder", adminService.countOrder(username.getUserId()));
 			model.addAttribute("salesorder", adminService.salesOrderDetail(username.getUserId()));
 			model.addAttribute("order", adminService.getDs40Order(username.getUserId(), "Check"));
+			if (username.getRole().getTitle().equals("Admin01")) {
+				ad.add(username);
+				req.getSession().setAttribute("accAd", ad);
+			
+			}
 			return "admin/index";
 		} else {
 			return "redirect:/login";
@@ -179,9 +187,35 @@ public class ADHomeController {
 	}
 
 	@RequestMapping("/adaccount")
-	public String home() {
+	public String home(HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		request.setAttribute("listuser", homeService.getUsers(username.getUserId()));
+		request.setAttribute("soLuong", homeService.demSLCartTheoIdUser(username.getUserId()));
 		return "admin/account";
 	}
+	@GetMapping("/updatead")
+	public String updatead(HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		String address = request.getParameter("address");
+		username.setFirstName(firstName);
+		username.setLastName(lastName);
+		username.setEmail(email);
+		username.setPhone(phone);
+		username.setAddress(address);
+		username.setAccessTokenID(username.getAccessTokenID());
+		username.setPassword(username.getPassword());
+		username.setRole(username.getRole());
+		homeService.saveUser(username, username.getUserId());
+		// set customer as a model attribute to pre-populate the form
+		return "redirect:adaccount";
+	}
+	
 
 	@RequestMapping("/category/{index}&{tenS}")
 	public String category(Model model, @PathVariable(name = "index") String index) {
@@ -761,8 +795,15 @@ public class ADHomeController {
 	@RequestMapping("/deleteBranch")
 	public String deleteCustomer(@RequestParam("branchId") String theId) {
 
-		adminService.deleteBranch(theId);
-		return "redirect:branch/1&";
+		if (adminService.demSLBranchTheoProductId(theId) == 0 ) {
+			adminService.deleteBranch(theId);
+			return "redirect:branch/1&";
+
+		} else {
+			
+			return "redirect:branch/1&";
+		}
+
 	}
 
 }

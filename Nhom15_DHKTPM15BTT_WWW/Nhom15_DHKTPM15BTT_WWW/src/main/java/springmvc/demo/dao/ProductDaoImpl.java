@@ -511,7 +511,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 		Session currentSession = sessionFactory.getCurrentSession();
 		String hql="SELECT  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,sum(d.amount* d.price),d.productId.user.userId\r\n"
 				+ "FROM     Order o INNER JOIN\r\n"
-				+ "                  OrderDetail d ON o.orderId = d.orderId.orderId\r\n where d.productId.user.userId='"+userId+"' and o.status='"+tenS+"' and d.createdAt < GETDATE()"
+				+ "                  OrderDetail d ON o.orderId = d.orderId.orderId\r\n where d.productId.user.userId='"+userId+"' and o.status='"+tenS+"' and d.createdAt < FORMAT (getdate(), 'MM-dd-yyyy')"
 				+ "GROUP BY  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,d.productId.user.userId";
 		// execute query and get result list
 		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setMaxResults(40);

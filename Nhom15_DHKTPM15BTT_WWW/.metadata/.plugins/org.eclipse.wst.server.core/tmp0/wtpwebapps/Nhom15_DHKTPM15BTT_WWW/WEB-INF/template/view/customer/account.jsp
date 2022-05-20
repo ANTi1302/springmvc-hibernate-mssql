@@ -11,9 +11,8 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Amado - Furniture Ecommerce Template | My Purchase</title>
-    <!-- Favicon  -->
-    <link rel="icon" href="<c:url value="/assets/img/core-img/favicon.ico" />">
+    <title>Ellent Shop</title>
+  
 
     <!-- Core Style CSS -->
  	<link rel="stylesheet" href="<c:url value="/assets/css/font-awesome.min.css" />" >
@@ -38,7 +37,7 @@
         <div class="col-md-4">
           <div class="card card-user">
             <div class="image" >
-              <img src="<c:url value="/assets/img/bg-img/1.jpg" />" alt="..." width="470"  name="fileInput">
+              <img src="<c:url value="/assets/img/bg-img/acc.png" />" alt="..." width="470"  name="fileInput">
             </div>
             <div class="card-body">
               <div class="author">
@@ -83,9 +82,9 @@
                 <div class="row">
                   <div class="col-md-5 pr-1">
                     <div class="form-group">
-                      <label>Username (disabled)</label>
+                      <label>Ellent Shop (disabled)</label>
                       <input type="text" class="form-control" disabled="" placeholder="Company"
-                        value="Creative Code Inc.">
+                        value="Ellent Shop INC-ANTi.">
                     </div>
                   </div>
                   <div class="col-md-3 px-1">

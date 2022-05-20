@@ -92,6 +92,22 @@ public class BranchsDaoImpl extends BaseDao implements BranchsDao {
 				// return the results
 				return branchs;
 			}
+
+	@Override
+	public int demSLBranchTheoProductId(String theId) {
+		try {
+			String query = "select count([branch_id]) from [dbo].[Product]\r\n"
+					+ "where [branch_id]='"+theId+"'";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soBranch = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soBranch;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 	
 
 

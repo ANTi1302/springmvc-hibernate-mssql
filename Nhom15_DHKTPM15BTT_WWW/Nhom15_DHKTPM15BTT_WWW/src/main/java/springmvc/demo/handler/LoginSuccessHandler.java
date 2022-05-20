@@ -1,6 +1,8 @@
 package springmvc.demo.handler;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -22,7 +24,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-
 		Users u= this.homeService.getUsersByPhone(authentication.getName()).get(0);
 		request.getSession().setAttribute("acc", u);
 		Cookie arr[] = request.getCookies();
@@ -33,6 +34,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 			}
 		}
 		response.sendRedirect("/Nhom15_DHKTPM15BTT_WWW/home");
-	}
+	
+		}
+
 
 }

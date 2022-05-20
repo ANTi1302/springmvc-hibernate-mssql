@@ -12,11 +12,8 @@
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <!-- Title  -->
-<title>Amado - Furniture Ecommerce Template | Checkout</title>
+ <title>Ellent Shop</title>
 
-<!-- Favicon  -->
-<link rel="icon"
-	href="<c:url value="/assets/img/core-img/favicon.ico" />">
 
 <!-- Core Style CSS -->
 <link rel="stylesheet"
@@ -61,37 +58,13 @@
 								</c:if>
 
 								<div class="col-12 mb-3">
-									<input type="text" class="form-control" name="company"
-										placeholder="Company Name" value="">
-								</div>
-								<div class="col-12 mb-3">
 									<input type="email" class="form-control" name="email"
 										placeholder="Email" value="${acc.email}">
-								</div>
-								<div class="col-12 mb-3">
-									<select class="w-100" id="country">
-										<option value="usa">United States</option>
-										<option value="uk">United Kingdom</option>
-										<option value="ger">Germany</option>
-										<option value="fra">France</option>
-										<option value="ind">India</option>
-										<option value="aus">Australia</option>
-										<option value="bra">Brazil</option>
-										<option value="cana">Canada</option>
-									</select>
 								</div>
 								<div class="col-12 mb-3">
 									<input type="text" class="form-control mb-3"
 										name="street_address" placeholder="Address"
 										value="${sessionScope.acc.address}">
-								</div>
-								<div class="col-12 mb-3">
-									<input type="text" class="form-control" name="city"
-										placeholder="Town" value="">
-								</div>
-								<div class="col-md-6 mb-3">
-									<input type="text" class="form-control" name="zipCode"
-										placeholder="Zip Code" value="">
 								</div>
 								<div class="col-md-6 mb-3">
 									<input type="number" class="form-control" name="phone_number"
@@ -105,12 +78,6 @@
 								</div>
 
 								<div class="col-12">
-									<div class="custom-control custom-checkbox d-block mb-2">
-										<input type="checkbox" class="custom-control-input"
-											id="customCheck2"> <label
-											class="custom-control-label" for="customCheck2">Create
-											an accout</label>
-									</div>
 									<div class="custom-control custom-checkbox d-block">
 										<input type="checkbox" class="custom-control-input"
 											id="customCheck3"> <label

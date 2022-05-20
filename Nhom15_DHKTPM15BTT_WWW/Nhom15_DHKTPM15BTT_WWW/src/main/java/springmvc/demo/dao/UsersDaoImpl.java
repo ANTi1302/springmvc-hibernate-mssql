@@ -2,6 +2,8 @@ package springmvc.demo.dao;
 
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
@@ -97,6 +99,20 @@ public class UsersDaoImpl extends BaseDao implements UsersDao {
 		 Session currentSession = sessionFactory.getCurrentSession();
          currentSession.save(users);		
 		
+	}
+
+	@Override
+	public List<Object[]> getUserByRoleId(String id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="SELECT r.roleId,r.title\r\n"
+				+ "FROM     Role r INNER JOIN\r\n"
+				+ "                  Users u ON r.roleId = u.role.roleId\r\n"
+				+ "where u.role.roleId='"+id+"'";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
 	}
 
 }

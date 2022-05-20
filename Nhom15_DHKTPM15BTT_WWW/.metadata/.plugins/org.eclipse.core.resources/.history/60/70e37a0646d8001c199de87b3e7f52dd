@@ -1,0 +1,118 @@
+package springmvc.demo.dao;
+
+import java.util.List;
+
+import javax.persistence.TypedQuery;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
+
+import springmvc.demo.entity.Menus;
+import springmvc.demo.entity.Users;
+
+@Repository
+public class UsersDaoImpl extends BaseDao implements UsersDao {
+
+	@Override
+	public Users timKiemUserLogin(String ten, String pass) {
+		try {
+			Session currentSession = sessionFactory.getCurrentSession();
+			Query<Users> theQuery = currentSession.createQuery(
+					" from Users where phone='" + ten + "' and password='" + pass + "'",
+					Users.class);
+			// execute query and get result list
+			Users menus = theQuery.getSingleResult();
+			// return the results
+			return menus;
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
+	@Override
+	public Users timKiemUser(String pass) {
+		try {
+			Session currentSession = sessionFactory.getCurrentSession();
+			Query<Users> theQuery = currentSession.createQuery(
+					" from Users where access_tokenID='" + pass + "'",
+					Users.class);
+			// execute query and get result list
+			Users menus = theQuery.getSingleResult();
+			// return the results
+			return menus;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public void themUser(Users users2) {
+		 Session currentSession = sessionFactory.getCurrentSession();
+         currentSession.save(users2);		
+	}
+
+	@Override
+	public Users timKiemUserByPhone(String phone) {
+		Session currentSession=sessionFactory.getCurrentSession();
+		Query<Users> query=currentSession.createQuery("from Users where phone=:phone", Users.class);
+		query.setParameter("phone", phone.trim());
+		Users students=query.getSingleResult();
+		return students;
+	}
+
+	@Override
+	public List<Users> getUsers(String id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Users> theQuery = currentSession.createQuery(" from Users where user_id='"+id+"'", Users.class);
+		// execute query and get result list
+		List<Users> users = theQuery.getResultList();
+		// return the results
+		return users;
+	}
+	@Override
+	public List<Users> getUsersByPhone(String id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Users> theQuery = currentSession.createQuery(" from Users where phone='"+id+"'", Users.class);
+		// execute query and get result list
+		List<Users> users = theQuery.getResultList();
+		// return the results
+		return users;
+	}
+//	UPDATE [dbo].[Users]
+//			SET [first_Name] = 'Anh', [last_Name] = 'Thu Ne', [address]='13 duong hiep binh chanh',[email]='porkoe3443334@gmail.com'
+//			WHERE [user_id]='100C39A7-400E-40DF-BA43-A31B7ADA4BAC'
+	@Override
+	public void saveUser(Users theUsers,String id) {
+		Session currentSession=sessionFactory.getCurrentSession();
+		String query = "UPDATE Users\r\n"
+				+ "SET first_Name = '"+theUsers.getFirstName()+"', last_Name = '"+theUsers.getLastName()+"', address='"+theUsers.getAddress()+"',email='"+theUsers.getEmail()+"'\r\n"
+				+ "WHERE user_id='"+theUsers.getUserId()+"'";
+		 currentSession.createNativeQuery(query).executeUpdate();
+		
+		
+	}
+
+	@Override
+	public void addNewUser(Users users) {
+		 Session currentSession = sessionFactory.getCurrentSession();
+         currentSession.save(users);		
+		
+	}
+
+	@Override
+	public List<Object[]> getUserByRoleId(String id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="SELECT Role.roleId,Role.[title]\r\n"
+				+ "FROM     Role INNER JOIN\r\n"
+				+ "                  Users ON Role.role_id = Users.role_id\r\n"
+				+ "where Users.user_id='"+id+"'";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((index-1)*6)).setMaxResults(6);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+}

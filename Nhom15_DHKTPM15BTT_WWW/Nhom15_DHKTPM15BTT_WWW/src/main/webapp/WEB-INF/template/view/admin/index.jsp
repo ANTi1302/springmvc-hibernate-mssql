@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Spica Admin</title>
+<title>Ellent Shop</title>
 <!-- base:css -->
 <link rel="stylesheet"
 	href="<c:url value="/assets/assets-admin/vendors/mdi/css/materialdesignicons.min.css" />">
@@ -21,8 +21,7 @@
 <link rel="stylesheet"
 	href="<c:url value="/assets/assets-admin/css/style.css" />">
 <!-- endinject -->
-<link rel="shortcut icon"
-	href="<c:url value="/assets/assets-admin/images/favicon.png" />" />
+
 
 
 </head>

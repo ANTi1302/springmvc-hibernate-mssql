@@ -344,7 +344,7 @@ public class HomeServiceImpl implements HomeService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		List<Users> customers =usersDao.getUsersByPhone(username);
 		if (customers.isEmpty()) 
-			throw new UsernameNotFoundException("Not customer ");
+			throw new UsernameNotFoundException("Not user ");
 			
 		Users customer=customers.get(0);
 		Set<GrantedAuthority> authorities= new HashSet<>();

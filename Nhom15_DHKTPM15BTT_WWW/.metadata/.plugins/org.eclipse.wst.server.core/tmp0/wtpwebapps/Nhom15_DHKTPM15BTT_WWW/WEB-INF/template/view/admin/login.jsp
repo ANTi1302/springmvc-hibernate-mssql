@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>Ellent Shop</title>
 <link rel="stylesheet" href="<c:url value="/assets/css/login.css" />">
 
 <link rel="stylesheet"

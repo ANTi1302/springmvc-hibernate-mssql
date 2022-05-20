@@ -11,10 +11,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Amado - Furniture Ecommerce Template | My Purchase</title>
-    <!-- Favicon  -->
-    <link rel="icon" href="<c:url value="/assets/img/core-img/favicon.ico" />">
-
+    <title>Ellent Shop</title>
     <!-- Core Style CSS -->
  	<link rel="stylesheet" href="<c:url value="/assets/css/font-awesome.min.css" />" >
     <link rel="stylesheet" href="<c:url value="/assets/css/core-style.css" /> ">

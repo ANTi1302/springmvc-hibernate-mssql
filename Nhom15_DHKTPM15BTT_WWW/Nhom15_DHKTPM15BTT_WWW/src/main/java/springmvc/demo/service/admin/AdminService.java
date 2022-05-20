@@ -78,6 +78,7 @@ public interface AdminService {
 	public Users timKiemUserByPhone(String phone);
 
 	public Users timKiemUserLogin(String ten, String pass);
+	public List<Object[]> getUserByRoleId(String id) ;
 
 	// branch
 	public List<Branchs> getDsBranchs();
@@ -153,5 +154,7 @@ public interface AdminService {
 	public List<Object[]> getDs40Order(String userId, String tenS);
 
 	public List<Object[]> inventoryByCategoryDate(String start, String end, int indexPage, String userId);
+
+	public int demSLBranchTheoProductId(String theId);
 
 }

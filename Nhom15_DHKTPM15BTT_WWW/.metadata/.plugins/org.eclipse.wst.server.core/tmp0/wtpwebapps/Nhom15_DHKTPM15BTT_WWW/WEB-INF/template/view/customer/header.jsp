@@ -157,7 +157,7 @@
 	<div class="mobile-nav">
 		<!-- Navbar Brand -->
 		<div class="amado-navbar-brand">
-			<a href="<c:url value="/assets/view/custumer/cart.jsp" />"><img
+			<a href="<c:url value="/assets/view/custumer/cart.jsp" />"><img  width="500" height="600"
 				src="<c:url value="/assets/img/core-img/logo.png" />" alt=""></a>
 		</div>
 		<!-- Navbar Toggler -->
@@ -180,7 +180,6 @@
 		<!-- Amado Nav -->
 		<nav class="amado-nav">
 			<ul>
-				
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"

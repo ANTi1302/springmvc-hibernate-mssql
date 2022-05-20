@@ -376,5 +376,15 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return productDao.inventoryByCategoryDate(start, end, indexPage, userId);
 	}
+	@Override
+	public List<Object[]> getUserByRoleId(String id) {
+		// TODO Auto-generated method stub
+		return usersDao.getUserByRoleId(id);
+	}
+	@Override
+	public int demSLBranchTheoProductId(String theId) {
+		// TODO Auto-generated method stub
+		return branchsDao.demSLBranchTheoProductId(theId);
+	}
 
 }

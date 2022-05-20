@@ -22,6 +22,8 @@ public interface BranchsDao{
 
 	public List<Object[]> getDsBranchSearch(int indexPage, String tenS);
 
+	public int demSLBranchTheoProductId(String theId);
+
 	
 
 	

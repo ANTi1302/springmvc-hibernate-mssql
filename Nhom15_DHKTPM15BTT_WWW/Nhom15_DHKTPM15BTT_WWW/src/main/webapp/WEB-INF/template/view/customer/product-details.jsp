@@ -11,11 +11,7 @@
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <!-- Title  -->
-<title>Amado - Furniture Ecommerce Template | Product Details</title>
-
-<!-- Favicon  -->
-<link rel="icon"
-	href="<c:url value="/assets/img/core-img/favicon.ico" />">
+ <title>Ellent Shop</title>
 
 <!-- Core Style CSS -->
 <link rel="stylesheet"
@@ -91,7 +87,7 @@
 
 						<div class="product-meta-data">
 							<div class="line"></div>
-							<p class="product-price">$${dsProductChiTiet.price}</p>
+							<p class="product-price">$${dsProductChiTiet.sale}</p>
 							<a href="<c:url value="" />">
 								<h6>${dsProductChiTiet.name}</h6>
 							</a>
@@ -147,7 +143,7 @@
 								class="btn amado-btn" disabled="disabled">Add to cart</button>
 							</c:if>
 							<c:if test="${dsProductChiTiet.quatity>0}">
-							<button type="submit" name="id" value="${dsProductChiTiet.quatity}"
+							<button type="submit" name="id" value="${dsProductChiTiet.productId}"
 								class="btn amado-btn">Add to cart</button>
 							</c:if>
 							

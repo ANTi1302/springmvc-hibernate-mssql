@@ -40,20 +40,17 @@
 					<!-- Logo -->
 					<div class="footer-logo mr-50">
 						<a href="<c:url value="/home" />"><img
-							src="<c:url value="/assets/img/core-img/logo2.png" />" alt=""></a>
+							src="<c:url value="/assets/img/core-img/logo.png" />" alt=""></a>
 					</div>
 					<!-- Copywrite Text -->
-					<p class="copywrite">
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Copyright &copy;
+					<p class="copywrite"> 
+						-----------DHKTPM15BTT--------- <br> 19516531_TranThiAnhThu <br> 19525901_DinhThiPhuongThao <br>&copy;
 						<script>
 							document.write(new Date().getFullYear());
 						</script>
-						All rights reserved | This template is made with <img
+						<img
 							src="<c:url value="/assets/img/logo_contact/hr.png" /> ">
-						by <a href="https://colorlib.com" target="_blank">Colorlib</a> &
-						Re-distributed by <a href="https://themewagon.com/"
-							target="_blank">Themewagon</a>
+						by Nhom15<a href="https://colorlib.com" target="_blank"></a> 
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</p>
 				</div>

@@ -14,11 +14,8 @@
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <!-- Title  -->
-<title>Amado - Furniture Ecommerce Template | Home</title>
+ <title>Ellent Shop</title>
 
-<!-- Favicon  -->
-<link rel="icon"
-	href="<c:url value="/assets/img/core-img/favicon.ico" />">
 
 <!-- Core Style CSS -->
 <link rel="stylesheet"
@@ -74,7 +71,7 @@
 										<div class="col-md-11">
 											<div class="testimony-wrap d-md-flex">
 											<a href="<c:url value="details?idProduct=${slide[1]}" />">
-												<img class="img" src="<c:url value="${slide[0]}" />" alt=""></a>
+												<img class="img" src="${slide[0]}" alt=""></a>
 												<div
 													class="text text-center p-4 py-xl-5 px-xl-5 d-flex align-items-center">
 													<div class="desc w-100">
@@ -110,7 +107,7 @@
 				<!-- Single Catagory -->
 				<div class="single-products-catagory clearfix">
 					<a href="<c:url value="details?idProduct=${c[1]}" />"> <img
-						src="<c:url value="${c[0]}" />" alt=""> <!-- Hover Content -->
+						src="${c[0]}" alt=""> <!-- Hover Content -->
 						<div class="hover-content">
 							<div class="line"></div>
 							<p>From $${c[3]}</p>

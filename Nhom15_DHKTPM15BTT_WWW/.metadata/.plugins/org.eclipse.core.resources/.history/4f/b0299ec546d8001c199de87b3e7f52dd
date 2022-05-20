@@ -1,0 +1,157 @@
+package springmvc.demo.service.admin;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import springmvc.demo.entity.Branchs;
+import springmvc.demo.entity.Category;
+import springmvc.demo.entity.Color;
+import springmvc.demo.entity.Product;
+import springmvc.demo.entity.ProductCategory;
+import springmvc.demo.entity.Users;
+import springmvc.demo.entity.Voucher;
+
+@Service
+public interface AdminService {
+
+	// order
+	public List<Object[]> getDsOrderByStatus(int index, String string);
+
+	public int demSLOrderByStatus();
+
+	public List<Object[]> findOrderDetailId(String id);
+
+	public int demSLOrderDeatilTheoProductId(String productId);
+
+	public void confirm(String id, String string);
+
+	public void cancel(String id, String string);
+
+	public List<Object[]> getDsOrderByStatusCheck(int indexPage, String userId, String tenS);
+
+	/// category
+	public List<Category> getDsCategory(int index);
+
+	public List<Category> getDsCategory();
+
+	public int demSLCategory();
+	public void saveCategory(Category theCategory);
+
+	public Category getCategory(String theId);
+
+	public void deleteCategory(String theId);
+	public List<Object[]> getDsCategorySearch(int indexPage, String tenS);
+	/// voucher
+
+	public List<Voucher> getDsVouchers(int index);
+
+	public int demSLVoucher();
+
+	public List<Voucher> getDsVoucher();
+
+	public Voucher getDsVoucherById(String id);
+	public void saveVoucher(Voucher theVoucher);
+
+	public void deleteVoucher(String voucherId);
+
+	public Voucher getVoucher(String theId);
+	public int demSLVoucherTheoProductId(String productId);
+	public List<Object[]> getDsVoucherSearxh(int indexPage, String tenS);
+
+	// product
+	public List<Object[]> getDsProductTop9(int indexPage, String id);
+
+	public void saveProduct(Product theProduct);
+
+	public void deleteProduct(String id);
+
+	public void updateProductByStatus(String id);
+
+	public Product getProductById(String id);
+
+	public List<Object[]> getDsProductTop9ToSearxh(int indexPage, String userId, String tenS);
+
+	// user
+	public Users timKiemUserByPhone(String phone);
+
+	public Users timKiemUserLogin(String ten, String pass);
+
+	// branch
+	public List<Branchs> getDsBranchs();
+
+	public Branchs getDsBranchsById(String id);
+	public void saveBranch(Branchs theBranchs);
+
+	public int demSLBranch();
+
+	public List<Branchs> getDsBranchs(int index);
+
+	public Branchs getBranch(String theId);
+
+	public void deleteBranch(String theId);
+	public List<Object[]> getDsBranchSearch(int indexPage, String tenS);
+
+	// productcategory
+	public void saveProductCategory(ProductCategory theProductCategory);
+
+	public int demSLTheoProductId(String productId);
+
+	public void deleteProductCategory(String id);
+	
+
+	public ProductCategory getProductCategory(String theid);
+
+	// color
+	public void saveColor(Color theColor);
+
+	public void deleteColor(String id);
+
+	public int demSLColorTheoProductId(String productId);
+
+	public Color getColor(String theId);
+	public void deleteColorById(String theId);
+	// productcart
+	public int demSLCartTheoProductId(String productId);
+
+	/// inventory
+	public List<Object[]> inventoryByCategory(int indexPage, String userId);
+
+	public int countInventoryByCategory(String userId);
+
+	// ton kho theo loai san pham
+	public List<Object[]> inventoryByCategory(String userId);
+
+	// doanh so ban hang
+	public List<Object[]> revenueByCategory(String userId);
+	public List<Object[]> revenueByCategory(int indexPage,String userId);
+
+	// thong ke theo khach hang
+	public List<Object[]> revenueByCustomer(String userId);
+
+	// thong ke theo doanh thu theo nam
+	public List<Object[]> revenueByYear(String userId);
+	public List<Object[]> revenueByYear(int indexPage,String userId);
+
+	// thong ke theo doanh thu theo thang
+	public List<Object[]> revenueByMonth(String userId);
+	public List<Object[]> revenueByMonth(int indexPage,String userId);
+
+	// thong ke theo doanh thu theo quy
+	public List<Object[]> revenueByQuater(String userId);
+	public List<Object[]> revenueByQuater(int indexPage,String userId);
+
+	public int countRevenueByCategory(String userId);
+	
+	public int countQuantityProduct(String userId);
+	
+	public int countOrder(String userId);
+	
+	public BigDecimal salesOrderDetail(String userId);
+	public List<Object[]> getDs40Order(String userId, String tenS);
+
+	public List<Object[]> inventoryByCategoryDate(String start, String end, int indexPage, String userId);
+
+}

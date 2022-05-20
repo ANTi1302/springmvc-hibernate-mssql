@@ -11,10 +11,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Amado - Furniture Ecommerce Template | Shop</title>
-
-  <!-- Favicon  -->
-   <link rel="icon" href="<c:url value="/assets/img/core-img/favicon.ico" />">
+     <title>Ellent Shop</title>
 
     <!-- Core Style CSS -->
  	<link rel="stylesheet" href="<c:url value="/assets/css/font-awesome.min.css" />" >
@@ -143,7 +140,7 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="<c:url value="${o[1]}" />" alt="">
+                                <img src="${o[1]}" alt="">
                                 <!-- Hover Thumb -->
                                 <img class="hover-img" src="${o[1]}" alt="">
                             </div>

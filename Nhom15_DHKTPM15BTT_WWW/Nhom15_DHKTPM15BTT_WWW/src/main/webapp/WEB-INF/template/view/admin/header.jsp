@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- partial:./partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <ul class="nav">
@@ -27,7 +28,8 @@
             <span class="menu-title">Products</span>
           </a>
         </li>
-        <li class="nav-item">
+       <c:if test="${sessionScope.accAd != null }"> 
+       <li class="nav-item">
           <a class="nav-link" href="${pageContext.request.contextPath}/admin/branch/1&">
             <i class="mdi mdi-codepen menu-icon"></i>
             <span class="menu-title">Branch</span>
@@ -45,6 +47,8 @@
             <span class="menu-title">Vouchers</span>
           </a>
         </li>
+      </c:if> 
+        
         <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
             <i class="mdi mdi-clipboard-text menu-icon"></i>
@@ -70,7 +74,7 @@
             <span class="mdi mdi-menu"></span>
           </button>
           <div class="navbar-brand-wrapper">
-            <a class="navbar-brand brand-logo" href="index.html"><img src="<c:url value="/assets/assets-admin/images/logo.svg" />" alt="logo" /></a>
+            <a class="navbar-brand brand-logo" href="/Nhom15_DHKTPM15BTT_WWW/admin/home-admin"><img width="250" height="70" src="<c:url value="/assets/assets-admin/images/logo-ellent.png"  /> " alt="logo" /></a>
             <a class="navbar-brand brand-logo-mini" href="index.html"><img src="<c:url value="/assets/assets-admin/images/logo-mini.svg" />" alt="logo" /></a>
           </div>
           <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, ${sessionScope.acc.firstName}
