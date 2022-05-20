@@ -358,4 +358,10 @@ public class HomeServiceImpl implements HomeService{
 		return usersDao.getUsersByPhone(id);
 	}
 
+	@Override
+	public List<Color> getImageByIDProduct(String productId) {
+		// TODO Auto-generated method stub
+		return colorsDao.getImageByIDProduct(productId);
+	}
+
 }

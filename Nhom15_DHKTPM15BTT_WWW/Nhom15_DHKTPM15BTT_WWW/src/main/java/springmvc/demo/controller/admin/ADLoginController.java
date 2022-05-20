@@ -21,22 +21,17 @@ import springmvc.demo.service.admin.AdminService;
 import springmvc.demo.service.user.HomeService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("admin")
 public class ADLoginController {
 
 	@Autowired
 	AdminService adminService;
-	
-	@RequestMapping("/adlogin")
-	public String showformlogin(HttpServletResponse response, HttpServletRequest request) throws IOException {
-		return "customer/login";
-	}
 
 	@GetMapping("/adlogout")
 	public String logout(HttpServletResponse response, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("acc");
-		return "admin/login";
+		return "redirect:/logout";
 	}
 
 	

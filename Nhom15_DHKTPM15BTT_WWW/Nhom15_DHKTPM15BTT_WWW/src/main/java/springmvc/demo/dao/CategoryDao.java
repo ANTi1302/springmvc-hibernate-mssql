@@ -18,6 +18,8 @@ public interface CategoryDao{
 
 	public void deleteCategory(String theId);
 
+	public List<Object[]> getDsCategorySearch(int indexPage, String tenS);
+
 
 	
 }

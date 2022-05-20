@@ -112,6 +112,8 @@
 							<li><a href="#"><i class="fa fa-phone"></i> +84 932 904 529</a></li>
 							<li><a href="#"><i class="fa fa-envelope"></i>
 									info@ellentshop.com</a></li>
+							<li><a href="/Nhom15_DHKTPM15BTT_WWW/admin/home-admin"><i class="fa fa-truck"></i>
+									Seller Centre</a></li>
 						</ul>
 
 					</div>

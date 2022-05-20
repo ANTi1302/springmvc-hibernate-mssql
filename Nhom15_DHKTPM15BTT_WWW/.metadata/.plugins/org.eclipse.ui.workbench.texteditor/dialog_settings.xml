@@ -8,6 +8,11 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="CLICK HERE"/>
+			<item value="Click Here"/>
+			<item value="updatecategory"/>
+			<item value="getCategory"/>
+			<item value="productId"/>
 			<item value="REGISTER"/>
 			<item value="Register"/>
 			<item value="@Transactional"/>
@@ -18,8 +23,6 @@
 			<item value="as"/>
 			<item value="throws RemoteException"/>
 			<item value="update_at"/>
-			<item value="created_at"/>
-			<item value=".fa-twitter:before"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

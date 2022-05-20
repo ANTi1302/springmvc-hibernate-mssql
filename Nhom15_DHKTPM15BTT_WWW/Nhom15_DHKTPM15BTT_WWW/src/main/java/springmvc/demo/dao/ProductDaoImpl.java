@@ -530,5 +530,72 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 				+ "and  Product.product_id='"+productId+"'";
 		 currentSession.createNativeQuery(query).executeUpdate();
 	}
+
+	@Override
+	public List<Object[]> revenueByYear(int indexPage, String userId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="select YEAR(od.createdAt),SUM(od.amount),\r\n"
+				+ "SUM(od.amount*od.price),MIN(od.price),MAX(od.price),\r\n"
+				+ "AVG(od.price) "
+				+ "FROM     OrderDetail od INNER JOIN\r\n"
+				+ "                  Product p ON od.productId.productId = p.productId"
+				+ " where p.user.userId='"+userId+"'\r\n"
+				+ "GROUP BY YEAR(od.createdAt) ORDER by YEAR(od.createdAt) DESC";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+	@Override
+	public List<Object[]> revenueByMonth(int indexPage, String userId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="select MONTH(od.createdAt),SUM(od.amount),\r\n"
+				+ "SUM(od.amount*od.price),MIN(od.price),MAX(od.price),\r\n"
+				+ "AVG(od.price) "
+				+ "FROM     OrderDetail od INNER JOIN\r\n"
+				+ "                  Product p ON od.productId.productId = p.productId"
+				+ " where p.user.userId='"+userId+"'\r\n"
+				+ "GROUP BY MONTH(od.createdAt) ORDER by MONTH(od.createdAt) DESC";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+	@Override
+	public List<Object[]> revenueByQuater(int indexPage, String userId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="select CEILING(MONTH(od.createdAt)/3.0),SUM(od.amount),\r\n"
+				+ "SUM(od.amount*od.price),MIN(od.price),MAX(od.price),\r\n"
+				+ "AVG(od.price) "
+				+ "FROM     OrderDetail od INNER JOIN\r\n"
+				+ "                  Product p ON od.productId.productId = p.productId"
+				+ " where p.user.userId='"+userId+"'\r\n"
+				+ "GROUP BY CEILING(MONTH(od.createdAt)/3.0) ORDER by CEILING(MONTH(od.createdAt)/3.0) DESC";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
+
+	@Override
+	public List<Object[]> inventoryByCategoryDate(String start, String end, int indexPage, String userId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		String hql="SELECT pc.categoryId.name, sum( p.quatity),\r\n"
+				+ "sum( p.quatity * p.price),MIN(p.price),\r\n"
+				+ "MAX(p.price),AVG(p.price)\r\n"
+				+ "FROM     Product p INNER JOIN ProductCategory pc ON p.productId = pc.productId.productId"
+				+ " where p.user.userId='"+userId+"' and p.createdAt>='"+start+"' and p.createdAt<='"+end+"'\r\n"
+				+ "GROUP BY pc.categoryId.name";
+		// execute query and get result list
+		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
+		// return the results
+		List<Object[]> productCategories =  query.getResultList();
+		return productCategories;
+	}
 	
 }

@@ -77,4 +77,31 @@ public class VouchesDaoImpl  extends BaseDao implements VouchersDao{
 		Voucher theVoucher = currentSession.get(Voucher.class, theId);
 		return theVoucher;
 	}
+
+	@Override
+	public int demSLVoucherTheoProductId(String productId) {
+		try {
+			String query = "select count([voucher_id]) from [dbo].[Product]\r\n"
+					+ "where [voucher_id]='"+productId+"'";
+			Session currentSession = sessionFactory.getCurrentSession();
+
+			int soVoucher = (int) currentSession.createNativeQuery(query).getSingleResult();
+			// return the results
+			return soVoucher;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public List<Object[]> getDsVoucherSearxh(int indexPage, String tenS) {
+		// TODO Auto-generated method stub
+				Session currentSession = sessionFactory.getCurrentSession();
+				TypedQuery<Object[]> theQuery = currentSession.createQuery(" from Voucher where code  like '%"+tenS+"%'",Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
+				// execute query and get result list
+				List<Object[]> vouchers = theQuery.getResultList();
+				// return the results
+				return vouchers;
+	}
 }

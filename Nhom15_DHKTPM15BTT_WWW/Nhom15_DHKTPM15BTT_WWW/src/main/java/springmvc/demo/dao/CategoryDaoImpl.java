@@ -70,6 +70,17 @@ public class CategoryDaoImpl extends BaseDao implements CategoryDao {
 		session.delete(category);		
 	}
 
+	@Override
+	public List<Object[]> getDsCategorySearch(int indexPage, String tenS) {
+		// TODO Auto-generated method stub
+				Session currentSession = sessionFactory.getCurrentSession();
+				TypedQuery<Object[]> theQuery = currentSession.createQuery(" from Category where name  like '%"+tenS+"%'",Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
+				// execute query and get result list
+				List<Object[]> categorys = theQuery.getResultList();
+				// return the results
+				return categorys;
+	}
+
 
 
 }

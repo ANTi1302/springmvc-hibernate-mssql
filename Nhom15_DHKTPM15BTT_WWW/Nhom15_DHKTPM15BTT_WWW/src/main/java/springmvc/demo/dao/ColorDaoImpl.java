@@ -195,4 +195,16 @@ public class ColorDaoImpl extends BaseDao implements ColorsDao {
         session.delete(color);
 		
 	}
+
+	@Override
+	public List<Color> getImageByIDProduct(String productId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		TypedQuery<Color> theQuery = currentSession
+				.createQuery(" SELECT c.img, c.product.productId\r\n" + "FROM     Color c\r\n"
+						+ "where c.product.productId='" + productId + "'\r\n");
+		// execute query and get result list
+		List<Color> color = (List<Color>) theQuery.getResultList();
+		// return the results
+		return color;
+	}
 }

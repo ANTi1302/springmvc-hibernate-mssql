@@ -43,6 +43,7 @@ public interface AdminService {
 	public Category getCategory(String theId);
 
 	public void deleteCategory(String theId);
+	public List<Object[]> getDsCategorySearch(int indexPage, String tenS);
 	/// voucher
 
 	public List<Voucher> getDsVouchers(int index);
@@ -57,6 +58,8 @@ public interface AdminService {
 	public void deleteVoucher(String voucherId);
 
 	public Voucher getVoucher(String theId);
+	public int demSLVoucherTheoProductId(String productId);
+	public List<Object[]> getDsVoucherSearxh(int indexPage, String tenS);
 
 	// product
 	public List<Object[]> getDsProductTop9(int indexPage, String id);
@@ -89,6 +92,7 @@ public interface AdminService {
 	public Branchs getBranch(String theId);
 
 	public void deleteBranch(String theId);
+	public List<Object[]> getDsBranchSearch(int indexPage, String tenS);
 
 	// productcategory
 	public void saveProductCategory(ProductCategory theProductCategory);
@@ -129,12 +133,15 @@ public interface AdminService {
 
 	// thong ke theo doanh thu theo nam
 	public List<Object[]> revenueByYear(String userId);
+	public List<Object[]> revenueByYear(int indexPage,String userId);
 
 	// thong ke theo doanh thu theo thang
 	public List<Object[]> revenueByMonth(String userId);
+	public List<Object[]> revenueByMonth(int indexPage,String userId);
 
 	// thong ke theo doanh thu theo quy
 	public List<Object[]> revenueByQuater(String userId);
+	public List<Object[]> revenueByQuater(int indexPage,String userId);
 
 	public int countRevenueByCategory(String userId);
 	
@@ -144,5 +151,7 @@ public interface AdminService {
 	
 	public BigDecimal salesOrderDetail(String userId);
 	public List<Object[]> getDs40Order(String userId, String tenS);
+
+	public List<Object[]> inventoryByCategoryDate(String start, String end, int indexPage, String userId);
 
 }

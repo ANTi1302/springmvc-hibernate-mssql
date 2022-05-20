@@ -65,7 +65,7 @@ public class ADHomeController {
 			model.addAttribute("order", adminService.getDs40Order(username.getUserId(), "Check"));
 			return "admin/index";
 		} else {
-			return "redirect:adlogin";
+			return "redirect:/login";
 		}
 
 	}
@@ -353,8 +353,8 @@ public class ADHomeController {
 		return "admin/product";
 	}
 
-	@RequestMapping("/inventory/{index}&{tenS}")
-	public String inventory(Model model, @PathVariable(name = "index") String index, HttpServletRequest req) {
+	@RequestMapping("/inventory/{index}&")
+	public String inventory(Model model, @PathVariable(name = "index") String index,HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
 		if (index == null) {
@@ -368,6 +368,26 @@ public class ADHomeController {
 		model.addAttribute("list", adminService.inventoryByCategory(indexPage, username.getUserId()));
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("tag", indexPage);
+		return "admin/inventory";
+	}
+	@RequestMapping("/searchDate/{index}&")
+	public String inventoryDate(Model model, @PathVariable(name = "index") String index, HttpServletRequest req,@RequestParam("start") String start
+			, @RequestParam("end") String end) {
+		HttpSession session = req.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		if (index == null) {
+			index = "1";
+		}
+
+		int indexPage = Integer.parseInt(index);
+		int soLuong = adminService.countInventoryByCategory(username.getUserId());
+		int endpage = (soLuong + 5) / 6;
+
+		model.addAttribute("list", adminService.inventoryByCategoryDate(start,end,indexPage, username.getUserId()));
+		model.addAttribute("endpage", endpage);
+		model.addAttribute("tag", indexPage);
+		model.addAttribute("start", start);
+		model.addAttribute("end", end);
 		return "admin/inventory";
 	}
 
@@ -388,7 +408,75 @@ public class ADHomeController {
 		model.addAttribute("tag", indexPage);
 		return "admin/sales";
 	}
+	@GetMapping({ "/revenueyear/{index}&" })
+	public String revenueyear(Model theModel,
+			@PathVariable(name = "index") String index, HttpServletRequest req) {
+		int soLuong = adminService.demSLOrderByStatus();
+		HttpSession session = req.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		if (index == null) {
+			index = "1";
+		}
+		int indexPage = Integer.parseInt(index);
+		int endpage = (soLuong + 5) / 6;
 
+		theModel.addAttribute("endpage", endpage);
+		theModel.addAttribute("tag", indexPage);
+		theModel.addAttribute("list", adminService.revenueByYear(indexPage, username.getUserId()));
+		return "admin/revenuesales";
+	}
+	@RequestMapping({ "/revenuemonth/{index}&" })
+	public String revenuemonth(Model theModel,
+			@PathVariable(name = "index") String index, HttpServletRequest req) {
+		int soLuong = adminService.demSLOrderByStatus();
+		HttpSession session = req.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		if (index == null) {
+			index = "1";
+		}
+		int indexPage = Integer.parseInt(index);
+		int endpage = (soLuong + 5) / 6;
+
+		theModel.addAttribute("endpage", endpage);
+		theModel.addAttribute("tag", indexPage);
+		theModel.addAttribute("list", adminService.revenueByMonth(indexPage, username.getUserId()));
+		return "admin/revenuesales";
+	}
+	@RequestMapping({ "/revenuequarter/{index}&" })
+	public String revenuequarter(Model theModel,
+			@PathVariable(name = "index") String index, HttpServletRequest req) {
+		int soLuong = adminService.demSLOrderByStatus();
+		HttpSession session = req.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		if (index == null) {
+			index = "1";
+		}
+		int indexPage = Integer.parseInt(index);
+		int endpage = (soLuong + 5) / 6;
+
+		theModel.addAttribute("endpage", endpage);
+		theModel.addAttribute("tag", indexPage);
+		theModel.addAttribute("list", adminService.revenueByQuater(indexPage, username.getUserId()));
+		return "admin/revenuesales";
+	}
+	@RequestMapping({ "/revenueall/{index}&" })
+	public String revenueall(Model theModel,
+			@PathVariable(name = "index") String index, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		if (index == null) {
+			index = "1";
+		}
+		int soLuong = adminService.countRevenueByCategory(username.getUserId());
+		int indexPage = Integer.parseInt(index);
+		int endpage = (soLuong + 5) / 6;
+
+		theModel.addAttribute("endpage", endpage);
+		theModel.addAttribute("tag", indexPage);
+		theModel.addAttribute("list", adminService.revenueByCategory(indexPage, username.getUserId()));
+		return "admin/sales";
+	}
 	@RequestMapping("/branch/{index}&{tenS}")
 	public String branch(Model model, @PathVariable(name = "index") String index) {
 		int soLuong = adminService.demSLBranch();
@@ -438,10 +526,14 @@ public class ADHomeController {
 
 	@RequestMapping("/deleteCategory")
 	public String deleteCategory(@RequestParam("categoryId") String categoryId) {
+		if (adminService.demSLCartTheoProductId(categoryId) == 0 ) {
+			adminService.deleteCategory(categoryId);
+			return "redirect:category/1&";
 
-		adminService.deleteCategory(categoryId);
-		return "redirect:category/1&";
-
+		} else {
+			
+			return "redirect:category/1&";
+		}
 	}
 
 	@RequestMapping("/formvoucher")
@@ -472,11 +564,90 @@ public class ADHomeController {
 
 	@RequestMapping("/deletevoucher")
 	public String deleteVoucher(@RequestParam("voucherId") String voucherId) {
+		
+		if (adminService.demSLVoucherTheoProductId(voucherId) == 0 ) {
+			adminService.deleteVoucher(voucherId);
+			return "redirect:voucher/1&";
 
-		adminService.deleteVoucher(voucherId);
+		} else {
+			
+			return "redirect:voucher/1&";
+		}
 
-		return "redirect:voucher/1&";
 
+
+	}
+	@GetMapping({"/searchvoucher/{index}&"})
+	public String searchvoucher(Model theModel, @RequestParam("tenS") String tenS,@PathVariable(name = "index") String index,
+			HttpServletRequest req) {
+		String ten = tenS.trim();
+		HttpSession session = req.getSession();
+		
+		
+		String[] tenx = ten.split("[,; \\t\\n\\r]+");
+		for (String string : tenx) {
+		if (index == null) {
+			index = "1";
+		}
+		
+		int indexPage = Integer.parseInt(index);
+		int soLuong = adminService.demSLVoucher();
+
+		int endpage = (soLuong + 5) / 6;
+
+		theModel.addAttribute("listvou", adminService.getDsVoucherSearxh(indexPage, string));
+		theModel.addAttribute("endpage", endpage);
+		theModel.addAttribute("tag", indexPage);}
+		req.setAttribute("tenS", tenS);
+		return "admin/voucher";	
+	}
+	@GetMapping({"/searchbranch/{index}&"})
+	public String searchbranch(Model theModel, @RequestParam("tenS") String tenS,@PathVariable(name = "index") String index,
+			HttpServletRequest req) {
+		String ten = tenS.trim();
+		HttpSession session = req.getSession();
+		
+		
+		String[] tenx = ten.split("[,; \\t\\n\\r]+");
+		for (String string : tenx) {
+		if (index == null) {
+			index = "1";
+		}
+		
+		int indexPage = Integer.parseInt(index);
+		int soLuong = adminService.demSLBranch();
+
+		int endpage = (soLuong + 5) / 6;
+
+		theModel.addAttribute("listbranch", adminService.getDsBranchSearch(indexPage, string));
+		theModel.addAttribute("endpage", endpage);
+		theModel.addAttribute("tag", indexPage);}
+		req.setAttribute("tenS", tenS);
+		return "admin/branch";	
+	}
+	@GetMapping({"/searchcategory/{index}&"})
+	public String searchcategory(Model theModel, @RequestParam("tenS") String tenS,@PathVariable(name = "index") String index,
+			HttpServletRequest req) {
+		String ten = tenS.trim();
+		HttpSession session = req.getSession();
+		
+		
+		String[] tenx = ten.split("[,; \\t\\n\\r]+");
+		for (String string : tenx) {
+		if (index == null) {
+			index = "1";
+		}
+		
+		int indexPage = Integer.parseInt(index);
+		int soLuong = adminService.demSLCategory();
+
+		int endpage = (soLuong + 5) / 6;
+
+		theModel.addAttribute("listcate", adminService.getDsCategorySearch(indexPage, string));
+		theModel.addAttribute("endpage", endpage);
+		theModel.addAttribute("tag", indexPage);}
+		req.setAttribute("tenS", tenS);
+		return "admin/category";	
 	}
 
 	@RequestMapping("/formbranch")

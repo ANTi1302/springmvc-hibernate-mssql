@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,14 +59,18 @@
 						<div class="orders-content">
 							<div class="form-group">
 								<div class="input-group">
-									<input type="date" class="form-control"
-										placeholder="Tá»« ngÃ y" name="start"> <span
-										style="padding: 6px 4px; width: auto">-</span> <input
-										type="date" class="form-control" placeholder="Äáº¿n ngÃ y"
+								<c:url var="Url" value="/admin/searchDate/1&" />
+								<form:form class="input-group" action="${Url}" method="GET">
+									<input type="date" class="form-control" value="${start}"
+										name="start"> <span
+										style="padding: 6px 4px; width: auto">-</span>
+										 <input
+										type="date" class="form-control" value="${end}"
 										name="end">
 									<div class="input-group-append">
-										<button class="btn btn-sm btn-primary" type="button">Search</button>
+										<input type="submit" class="btn btn-sm btn-primary" value="Search" />
 									</div>
+									</form:form>
 								</div>
 							</div>
 							<div class="revenue-main-body">
@@ -134,14 +139,14 @@
 						<ul class="pagination justify-content-end">
 							<c:if test="${tag>1 }">
 								<li class="page-item "><a class="page-link"
-									href="${tag-1}&?tenS=" tabindex="-1">Previous</a></li>
+									href="${tag-1}&?start=&end=" tabindex="-1">Previous</a></li>
 							</c:if>
 							<c:forEach begin="1" end="${endpage}" var="i">
 								<li class="page-item"><a class="page-link"
-									href="${i}&?tenS=${tenS}">${i}</a></li>
+									href="${i}&?start=${start}&end=${end}">${i}</a></li>
 							</c:forEach>
 							<c:if test="${tag<endpage }">
-								<li class="page-item"><a class="page-link" href="${tag+1}&?tenS=">Next</a>
+								<li class="page-item"><a class="page-link" href="${tag+1}&?start=&end=">Next</a>
 								</li>
 							</c:if>
 						</ul>

@@ -43,8 +43,8 @@
 							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/home">Home</a></li>
 							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/shop">Shop</a></li>
 							<li class="breadcrumb-item">
-							<a href="branch?txtC=${dsProductChiTiet[13]}">${dsProductChiTiet[12]}</a></li>
-							<li class="breadcrumb-item active" aria-current="page">${dsProductChiTiet[2]}</li>
+							<a href="branch?txtC=${dsProductChiTiet.branchs.branchId}">${dsProductChiTiet.title}</a></li>
+							<li class="breadcrumb-item active" aria-current="page">${dsProductChiTiet.name}</li>
 						</ol>
 					</nav>
 				</div>
@@ -58,49 +58,27 @@
 							<ol class="carousel-indicators">
 								<li class="active" data-target="#product_details_slider"
 									data-slide-to="0"
-									style="background-image: url(<c:url value="/assets/img/product-img/pro-big-1.jpg" />);">
+									style="background-image: url(<c:url value="${dsProductChiTiet.colors[0][0]}" />);">
 								</li>
-								<li data-target="#product_details_slider" data-slide-to="1"
-									style="background-image: url(<c:url value="/assets/img/product-img/pro-big-2.jpg" />);">
+								<c:if test="${dsProductChiTiet.colors[1][0] !=null} ">
+								<li class="active" data-target="#product_details_slider"
+									data-slide-to="0"
+									style="background-image: url(<c:url value="${dsProductChiTiet.colors[1][0]}" />);">
 								</li>
-								<li data-target="#product_details_slider" data-slide-to="2"
-									style="background-image: url(<c:url value="/assets/img/product-img/pro-big-3.jpg" />);">
+								<li class="active" data-target="#product_details_slider"
+									data-slide-to="0"
+									style="background-image: url(<c:url value="${dsProductChiTiet.colors[2][0]}" />);">
 								</li>
-								<li data-target="#product_details_slider" data-slide-to="3"
-									style="background-image: url(<c:url value="/assets/img/product-img/pro-big-4.jpg" />);">
-								</li>
+								</c:if>
+								
 							</ol>
 							<div class="carousel-inner">
 								<div class="carousel-item active">
 									<a class="gallery_img"
-										href="<c:url value="/assets/img/product-img/pro-big-1.jpg" />">
+										href="<c:url value="${dsProductChiTiet.colors[0][0]}" />">
 										<img class="d-block w-100"
-										src="<c:url value="/assets/img/product-img/pro-big-1.jpg" />"
+										src="<c:url value="${dsProductChiTiet.colors[0][0]}" />"
 										alt="First slide">
-									</a>
-								</div>
-								<div class="carousel-item">
-									<a class="gallery_img"
-										href="<c:url value="/assets/img/product-img/pro-big-2.jpg" />">
-										<img class="d-block w-100"
-										src="<c:url value="/assets/img/product-img/pro-big-2.jpg" />"
-										alt="Second slide">
-									</a>
-								</div>
-								<div class="carousel-item">
-									<a class="gallery_img"
-										href="<c:url value="/assets/img/product-img/pro-big-3.jpg" />">
-										<img class="d-block w-100"
-										src="<c:url value="/assets/img/product-img/pro-big-3.jpg" />"
-										alt="Third slide">
-									</a>
-								</div>
-								<div class="carousel-item">
-									<a class="gallery_img"
-										href="<c:url value="/assets/img/product-img/pro-big-4.jpg" />">
-										<img class="d-block w-100"
-										src="<c:url value="/assets/img/product-img/pro-big-4.jpg" />"
-										alt="Fourth slide">
 									</a>
 								</div>
 							</div>
@@ -113,9 +91,9 @@
 
 						<div class="product-meta-data">
 							<div class="line"></div>
-							<p class="product-price">$${dsProductChiTiet[3]}</p>
+							<p class="product-price">$${dsProductChiTiet.price}</p>
 							<a href="<c:url value="" />">
-								<h6>${dsProductChiTiet[2]}</h6>
+								<h6>${dsProductChiTiet.name}</h6>
 							</a>
 							<!-- Ratings & Review -->
 							<div
@@ -132,12 +110,12 @@
 								</div>
 							</div>
 							<!-- Avaiable -->
-							<c:if test="${dsProductChiTiet[9]>0}">
+							<c:if test="${dsProductChiTiet.quatity>0}">
 							<p class="avaibility">
 								<i class="fa fa-circle"></i> In Stock
 							</p>
 							</c:if>
-							<c:if test="${dsProductChiTiet[9]<=0}">
+							<c:if test="${dsProductChiTiet.quatity<=0}">
 							<p class="avaibility">
 								<i class="fa fa-circle"></i> Out Of Stock
 							</p>
@@ -146,7 +124,7 @@
 						</div>
 
 						<div class="short_overview my-5">
-							<p>${dsProductChiTiet[6]}</p>
+							<p>${dsProductChiTiet.details}</p>
 						</div>
 
 						<!-- Add to Cart Form -->
@@ -155,21 +133,21 @@
 								<p>Qty</p>
 								<div class="quantity">
 									<span class="qty-minus"
-										onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( ${dsProductChiTiet[9]} ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
+										onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( ${dsProductChiTiet.quatity} ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i
 										class="fa fa-caret-down" aria-hidden="true"></i></span> <input
 										type="number" class="qty-text" id="qty" step="1" min="1"
-										max="${dsProductChiTiet[9]}" name="quantity" value="1">
+										max="${dsProductChiTiet.quatity}" name="quantity" value="1">
 									<span class="qty-plus"
 										onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i
 										class="fa fa-caret-up" aria-hidden="true"></i></span>
 								</div>
 							</div>
-							<c:if test="${dsProductChiTiet[9]<=0}">
-							<button type="submit" name="id" value="${dsProductChiTiet[0]}"
+							<c:if test="${dsProductChiTiet.quatity<=0}">
+							<button type="submit" name="id" value="${dsProductChiTiet.productId}"
 								class="btn amado-btn" disabled="disabled">Add to cart</button>
 							</c:if>
-							<c:if test="${dsProductChiTiet[9]>0}">
-							<button type="submit" name="id" value="${dsProductChiTiet[0]}"
+							<c:if test="${dsProductChiTiet.quatity>0}">
+							<button type="submit" name="id" value="${dsProductChiTiet.quatity}"
 								class="btn amado-btn">Add to cart</button>
 							</c:if>
 							

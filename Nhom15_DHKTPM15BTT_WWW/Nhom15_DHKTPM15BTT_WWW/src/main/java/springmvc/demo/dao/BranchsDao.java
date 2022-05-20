@@ -20,6 +20,8 @@ public interface BranchsDao{
 
 	public void deleteBranch(String theId);
 
+	public List<Object[]> getDsBranchSearch(int indexPage, String tenS);
+
 	
 
 	

@@ -19,4 +19,8 @@ public interface VouchersDao {
 	public void deleteVoucher(String voucherId);
 
 	public Voucher getVoucher(String theId);
+
+	public int demSLVoucherTheoProductId(String productId);
+
+	public List<Object[]> getDsVoucherSearxh(int indexPage, String tenS);
 }

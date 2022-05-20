@@ -339,5 +339,42 @@ public class AdminServiceImpl implements AdminService{
 		colorsDao.deleteColorById(theId);
 		
 	}
+	@Override
+	public List<Object[]> getDsCategorySearch(int indexPage, String tenS) {
+		// TODO Auto-generated method stub
+		return categoryDao.getDsCategorySearch(indexPage, tenS);
+	}
+	@Override
+	public int demSLVoucherTheoProductId(String productId) {
+		return vouchersDao.demSLVoucherTheoProductId(productId);
+	}
+	@Override
+	public List<Object[]> getDsVoucherSearxh(int indexPage, String tenS) {
+		return vouchersDao.getDsVoucherSearxh(indexPage, tenS);
+	}
+	@Override
+	public List<Object[]> getDsBranchSearch(int indexPage, String tenS) {
+		return branchsDao.getDsBranchSearch(indexPage, tenS);
+	}
+	@Override
+	public List<Object[]> revenueByYear(int indexPage, String userId) {
+		// TODO Auto-generated method stub
+		return productDao.revenueByYear( indexPage, userId) ;
+	}
+	@Override
+	public List<Object[]> revenueByMonth(int indexPage, String userId) {
+		// TODO Auto-generated method stub
+		return productDao.revenueByMonth(indexPage, userId);
+	}
+	@Override
+	public List<Object[]> revenueByQuater(int indexPage, String userId) {
+		// TODO Auto-generated method stub
+		return productDao.revenueByQuater(indexPage, userId);
+	}
+	@Override
+	public List<Object[]> inventoryByCategoryDate(String start, String end, int indexPage, String userId) {
+		// TODO Auto-generated method stub
+		return productDao.inventoryByCategoryDate(start, end, indexPage, userId);
+	}
 
 }

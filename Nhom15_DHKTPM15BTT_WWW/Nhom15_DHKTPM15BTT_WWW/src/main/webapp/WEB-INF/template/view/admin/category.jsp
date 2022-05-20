@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,31 +48,20 @@
 							<table class="table table-hover">
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control"
-											placeholder="Recipient's username"
-											aria-label="Recipient's username">
-										<div class="input-group-append">
-											<button class="btn btn-sm btn-primary" type="button">Search</button>
-										</div>
+										<c:url var="Urlcategory" value="/admin/searchcategory/1&" />
+										<form:form class="input-group" action="${Urlcategory}"
+											method="GET">
+											<input type="text" class="form-control" value="${tenS }"
+												placeholder="Category's name"
+												aria-label="Category's name" name="tenS">
+											<div class="input-group-append">
+												<button class="btn btn-sm btn-primary" type="submit">Search</button>
+											</div>
+										</form:form>
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group" style="float: right;">
-										<div class="input-group">
-											<div class="input-group-prepend">
-												<button
-													class="btn btn-sm btn-outline-primary dropdown-toggle"
-													type="button" data-bs-toggle="dropdown"
-													aria-haspopup="true" aria-expanded="false">Dropdown</button>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="#">Action</a> <a
-														class="dropdown-item" href="#">Another action</a> <a
-														class="dropdown-item" href="#">Something else here</a>
-													<div role="separator" class="dropdown-divider"></div>
-													<a class="dropdown-item" href="#">Separated link</a>
-												</div>
-											</div>
-										</div>
 									</div>
 								</div>
 								<input type="button" value="Add Category"
@@ -110,17 +100,17 @@
 								<div>
 									<nav aria-label="Page navigation example">
 										<ul class="pagination justify-content-end">
-											<c:if test="${tag>1 }">
+											<c:if test="${tag>1 }&?tenS=">
 												<li class="page-item disabled"><a class="page-link"
 													href="${tag-1}" tabindex="-1">Previous</a></li>
 											</c:if>
 											<c:forEach begin="1" end="${endpage}" var="i">
 												<li class="page-item"><a class="page-link"
-													href="${i}&${tenS}">${i}</a></li>
+													href="${i}&?tenS=${tenS}">${i}</a></li>
 											</c:forEach>
 											<c:if test="${tag<endpage }">
 												<li class="page-item"><a class="page-link"
-													href="${tag+1}">Next</a></li>
+													href="${tag+1}&?tenS=">Next</a></li>
 											</c:if>
 										</ul>
 									</nav>

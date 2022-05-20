@@ -19,4 +19,5 @@ public interface ColorsDao {
 	public int demSLColorTheoProductId(String productId);
 	public Color getColor(String theId);
 	public void deleteColorById(String theId);
+	public List<Color> getImageByIDProduct(String productId);
 }

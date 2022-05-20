@@ -47,4 +47,8 @@ public interface ProductDao {
 	///trong index xuat 40 don hang gan nhat
 	public List<Object[]> getDs40Order(String userId, String tenS);
 	public void capNhatProduct(String productId);
+	public List<Object[]> revenueByYear(int indexPage, String userId);
+	public List<Object[]> revenueByMonth(int indexPage, String userId);
+	public List<Object[]> revenueByQuater(int indexPage, String userId);
+	public List<Object[]> inventoryByCategoryDate(String start, String end, int indexPage, String userId);
 }

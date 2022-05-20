@@ -47,6 +47,7 @@ public interface HomeService extends UserDetailsService{
 
 	// color
 	public List<Color> getDsColorsByIDProduct(String id);
+	public List<Color> getImageByIDProduct(String productId);
 
 //	public List<Color> getDsColorsByIDProduct(Product id) ;
 	public List<Object[]> getDsColorTop9();
@@ -102,6 +103,8 @@ public interface HomeService extends UserDetailsService{
 	
 	public List<Users> getUsers(String id);
 	public void saveUser(Users theUsers,String id);
+
+
 
 	
 

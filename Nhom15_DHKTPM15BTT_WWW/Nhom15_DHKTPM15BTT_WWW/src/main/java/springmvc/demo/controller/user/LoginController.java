@@ -33,7 +33,7 @@ import springmvc.demo.entity.Users;
 @Controller
 public class LoginController extends BaseController {
 
-	@RequestMapping("/login")
+	@RequestMapping({"/login","/admin/login"})
 	public ModelAndView showformlogin(HttpServletResponse response, HttpServletRequest request) throws IOException {
 
 		modelAndView.setViewName("customer/login");

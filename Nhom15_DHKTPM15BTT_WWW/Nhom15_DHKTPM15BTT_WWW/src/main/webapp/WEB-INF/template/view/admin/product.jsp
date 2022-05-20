@@ -66,8 +66,8 @@
 								</div>
 								<c:url var="Url" value="/admin/search/1&" />
 								<form:form class="input-group" action="${Url}" method="GET">
-									<input type="text" class="form-control"
-										placeholder="Recipient's username"  name="tenS"
+									<input type="text" class="form-control" value="${tenS }"
+										placeholder="Product's username"  name="tenS"
 										aria-label="Recipient's username">
 									<div class="input-group-append">
 										<input type="submit" class="btn btn-sm btn-primary" value="Search"/>

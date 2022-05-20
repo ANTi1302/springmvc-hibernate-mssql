@@ -82,6 +82,18 @@ public class BranchsDaoImpl extends BaseDao implements BranchsDao {
 		
 	}
 
+	@Override
+	public List<Object[]> getDsBranchSearch(int indexPage, String tenS) {
+		// TODO Auto-generated method stub
+				Session currentSession = sessionFactory.getCurrentSession();
+				TypedQuery<Object[]> theQuery = currentSession.createQuery(" from Branchs where title  like '%"+tenS+"%'",Object[].class).setHibernateFirstResult(((indexPage-1)*6)).setMaxResults(6);
+				// execute query and get result list
+				List<Object[]> branchs = theQuery.getResultList();
+				// return the results
+				return branchs;
+			}
+	
+
 
 
 }

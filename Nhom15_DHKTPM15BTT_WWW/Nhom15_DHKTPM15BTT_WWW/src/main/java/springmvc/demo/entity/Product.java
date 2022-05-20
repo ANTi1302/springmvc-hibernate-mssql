@@ -44,7 +44,7 @@ public class Product implements Serializable{
 	private int newProduct;
 	@Column(columnDefinition = "nvarchar(50)")
 	private String size;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	@Column(name = "created_at")
 	private Date createdAt;
 	@Column(name = "update_at")

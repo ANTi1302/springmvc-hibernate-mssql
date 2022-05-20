@@ -100,21 +100,21 @@
 											<c:url var="Url1" value="/admin/revenueyear/1&" />
 											<c:url var="Url2" value="/admin/revenuemonth/1&" />
 											<c:url var="Url3" value="/admin/revenuequarter/1&" />
-											<form:form class="input-group" action="${Url}" method="GET">
-												<input type="submit" name="Check" class="dropdown-item"
+											<form:form class="input-group" action="${Url1}" method="GET">
+												<input type="submit"  class="dropdown-item"
 													value="Revenue By Year" />
 											</form:form>
-											<form:form class="input-group" action="${Url1}" method="GET">
-												<input type="submit" name="Confirm" class="dropdown-item"
+											<form:form class="input-group" action="${Url2}" method="GET">
+												<input type="submit"  class="dropdown-item"
 													href="filterconfirm" value="Revenue By Month" />
 											</form:form>
-											<form:form class="input-group" action="${Url2}" method="GET">
-												<input type="submit" name="Cancel" class="dropdown-item"
+											<form:form class="input-group" action="${Url3}" method="GET">
+												<input type="submit" class="dropdown-item"
 													href="filtercancel" value="Revenue By Quarter" />
 											</form:form>
 											<div role="separator" class="dropdown-divider"></div>
-											<form:form class="input-group" action="${Url3}" method="GET">
-												<input type="submit" name="All" class="dropdown-item"
+											<form:form class="input-group" action="${Url}" method="GET">
+												<input type="submit" class="dropdown-item"
 													href="filterall" value="All" />
 											</form:form>
 
