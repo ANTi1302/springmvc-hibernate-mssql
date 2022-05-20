@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib  uri="http://www.springframework.org/tags/form"  prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,18 +44,21 @@
 						<div class="card">
 							<div class="card-body">
 								<h4 class="card-title">Choose Color</h4>
-								<form:form class="form-sample" action="saveColor" modelAttribute="color" method="POST" enctype="multipart/form-data">
+								<form:form class="form-sample" action="saveColor"
+									modelAttribute="color" method="POST"
+									enctype="multipart/form-data">
 
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group row">
 												<label class="col-sm-3 col-form-label">Product name</label>
 												<div class="col-sm-9">
-													<form:select class="form-control"  path="product">
-													<form:option class="form-control" value="${sessionScope.productid}">
+													<form:select class="form-control" path="product">
+														<form:option class="form-control"
+															value="${sessionScope.productid}">
 													${sessionScope.productname}
 													</form:option>
-												</form:select>
+													</form:select>
 												</div>
 											</div>
 										</div>
@@ -64,6 +67,7 @@
 												<label class="col-sm-3 col-form-label">Color</label>
 												<div class="col-sm-9">
 													<form:input class="form-control" path="name" />
+													 <form:errors path="name" cssClass="alert alert-danger" element="div"/>
 												</div>
 											</div>
 										</div>
@@ -74,30 +78,36 @@
 												<label class="col-sm-3 col-form-label">Code</label>
 												<div class="col-sm-9">
 													<form:input class="form-control" path="code" />
+													 <form:errors path="code" cssClass="alert alert-danger" element="div"/>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group row">
 												<div class="form-group">
-													<label>File upload</label> 
-													<form:input type="file" name="img[]" path="file" 
-														class="file-upload-default"/>
+													<label>File upload</label>
+													<form:input type="file" name="img[]" path="file"
+														class="file-upload-default" />
+
 													<div class="input-group col-xs-12">
 														<input type="text" class="form-control file-upload-info"
-															disabled placeholder="Upload Image" > <span
+															disabled placeholder="Upload Image"> <span
 															class="input-group-append">
 															<button class="file-upload-browse btn btn-primary"
 																type="button">Upload</button>
 														</span>
 													</div>
+													<c:if test="${err !=null }">
+														<i class="alert alert-success">${err }</i>
+													</c:if>
 												</div>
 											</div>
 										</div>
 									</div>
 									<input type="submit" class="btn btn-primary me-2"
-									 value="Save & Display" />
-									<button class="btn btn-light" name="cancel" onclick="window.location.href='${pageContext.request.contextPath}/admin/product/1&' ; return false;">Cancel</button>
+										value="Save & Display" />
+									<button class="btn btn-light" name="cancel"
+										onclick="window.location.href='${pageContext.request.contextPath}/admin/product/1&' ; return false;">Cancel</button>
 								</form:form>
 							</div>
 						</div>
@@ -110,33 +120,39 @@
 
 			<!-- content-wrapper ends -->
 			<!-- partial:./partials/_footer.html -->
-			  <%@ include file="footer.jsp" %>
+			<%@ include file="footer.jsp"%>
 
-	<!-- base:js -->
-	<script src="<c:url value="/assets/assets-admin/vendors/js/vendor.bundle.base2.js" />"></script>
-	<!-- endinject -->
-	<!-- Plugin js for this page-->
-	<script
-			src="<c:url value="/assets/assets-admin/vendors/chart/Chart.min.js" />"></script>
-		<script
-			src="<c:url value="/assets/assets-admin/js/jquery.cookie.js" />"
-			type="text/javascript"></script>
-	<!-- End plugin js for this page-->
-	<!-- inject:js -->
-<script src="<c:url value="/assets/assets-admin/js/off-canvas.js" />"></script>
-		<script
-			src="<c:url value="/assets/assets-admin/js/hoverable-collapse.js" />"></script>
-		<script src="<c:url value="/assets/assets-admin/js/template.js" />"></script>
-		<script src="<c:url value="/assets/assets-admin/js/file-upload.js" />"></script>
-	<!-- endinject -->
-	<!-- plugin js for this page -->
-<script src="<c:url value="/assets/assets-admin/js/jquery.cookie.js" />"
-			type="text/javascript"></script>
-		<!-- End plugin js for this page -->
-		<!-- Custom js for this page-->
-		<script src="<c:url value="/assets/assets-admin/js/dashboard.js" />"></script>
-		 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-		<!-- End custom js for this page-->
+			<!-- base:js -->
+			<script
+				src="<c:url value="/assets/assets-admin/vendors/js/vendor.bundle.base2.js" />"></script>
+			<!-- endinject -->
+			<!-- Plugin js for this page-->
+			<script
+				src="<c:url value="/assets/assets-admin/vendors/chart/Chart.min.js" />"></script>
+			<script
+				src="<c:url value="/assets/assets-admin/js/jquery.cookie.js" />"
+				type="text/javascript"></script>
+			<!-- End plugin js for this page-->
+			<!-- inject:js -->
+			<script src="<c:url value="/assets/assets-admin/js/off-canvas.js" />"></script>
+			<script
+				src="<c:url value="/assets/assets-admin/js/hoverable-collapse.js" />"></script>
+			<script src="<c:url value="/assets/assets-admin/js/template.js" />"></script>
+			<script
+				src="<c:url value="/assets/assets-admin/js/file-upload.js" />"></script>
+			<!-- endinject -->
+			<!-- plugin js for this page -->
+			<script
+				src="<c:url value="/assets/assets-admin/js/jquery.cookie.js" />"
+				type="text/javascript"></script>
+			<!-- End plugin js for this page -->
+			<!-- Custom js for this page-->
+			<script src="<c:url value="/assets/assets-admin/js/dashboard.js" />"></script>
+			<script
+				src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+				crossorigin="anonymous"></script>
+			<!-- End custom js for this page-->
 </body>
 
 </html>

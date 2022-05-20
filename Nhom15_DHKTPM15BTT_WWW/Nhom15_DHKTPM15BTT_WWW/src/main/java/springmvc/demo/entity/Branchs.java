@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,10 +23,12 @@ public class Branchs implements Serializable{
 	@Column(name = "branch_id", columnDefinition = "uniqueidentifier")
 	private String branchId;
 	@Column(columnDefinition = "nvarchar(500)")
+	@Size(min = 5, max=100, message = "{branch.title.lenErr}")
 	private String title;
 	@Column(columnDefinition = "nvarchar(500)")
 	private String img;
 	@Column(columnDefinition = "nvarchar(1000)")
+	@Size(min = 5, max=1000, message = "{branch.description.lenErr}")
 	private String description;
 	@Column(columnDefinition = "nvarchar(50)")
 	

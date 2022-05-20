@@ -40,6 +40,7 @@
               <div class="form-group">
                 <label for="exampleInputName1">Name</label>
                 <form:input path="name" type="text" class="form-control" id="exampleInputName1" placeholder="Name"/>
+                 <form:errors path="name" cssClass="alert alert-danger" element="div"/>
               </div>
               <div class="form-group">
                 <label>File upload</label>

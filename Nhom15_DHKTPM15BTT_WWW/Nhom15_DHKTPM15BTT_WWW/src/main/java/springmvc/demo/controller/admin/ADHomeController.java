@@ -75,16 +75,20 @@ public class ADHomeController {
 		int soLuong = adminService.demSLOrderByStatus();
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		if (index == null) {
-			index = "1";
-		}
-		int indexPage = Integer.parseInt(index);
-		int endpage = (soLuong + 5) / 6;
+		if (username != null) {
+			if (index == null) {
+				index = "1";
+			}
+			int indexPage = Integer.parseInt(index);
+			int endpage = (soLuong + 5) / 6;
 
-		model.addAttribute("endpage", endpage);
-		model.addAttribute("tag", indexPage);
-		model.addAttribute("listorder", adminService.getDsOrderByStatus(indexPage, username.getUserId()));
-		return "admin/order";
+			model.addAttribute("endpage", endpage);
+			model.addAttribute("tag", indexPage);
+			model.addAttribute("listorder", adminService.getDsOrderByStatus(indexPage, username.getUserId()));
+			return "admin/order";
+		} else {
+			return "redirect:/login";
+		}
 	}
 
 	@RequestMapping({ "/filterCheck/{index}&" })
@@ -93,36 +97,47 @@ public class ADHomeController {
 		int soLuong = adminService.demSLOrderByStatus();
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		if (index == null) {
-			index = "1";
-		}
-		int indexPage = Integer.parseInt(index);
-		int endpage = (soLuong + 5) / 6;
+		if (username != null) {
+			if (index == null) {
+				index = "1";
+			}
+			int indexPage = Integer.parseInt(index);
+			int endpage = (soLuong + 5) / 6;
 
-		theModel.addAttribute("endpage", endpage);
-		theModel.addAttribute("tag", indexPage);
-		req.setAttribute("tenS", tenS);
-		theModel.addAttribute("listorder", adminService.getDsOrderByStatusCheck(indexPage, username.getUserId(), tenS));
-		return "admin/order";
+			theModel.addAttribute("endpage", endpage);
+			theModel.addAttribute("tag", indexPage);
+			req.setAttribute("tenS", tenS);
+			theModel.addAttribute("listorder",
+					adminService.getDsOrderByStatusCheck(indexPage, username.getUserId(), tenS));
+			return "admin/order";
+		} else {
+			return "redirect:/login";
+		}
 	}
 
 	@RequestMapping({ "/filterConfirm/{index}&" })
 	public String filterConfirm(Model theModel, @RequestParam("Confirm") String tenS,
 			@PathVariable(name = "index") String index, HttpServletRequest req) {
+
 		int soLuong = adminService.demSLOrderByStatus();
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		if (index == null) {
-			index = "1";
-		}
-		int indexPage = Integer.parseInt(index);
-		int endpage = (soLuong + 5) / 6;
+		if (username != null) {
+			if (index == null) {
+				index = "1";
+			}
+			int indexPage = Integer.parseInt(index);
+			int endpage = (soLuong + 5) / 6;
 
-		theModel.addAttribute("endpage", endpage);
-		theModel.addAttribute("tag", indexPage);
-		req.setAttribute("tenS", tenS);
-		theModel.addAttribute("listorder", adminService.getDsOrderByStatusCheck(indexPage, username.getUserId(), tenS));
-		return "admin/order";
+			theModel.addAttribute("endpage", endpage);
+			theModel.addAttribute("tag", indexPage);
+			req.setAttribute("tenS", tenS);
+			theModel.addAttribute("listorder",
+					adminService.getDsOrderByStatusCheck(indexPage, username.getUserId(), tenS));
+			return "admin/order";
+		} else {
+			return "redirect:/login";
+		}
 	}
 
 	@RequestMapping({ "/filterCancel/{index}&" })
@@ -131,17 +146,22 @@ public class ADHomeController {
 		int soLuong = adminService.demSLOrderByStatus();
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		if (index == null) {
-			index = "1";
-		}
-		int indexPage = Integer.parseInt(index);
-		int endpage = (soLuong + 5) / 6;
+		if (username != null) {
+			if (index == null) {
+				index = "1";
+			}
+			int indexPage = Integer.parseInt(index);
+			int endpage = (soLuong + 5) / 6;
 
-		theModel.addAttribute("endpage", endpage);
-		theModel.addAttribute("tag", indexPage);
-		req.setAttribute("tenS", tenS);
-		theModel.addAttribute("listorder", adminService.getDsOrderByStatusCheck(indexPage, username.getUserId(), tenS));
-		return "admin/order";
+			theModel.addAttribute("endpage", endpage);
+			theModel.addAttribute("tag", indexPage);
+			req.setAttribute("tenS", tenS);
+			theModel.addAttribute("listorder",
+					adminService.getDsOrderByStatusCheck(indexPage, username.getUserId(), tenS));
+			return "admin/order";
+		} else {
+			return "redirect:/login";
+		}
 	}
 
 	@GetMapping("/confirm")
@@ -200,20 +220,24 @@ public class ADHomeController {
 		int soLuong = homeService.demSLProduct();
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		if (index == null) {
-			index = "1";
+		if (username != null) {
+			if (index == null) {
+				index = "1";
+			}
+			int indexPage = Integer.parseInt(index);
+			int endpage = (soLuong + 5) / 6;
+
+			model.addAttribute("listproduct", adminService.getDsProductTop9(indexPage, username.getUserId()));
+
+			// add the customers to the model
+
+			model.addAttribute("endpage", endpage);
+			model.addAttribute("tag", indexPage);
+
+			return "admin/product";
+		} else {
+			return "redirect:/login";
 		}
-		int indexPage = Integer.parseInt(index);
-		int endpage = (soLuong + 5) / 6;
-
-		model.addAttribute("listproduct", adminService.getDsProductTop9(indexPage, username.getUserId()));
-
-		// add the customers to the model
-
-		model.addAttribute("endpage", endpage);
-		model.addAttribute("tag", indexPage);
-
-		return "admin/product";
 	}
 
 	@RequestMapping("/formproduct")
@@ -221,7 +245,7 @@ public class ADHomeController {
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
 		if (username == null) {
-			return "admin/login";
+			return "redirect:/login";
 		}
 		model.addAttribute("listvoucher", adminService.getDsVoucher());
 		model.addAttribute("listbranch", adminService.getDsBranchs());
@@ -234,6 +258,9 @@ public class ADHomeController {
 			@ModelAttribute("product") Product theProduct) {
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
+		if (username == null) {
+			return "redirect:/login";
+		}
 		model.addAttribute("listvoucher", adminService.getDsVoucher());
 		model.addAttribute("listbranch", adminService.getDsBranchs());
 		model.addAttribute("product", theProduct);
@@ -242,15 +269,18 @@ public class ADHomeController {
 
 	@PostMapping("/saveProduct")
 	private String luu(@ModelAttribute("product") @Valid Product theProduct, BindingResult result,
-			HttpServletRequest request) {
+			HttpServletRequest request,Model model) {
 		if (!(result.hasErrors())) {
 			theProduct.setCreatedAt(new Date());
+			theProduct.setSale((float) (theProduct.getPrice()-(theProduct.getPrice()*theProduct.getSale())));
 			adminService.saveProduct(theProduct);
 			HttpSession session = request.getSession();
 			session.setAttribute("productname", theProduct.getName());
 			session.setAttribute("productid", theProduct.getProductId());
 			return "redirect:formcategoryproduct";
 		}
+		model.addAttribute("listvoucher", adminService.getDsVoucher());
+		model.addAttribute("listbranch", adminService.getDsBranchs());
 		return "admin/form_product";
 
 	}
@@ -284,7 +314,7 @@ public class ADHomeController {
 	}
 
 	@PostMapping("/saveColor")
-	private String luu(@ModelAttribute("color") Color theColor, HttpServletRequest req)
+	private String luu(@ModelAttribute("color") @Valid Color theColor,BindingResult result, HttpServletRequest req)
 			throws ServletException, IOException {
 		try {
 			Map r = this.cloudinary.uploader().upload(theColor.getFile().getBytes(),
@@ -296,6 +326,7 @@ public class ADHomeController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.err.print("ADD PRODUCT " + e.getMessage());
+			req.setAttribute("err", e.getMessage());
 		}
 		return "admin/form_color";
 
@@ -333,150 +364,187 @@ public class ADHomeController {
 		String ten = tenS.trim();
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
+		if (username != null) {
+			String[] tenx = ten.split("[,; \\t\\n\\r]+");
+			for (String string : tenx) {
+				if (index == null) {
+					index = "1";
+				}
 
-		String[] tenx = ten.split("[,; \\t\\n\\r]+");
-		for (String string : tenx) {
+				int indexPage = Integer.parseInt(index);
+				int soLuong = homeService.demSLKhiSearchTheoIDSaller(string, username.getUserId());
+				int endpage = (soLuong + 5) / 6;
+
+				theModel.addAttribute("listproduct",
+						adminService.getDsProductTop9ToSearxh(indexPage, username.getUserId(), string));
+				theModel.addAttribute("endpage", endpage);
+				theModel.addAttribute("tag", indexPage);
+			}
+			req.setAttribute("tenS", tenS);
+			return "admin/product";
+		} else {
+			return "redirect:/login";
+		}
+	}
+
+	@RequestMapping("/inventory/{index}&")
+	public String inventory(Model model, @PathVariable(name = "index") String index, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		Users username = (Users) session.getAttribute("acc");
+		if (username != null) {
 			if (index == null) {
 				index = "1";
 			}
 
 			int indexPage = Integer.parseInt(index);
-			int soLuong = homeService.demSLKhiSearchTheoIDSaller(string, username.getUserId());
+			int soLuong = adminService.countInventoryByCategory(username.getUserId());
 			int endpage = (soLuong + 5) / 6;
 
-			theModel.addAttribute("listproduct",
-					adminService.getDsProductTop9ToSearxh(indexPage, username.getUserId(), string));
-			theModel.addAttribute("endpage", endpage);
-			theModel.addAttribute("tag", indexPage);
+			model.addAttribute("list", adminService.inventoryByCategory(indexPage, username.getUserId()));
+			model.addAttribute("endpage", endpage);
+			model.addAttribute("tag", indexPage);
+			return "admin/inventory";
+		} else {
+			return "redirect:/login";
 		}
-		req.setAttribute("tenS", tenS);
-		return "admin/product";
 	}
 
-	@RequestMapping("/inventory/{index}&")
-	public String inventory(Model model, @PathVariable(name = "index") String index,HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		Users username = (Users) session.getAttribute("acc");
-		if (index == null) {
-			index = "1";
-		}
-
-		int indexPage = Integer.parseInt(index);
-		int soLuong = adminService.countInventoryByCategory(username.getUserId());
-		int endpage = (soLuong + 5) / 6;
-
-		model.addAttribute("list", adminService.inventoryByCategory(indexPage, username.getUserId()));
-		model.addAttribute("endpage", endpage);
-		model.addAttribute("tag", indexPage);
-		return "admin/inventory";
-	}
 	@RequestMapping("/searchDate/{index}&")
-	public String inventoryDate(Model model, @PathVariable(name = "index") String index, HttpServletRequest req,@RequestParam("start") String start
-			, @RequestParam("end") String end) {
+	public String inventoryDate(Model model, @PathVariable(name = "index") String index, HttpServletRequest req,
+			@RequestParam("start") String start, @RequestParam("end") String end) {
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		if (index == null) {
-			index = "1";
+		if (username != null) {
+			if (index == null) {
+				index = "1";
+			}
+
+			int indexPage = Integer.parseInt(index);
+			int soLuong = adminService.countInventoryByCategory(username.getUserId());
+			int endpage = (soLuong + 5) / 6;
+
+			model.addAttribute("list",
+					adminService.inventoryByCategoryDate(start, end, indexPage, username.getUserId()));
+			model.addAttribute("endpage", endpage);
+			model.addAttribute("tag", indexPage);
+			model.addAttribute("start", start);
+			model.addAttribute("end", end);
+			return "admin/inventory";
+		} else {
+			return "redirect:/login";
 		}
-
-		int indexPage = Integer.parseInt(index);
-		int soLuong = adminService.countInventoryByCategory(username.getUserId());
-		int endpage = (soLuong + 5) / 6;
-
-		model.addAttribute("list", adminService.inventoryByCategoryDate(start,end,indexPage, username.getUserId()));
-		model.addAttribute("endpage", endpage);
-		model.addAttribute("tag", indexPage);
-		model.addAttribute("start", start);
-		model.addAttribute("end", end);
-		return "admin/inventory";
 	}
 
 	@RequestMapping("/sales/{index}&{tenS}")
 	public String sales(Model model, @PathVariable(name = "index") String index, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		if (index == null) {
-			index = "1";
+		if (username != null) {
+
+			if (index == null) {
+				index = "1";
+			}
+
+			int indexPage = Integer.parseInt(index);
+			int soLuong = adminService.countRevenueByCategory(username.getUserId());
+			int endpage = (soLuong + 5) / 6;
+
+			model.addAttribute("list", adminService.revenueByCategory(indexPage, username.getUserId()));
+			model.addAttribute("endpage", endpage);
+			model.addAttribute("tag", indexPage);
+			return "admin/sales";
+		} else {
+			return "redirect:/login";
 		}
-
-		int indexPage = Integer.parseInt(index);
-		int soLuong = adminService.countRevenueByCategory(username.getUserId());
-		int endpage = (soLuong + 5) / 6;
-
-		model.addAttribute("list", adminService.revenueByCategory(indexPage, username.getUserId()));
-		model.addAttribute("endpage", endpage);
-		model.addAttribute("tag", indexPage);
-		return "admin/sales";
 	}
+
 	@GetMapping({ "/revenueyear/{index}&" })
-	public String revenueyear(Model theModel,
-			@PathVariable(name = "index") String index, HttpServletRequest req) {
+	public String revenueyear(Model theModel, @PathVariable(name = "index") String index, HttpServletRequest req) {
 		int soLuong = adminService.demSLOrderByStatus();
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		if (index == null) {
-			index = "1";
-		}
-		int indexPage = Integer.parseInt(index);
-		int endpage = (soLuong + 5) / 6;
+		if (username != null) {
+			if (index == null) {
+				index = "1";
+			}
+			int indexPage = Integer.parseInt(index);
+			int endpage = (soLuong + 5) / 6;
 
-		theModel.addAttribute("endpage", endpage);
-		theModel.addAttribute("tag", indexPage);
-		theModel.addAttribute("list", adminService.revenueByYear(indexPage, username.getUserId()));
-		return "admin/revenuesales";
+			theModel.addAttribute("endpage", endpage);
+			theModel.addAttribute("tag", indexPage);
+			theModel.addAttribute("list", adminService.revenueByYear(indexPage, username.getUserId()));
+			return "admin/revenuesales";
+		} else {
+			return "redirect:/login";
+		}
 	}
+
 	@RequestMapping({ "/revenuemonth/{index}&" })
-	public String revenuemonth(Model theModel,
-			@PathVariable(name = "index") String index, HttpServletRequest req) {
+	public String revenuemonth(Model theModel, @PathVariable(name = "index") String index, HttpServletRequest req) {
 		int soLuong = adminService.demSLOrderByStatus();
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		if (index == null) {
-			index = "1";
-		}
-		int indexPage = Integer.parseInt(index);
-		int endpage = (soLuong + 5) / 6;
+		if (username != null) {
 
-		theModel.addAttribute("endpage", endpage);
-		theModel.addAttribute("tag", indexPage);
-		theModel.addAttribute("list", adminService.revenueByMonth(indexPage, username.getUserId()));
-		return "admin/revenuesales";
+			if (index == null) {
+				index = "1";
+			}
+			int indexPage = Integer.parseInt(index);
+			int endpage = (soLuong + 5) / 6;
+
+			theModel.addAttribute("endpage", endpage);
+			theModel.addAttribute("tag", indexPage);
+			theModel.addAttribute("list", adminService.revenueByMonth(indexPage, username.getUserId()));
+			return "admin/revenuesales";
+		} else {
+			return "redirect:/login";
+		}
 	}
+
 	@RequestMapping({ "/revenuequarter/{index}&" })
-	public String revenuequarter(Model theModel,
-			@PathVariable(name = "index") String index, HttpServletRequest req) {
+	public String revenuequarter(Model theModel, @PathVariable(name = "index") String index, HttpServletRequest req) {
 		int soLuong = adminService.demSLOrderByStatus();
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		if (index == null) {
-			index = "1";
-		}
-		int indexPage = Integer.parseInt(index);
-		int endpage = (soLuong + 5) / 6;
+		if (username != null) {
 
-		theModel.addAttribute("endpage", endpage);
-		theModel.addAttribute("tag", indexPage);
-		theModel.addAttribute("list", adminService.revenueByQuater(indexPage, username.getUserId()));
-		return "admin/revenuesales";
+			if (index == null) {
+				index = "1";
+			}
+			int indexPage = Integer.parseInt(index);
+			int endpage = (soLuong + 5) / 6;
+
+			theModel.addAttribute("endpage", endpage);
+			theModel.addAttribute("tag", indexPage);
+			theModel.addAttribute("list", adminService.revenueByQuater(indexPage, username.getUserId()));
+			return "admin/revenuesales";
+		} else {
+			return "redirect:/login";
+		}
 	}
+
 	@RequestMapping({ "/revenueall/{index}&" })
-	public String revenueall(Model theModel,
-			@PathVariable(name = "index") String index, HttpServletRequest req) {
-		
+	public String revenueall(Model theModel, @PathVariable(name = "index") String index, HttpServletRequest req) {
+
 		HttpSession session = req.getSession();
 		Users username = (Users) session.getAttribute("acc");
-		if (index == null) {
-			index = "1";
-		}
-		int soLuong = adminService.countRevenueByCategory(username.getUserId());
-		int indexPage = Integer.parseInt(index);
-		int endpage = (soLuong + 5) / 6;
+		if (username != null) {
+			if (index == null) {
+				index = "1";
+			}
+			int soLuong = adminService.countRevenueByCategory(username.getUserId());
+			int indexPage = Integer.parseInt(index);
+			int endpage = (soLuong + 5) / 6;
 
-		theModel.addAttribute("endpage", endpage);
-		theModel.addAttribute("tag", indexPage);
-		theModel.addAttribute("list", adminService.revenueByCategory(indexPage, username.getUserId()));
-		return "admin/sales";
+			theModel.addAttribute("endpage", endpage);
+			theModel.addAttribute("tag", indexPage);
+			theModel.addAttribute("list", adminService.revenueByCategory(indexPage, username.getUserId()));
+			return "admin/sales";
+		} else {
+			return "redirect:/login";
+		}
 	}
+
 	@RequestMapping("/branch/{index}&{tenS}")
 	public String branch(Model model, @PathVariable(name = "index") String index) {
 		int soLuong = adminService.demSLBranch();
@@ -498,7 +566,7 @@ public class ADHomeController {
 	}
 
 	@PostMapping("/saveCategory")
-	private String saveCategory(@ModelAttribute("category") Category theCategory, HttpServletRequest request)
+	private String saveCategory(@ModelAttribute("category") @Valid Category theCategory,BindingResult result, HttpServletRequest request)
 			throws ServletException, IOException {
 
 		try {
@@ -526,12 +594,12 @@ public class ADHomeController {
 
 	@RequestMapping("/deleteCategory")
 	public String deleteCategory(@RequestParam("categoryId") String categoryId) {
-		if (adminService.demSLCartTheoProductId(categoryId) == 0 ) {
+		if (adminService.demSLCartTheoProductId(categoryId) == 0) {
 			adminService.deleteCategory(categoryId);
 			return "redirect:category/1&";
 
 		} else {
-			
+
 			return "redirect:category/1&";
 		}
 	}
@@ -546,13 +614,17 @@ public class ADHomeController {
 	}
 
 	@PostMapping("/saveVoucher")
-	private String saveVoucher(@ModelAttribute("voucher") Voucher theVoucher, HttpServletRequest request) {
+	private String saveVoucher(@ModelAttribute("voucher")  @Valid  Voucher theVoucher,BindingResult result, HttpServletRequest request) {
+		if (!(result.hasErrors())) {
+
 		theVoucher.setCreatedAt(new Date());
 		theVoucher.setUpdateAt(new Date());
 
 		adminService.saveVoucher(theVoucher);
 
 		return "redirect:voucher/1&";
+		}
+		return "admin/form_voucher";
 	}
 
 	@RequestMapping("/updatevoucher")
@@ -564,90 +636,91 @@ public class ADHomeController {
 
 	@RequestMapping("/deletevoucher")
 	public String deleteVoucher(@RequestParam("voucherId") String voucherId) {
-		
-		if (adminService.demSLVoucherTheoProductId(voucherId) == 0 ) {
+
+		if (adminService.demSLVoucherTheoProductId(voucherId) == 0) {
 			adminService.deleteVoucher(voucherId);
 			return "redirect:voucher/1&";
 
 		} else {
-			
+
 			return "redirect:voucher/1&";
 		}
 
-
-
 	}
-	@GetMapping({"/searchvoucher/{index}&"})
-	public String searchvoucher(Model theModel, @RequestParam("tenS") String tenS,@PathVariable(name = "index") String index,
-			HttpServletRequest req) {
+
+	@GetMapping({ "/searchvoucher/{index}&" })
+	public String searchvoucher(Model theModel, @RequestParam("tenS") String tenS,
+			@PathVariable(name = "index") String index, HttpServletRequest req) {
 		String ten = tenS.trim();
 		HttpSession session = req.getSession();
-		
-		
+
 		String[] tenx = ten.split("[,; \\t\\n\\r]+");
 		for (String string : tenx) {
-		if (index == null) {
-			index = "1";
+			if (index == null) {
+				index = "1";
+			}
+
+			int indexPage = Integer.parseInt(index);
+			int soLuong = adminService.demSLVoucher();
+
+			int endpage = (soLuong + 5) / 6;
+
+			theModel.addAttribute("listvou", adminService.getDsVoucherSearxh(indexPage, string));
+			theModel.addAttribute("endpage", endpage);
+			theModel.addAttribute("tag", indexPage);
 		}
-		
-		int indexPage = Integer.parseInt(index);
-		int soLuong = adminService.demSLVoucher();
-
-		int endpage = (soLuong + 5) / 6;
-
-		theModel.addAttribute("listvou", adminService.getDsVoucherSearxh(indexPage, string));
-		theModel.addAttribute("endpage", endpage);
-		theModel.addAttribute("tag", indexPage);}
 		req.setAttribute("tenS", tenS);
-		return "admin/voucher";	
+		return "admin/voucher";
 	}
-	@GetMapping({"/searchbranch/{index}&"})
-	public String searchbranch(Model theModel, @RequestParam("tenS") String tenS,@PathVariable(name = "index") String index,
-			HttpServletRequest req) {
+
+	@GetMapping({ "/searchbranch/{index}&" })
+	public String searchbranch(Model theModel, @RequestParam("tenS") String tenS,
+			@PathVariable(name = "index") String index, HttpServletRequest req) {
 		String ten = tenS.trim();
 		HttpSession session = req.getSession();
-		
-		
+
 		String[] tenx = ten.split("[,; \\t\\n\\r]+");
 		for (String string : tenx) {
-		if (index == null) {
-			index = "1";
+			if (index == null) {
+				index = "1";
+			}
+
+			int indexPage = Integer.parseInt(index);
+			int soLuong = adminService.demSLBranch();
+
+			int endpage = (soLuong + 5) / 6;
+
+			theModel.addAttribute("listbranch", adminService.getDsBranchSearch(indexPage, string));
+			theModel.addAttribute("endpage", endpage);
+			theModel.addAttribute("tag", indexPage);
 		}
-		
-		int indexPage = Integer.parseInt(index);
-		int soLuong = adminService.demSLBranch();
-
-		int endpage = (soLuong + 5) / 6;
-
-		theModel.addAttribute("listbranch", adminService.getDsBranchSearch(indexPage, string));
-		theModel.addAttribute("endpage", endpage);
-		theModel.addAttribute("tag", indexPage);}
 		req.setAttribute("tenS", tenS);
-		return "admin/branch";	
+		return "admin/branch";
 	}
-	@GetMapping({"/searchcategory/{index}&"})
-	public String searchcategory(Model theModel, @RequestParam("tenS") String tenS,@PathVariable(name = "index") String index,
-			HttpServletRequest req) {
+
+	@GetMapping({ "/searchcategory/{index}&" })
+	public String searchcategory(Model theModel, @RequestParam("tenS") String tenS,
+			@PathVariable(name = "index") String index, HttpServletRequest req) {
 		String ten = tenS.trim();
 		HttpSession session = req.getSession();
-		
-		
+
 		String[] tenx = ten.split("[,; \\t\\n\\r]+");
 		for (String string : tenx) {
-		if (index == null) {
-			index = "1";
+			if (index == null) {
+				index = "1";
+			}
+
+			int indexPage = Integer.parseInt(index);
+			int soLuong = adminService.demSLCategory();
+
+			int endpage = (soLuong + 5) / 6;
+
+			theModel.addAttribute("listcate", adminService.getDsCategorySearch(indexPage, string));
+			theModel.addAttribute("endpage", endpage);
+			theModel.addAttribute("tag", indexPage);
 		}
-		
-		int indexPage = Integer.parseInt(index);
-		int soLuong = adminService.demSLCategory();
-
-		int endpage = (soLuong + 5) / 6;
-
-		theModel.addAttribute("listcate", adminService.getDsCategorySearch(indexPage, string));
-		theModel.addAttribute("endpage", endpage);
-		theModel.addAttribute("tag", indexPage);}
 		req.setAttribute("tenS", tenS);
-		return "admin/category";	
+		return "admin/category";
 	}
 
 	@RequestMapping("/formbranch")
@@ -657,7 +730,7 @@ public class ADHomeController {
 	}
 
 	@PostMapping("/saveBranch")
-	private String saveBranch(@ModelAttribute("branch") Branchs theBranchs, HttpServletRequest request)
+	private String saveBranch(@ModelAttribute("branch") @Valid Branchs theBranchs,BindingResult result, HttpServletRequest request)
 			throws ServletException, IOException {
 
 		try {
@@ -670,6 +743,7 @@ public class ADHomeController {
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.err.print("Add Branch" + e.getMessage());
+			request.setAttribute("err", e.getMessage());
 		}
 		return "admin/form_branch";
 

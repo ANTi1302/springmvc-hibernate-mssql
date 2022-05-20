@@ -1,0 +1,7 @@
+product.name.lenErr=Product name minimum 5-100 characters
+product.price.minErr=Product price minimum 1$
+product.price.maxErr=Product price minimum 1. 000. 000.000$
+product.color.nullErr=Choose Image Product
+product.amount.minErr=Product amount minimum 1
+product.quatity.minErr=Product quantity minimum 1
+color.code.lenErr=Color code minimum 5-100 characters

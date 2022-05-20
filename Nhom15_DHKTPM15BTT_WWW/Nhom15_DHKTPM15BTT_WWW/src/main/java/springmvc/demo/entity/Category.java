@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +25,7 @@ public class Category implements Serializable{
 	@Column(name = "category_id", columnDefinition = "uniqueidentifier")
 	private String categoryId;
 	@Column(columnDefinition = "nvarchar(500)")
+	@Size(min = 5, max=100, message = "{category.name.lenErr}")
 	private String name;
 	@Column(columnDefinition = "nvarchar(1000)")
 	private String icon;

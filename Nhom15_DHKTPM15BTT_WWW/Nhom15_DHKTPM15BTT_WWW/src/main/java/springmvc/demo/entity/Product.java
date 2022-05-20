@@ -50,7 +50,9 @@ public class Product implements Serializable{
 	@Column(name = "update_at")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updateAt;
+	@Min(value = 1, message = "{product.amount.minErr}")
 	private int amount;
+	@Min(value = 1, message = "{product.quatity.minErr}")
 	private int quatity;
 
 	@ManyToOne

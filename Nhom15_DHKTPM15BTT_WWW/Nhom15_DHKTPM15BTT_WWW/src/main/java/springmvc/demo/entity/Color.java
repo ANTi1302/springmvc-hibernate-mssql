@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,8 +23,10 @@ public class Color implements Serializable{
 	@Column(name = "color_id", columnDefinition = "uniqueidentifier")
 	private String colorId;
 	@Column(columnDefinition = "nvarchar(500)")
+	@Size(min = 5, max=100, message = "{color.name.lenErr}")
 	private String name;
 	@Column(columnDefinition = "nvarchar(500)")
+	@Size(min = 5, max=100, message = "{color.code.lenErr}")
 	private String code;
 	@Column(columnDefinition = "nvarchar(1000)")
 	@NotNull(message = "{product.color.nullErr}")

@@ -60,7 +60,7 @@
 												<label class="col-sm-3 col-form-label">Amount</label>
 												<div class="col-sm-9">
 													<form:input path="amount" class="form-control" />
-													
+													 <form:errors path="amount" cssClass="alert alert-danger" element="div"/>
 												</div>
 											</div>
 										</div>
@@ -148,6 +148,7 @@
 												<label class="col-sm-3 col-form-label">Quantity</label>
 												<div class="col-sm-9">
 													<form:input class="form-control" path="quatity"/>
+													 <form:errors path="quatity" cssClass="alert alert-danger" element="div"/>
 												</div>
 											</div>
 										</div>

@@ -46,6 +46,7 @@
 								<label for="exampleInputName1">Code</label>
 								<form:input type="text" path="code" class="form-control"
 									id="exampleInputName1" placeholder="Name" />
+									 <form:errors path="code" cssClass="alert alert-danger" element="div"/>
 							</div>
 							<button style="background-color: #223E9C" type="submit"
 								class="btn btn-primary me-2">Submit</button>

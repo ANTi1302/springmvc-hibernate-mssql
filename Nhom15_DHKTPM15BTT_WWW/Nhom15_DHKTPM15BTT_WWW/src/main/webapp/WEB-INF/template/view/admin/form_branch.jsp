@@ -62,6 +62,7 @@
 												placeholder="Nhập tên nhà cung cấp"/> <span
 												style="color: red; font-style: italic;"
 												class="error error-customer_Title"></span>
+												<form:errors path="title" cssClass="alert alert-danger" element="div"/>
 										</div>
 									</div>
 										<div class="col-md-6">
@@ -77,6 +78,9 @@
 																type="button">Upload</button>
 														</span>
 													</div>
+													<c:if test="${err !=null }">
+														<i class="alert alert-success">${err }</i>
+													</c:if>
 												</div>
 											</div>
 										</div>
@@ -90,6 +94,7 @@
 												rows="10"></form:textarea>
 											<span style="color: red; font-style: italic;"
 												class="error error-customer_Description"></span>
+												<form:errors path="description" cssClass="alert alert-danger" element="div"/>
 										</div>
 									</div>
 								</div>

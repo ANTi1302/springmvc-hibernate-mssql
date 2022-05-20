@@ -66,7 +66,7 @@
 								</div>
 								<div class="col-12 mb-3">
 									<input type="email" class="form-control" name="email"
-										placeholder="Email" value="${sessionScope.acc.email}">
+										placeholder="Email" value="${acc.email}">
 								</div>
 								<div class="col-12 mb-3">
 									<select class="w-100" id="country">

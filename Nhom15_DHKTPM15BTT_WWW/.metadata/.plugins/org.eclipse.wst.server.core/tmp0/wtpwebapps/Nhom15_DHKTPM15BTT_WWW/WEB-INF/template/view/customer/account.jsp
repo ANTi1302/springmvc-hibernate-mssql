@@ -91,7 +91,14 @@
                   <div class="col-md-3 px-1">
                     <div class="form-group">
                       <label>Phone</label>
-                      <input type="text" class="form-control" name="phone" disabled=""  placeholder="Username" value="${u.phone }">
+                      <c:if test="${acc.phone !=null }">
+          <%--              <input type="text" class="form-control" name="phone" disabled=""  placeholder="Phone number" value="${u.phone }"> --%>
+                        <input type="text" class="form-control" name="phone" disabled=""  placeholder="Phone number" value="${acc.phone }">
+                      </c:if>
+                       <c:if test="${acc.phone ==null }">
+                       <input type="text" class="form-control" name="phone"  placeholder="Phone number" value="${u.phone }">
+                      </c:if>
+                     
                     </div>
                   </div>
                   <div class="col-md-4 pl-1">

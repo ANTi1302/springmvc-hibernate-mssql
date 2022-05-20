@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,6 +24,7 @@ public class Voucher implements Serializable{
 	@Column(name = "voucher_id", columnDefinition = "uniqueidentifier")
 	private String voucherId;
 	@Column(columnDefinition = "nvarchar(1000)")
+	@Size(min = 5, max=1000, message = "{voucher.code.lenErr}")
 	private String code;
 	@Column(name = "created_at")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
