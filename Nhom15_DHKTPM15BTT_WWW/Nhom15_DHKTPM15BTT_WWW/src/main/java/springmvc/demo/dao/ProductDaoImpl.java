@@ -509,10 +509,10 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 	@Override
 	public List<Object[]> getDs40Order(String userId, String tenS) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		String hql="SELECT  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,sum(d.amount* d.price),d.productId.user.userId\r\n"
+		String hql="SELECT  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,sum(d.amount* d.price),d.productId.user.userId,d.createdAt\r\n"
 				+ "FROM     Order o INNER JOIN\r\n"
-				+ "                  OrderDetail d ON o.orderId = d.orderId.orderId\r\n where d.productId.user.userId='"+userId+"' and o.status='"+tenS+"' and d.createdAt < FORMAT (getdate(), 'MM-dd-yyyy')"
-				+ "GROUP BY  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,d.productId.user.userId";
+				+ "                  OrderDetail d ON o.orderId = d.orderId.orderId\r\n where d.productId.user.userId='"+userId+"' and o.status='"+tenS+"' "
+				+ "GROUP BY  o.orderId ,o.user.firstName,o.user.lastName, o.createdAt, o.updateAt, o.status,d.productId.user.userId,d.createdAt order by d.createdAt DESC";
 		// execute query and get result list
 		TypedQuery<Object[]> query=currentSession.createQuery(hql,Object[].class).setMaxResults(40);
 		// return the results
